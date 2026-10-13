@@ -1812,6 +1812,24 @@ em.st{font-style:normal}
 @media (min-width:760px){.ownt{grid-template-columns:repeat(auto-fill,minmax(76px,1fr))}.own{font-size:10.5px}}
 .dgi .dgsrc{font-size:10.5px;color:#7A7266;-webkit-line-clamp:unset;display:block}.dgi .dgsrc a{color:#9A8C76}
 .rxtr{margin:10px 0 0 56px;font-size:12px;color:#B8A68A}.rxtr b{font:400 13px/1 "KOTRA",sans-serif;color:#C9A6FF;margin-right:8px}@media (max-width:480px){.rxtr{margin-left:42px}}
+/* 인격·기프트 → 추천 덱 */
+.xds{margin-top:16px}
+.xdl{display:flex;flex-direction:column;gap:4px}
+.xdk{--sc:#BFAE8E;position:relative;display:flex;align-items:center;gap:10px;width:100%;padding:6px 10px 6px 8px;border:1px solid #3A3328;border-left:3px solid var(--sc);border-radius:3px;background:linear-gradient(90deg,color-mix(in srgb,var(--sc) 10%,#15110E),#110E0B 60%);color:inherit;font:inherit;text-align:left;cursor:pointer}
+.xdk:hover{border-color:#8A7350;border-left-color:var(--sc)}
+.xdk .fci.xdf{flex:none;width:38px;height:38px;border-radius:3px}
+.xdt{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+.xdt b{font:400 14px/1.2 "KOTRA",sans-serif;color:#FFF3DF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.xdk2{display:flex;align-items:center;gap:3px}
+.xdk2 .xdki{height:16px;width:16px;object-fit:contain}
+.xdk2 em{margin-left:5px;font:500 10px/1 "SCDream",sans-serif;font-style:normal;color:#9A8C76}
+.xdg{flex:none;max-width:42%;font:500 10.5px/1.2 "SCDream",sans-serif;font-style:normal;color:#D9CBAA;padding:3px 6px 2px;border:1px solid #4A4237;border-radius:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.xdk .chev{flex:none;width:6px;height:6px;border-right:1.5px solid #7A6A50;border-bottom:1.5px solid #7A6A50;transform:rotate(-45deg)}
+.xdm{margin-top:4px}
+.xdm summary{cursor:pointer;font:500 11.5px/1 "SCDream",sans-serif;color:#9A8C76;padding:6px 2px;list-style:none}
+.xdm summary::-webkit-details-marker{display:none}
+.xdm[open] summary{color:#D9CBAA}
+#detailBody>.xds .usec h3,.xds h3{display:flex;align-items:center;gap:6px}
 /* ===== 선택지 ===== */
 .cgrid{display:grid;gap:8px;grid-template-columns:1fr}
 @media (min-width:760px){.cgrid{grid-template-columns:1fr 1fr}}
@@ -2763,6 +2781,7 @@ document.addEventListener("click",function(e){
   var nsb=t.closest("[data-nsort]");if(nsb){nSort=nsb.dataset.nsort;document.querySelectorAll("[data-nsort]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.nsort===nSort)});renderEnemy();return}
   if(t.closest("#cFilterBtn")){var cf2=$("cFil"),co=cf2.classList.toggle("open");$("cFilterBtn").setAttribute("aria-expanded",co);return}
   if(t.closest("#nFilterBtn")){var nf2=$("nFil"),no2=nf2.classList.toggle("open");$("nFilterBtn").setAttribute("aria-expanded",no2);return}
+  var gdg=t.closest("[data-gdgo]");if(gdg){hide();setView("deck");loadGuide(+gdg.dataset.gdgo,0);window.scrollTo(0,0);return}
   var hgd=t.closest("[data-hgd]");if(hgd){setView("deck");loadGuide(+hgd.dataset.hgd,0);window.scrollTo(0,0);return}
   var owc=t.closest("[data-ownc]");if(owc){var oid=owc.dataset.ownc,ov=OWN.ids[oid]||0;OWN.ids[oid]=ov===4?3:ov===3?0:4;ownSave();renderMy();return}
   var ows=t.closest("[data-owns]");if(ows){var osn=+ows.dataset.owns,ol=U.ids.filter(function(i){return i.s===osn}),oall=ol.every(owned);ol.forEach(function(i){OWN.ids[i.id]=oall?0:4});ownSave();renderMy();return}
@@ -3840,6 +3859,23 @@ function luxHtml(){if(!window.X||!X.exp)return '<div class="dempty">던전 데�
 function openLux(day){if(day)luxDay=day;else luxDay=null;var h='<div class="lxtop"><b>채광</b><small>경험치 · 끈 · 요일별 던전</small></div><div id="luxBody">'+luxHtml()+'</div>';
   navStack=[];$("detailBody").innerHTML=h;$("detail").setAttribute("aria-label","채광");updBack();show("detail")}
 (function(){var _lg=loadGuide,_qb=quickBuild,_lp=loadPreset;loadGuide=function(a,b){dTab="route";deck.tune=false;deck.mode="md";var g=GDECKS.list.filter(function(x){return x.no===a})[0];deck.n=(g&&g.n)||dModeN("md");_lg(a,b)};quickBuild=function(c){dTab="route";_qb(c)};loadPreset=function(k){dTab="route";_lp(k)}})();
+/* ===== 상호 연결: 인격·기프트 → 추천 덱 ===== */
+function gdRow(g,tag){var v=gdV(g,0),u=gdUnits(v),P=gdProf(g),hs=u[gdHero(g,u,gdDep(v,g.n||7),P)];
+  var ks=P.kws[0]?SIN[KWSIN[KWKR[P.kws[0]]]]:"#BFAE8E";
+  return '<button class="xdk" data-gdgo="'+g.no+'" style="--sc:'+ks+'">'+(hs?face(hs.id,"xdf"):'<span class="fci none xdf"></span>')+'<span class="xdt"><b>'+esc(g.t)+'</b><span class="xdk2">'+P.kws.map(function(k){return kwIco(k,"xdki")}).join("")+(g.req?'<em>'+esc(g.req)+'</em>':'')+'</span></span>'+(tag?'<i class="xdg">'+esc(tag)+'</i>':'')+'<i class="chev"></i></button>'}
+function unitDecks(uid){if(!window.GDECKS)return [];var out=[];GDECKS.list.forEach(function(g){var role=null;g.v.forEach(function(v){var n=g.n||7,dep=gdDep(v,n);v.m.forEach(function(x,ix){if(x[0]!==uid)return;var r=dep.indexOf(ix+1)>=0?"출격":"서포트";if(!role||r==="출격")role=r})});if(role)out.push({g:g,tag:role})});
+  out.sort(function(a,b){return (a.tag==="출격"?0:1)-(b.tag==="출격"?0:1)});return out}
+function giftDecks(name){if(!window.GDECKS)return [];var out=[];GDECKS.list.forEach(function(g){var tag=null;
+    if((g.obs||[]).indexOf(name)>=0)tag="관측";
+    (g.r||[]).forEach(function(r){r.ps.forEach(function(p){if(!tag&&p.g.indexOf(name)>=0)tag=r.f.replace(/층$/,"")+"층 · "+p.p})});
+    if(tag)out.push({g:g,tag:tag})});return out}
+function xdSec(title,L,sub){if(!L.length)return "";var more=L.length>4;
+  return '<div class="usec xds"><h3>'+title+'<small>'+L.length+'</small>'+(sub?'<span class="hh">'+sub+'</span>':'')+'</h3><div class="xdl">'+L.slice(0,4).map(function(x){return gdRow(x.g,x.tag)}).join("")+'</div>'+
+    (more?'<details class="xdm"><summary>나머지 '+(L.length-4)+'개 더 보기</summary><div class="xdl">'+L.slice(4).map(function(x){return gdRow(x.g,x.tag)}).join("")+'</div></details>':'')+'</div>'}
+(function(){var _ou=openUnit;openUnit=function(id){_ou(id);var i=UBY[id];if(!i)return;var L=unitDecks(i.id);if(!L.length)return;
+    var f=[].filter.call(document.querySelectorAll("#detailBody .usec"),function(x){var t=x.querySelector("h3");return t&&/^E\.G\.O/.test(t.textContent)})[0]||document.querySelector("#detailBody .ufoot");var h=xdSec("이 인격이 들어간 추천 덱",L,"출격 먼저");if(f)f.insertAdjacentHTML("beforebegin",h);else $("detailBody").insertAdjacentHTML("beforeend",h)};
+  if(typeof openDetail==="function"){var _od=openDetail;openDetail=function(name){_od(name);if(!window.GDECKS||!U)return;var L=giftDecks(name);if(!L.length)return;
+    $("detailBody").insertAdjacentHTML("beforeend",xdSec("이 기프트를 노리는 추천 덱",L,"공략 루트 기준"))}}})();
 
 /* ===== 선택지 · 적 도감 · 채광/사영 · 덱 평가 · 리세 ===== */
 var X=null,EVBY={},EVROOTS=[],ENBY={},EN_EVENTS={},cSel={cat:[],sin:[],pack:[]},nSel={kind:[],where:[],sin:[],cls:[]},cSort="",nSort="";
