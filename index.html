@@ -2531,6 +2531,16 @@ em.st{font-style:normal}
 .tvn{display:block;-webkit-line-clamp:unset;padding:12px 3px 3px}
 .tvn small,.tvn span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 @media (max-width:759px){.tvl{width:58px}.tvl b{font-size:12.5px}.tvi{width:56px;height:56px}.tvis{gap:2px;padding:2px}}
+
+/* 칸 이름 대신 기프트 그림 */
+.tvl.img{gap:2px}
+.tvl .tvg{position:relative;display:block;width:54px;height:54px;background:none!important;border:0!important;box-shadow:none!important;filter:drop-shadow(0 2px 3px rgba(0,0,0,.35))}
+.tvl .tvg .sp{inset:0}
+.tvl.img small{opacity:.7}
+@media (min-width:760px){.tvl .tvg{width:76px;height:76px}}
+@media (max-width:759px){.tvl .tvg{width:46px;height:46px}}
+.tvl .tvg::before,.tvl .tvg::after{content:none!important}
+.tvl .tvg{aspect-ratio:auto}
 </style>
 </head>
 <body>
@@ -11038,6 +11048,8 @@ function impApply(){var k=IMP.kind,rows=IMP.rows;if(!rows)return;deckInit();
 
 /* ===== 투표 공통: 파편 우선순위 티어표 · E.G.O 평가 · 덱 루트 선택 ===== */
 var VDEF={tiers:["필수","강력추천","여유되면","굳이","트로피"],th:10,rounds:[{id:"base",name:"상시",recent:3,on:true}]};
+var TIER_GIFT=["봉이 인형","슬픈 봉제인형","작고 나쁠 인형","저주 인형","흰 목화"];
+function tvLab(ix,n){var T=vTiers(),g=window.byName&&byName[TIER_GIFT[ix]];return '<div class="tvl'+(g?" img":"")+'" title="'+esc(T[ix])+'" aria-label="'+esc(T[ix])+'">'+(g?'<span class="gi tvg">'+spr(g)+'</span>':'<b>'+esc(T[ix])+'</b>')+'<small>'+n+'</small></div>'}
 var VC=null,VAGG={},VLVS=["뉴비","중수","고인"],TIER_COL=["#E0675F","#E89A55","#E8C547","#CFCB72","#8DC97A"];
 function vOnline(){return !!((window.google&&google.script&&google.script.run)||window.API_URL)}
 function vParse(s){try{return typeof s==="string"?JSON.parse(s):s}catch(e){return null}}
@@ -11107,7 +11119,7 @@ function tvDraw(agg){var el=$("tierBody"),T=vTiers(),h=tvHead(),r=tvRound();_pp=
     rows.forEach(function(L){L.sort(function(a,b){return (a.p.src==="u"?a.p.avg:a.p.t)-(b.p.src==="u"?b.p.avg:b.p.t)||b.p.n-a.p.n})});
     var nu=agg&&agg.n||0;
     h+='<p class="tvinfo">'+(nu?'<b>'+nu+'명</b>이 티어표를 냈어요 · ':'')+'평가가 <b>'+vTh()+'명</b> 넘은 칸은 유저 평균, 나머지는 '+(adm._auto?'<b>추천 덱 등장 횟수</b>로 자동 배치':'운영자 기준')+(r.recent?' · 최근 '+r.recent+'개월 투표만 반영':'')+'</p>';
-    h+='<div class="tvb" id="tvBoard">'+rows.map(function(L,ix){return '<div class="tvrow" style="--tc:'+TIER_COL[ix]+'"><div class="tvl"><b>'+esc(T[ix])+'</b><small>'+L.length+'</small></div><div class="tvis">'+
+    h+='<div class="tvb" id="tvBoard">'+rows.map(function(L,ix){return '<div class="tvrow" style="--tc:'+TIER_COL[ix]+'">'+tvLab(ix,L.length)+'<div class="tvis">'+
       (L.length?L.map(function(inf){var k=_pp.length;_pp.push(tvPop(inf));return tvTile(inf,'data-pp="'+k+'"',inf.p.src==="u"?"usr":"")+(inf.p.src==="u"?'':'')}).join(""):'<span class="tvempty">—</span>')+'</div></div>'}).join("")+'</div>';
     if(un.length)h+='<details class="tvun"><summary>아직 평가가 없는 '+(TV.sec==="e"?"E.G.O":"인격")+'<b>'+un.length+'</b><i class="chev"></i></summary><div class="tvis">'+un.slice(0,240).map(function(inf){var k=_pp.length;_pp.push(tvPop(inf));return tvTile(inf,'data-pp="'+k+'"')}).join("")+'</div></details>';
     h+='<div class="tva"><button class="tbtn K lit" data-tvm="make"><span>내 티어표 만들기</span></button><button class="tbtn K" data-tvimg="view"><span>이미지로 저장</span></button>'+(admOn()?'<button class="tbtn K" data-tvm="admin"><span>운영자 표 편집</span></button><button class="tbtn K" data-tvset="1"><span>칸 이름 · 회차</span></button>':'')+'</div>';
@@ -11116,7 +11128,7 @@ function tvDraw(agg){var el=$("tierBody"),T=vTiers(),h=tvHead(),r=tvRound();_pp=
   var adm2=TV.mode==="admin",m=tvDraft(),items2=tvItems(TV.sec),rows2=[[],[],[],[],[]],pool=[],ex=[],admX=tvAdm("");
   items2.forEach(function(k){var inf=tvInfo(k);if(!inf)return;var t=m[k];if(!adm2&&admX[k]===0)return;if(t>=1&&t<=5)rows2[t-1].push(inf);else if(adm2&&t===0)ex.push(inf);else pool.push(inf)});
   h+='<div class="tvmk'+(adm2?" adm":"")+'"><p class="tvinfo">'+(adm2?'<b>운영자 표 편집</b> · 기준 <span class="tvseg sm in">'+[["","전체"]].concat(VLVS.map(function(v){return [v,v]})).map(function(x){return '<button data-tval="'+x[0]+'" aria-selected="'+(TV.admLv===x[0])+'">'+x[1]+'</button>'}).join("")+'</span>':'<b>인격을 누른 뒤 칸을 눌러 넣어요</b>'+(window.innerWidth>=760?' · 끌어다 놓아도 돼요':''))+'</p>';
-  h+='<div class="tvb mk" id="tvBoard">'+rows2.map(function(L,ix){return '<div class="tvrow drop" data-trow="'+(ix+1)+'" style="--tc:'+TIER_COL[ix]+'"><div class="tvl"><b>'+esc(T[ix])+'</b><small>'+L.length+'</small></div><div class="tvis">'+L.map(function(inf){return tvTile(inf,'data-tmk="'+inf.k+'" draggable="true"',TV.sel===inf.k?"sel":"")}).join("")+'</div></div>'}).join("")+
+  h+='<div class="tvb mk" id="tvBoard">'+rows2.map(function(L,ix){return '<div class="tvrow drop" data-trow="'+(ix+1)+'" style="--tc:'+TIER_COL[ix]+'">'+tvLab(ix,L.length)+'<div class="tvis">'+L.map(function(inf){return tvTile(inf,'data-tmk="'+inf.k+'" draggable="true"',TV.sel===inf.k?"sel":"")}).join("")+'</div></div>'}).join("")+
     (adm2?'<div class="tvrow drop ex" data-trow="0" style="--tc:#4A4237"><div class="tvl"><b>제외</b><small>'+ex.length+'</small></div><div class="tvis">'+ex.map(function(inf){return tvTile(inf,'data-tmk="'+inf.k+'" draggable="true"',TV.sel===inf.k?"sel":"")}).join("")+'</div></div>':'')+'</div>';
   var sins=U.sinners.map(function(s){return '<button class="tvsf" data-tvsin="'+s.n+'" aria-pressed="'+(TV.sin===s.n)+'" title="'+esc(s.kr)+'">'+sinLogo(s.n,"flg")+'</button>'}).join("");
   var pl=pool.filter(function(inf){return !TV.sin||inf.s===TV.sin});
@@ -11182,7 +11194,8 @@ function tvImage(which){if(!window.THUMB_URL){toast("이미지 저장은 사이�
   var cv=document.createElement("canvas");cv.width=W;cv.height=H;var x=cv.getContext("2d");x.fillStyle="#0E0C0A";x.fillRect(0,0,W,H);
   var F='"KOTRA","SCDream",sans-serif';x.fillStyle="#FFF3DF";x.font="34px "+F;x.fillText("파편 우선순위 · "+(TV.sec==="e"?"E.G.O":"인격"),24,54);
   x.fillStyle="#B8A68A";x.font="20px "+F;x.fillText(tvRound().name+(which==="view"?(TV.lv?" · "+TV.lv+" 기준":" · 유저 평균 + 운영자"):" · 내 티어표"+(myLv()?" ("+myLv()+")":"")),24,86);
-  var jobs=[];lay.forEach(function(r){x.fillStyle=TIER_COL[r.ix];x.fillRect(12,r.y,LW-8,r.h);x.fillStyle="#1A140A";x.font="26px "+F;x.textAlign="center";x.textBaseline="middle";x.fillText(T[r.ix],12+(LW-8)/2,r.y+r.h/2);x.textAlign="left";x.textBaseline="alphabetic";
+  var jobs=[];lay.forEach(function(r){x.fillStyle=TIER_COL[r.ix];x.fillRect(12,r.y,LW-8,r.h);var gi=window.SPR&&SPR[nkey(TIER_GIFT[r.ix])];if(gi!=null&&window.SPRITE_URL)jobs.push(new Promise(function(res){var im=new Image();im.onload=function(){var cw=im.width/SPC,ch=im.height/SPR_R,s=Math.min(LW-40,r.h-16,110);x.drawImage(im,(gi%SPC)*cw,Math.floor(gi/SPC)*ch,cw,ch,12+(LW-8-s)/2,r.y+(r.h-s)/2,s,s);res()};im.onerror=res;im.src=SPRITE_URL}));
+    else{x.fillStyle="#1A140A";x.font="26px "+F;x.textAlign="center";x.textBaseline="middle";x.fillText(T[r.ix],12+(LW-8)/2,r.y+r.h/2);x.textAlign="left";x.textBaseline="alphabetic"}
     x.fillStyle="#17130F";x.fillRect(LW+8,r.y,W-LW-20,r.h);
     r.L.forEach(function(k,j){var cx=LW+14+(j%per)*(S+G),cy=r.y+G+Math.floor(j/per)*(S+G);jobs.push(new Promise(function(res){var im=new Image();im.onload=function(){x.drawImage(im,cx,cy,S,S);var inf=tvInfo(k);x.fillStyle="rgba(0,0,0,.72)";x.fillRect(cx,cy+S-22,S,22);x.fillStyle="#FFF3DF";x.font="13px "+F;var n=inf?inf.sn:"";x.fillText(n,cx+4,cy+S-6);res()};im.onerror=res;im.src=THUMB_URL+"f/"+k.charAt(0).replace("u","p")+k.slice(1)+".webp"}))})});
   Promise.all(jobs).then(function(){x.fillStyle="#6F6556";x.font="16px "+F;x.textAlign="right";x.fillText("거울던전 사전",W-20,H-18);
