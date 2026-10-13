@@ -2054,6 +2054,45 @@ em.st{font-style:normal}
 .rrb .elist{display:grid;gap:5px;grid-template-columns:1fr}
 @media (min-width:760px){.rrb .elist{grid-template-columns:1fr 1fr}}
 .rrb .erow .rrn{margin-left:auto;margin-right:8px}
+
+/* ===== 적 도감 v2 ===== */
+.nkind{display:flex;margin:8px 0 0;border:1px solid #4A4237;border-radius:4px;overflow:hidden}
+.nkind button{flex:1;height:34px;border:0;background:#110E0B;color:#9E8F78;font:400 13.5px/1 "KOTRA",sans-serif;cursor:pointer}
+.nkind button+button{border-left:1px solid #4A4237}
+.nkind button small{margin-left:5px;font:500 10.5px/1 "SCDream",sans-serif;opacity:.7}
+.nkind button[aria-selected="true"]{background:linear-gradient(#E8C547,#B8941F);color:#1A140A}
+.ngrid{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+@media (min-width:600px){.ngrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+@media (min-width:900px){.ngrid{grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media (min-width:1180px){.ngrid{grid-template-columns:repeat(7,minmax(0,1fr))}}
+.nc2{--sc:#6F6556;position:relative;display:flex;flex-direction:column;min-width:0;padding:0;border:1px solid #2E2922;border-radius:4px;background:#0E0C0A;color:inherit;font:inherit;text-align:left;cursor:pointer;overflow:hidden;content-visibility:auto;contain-intrinsic-size:auto 170px;transition:border-color .15s,transform .15s}
+.nc2:hover,.nc2:focus-visible{border-color:color-mix(in srgb,var(--sc) 70%,#BFAE8E);transform:translateY(-1px);outline:none}
+.nc2-a{position:relative;display:block;aspect-ratio:1;background:radial-gradient(75% 70% at 50% 58%,color-mix(in srgb,var(--sc) 34%,#1A1510) 0%,#0E0C0A 78%);border-bottom:1px solid #221D17}
+.nc2-a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--sc);opacity:.75}
+.nc2 .eni.nc2i{position:absolute;inset:7%;width:auto;height:auto;background:none;border:0;border-radius:0}
+.eni.th2{background:none!important;border:0}
+.eni.th2 img{display:block;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 4px 6px rgba(0,0,0,.65))}
+.nc2:hover .eni.th2 img{transform:scale(1.05);transition:transform .25s}
+.eni.none2{display:grid;place-items:center;background:none;border:0}
+.eni.none2 .enp{width:38%;height:auto;opacity:.35;filter:grayscale(.3)}
+.nc2-g{position:absolute;top:5px;left:5px;display:flex;padding:3px 4px;border-radius:2px;background:rgba(10,8,6,.75)}
+.nc2-g .gri{height:11px;width:auto}
+.nc2-s{position:absolute;top:4px;right:4px;display:flex}
+.nc2-s .sinm{width:17px;height:17px}
+.nc2-t{display:flex;flex-direction:column;gap:3px;padding:6px 7px 7px;min-width:0}
+.nc2-t b{font:400 12.5px/1.25 "KOTRA",sans-serif;color:#FFF3DF;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;word-break:keep-all;min-height:2.5em}
+.nc2-t small{font:500 10px/1 "SCDream",sans-serif;color:#8C7F6A;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (min-width:760px){.nc2-t b{font-size:13px}}
+/* 상세 머리: 그림 크게 */
+.nhero{position:relative;min-height:150px;align-items:flex-end;padding:14px;overflow:hidden;background:radial-gradient(60% 120% at 82% 50%,color-mix(in srgb,var(--sc) 30%,#16120E),#0E0C0A 75%)}
+.nhero .nhi.th2,.nhero .nhi.none2{position:absolute;top:8px;right:8px;bottom:8px;width:46%;height:auto;border:0;background:none}
+.nhero .nht{position:relative;z-index:1;max-width:58%}
+@media (min-width:760px){.nhero{min-height:190px}.nhero .nhi.th2{width:40%}}
+
+.nmore{margin-top:6px}
+.nmore summary{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid #3A3328;border-radius:3px;list-style:none;cursor:pointer;font:500 12px/1 "SCDream",sans-serif;color:#B8A68A}
+.nmore summary::-webkit-details-marker{display:none}
+.nmore[open] summary{margin-bottom:6px}
 /* ===== 테마팩 v2 ===== */
 .pkimg{display:block;flex:none;width:46px;aspect-ratio:1/2;border-radius:3px;background-image:var(--pksp);background-repeat:no-repeat;background-color:#161310;box-shadow:0 0 0 1px #000,0 2px 6px rgba(0,0,0,.5)}
 .pkimg.none{background-image:linear-gradient(#2A241C,#161310)}
@@ -2326,6 +2365,39 @@ em.st{font-style:normal}
 .svq p{margin:0 0 8px;font:500 12px/1.5 "SCDream",sans-serif;color:#B8A68A}
 .svo{display:flex;flex-wrap:wrap;gap:6px}
 .svq .chip{min-height:36px;padding:0 14px}
+
+/* 바로 가기 v3: 그림 카드 */
+.htools.v3{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+@media (min-width:760px){.htools.v3{grid-template-columns:repeat(4,1fr)}}
+.htc{position:relative;display:block;height:104px;padding:0;border:1px solid #3E362B;border-radius:6px;overflow:hidden;background:radial-gradient(120% 140% at 100% 0%,#2A2117,#100D0A 62%);color:inherit;font:inherit;text-align:left;cursor:pointer;isolation:isolate;transition:border-color .15s,transform .15s}
+.htc:hover,.htc:focus-visible{border-color:#B8964A;transform:translateY(-1px);outline:none}
+.htc::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,rgba(12,10,8,.96) 0%,rgba(12,10,8,.75) 38%,rgba(12,10,8,0) 72%),linear-gradient(transparent 55%,rgba(12,10,8,.55));pointer-events:none}
+.htc::after{content:"";position:absolute;left:0;top:10px;bottom:10px;width:2px;z-index:2;background:linear-gradient(#E8C547,#8A7040);border-radius:0 2px 2px 0}
+.hta{position:absolute;top:0;right:0;bottom:0;width:72%;z-index:0}
+.htc.tu .hta .uimg,.htc.td .hta .uimg,.htc.td .hta .gimg{position:absolute;inset:0;width:100%;height:100%}
+.htc .hta .th img{object-fit:cover;object-position:60% 25%}
+.htc:hover .hta .th img{transform:scale(1.04);transition:transform .3s}
+.htx{position:absolute;left:14px;bottom:12px;z-index:3;display:flex;flex-direction:column;gap:3px}
+.htx em{font-style:normal;font-size:9.5px;letter-spacing:.08em;color:#B8964A}
+.htx b{font:400 19px/1 "KOTRA",sans-serif;color:#FFF3DF;text-shadow:0 1px 0 #000,0 0 10px rgba(0,0,0,.8)}
+.htx small{font-size:12px;color:#E8C547}
+.htc>.chev{position:absolute;right:10px;bottom:12px;z-index:3;opacity:.7}
+/* 테마팩: 표지 3장을 겹쳐 펼침 */
+.htc.tp .hta{display:flex;align-items:center;justify-content:flex-end;padding-right:14px}
+.hpk{position:relative;flex:none;width:44px;height:80px;margin-left:-14px;border-radius:3px;overflow:hidden;box-shadow:0 4px 10px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.08)}
+.hpk .hpki{display:block;width:100%;height:100%}
+.hpk.p0{z-index:3;transform:translateY(-2px)}.hpk.p1{z-index:2;transform:rotate(6deg) translateY(4px)}.hpk.p2{z-index:1;transform:rotate(12deg) translateY(10px)}
+.htc.tp .hta{flex-direction:row-reverse;justify-content:flex-start}
+/* 기프트: 아이콘 3개 */
+.htc.tg .hta{display:flex;align-items:center;justify-content:flex-end;gap:2px;padding-right:12px;background:radial-gradient(60% 70% at 72% 50%,rgba(232,197,71,.16),transparent 70%)}
+.hgf{flex:none;width:46px;height:46px;filter:drop-shadow(0 3px 6px rgba(0,0,0,.7))}
+.hgf .sp{display:block;width:100%;height:100%}
+.hgf.g1{transform:translateY(-10px) scale(1.12)}
+@media (min-width:760px){.htc{height:118px}.htx b{font-size:21px}.hpk{width:50px;height:90px}.hgf{width:52px;height:52px}}
+@media (max-width:380px){.htx b{font-size:17px}.hpk{width:38px;height:70px}.hgf{width:40px;height:40px}}
+.hgf.gi{position:relative;background:none;border:0;box-shadow:none}
+.hgf.gi .sp{inset:0}
+.htc.tu .hta,.htc.td .hta{-webkit-mask-image:linear-gradient(90deg,transparent,#000 40%);mask-image:linear-gradient(90deg,transparent,#000 40%)}
 /* ===== 파편 우선순위 티어표 ===== */
 .tvtt{margin-left:8px;font:400 15px/1 "KOTRA",sans-serif;color:#FFF3DF}
 #tierBody{display:flex;flex-direction:column;gap:10px}
@@ -2455,6 +2527,10 @@ em.st{font-style:normal}
 /* 평가 칸: 은은한 금빛 (덱 평가와 같은 톤) */
 .erate .erw{border-color:#3A3122;border-left:3px solid #8A7040;background:linear-gradient(90deg,#1A150E,#120F0C 70%)}
 .erate .erw.adm{border-left-color:#5A4A2E}
+
+.tvn{display:block;-webkit-line-clamp:unset;padding:12px 3px 3px}
+.tvn small,.tvn span{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+@media (max-width:759px){.tvl{width:58px}.tvl b{font-size:12.5px}.tvi{width:56px;height:56px}.tvis{gap:2px;padding:2px}}
 </style>
 </head>
 <body>
@@ -9967,8 +10043,10 @@ function lvDiff(s,lv){var e=s.up.filter(function(x){return +x.lv===+lv})[0];if(!
   var lines=[];function grab(t){var open=false;String(t||"").split("\n").forEach(function(l){var s=(open?'<style="highlight">':'')+l,hit=open||l.indexOf('<style="highlight">')>=0;
     var a=s.lastIndexOf('<style="highlight">'),z=s.lastIndexOf("</style>");open=a>z;if(open)s+="</style>";if(hit&&lines.indexOf(s)<0)lines.push(s)})}
   grab(e.desc);(e.cd||[]).forEach(function(c){c.forEach(grab)});
+  if(!lines.length&&(e.desc!=null||e.cd!=null)){var pa=[],pb=[];function sp(t,o){noHl(t).split("\n").forEach(function(l){l=l.trim();if(l)o.push(l)})}
+    sp(a.desc,pa);(a.cd||[]).forEach(function(c){c.forEach(function(d){sp(d,pa)})});sp(b.desc,pb);(b.cd||[]).forEach(function(c){c.forEach(function(d){sp(d,pb)})});
+    var nl=pb.filter(function(l){return pa.indexOf(l)<0});nl.slice(0,3).forEach(function(l){lines.push('<style="highlight">'+l+'</style>')});if(!nl.length)it.push('<span class="dhl">문구 정리 (효과 같음)</span>')}
   var txt=lines.slice(0,4).map(function(l){return '<span class="dln">'+fmtDesc(l)+'</span>'});
-  if(!lines.length&&(e.desc!=null||e.cd!=null))it.push('<span class="dhl">효과 문구 변경</span>');
   return it.length||txt.length?{s:s,b:b,items:it,lines:txt}:null}
 function lvDiffSec(i,lv){if(lv<2)return "";var L=[];i.sk.concat(i.dk||[]).forEach(function(s){var d=lvDiff(s,lv);if(d)L.push(d)});
   var ps=i.ps.filter(function(p){return +p.u===+lv});
@@ -10353,7 +10431,7 @@ function renderMy(){if(!U){$("myBody").innerHTML='<div class="uload">인격 데�
     h+='<div class="owns2"><div class="ownsh">'+sinLogo(sn.n,"olg")+'<b>'+esc(sn.kr)+'</b><small>'+own+'/'+list.length+'</small><button class="ownall" data-owns="'+sn.n+'">'+(own===list.length?"전부 해제":"전부 보유")+'</button></div><div class="ownt">'+list.map(function(i){var lv=ownLv(i.id);
       return '<button class="owc'+(lv?"":" off")+(lv===3?" l3":"")+'" data-ownc="'+i.id+'" aria-pressed="'+(lv>0)+'" title="'+esc(i.t)+'">'+face(i.id,"owf")+'<span class="owr">'+rkHtml(i.r)+'</span>'+(lv===3?'<i class="owl">III</i>':'')+(lv?'':'<i class="owx"></i>')+'<span class="own">'+esc(i.t)+'</span></button>'}).join("")+'</div></div>'});h+='</div>'}
   h+='</div><div class="mysec"><h3>설정 코드<small>다른 기기로 옮기기</small></h3><textarea id="ocIn" class="tcin" rows="2" placeholder="설정 코드 붙여넣기">'+(OWN.set?esc(ownCode()):"")+'</textarea><div class="dib"><button class="tbtn K" id="ocCopy"><span>내 설정 코드 복사</span></button><button class="tbtn K" id="ocLoad"><span>붙여넣은 코드 적용</span></button></div></div>';
-  h+='<div class="mysec"><h3>이미지 진단<small>흐릴 때 이 칸을 캡처해서 보내 주세요</small></h3><pre class="diag">'+esc(Object.keys(window.ART_DIAG||{}).map(function(k){var d=ART_DIAG[k];return k+": "+(d.err?"로드 실패→서버 경유":(d.w+"px / 기대 "+d.exp+"px"+(d.fallback?" → 서버 경유":" OK")))+"\n   "+String(d.url||"").slice(0,70)}).join("\n")||"아직 불러온 그림 없음 (인격 탭 한번 열고 다시)")+'</pre></div>';
+  if(window.admOn&&admOn())h+='<div class="mysec"><h3>이미지 진단<small>흐릴 때 이 칸을 캡처해서 보내 주세요</small></h3><pre class="diag">'+esc(Object.keys(window.ART_DIAG||{}).map(function(k){var d=ART_DIAG[k];return k+": "+(d.err?"로드 실패→서버 경유":(d.w+"px / 기대 "+d.exp+"px"+(d.fallback?" → 서버 경유":" OK")))+"\n   "+String(d.url||"").slice(0,70)}).join("\n")||"아직 불러온 그림 없음 (인격 탭 한번 열고 다시)")+'</pre></div>';
   var sc=window.scrollY;$("myBody").innerHTML=h;$("myCount").innerHTML=OWN.set?'<b>'+n+'</b> <i>/ '+U.ids.length+' 보유</i>':'<i>전부 보유</i>';window.scrollTo(0,sc)}
 /* 설정 코드: v1|id:lv,… (lv 4는 생략) */
 function ownCode(){var a=[];for(var k in OWN.ids){var v=OWN.ids[k];if(v>0)a.push(b36(+k)+(v===4?"":":"+v))}return "v1|"+a.join(",")}
@@ -10659,12 +10737,13 @@ function enSkill(s){var isDef=s.def&&s.def!=="ATTACK",ty=isDef?(U.defk[s.def]||"
     (s.cd.some(function(c){return c.length})?'<details class="cfx"><summary><span>코인 효과</span><b>'+s.cd.reduce(function(n,c){return n+c.length},0)+'</b><i class="chev"></i></summary><ul>'+s.cd.map(function(cl,ci){return cl.map(function(d){return '<li>'+pipsAt(s.n,ci)+'<span>'+fmtDesc(d)+'</span></li>'}).join("")}).join("")+'</ul></details>':'')+'</div>'}
 function openEnemy(nm){var e=ENBY[nm];if(!e)return;navPush("n",nm);curUnit=null;curEgo=null;curGift=null;_pp=[];ppClose();artLoad("--esp","ENEMY_SPRITE_INLINE","ENEMY_SPRITE_URL","getEnemySprite");
   var h='<div class="nhero" style="--sc:'+(SINC[e.sin]||"#555")+'">'+enImg(e,"nhi")+'<div class="nht">'+(e.cls?'<span class="gr">'+gradeIco(e.cls)+esc(e.cls)+'</span>':'')+(e.code?'<span class="N ncode">'+esc(e.code)+'</span>':'')+'<b class="en">'+esc(e.nm)+'</b>'+
-    '<span class="nst">'+(e.sin&&SINC[e.sin]?'<span>'+sinIco(e.sin,"sinm")+esc(sinKr(e.sin))+'</span>':'')+(e.lv?'<span>Lv '+e.lv+'</span>':'')+(e.hp?'<span>'+uii("hp","sti")+esc(e.hp)+'</span>':'')+(e.slots?'<span>슬롯 '+e.slots+'</span>':'')+(e.kw.length?'<span>'+esc(e.kw.map(function(k){return k==="LARGE"?"대형":k==="REGULAR"?"보통":k}).join("·"))+'</span>':'')+'</span></div></div>';
+    '<span class="nst">'+(e.sin&&SINC[e.sin]?'<span>'+sinIco(e.sin,"sinm")+esc(sinKr(e.sin))+'</span>':'')+(e.lv?'<span>Lv '+e.lv+'</span>':'')+(e.hp?'<span>'+uii("hp","sti")+esc(e.hp)+'</span>':'')+(e.slots?'<span>슬롯 '+e.slots+'</span>':'')+(e.kw.length?'<span>'+esc(e.kw.map(function(k){return k==="LARGE"?"대형":k==="REGULAR"?"보통":k==="SMALL"?"소형":k==="HUGE"?"초대형":k}).join("·"))+'</span>':'')+'</span></div></div>';
   if(Object.keys(e.res||{}).length)h+='<div class="nsec"><h3>내성</h3>'+resRow(e.res)+'</div>';
   if(e.parts.length)h+='<div class="nsec"><h3>부위<small>'+e.parts.length+'</small></h3><div class="nparts">'+e.parts.map(function(p){return '<div class="npart"><b>'+esc(p.nm||"부위")+'</b>'+(p.hp?'<span class="nhp">'+uii("hp","sti")+p.hp+'</span>':'')+resRow(p.res)+'</div>'}).join("")+'</div></div>';
   if(e.where.length){var tp=e.where.filter(function(w){return w[0]==="테마팩"}),ot=e.where.filter(function(w){return w[0]!=="테마팩"});
     h+='<div class="nsec"><h3>등장<small>'+e.where.length+'</small></h3><div class="nwhere">'+ot.map(function(w){return '<span class="tag c3"><small>'+esc(w[0])+'</small>'+esc([w[1],w[2]].filter(Boolean).join(" · "))+'</span>'}).join("")+
-      tp.map(function(w){return '<span class="tag c1"><small>'+esc(w[2]||"테마팩")+'</small>'+packLink(w[1])+'</span>'}).join("")+'</div></div>'}
+      tp.slice(0,6).map(function(w){return '<span class="tag c1"><small>'+esc(w[2]||"테마팩")+'</small>'+packLink(w[1])+'</span>'}).join("")+'</div>'+
+      (tp.length>6?'<details class="nmore"><summary>테마팩 '+(tp.length-6)+'곳 더 보기<i class="chev"></i></summary><div class="nwhere">'+tp.slice(6).map(function(w){return '<span class="tag c1"><small>'+esc(w[2]||"테마팩")+'</small>'+packLink(w[1])+'</span>'}).join("")+'</div></details>':'')+'</div>'}
   var evs=EN_EVENTS[e.nm]||[];if(evs.length)h+='<div class="nsec"><h3>전투 중 선택지<small>'+evs.length+'</small></h3><div class="ulist">'+evs.map(function(x){return '<button class="urow" data-choice="'+x.id+'"><span class="nm">'+esc(x.title)+'</span></button>'}).join("")+'</div></div>';
   if(e.sk.length)h+='<div class="nsec"><h3>스킬<small>'+e.sk.length+'</small></h3>'+e.sk.map(enSkill).join("")+'</div>';
   if(e.ps.length)h+='<div class="nsec"><h3>패시브</h3><div class="pchs">'+e.ps.map(function(p){return passChip({nm:p.nm,d:p.d,k:"b"})}).join("")+'</div></div>';
@@ -10715,6 +10794,20 @@ function rerollList(){if(!window.GDECKS)return "";var cnt={},ecnt={},tot=0;
   return '<details class="dauto rr"><summary><b>리세·육성 우선순위</b><small>공략 덱 '+tot+'종에 자주 들어가는 인격</small><i class="chev"></i></summary><div class="rrb">'+
     '<p class="dinfo" style="margin:0 0 8px">리세마라 목표나 뽑기 우선순위로 참고해요. 많이 쓰일수록 여러 덱에 돌려 쓸 수 있다는 뜻이에요.</p><div class="rrl">'+ids.map(function(id,ix){var i=UBY[id];return '<button class="urow" data-unit="'+id+'">'+face(+id,"ef")+'<span class="nm">'+rkHtml(i.r)+' '+esc(i.t)+'<span class="sub">'+esc(i.sn)+' · '+i.kwn.join("·")+'</span></span><b class="rrn">'+cnt[id]+'<small>/'+tot+'</small></b></button>'}).join("")+'</div>'+
     (eg.length?'<h4 class="dsub">자주 쓰이는 E.G.O</h4><div class="elist">'+eg.map(function(id){var e=EBY[id];return '<button class="erow g-'+e.g+'" data-ego="'+id+'">'+(egoBanner(e.id)||'')+'<span class="et"><span class="gr">'+gradeIco(e.g)+e.g+'</span><b>'+esc(e.nm)+'</b><small>'+esc(e.sn)+'</small></span><b class="rrn">'+ecnt[id]+'</b></button>'}).join("")+'</div>':'')+'</div></details>'}
+
+/* ===== 적 도감 v2: 고화질 낱장 그림 + 작은 카드 + 종류 탭 ===== */
+(function(){var _ei=enImg;enImg=function(e,cls){if(window.THUMB_URL&&e.img)return '<span class="eni th2'+(cls?" "+cls:"")+'"><img src="'+THUMB_URL+'en/'+e.img+'.webp" alt="" loading="lazy" decoding="async"></span>';
+  if(!e.img)return '<span class="eni none2'+(cls?" "+cls:"")+'">'+(e.sin&&SINC[e.sin]?sinIco(e.sin,"enp"):'')+'</span>';return _ei(e,cls)}})();
+nCard=function(e){var nw=e.where.length;
+  return '<button class="nc2'+(e.ab?" ab":"")+'" data-enemy="'+esc(e.nm)+'" style="--sc:'+(SINC[e.sin]||"#6F6556")+'"><span class="nc2-a">'+enImg(e,"nc2i")+
+    (e.cls?'<i class="nc2-g">'+gradeIco(e.cls)+'</i>':'')+(e.sin&&SINC[e.sin]?'<i class="nc2-s">'+sinIco(e.sin,"sinm")+'</i>':'')+'</span>'+
+    '<span class="nc2-t"><b>'+esc(e.nm)+'</b><small>'+(e.lv?'Lv '+e.lv:'')+(e.lv&&nw?' · ':'')+(nw?'등장 '+nw:'')+'</small></span></button>'};
+function nKindSeg(){var ab=X.en.filter(function(e){return e.ab}).length,cur=nSel.kind.length===1?nSel.kind[0]:"";
+  return [["","전체",X.en.length],["ab","환상체",ab],["en","일반 적",X.en.length-ab]].map(function(a){return '<button role="tab" data-nkind="'+a[0]+'" aria-selected="'+(cur===a[0])+'">'+a[1]+'<small>'+a[2]+'</small></button>'}).join("")}
+(function(){var _re=renderEnemy;renderEnemy=function(){_re();if(!X)return;var g=$("nGrid");if(!g)return;var seg=$("nKind");
+  if(!seg){seg=document.createElement("div");seg.id="nKind";seg.className="nkind";seg.setAttribute("role","tablist");var fil=$("nFil");fil.parentNode.insertBefore(seg,fil)}seg.innerHTML=nKindSeg()}})();
+document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-nkind]");if(!b)return;var k=b.dataset.nkind;nSel.kind=k?[k]:[];
+  document.querySelectorAll('[data-nk="kind"]').forEach(function(c){c.setAttribute("aria-pressed",nSel.kind.indexOf(c.dataset.v)>=0)});renderEnemy();window.scrollTo(0,0)});
 
 /* ===== 테마팩 탭 재구성 (기본 사이트 함수 런타임 교체) =====
    카드: 팩 일러스트 + 이름 + 층 요약 + 키워드 + 한정 기프트 / 필터: 난이도·층 1~15·키워드 / 상세: 일러스트, 팩 선택지 */
@@ -10798,7 +10891,7 @@ function renderHome(){var el=$("homeBody");if(!U){el.innerHTML='<div class="uloa
   h+=homeDecks();
   h+='<div class="hsec"><h3>오늘</h3><div class="htoday">'+seasonStrip()+luxToday()+'</div></div>';
   var HI={unit:'<path d="M12 11.5a3.6 3.6 0 1 0 0-7.2 3.6 3.6 0 0 0 0 7.2z"/><path d="M5 20.5c.8-4.2 3.6-6.3 7-6.3s6.2 2.1 7 6.3"/>',deck:'<path d="M8.5 6.5h10v14h-10z"/><path d="M5.5 17.5v-14h10"/><path d="M11.5 11h4M11.5 14h4"/>',pack:'<path d="M7 3.5h8.5L19 7v13.5H7z"/><path d="M15.5 3.5V7H19"/><path d="M4.5 6.5v14h2.5"/><path d="M10 11h6M10 14h6M10 17h4"/>',gift:'<path d="M4.5 9h15v3.5h-15zM6 12.5V20h12v-7.5M12 9v11"/><path d="M12 9C10.5 5.5 7 5 7 7.2 7 9 10 9 12 9c2 0 5 0 5-1.8C17 5 13.5 5.5 12 9z"/>'};
-  h+='<div class="hsec"><h3>바로 가기</h3><div class="htools v2">'+[["unit","인격",U.ids.length],["deck","추천 덱",window.GDECKS?GDECKS.list.length:""],["pack","테마팩",window.PACKS?PACKS.length:""],["gift","기프트",window.gifts?gifts.length:""]].map(function(a){return '<button class="htb2" data-go="'+a[0]+'"><svg viewBox="0 0 24 24" aria-hidden="true">'+HI[a[0]]+'</svg><b>'+a[1]+'</b><small class="N">'+a[2]+'</small></button>'}).join("")+'</div></div>';
+  h+=homeTools();
   h+='<div class="hsec"><h3>공지<small id="ntN"></small></h3><div id="ntList" class="ntl">'+(NOTICES?noticeHtml():'<p class="ntempty">불러오는 중…</p>')+'</div></div>';
   h+='<div class="hsec links"><a class="hlink" href="https://limbuscompany.kr" target="_blank" rel="noopener">림버스 컴퍼니 공식</a><a class="hlink" href="'+esc(window.GDECKS?GDECKS.src:"#")+'" target="_blank" rel="noopener">공략 원문 (로보토미 갤)</a></div>';
   el.innerHTML=h;bigFillAll();var fb=$("homeFb");if(fb)fb.innerHTML=svStrip()+'<button class="hfb2" id="fbOpen"><span class="hfb2-i"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5.5h16v10H9.5L5 19.5v-4H4z"/><path d="M8 9.5h8M8 12.5h5"/></svg></span><span class="hfb2-t"><b>건의함</b><small>틀린 정보 · 불편한 점 · 원하는 기능을 익명으로 남겨 주세요</small></span><span class="hfb2-a">건의 남기기</span></button>';
@@ -10865,6 +10958,18 @@ function svCheck(){var A=svAns(),ok=SV_Q.every(function(q){return A[q.k]&&A[q.k]
   document.querySelectorAll(".svq").forEach(function(s){s.classList.toggle("ok",!!(A[s.dataset.svk]||[]).length)})}
 function sendSurvey(){var A=svAns();if(!SV_Q.every(function(q){return A[q.k]&&A[q.k].length})){toast("모든 문항에 답해 주세요");return}var b=$("svSend");b.disabled=true;
   var L={};SV_Q.forEach(function(q){L[q.k]=q.t});api("sendSurvey",[SV_ID,JSON.stringify(A),fbVid(),JSON.stringify(L)],function(){try{localStorage.setItem("egoSv",SV_ID);localStorage.setItem("egoSvA",JSON.stringify(A))}catch(e){}hide();toast("고마워요, 설문이 전달됐어요");var fb=$("homeFb"),s=$("svOpen");if(fb&&s)s.outerHTML=svStrip()},function(){b.disabled=false;toast("전송 실패 — 잠시 후 다시")})}
+
+/* 바로 가기: 그림이 들어간 카드 4장 */
+function homeTools(){var L=latestUnits(4),u=L[1]||L[0],g=window.GDECKS&&GDECKS.list[0],du=null;
+  if(g){var v=g.v[0],s=(v.dep&&v.dep[0])||1,x=v.m[s-1];du=x&&x[0]&&UBY[x[0]]?x[0]:null}
+  var pk=[],P=window.PACKS||[];if(window.SEASON_NOW&&SEASON_NOW.pack)pk.push(SEASON_NOW.pack);P.slice().reverse().forEach(function(p){if(pk.length<3&&pk.indexOf(p.name)<0&&window.PKIDX&&PKIDX.pos[p.name])pk.push(p.name)});
+  var gs=["봉이 인형","만화경","프레스티지 카드","생강꽃 가지","흑염 파이프"].map(function(n){return window.byName&&byName[n]}).filter(Boolean).slice(0,3);
+  function card(go,kr,en,n,art,cls){return '<button class="htc '+cls+'" data-go="'+go+'"><span class="hta">'+art+'</span><span class="htx"><em class="N">'+en+'</em><b>'+kr+'</b><small class="N">'+n+'</small></span><i class="chev"></i></button>'}
+  return '<div class="hsec"><h3>바로 가기</h3><div class="htools v3">'+
+    card("unit","인격","IDENTITY",U.ids.length,u?uSpr(u.id):"","tu")+
+    card("deck","추천 덱","DECK",g?GDECKS.list.length:"",du?(U.sprg&&U.sprg.pos[du]?gSpr(du):uSpr(du)):"","td")+
+    card("pack","테마팩","THEME PACK",P.length||"",pk.map(function(n,i){return '<span class="hpk p'+i+'">'+pkImg(n,"hpki")+'</span>'}).join(""),"tp")+
+    card("gift","기프트","E.G.O GIFT",window.gifts?gifts.length:"",gs.map(function(x,i){return '<span class="hgf gi g'+i+'">'+spr(x)+'</span>'}).join(""),"tg")+'</div></div>'}
 
 /* ===== 내 편성 가져오기: 팀 코드 · 게임 캡처(인격 화면 / E.G.O 화면) ===== */
 var IMP={kind:null,img:null,rows:null};
@@ -10972,7 +11077,13 @@ function tvItems(sec){return sec==="e"?U.egos.map(function(e){return "e"+e.id}):
 function tvInfo(k){var id=+k.slice(1);if(k[0]==="e"){var e=EBY[id];return e?{k:k,id:id,e:1,nm:e.nm,s:e.s,sn:(U.sinners[e.s-1]||{}).kr||"",img:eface(id,"tvf")}:null}
   var i=UBY[id];return i?{k:k,id:id,nm:i.t,s:i.s,sn:i.sn,r:i.r,img:face(id,"tvf")}:null}
 function tvRound(){var R=(VC&&VC.cfg.rounds)||VDEF.rounds;return R.filter(function(r){return r.id===TV.round})[0]||R.filter(function(r){return r.on})[0]||R[0]}
-function tvAdm(lv){var a=(VC&&VC.adm&&VC.adm[tvRound().id])||{};return lv&&a[lv]&&Object.keys(a[lv]).length?a[lv]:(a[""]||{})}
+function tvAdm(lv,raw){var a=(VC&&VC.adm&&VC.adm[tvRound().id])||{};var m=lv&&a[lv]&&Object.keys(a[lv]).length?a[lv]:(a[""]||{});if(raw||Object.keys(m).length)return m;return tvAuto()}
+/* 운영자 표가 비어 있을 때: 추천 덱 등장 횟수로 자동 초안 (운영자가 저장하면 사라짐) */
+var _tvAuto=null;function tvAuto(){if(_tvAuto)return _tvAuto;var cu={},ce={},m={};if(!window.GDECKS)return m;
+  GDECKS.list.forEach(function(g){var su={},se={};g.v.forEach(function(v){var dep=v.dep&&v.dep.length?v.dep:[1,2,3,4,5,6,7];dep.forEach(function(s){var x=v.m[s-1];if(!x)return;if(x[0])su[x[0]]=1;for(var i=1;i<=5;i++)if(x[i])se[x[i]]=1})});
+    Object.keys(su).forEach(function(k){cu[k]=(cu[k]||0)+1});Object.keys(se).forEach(function(k){ce[k]=(ce[k]||0)+1})});
+  function t(n){return n>=5?1:n>=3?2:n>=2?3:n>=1?4:0}
+  Object.keys(cu).forEach(function(k){var x=t(cu[k]);if(x)m["u"+k]=x});Object.keys(ce).forEach(function(k){var x=t(ce[k]);if(x)m["e"+k]=x});m._auto=1;return _tvAuto=m}
 function tvPlace(k,agg,adm){var it=agg&&agg.items&&agg.items[k],n=0,s=0;if(it){if(TV.lv){var L=it.lv&&it.lv[TV.lv];if(L){n=L[0];s=L[1]}}else{n=it.n;s=it.s}}
   var a=adm[k];if(a===0)return {t:-1};
   if(n>=vTh())return {t:Math.max(1,Math.min(5,Math.round(s/n))),src:"u",n:n,avg:s/n,a:a};
@@ -10988,13 +11099,13 @@ function tvHead(){var R=VC.cfg.rounds.filter(function(r){return r.on||admOn()}),
   h+='<div class="tvt"><div class="tvseg" role="tablist">'+[["u","인격"],["e","E.G.O"]].map(function(x){return '<button role="tab" data-tvs="'+x[0]+'" aria-selected="'+(TV.sec===x[0])+'">'+x[1]+'</button>'}).join("")+'</div>';
   if(TV.mode==="view")h+='<div class="tvseg sm" role="tablist" aria-label="기준">'+[["","전체"]].concat(VLVS.map(function(v){return [v,v]})).map(function(x){return '<button role="tab" data-tvl="'+x[0]+'" aria-selected="'+(TV.lv===x[0])+'">'+x[1]+'</button>'}).join("")+'</div>';
   h+='</div></div>';return h}
-function tvTile(inf,extra,cls){return '<button class="tvi'+(cls?" "+cls:"")+'" '+extra+' title="'+esc(inf.sn+" · "+inf.nm)+'">'+inf.img+'<span class="tvn"><small>'+esc(inf.sn)+'</small>'+esc(inf.nm)+'</span></button>'}
+function tvTile(inf,extra,cls){return '<button class="tvi'+(cls?" "+cls:"")+'" '+extra+' title="'+esc(inf.sn+" · "+inf.nm)+'">'+inf.img+'<span class="tvn"><small>'+esc(inf.sn)+'</small><span>'+esc(inf.nm)+'</span></span></button>'}
 function tvDraw(agg){var el=$("tierBody"),T=vTiers(),h=tvHead(),r=tvRound();_pp=[];ppClose();
   if(TV.mode==="view"){var adm=tvAdm(TV.lv),rows=[[],[],[],[],[]],un=[],items=tvItems(TV.sec);
     items.forEach(function(k){var inf=tvInfo(k);if(!inf)return;var p=tvPlace(k,agg,adm);if(p.t<0)return;inf.p=p;if(p.t)rows[p.t-1].push(inf);else un.push(inf)});
     rows.forEach(function(L){L.sort(function(a,b){return (a.p.src==="u"?a.p.avg:a.p.t)-(b.p.src==="u"?b.p.avg:b.p.t)||b.p.n-a.p.n})});
     var nu=agg&&agg.n||0;
-    h+='<p class="tvinfo">'+(nu?'<b>'+nu+'명</b>이 티어표를 냈어요 · ':'')+'평가가 <b>'+vTh()+'명</b> 넘은 칸은 유저 평균, 나머지는 운영자 기준'+(r.recent?' · 최근 '+r.recent+'개월 투표만 반영':'')+'</p>';
+    h+='<p class="tvinfo">'+(nu?'<b>'+nu+'명</b>이 티어표를 냈어요 · ':'')+'평가가 <b>'+vTh()+'명</b> 넘은 칸은 유저 평균, 나머지는 '+(adm._auto?'<b>추천 덱 등장 횟수</b>로 자동 배치':'운영자 기준')+(r.recent?' · 최근 '+r.recent+'개월 투표만 반영':'')+'</p>';
     h+='<div class="tvb" id="tvBoard">'+rows.map(function(L,ix){return '<div class="tvrow" style="--tc:'+TIER_COL[ix]+'"><div class="tvl"><b>'+esc(T[ix])+'</b><small>'+L.length+'</small></div><div class="tvis">'+
       (L.length?L.map(function(inf){var k=_pp.length;_pp.push(tvPop(inf));return tvTile(inf,'data-pp="'+k+'"',inf.p.src==="u"?"usr":"")+(inf.p.src==="u"?'':'')}).join(""):'<span class="tvempty">—</span>')+'</div></div>'}).join("")+'</div>';
     if(un.length)h+='<details class="tvun"><summary>아직 평가가 없는 '+(TV.sec==="e"?"E.G.O":"인격")+'<b>'+un.length+'</b><i class="chev"></i></summary><div class="tvis">'+un.slice(0,240).map(function(inf){var k=_pp.length;_pp.push(tvPop(inf));return tvTile(inf,'data-pp="'+k+'"')}).join("")+'</div></details>';
@@ -11018,7 +11129,7 @@ function tvPop(inf){var p=inf.p||{},T=vTiers();
   if(p.n)h+='<div class="tvpp">'+dolls(6-p.avg)+'<span>유저 <b>'+(6-p.avg).toFixed(1)+'</b> · '+p.n+'명</span></div>';
   else h+='<p class="uhint">아직 유저 평가가 없어요</p>';
   if(p.n&&p.n<vTh())h+='<p class="uhint">'+p.n+'/'+vTh()+'명 · '+vTh()+'명부터 유저 평균으로 자리가 정해져요</p>';
-  if(p.a)h+='<p class="uhint">운영자 기준 · <b>'+esc(T[p.a-1]||"")+'</b></p>';
+  if(p.a)h+='<p class="uhint">'+(tvAdm("")._auto?'추천 덱 등장 기준 자동 배치':'운영자 기준')+' · <b>'+esc(T[p.a-1]||"")+'</b></p>';
   return h+'<div class="dib" style="margin-top:8px"><button class="tbtn K sm" '+(inf.e?'data-ego="'+inf.id+'"':'data-unit="'+inf.id+'"')+'><span>상세 보기</span></button></div>'}
 function tvSet(k,t){var m=tvDraft();if(t===-1||t==null)delete m[k];else m[k]=t;tvSaveDraft(m);TV.sel=null;TV._keep=true;renderTier()}
 function tvClick(t){
@@ -11026,8 +11137,8 @@ function tvClick(t){
   if((a=t.closest("[data-tvs]"))){TV.sec=a.dataset.tvs;vLSet("egoTvS",TV.sec);TV.sel=null;renderTier();return true}
   if((a=t.closest("[data-tvl]"))){TV.lv=a.dataset.tvl;renderTier();return true}
   if((a=t.closest("[data-tvr]"))){TV.round=a.dataset.tvr;vLSet("egoTvR",TV.round);renderTier();return true}
-  if((a=t.closest("[data-tval]"))){TV.admLv=a.dataset.tval;TV._adm=JSON.parse(JSON.stringify(tvAdm(TV.admLv)));renderTier();return true}
-  if((a=t.closest("[data-tvm]"))){TV.mode=a.dataset.tvm;TV.sel=null;if(TV.mode==="admin")TV._adm=JSON.parse(JSON.stringify(tvAdm(TV.admLv)));renderTier();window.scrollTo(0,0);return true}
+  if((a=t.closest("[data-tval]"))){TV.admLv=a.dataset.tval;TV._adm=JSON.parse(JSON.stringify(tvAdm(TV.admLv,true)));renderTier();return true}
+  if((a=t.closest("[data-tvm]"))){TV.mode=a.dataset.tvm;TV.sel=null;if(TV.mode==="admin")TV._adm=JSON.parse(JSON.stringify(tvAdm(TV.admLv,true)));renderTier();window.scrollTo(0,0);return true}
   if((a=t.closest("[data-tvsin]"))){TV.sin=+a.dataset.tvsin;TV._keep=true;renderTier();return true}
   if((a=t.closest("[data-tmk]"))){var k=a.dataset.tmk;TV.sel=TV.sel===k?null:k;document.querySelectorAll("#tierBody .tvi.sel").forEach(function(b){b.classList.remove("sel")});if(TV.sel)a.classList.add("sel");document.getElementById("tierBody").classList.toggle("picking",!!TV.sel);return true}
   if((a=t.closest("[data-trow]"))&&TV.sel){tvSet(TV.sel,+a.dataset.trow);document.getElementById("tierBody").classList.remove("picking");return true}
@@ -11082,7 +11193,7 @@ function tvImage(which){if(!window.THUMB_URL){toast("이미지 저장은 사이�
   v.innerHTML='<div class="cf tool"><div class="in"><div class="idbar"><span class="idl N">SHARD PRIORITY</span><span class="tvtt">파편 우선순위</span><div class="mwrap"><button class="mbtn" aria-haspopup="menu" aria-expanded="false" aria-label="메뉴"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4.5h10M3 8h10M3 11.5h10"/></svg></button></div></div></div></div><div class="cf gp"><div class="in"><span class="screw" style="top:6px;left:6px"></span><span class="screw" style="top:6px;right:6px"></span><span class="screw" style="bottom:6px;left:6px"></span><span class="screw" style="bottom:6px;right:6px"></span><div id="tierBody"></div></div></div>';
   vu.parentNode.insertBefore(v,vu.nextSibling);
   var nu=document.querySelector('.sn[data-view="unit"]');if(nu&&!document.querySelector('.sn[data-view="tier"]')){var a=document.createElement("a");a.className="sn";a.href="#";a.dataset.view="tier";
-    a.innerHTML='<i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 10h12M4 15h8M4 20h4"/></svg></i><span class="sl"><b>파편 우선순위</b><em class="N">PRIORITY</em></span>';nu.parentNode.insertBefore(a,nu.nextSibling)}}
+    a.innerHTML='<i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 10h12M4 15h8M4 20h4"/></svg></i><span class="sl"><b>파편 우선순위</b><em class="N">TIER</em></span>';nu.parentNode.insertBefore(a,nu.nextSibling)}}
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",mount);else mount();
   var _sv=setView;setView=function(v){mount();if(v==="tier"){var vt=$("viewTier");_sv(v);if(vt)vt.hidden=false;renderTier();return}var vt2=$("viewTier");if(vt2)vt2.hidden=true;_sv(v)}})();
 
@@ -11316,7 +11427,7 @@ one("--ssp",window.SKILLS_SPRITE_INLINE,window.SKILLS_SPRITE_URL,"getSkillsSprit
 one("--fsp",window.FACES_SPRITE_INLINE,window.FACES_SPRITE_URL,"getFacesSprite");
 one("--pksp",window.PACKS_SPRITE_INLINE,window.PACKS_SPRITE_URL,"getPacksSprite");})();
 /* 준비 중 메뉴 잠금: 여기 목록에서 빼면 다시 열림 */
-var LOCKED={choice:1,enemy:1,sim:1};
+var LOCKED={choice:1,sim:1};
 (function(){var _sv=setView;setView=function(v){if(LOCKED[v]){if(typeof toast==="function")toast("준비 중인 메뉴예요 — 다듬어서 곧 열게요");if(curView&&!LOCKED[curView])return;v="home"}return _sv(v)};
   document.querySelectorAll(".sn[data-view]").forEach(function(a){if(LOCKED[a.dataset.view]){a.classList.add("lock");a.setAttribute("aria-disabled","true");var sl=a.querySelector(".sl");if(sl)sl.insertAdjacentHTML("beforeend",'<i class="snl">준비 중</i>')}})})();
 try{var _v=localStorage.getItem("egoView");if(/[#&?]d=/.test(location.hash+location.search)||(window.DECK_PARAM&&DECK_PARAM.indexOf("\x3c?")<0))_v="deck";if(/^(pack|unit|deck|my|choice|enemy|sim|home|gift)$/.test(_v||""))setView(_v);else setView("home")}catch(e){}
