@@ -11092,6 +11092,7 @@ function tvDraftKey(){return "egoTier_"+tvRound().id}
 function tvDraft(){return TV.mode==="admin"?(TV._adm||{}):vLS(tvDraftKey(),{})}
 function tvSaveDraft(m){if(TV.mode==="admin")TV._adm=m;else vLSet(tvDraftKey(),m)}
 function renderTier(){var el=$("tierBody");if(!el)return;if(!U){el.innerHTML='<div class="uload">불러오는 중</div>';loadUnits();setTimeout(function(){if(curView==="tier")renderTier()},400);return}
+  if(!VC||!VAGG["tier|"+TV.round])el.innerHTML='<div class="uload">티어표를 불러오는 중…</div>';
   vCfgLoad(function(){var r=tvRound();TV.round=r.id;vAggLoad("tier",r.id,function(agg){tvDraw(agg)})})}
 function tvHead(){var R=VC.cfg.rounds.filter(function(r){return r.on||admOn()}),r=tvRound();
   var h='<div class="tvh">';
