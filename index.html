@@ -989,6 +989,45 @@ em.st{font-style:normal}
 .erow .esn{display:flex;align-items:center;gap:4px;margin-bottom:3px;font:500 11px/1 "SCDream",sans-serif;color:#B8A68A}
 .erow .esn .esl{height:16px;width:auto}
 @media (max-width:480px){.umseg button{min-width:50px;padding:0 9px;font-size:12px}}
+
+/* 동기화 단계 변화점 */
+.ldf h3 .ldt{display:inline-flex;align-items:center;gap:3px;margin-right:6px}
+.ldf h3 .ldt .upi{height:18px;width:auto}
+.ldf h3 .ldt i{font-style:normal;color:#8A7350;font-size:12px}
+.ldl{display:flex;flex-direction:column;gap:5px}
+.ldr{display:flex;flex-direction:column;gap:5px;width:100%;padding:9px 12px;border:1px solid #3A3328;border-left:3px solid var(--sc,#8A7350);border-radius:3px;background:linear-gradient(90deg,#1B160F,#100D0A);color:inherit;font:inherit;text-align:left;cursor:pointer}
+.ldr:hover{border-color:#8A7350;border-left-color:var(--sc,#8A7350)}
+.ldr.ps{cursor:default;border-left-color:#8A7350}
+.ldn{display:flex;align-items:center;gap:6px;min-width:0}
+.ldn b{font:600 13.5px/1.25 "SCDream",sans-serif;color:#FFF3DF}
+.ldn .sinm{height:16px;width:16px}
+.ldi{display:flex;flex-wrap:wrap;align-items:center;gap:4px 8px;font:500 12px/1.5 "SCDream",sans-serif;color:#D9CDB6}
+.ldi s{color:#7A7266;text-decoration-thickness:1px}
+.ldi b{color:#FFE28A;font-weight:700}
+.ldi .dv{width:1px;height:11px;background:#4A4237}
+.ldi .dhl{color:#FFE28A}
+.ldi .dhl .st{color:#FFE28A}
+.ldi .dnew{padding:1px 6px;border-radius:2px;background:#3A2F1C;color:#FFE28A;font-size:11px}
+.usk .chgb{flex:none;margin-left:6px;padding:2px 5px;border-radius:2px;background:#E8C547;color:#1A140A;font:400 10px/1 "KOTRA",sans-serif;font-style:normal}
+.usk.chg{box-shadow:inset 0 0 0 1px rgba(232,197,71,.35)}
+.usk .hl{color:#FFE28A;font-weight:700;background:linear-gradient(transparent 62%,rgba(232,197,71,.28) 62%)}
+.usk.flash{animation:skflash 1.2s ease-out}
+@keyframes skflash{0%,30%{box-shadow:0 0 0 2px #E8C547}100%{box-shadow:inset 0 0 0 1px rgba(232,197,71,.35)}}
+
+.ldi:empty{display:none}
+.ldx{display:flex;flex-direction:column;gap:3px;font:500 12px/1.5 "SCDream",sans-serif;color:#A89A82}
+.ldx .dln{display:block;padding-left:8px;border-left:2px solid #3A3328}
+.ldx .hl{color:#FFE28A;font-weight:700;background:linear-gradient(transparent 62%,rgba(232,197,71,.25) 62%)}
+.ldx .st,.ldx .tg{font-size:inherit}
+.usk .chgb{margin-left:5px;padding:2px 4px;min-width:16px;text-align:center}
+
+/* E.G.O 용도 */
+.euse{display:inline-flex;gap:3px;margin-left:6px}
+.euse i{padding:2px 5px;border-radius:2px;font:500 10px/1 "SCDream",sans-serif;font-style:normal;color:#1A140A}
+.euse .eu-clash{background:#E8A547}.euse .eu-deal{background:#E06A5A;color:#fff}.euse .eu-util{background:#7FB98A}.euse .eu-pass{background:#9C8BD8;color:#fff}
+.euseh{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:8px 0}
+.euseh .euse{margin-left:0}.euse.big i{padding:4px 9px;font-size:12px}
+.euseh small{font:500 11px/1.3 "SCDream",sans-serif;color:#8C7F6A}
 /* deck */
 .dbar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:9px}
 .dmode{display:inline-flex;border:1px solid #6F6556;border-radius:3px;overflow:hidden}
@@ -2287,6 +2326,131 @@ em.st{font-style:normal}
 .svq p{margin:0 0 8px;font:500 12px/1.5 "SCDream",sans-serif;color:#B8A68A}
 .svo{display:flex;flex-wrap:wrap;gap:6px}
 .svq .chip{min-height:36px;padding:0 14px}
+/* ===== 파편 우선순위 티어표 ===== */
+.tvtt{margin-left:8px;font:400 15px/1 "KOTRA",sans-serif;color:#FFF3DF}
+#tierBody{display:flex;flex-direction:column;gap:10px}
+.tvh{display:flex;flex-direction:column;gap:8px}
+.tvr{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+.tvr button{flex:none;height:30px;padding:0 12px;border:1px solid #4A4237;border-radius:15px;background:#110E0B;color:#B8A68A;font:500 12px/1 "SCDream",sans-serif;cursor:pointer}
+.tvr button[aria-selected="true"]{border-color:#E8C547;color:#FFE28A;background:#2C2416}
+.tvr small{margin-left:4px;color:#7A7266}
+.tvt{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:8px}
+.tvseg{display:inline-flex;border:1px solid #4A4237;border-radius:4px;overflow:hidden}
+.tvseg button{height:32px;padding:0 14px;border:0;background:#110E0B;color:#9E8F78;font:400 13.5px/1 "KOTRA",sans-serif;cursor:pointer}
+.tvseg button+button{border-left:1px solid #4A4237}
+.tvseg button[aria-selected="true"]{background:linear-gradient(#E8C547,#B8941F);color:#1A140A}
+.tvseg.sm button{height:28px;padding:0 10px;font:500 12px/1 "SCDream",sans-serif}
+.tvseg.sm button[aria-selected="true"]{background:#3A2F1C;color:#FFE28A}
+.tvseg.in{vertical-align:middle;margin-left:6px}
+.tvinfo{margin:0;font:500 12px/1.5 "SCDream",sans-serif;color:#9E8F78}
+.tvinfo b{color:#E6DCC8}
+/* 표 */
+.tvb{display:flex;flex-direction:column;gap:3px;padding:3px;border-radius:4px;background:#050403;box-shadow:0 0 0 1px #2A251F}
+.tvrow{display:flex;min-height:72px;background:#17130F}
+.tvl{flex:none;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;width:76px;padding:6px 4px;background:var(--tc);color:#1A140A;text-align:center}
+.tvl b{font:400 14px/1.15 "KOTRA",sans-serif;word-break:keep-all}
+.tvl small{font:600 10.5px/1 "SCDream",sans-serif;opacity:.6}
+.tvis{flex:1;display:flex;flex-wrap:wrap;align-content:flex-start;gap:3px;padding:3px;min-width:0}
+.tvempty{align-self:center;padding:0 10px;color:#3A3328}
+.tvi{position:relative;flex:none;width:62px;height:62px;padding:0;border:0;border-radius:2px;background:#0E0C0A;overflow:hidden;cursor:pointer;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06)}
+.tvi .tvf{display:block;width:100%;height:100%}
+.tvi .tvf.th img{object-fit:cover}
+.tvn{position:absolute;left:0;right:0;bottom:0;padding:9px 3px 2px;background:linear-gradient(transparent,rgba(0,0,0,.88) 45%);font:600 9px/1.15 "SCDream",sans-serif;color:#FFF3DF;text-align:left;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;word-break:keep-all}
+.tvn small{display:block;font-size:8.5px;color:#E8C547;font-weight:700}
+.tvi.usr::after{content:"";position:absolute;top:3px;right:3px;width:6px;height:6px;border-radius:50%;background:#7FD3FF;box-shadow:0 0 0 1px #000}
+.tvi:hover,.tvi:focus-visible{outline:2px solid #E8C547;outline-offset:-2px}
+.tvi.sel{outline:3px solid #FFE28A;outline-offset:-3px;transform:scale(.94)}
+@media (min-width:760px){.tvi{width:76px;height:76px}.tvn{font-size:10px}.tvn small{font-size:9.5px}.tvl{width:110px}.tvl b{font-size:16px}.tvrow{min-height:84px}}
+.tvun{border:1px solid #2E2922;border-radius:3px;background:#100D0A}
+.tvun summary{display:flex;align-items:center;gap:8px;padding:10px 12px;list-style:none;cursor:pointer;font:500 12.5px/1 "SCDream",sans-serif;color:#9E8F78}
+.tvun summary::-webkit-details-marker{display:none}
+.tvun summary b{color:#E6DCC8}
+.tvun summary .chev{margin-left:auto}
+.tvun .tvis{padding:0 8px 10px}
+.tva{display:flex;flex-wrap:wrap;gap:6px}
+.tva .tbtn{flex:0 0 auto;height:36px;padding:0 14px}
+/* 만들기 */
+.tvb.mk .tvrow{cursor:pointer;transition:box-shadow .12s}
+#tierBody.picking .tvb.mk .tvrow,#tierBody.picking .tvpool{box-shadow:inset 0 0 0 1px rgba(232,197,71,.45)}
+.tvrow.over,.tvpool.over{box-shadow:inset 0 0 0 2px #E8C547!important}
+.tvrow.ex .tvl{color:#B8A68A}
+.tvpool{border:1px solid #2E2922;border-radius:3px;background:#100D0A;cursor:pointer}
+.tvph{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;padding:10px 10px 6px}
+.tvph>b{font:400 14px/1 "KOTRA",sans-serif;color:#FFF3DF}
+.tvph>small{color:#9E8F78;font-size:11px}
+.tvsfs{display:flex;flex-wrap:wrap;gap:3px;width:100%}
+.tvsf{display:grid;place-items:center;width:30px;height:30px;padding:0;border:1px solid #3A3328;border-radius:3px;background:#0E0C0A;cursor:pointer}
+.tvsf .flg{height:20px;width:auto}
+.tvsf.all{width:auto;padding:0 8px;font:500 11px/1 "SCDream",sans-serif;color:#B8A68A}
+.tvsf[aria-pressed="true"]{border-color:#E8C547;background:#2C2416;color:#FFE28A}
+.tvpool .tvis{max-height:340px;overflow-y:auto;padding:4px 8px 10px}
+.tvlv{display:flex;flex-wrap:wrap;align-items:center;gap:6px;padding:8px 10px;border:1px solid #2E2922;border-radius:3px;background:#100D0A;font:500 12.5px/1 "SCDream",sans-serif;color:#E6DCC8}
+.tvlv small{color:#8C7F6A;font-size:11px}
+.tvlv.need{border-color:#E8C547;animation:skflash 1.2s ease-out}
+.tvmk{display:flex;flex-direction:column;gap:10px}
+.tvpp{display:flex;align-items:center;gap:8px;margin:6px 0;font:500 12px/1 "SCDream",sans-serif;color:#D9CDB6}
+.tvpp b{color:#FFE28A}
+/* 봉이 점수(부분 채움) */
+.vdl{display:inline-flex;gap:1px}
+.vdl i{position:relative;display:inline-block;width:18px;height:18px;font-style:normal;filter:grayscale(1) brightness(.35)}
+.vdl i::after{content:"";position:absolute;inset:0}
+.vdl i[style*="--f:1"]{filter:none}
+.vdl .gi.doll,.vdl .dollt{width:18px;height:18px}
+/* 설정 */
+.tvsh{margin:14px 0 6px;font:400 14px/1 "KOTRA",sans-serif;color:#FFF3DF}
+.tvsn{display:flex;flex-direction:column;gap:5px}
+.tvsn label{display:flex;align-items:center;gap:8px}
+.tvsn label i{flex:none;width:12px;height:30px;border-radius:2px;background:var(--tc)}
+.tvsn input{flex:1}
+.tsr{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 6px;padding:8px;border:1px solid #2E2922;border-radius:3px;background:#100D0A}
+.tsr>input{flex:1 1 140px}
+.tsr label{display:flex;align-items:center;gap:4px;font:500 12px/1 "SCDream",sans-serif;color:#B8A68A}
+.tsr label input[type=number]{width:56px}
+.admw{display:flex;justify-content:flex-end;margin-top:18px}
+.admb{padding:4px 8px;border:0;background:none;color:#4A4237;font:500 11px/1 "SCDream",sans-serif;cursor:pointer}
+.admb:hover{color:#8C7F6A}
+
+/* ===== E.G.O 평가 ===== */
+.erate .erw{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px;padding:8px 10px;border:1px solid #2E2922;border-radius:3px;background:#120F0C;margin-bottom:5px}
+.erate .erl{flex:none;width:76px;font:400 13px/1 "KOTRA",sans-serif;color:#E6DCC8}
+.erate .erv{font:500 11.5px/1.3 "SCDream",sans-serif;color:#9E8F78}
+.erate .erv b{color:#FFE28A}
+.erate .eus{display:flex;flex-wrap:wrap;gap:4px}
+.erate .eus .chip{min-height:30px;padding:0 10px}
+.erate .eus small{color:#E8C547;margin-left:2px}
+.erate .erw.adm{border-style:dashed}
+.erate select{height:28px;background:#0E0C0A;color:#E6DCC8;border:1px solid #3A3328;border-radius:3px}
+@media (max-width:480px){.erate .erl{width:100%}}
+
+/* ===== 덱 루트: 유저 선택 비율 ===== */
+.rvw{margin-top:6px}
+.rvw.obs{margin-top:10px}
+.rvh{margin:0 0 4px;font:400 13px/1 "KOTRA",sans-serif;color:#E6DCC8}
+.rvote{display:flex;flex-direction:column;gap:6px;padding:8px 10px;border:1px dashed #3A3328;border-radius:3px;background:#0E0C0A}
+.rvt{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;font:500 12px/1.3 "SCDream",sans-serif;color:#D9CDB6}
+.rvt i{font-style:normal;padding:2px 6px;border-radius:2px;background:#2A3A22;color:#B9D99A;font-size:10.5px}
+.rvt b{color:#FFF3DF}
+.rvt em{font-style:normal;color:#FFE28A;font-weight:700}
+.rvt small{color:#7A7266}
+.rvt.dim{color:#6F6556}
+.rvote{position:relative}
+.rvm{position:absolute;top:6px;right:8px;padding:2px 6px;border:1px solid #3A3328;border-radius:2px;background:#14110D;color:#B8A68A;font:500 10.5px/1.3 "SCDream",sans-serif;cursor:pointer}
+.rvbars{display:flex;flex-direction:column;gap:3px}
+.rvb{display:grid;grid-template-columns:minmax(0,1fr) 90px 34px;align-items:center;gap:6px;font:500 11.5px/1.2 "SCDream",sans-serif;color:#B8A68A}
+.rvb span{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rvb i{height:6px;border-radius:3px;background:#221D17;overflow:hidden}
+.rvb i b{display:block;height:100%;background:linear-gradient(90deg,#8A7350,#E8C547)}
+.rvb em{font-style:normal;text-align:right;color:#E6DCC8}
+.rvme{display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+.rvme small{margin-right:2px;font:500 10.5px/1 "SCDream",sans-serif;color:#7A7266}
+.rvme .chip.sm{min-height:26px;padding:0 8px;font-size:11px}
+
+.erate .stars{gap:2px}
+.erate .stars button{width:30px;height:30px;padding:2px;font-size:0;filter:grayscale(1) brightness(.45);transition:filter .1s,transform .1s}
+.erate .stars button.on,.erate .stars:hover button{filter:none}
+.erate .stars button:hover~button{filter:grayscale(1) brightness(.45)}
+.rvote.empty{flex-direction:row;flex-wrap:wrap;align-items:center;padding:6px 8px;border-style:dotted}
+.rvote.empty .rvme small{color:#8C7F6A}
 </style>
 </head>
 <body>
@@ -2895,6 +3059,7 @@ document.addEventListener("click",function(e){
   var uc=t.closest("[data-uk]");
   if(uc){var ua=uSel[uc.dataset.uk],ui=ua.indexOf(uc.dataset.v);ui<0?ua.push(uc.dataset.v):ua.splice(ui,1);uc.setAttribute("aria-pressed",ui<0);renderUnits();return}
   if(t.closest("#uFilterBtn")){var uf=$("uFil"),uo=uf.classList.toggle("open");$("uFilterBtn").setAttribute("aria-expanded",uo);return}
+  var skg=t.closest("[data-skgo]");if(skg){skGo(skg.dataset.skgo);return}
   var umb=t.closest("[data-umode]");if(umb){uModeSet(umb.dataset.umode);return}
   var us=t.closest("[data-usort]");
   if(us){uSort=us.dataset.usort;document.querySelectorAll("[data-usort]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.usort===uSort)});renderUnits();return}
@@ -9400,7 +9565,7 @@ var GDECKS={
  ]
 };
 /* ===== 인격 / 에고 ===== */
-var U=null,UBY={},EBY={},uSel={sinner:[],rank:[],sin:[],atk:[],kw:[],season:[],eg:[]},uSort="date",uUp=4,uLoading=false,curUnit=null,curEgo=null,uArt="n",uTab="sum";
+var U=null,UBY={},EBY={},uSel={sinner:[],rank:[],sin:[],atk:[],kw:[],season:[],eg:[],use:[]},uSort="date",uUp=4,uLoading=false,curUnit=null,curEgo=null,uArt="n",uTab="sum";
 var SINC={CRIMSON:"var(--wrath)",SCARLET:"var(--lust)",AMBER:"var(--sloth)",SHAMROCK:"var(--gluttony)",AZURE:"var(--gloom)",INDIGO:"var(--pride)",VIOLET:"var(--envy)"};
 var SINS7=["CRIMSON","SCARLET","AMBER","SHAMROCK","AZURE","INDIGO","VIOLET"];
 var SIN_EN={CRIMSON:"Wrath",SCARLET:"Lust",AMBER:"Sloth",SHAMROCK:"Gluttony",AZURE:"Gloom",INDIGO:"Pride",VIOLET:"Envy"};
@@ -9512,6 +9677,7 @@ function buildUnitFilters(){
   $("uFil").innerHTML='<div class="ufsn" role="group" aria-label="수감자">'+U.sinners.map(function(s){var on=uSel.sinner.indexOf(String(s.n))>=0;
       return '<button class="fbtn" data-uk="sinner" data-v="'+s.n+'" aria-pressed="'+on+'" title="'+esc(s.kr)+'">'+sinLogo(s.n,"flg")+'<span>'+esc(s.kr)+'</span></button>'}).join("")+'</div>'+
     '<div class="ufg">'+
+    row("용도",ch("use",EUSE,"kwc"),"ego-only")+
     row("E.G.O 등급",ch("eg",GRADES.filter(function(g){return U.egos.some(function(e){return e.g===g})}).map(function(g){return [g,g]}),"kwc",function(a){return gradeIco(a[0])+esc(a[1])}),"ego-only")+
     row("등급",ch("rank",RANKS,"rkc",function(a){return uii("rank_"+a[0],"rki",a[1])||a[1]}))+
     row("유형",ch("atk",ATKS,"kwc",function(a){return atkIco(a[0],"atki")+esc(a[1])}))+
@@ -9575,7 +9741,8 @@ function fmtDesc(t){
       else if(U.kwById[id])out+='<em class="st" data-st="'+esc(U.kwById[id])+'">'+bfIco(id)+esc(U.kwById[id])+'</em>';
       else out+=esc(p)}
     else{var s=esc(p);if(U.kwRe)s=s.replace(U.kwRe,function(m){return '<em class="st" data-st="'+m+'">'+bfIco(U.kwIdBy[m]||"")+m+'</em>'});out+=s}});
-  return out.replace(/\u0001/g,'<b class="hl">').replace(/\u0002/g,'</b>').replace(/\n/g,"<br>")}
+  var dep=0;out=out.replace(/[\u0001\u0002]/g,function(m){if(m==="\u0001"){if(dep)return "";dep=1;return '<b class="hl">'}if(!dep)return "";dep=0;return '</b>'});if(dep)out+='</b>';
+  return out.replace(/\n/g,"<br>")}
 
 /* 태그 색: 사용 / 적중 / 합 / 흐름 / 회피 / 제약 */
 var TG_H=/^(OnSucceedAttack|CriticalOnSucceedAttack|WinDuelAttack|ReUse|CriticalActivated)/,TG_D=/^(WinDuel|DefeatDuel|StartDuel)$/,TG_F=/^(StartBattle|EndBattle|EndSkill|CriticalEndSkill|EnemyKill)/,TG_E=/^(OnSucceedEvade|OnDefeatEvade)$/,TG_R=/^(Wide|CantIdentify|CantDuel|nx)/;
@@ -9605,6 +9772,7 @@ function pwrHtml(x){if(x.base==null)return "";var m=coinMeta(x);
 function pipsAt(n,ci){var s="";for(var i=0;i<n;i++)s+='<i'+(i===ci?' class="on"':'')+'></i>';return '<span class="pips" title="'+(ci+1)+'번째 코인">'+s+'</span>'}
 function skillBox(s,lv,opt){opt=opt||{};
   var x=upAt(s,lv);
+  if(x){var sl=fieldLv(s,lv);x=Object.assign({},x);if(sl.desc!==+lv&&x.desc)x.desc=noHl(x.desc);if(sl.cd!==+lv&&x.cd)x.cd=x.cd.map(function(c){return c.map(noHl)})}
   if(!x){var f=s.up[0];return '<div class="usk locked" style="--sc:'+(SINC[f.sin]||"#555")+'"><div class="uskh"><span class="usk-ic">'+(opt.art||skIco(s))+'</span><div class="usk-t"><div class="l1"><b>'+esc(f.name||"")+'</b></div><div class="l2">동기화 '+ROMAN5[f.lv]+'에서 해금</div></div></div></div>'}
   var isDef=x.def&&x.def!=="ATTACK",atkKr=U.atk[x.atk]||"",defKr=U.defk[x.def]||"";
   var art=opt.art||skIco(s),badge=isDef?uii("def_"+DEF_EN[x.def],"tb",defKr):uii("atk_"+ATK_EN[x.atk],"tb",atkKr);
@@ -9617,8 +9785,9 @@ function skillBox(s,lv,opt){opt=opt||{};
   var kws=[];(x.bf||[]).forEach(function(bf){var id=bf[0];if(id&&kws.indexOf(id)<0&&(U.kw[id]||UII["st_"+id]))kws.push(id)});
   var body=(x.desc?'<p class="usk-d">'+fmtDesc(x.desc)+'</p>':'')+(nc?'<div class="cfx"><div class="cfh"><span>코인 효과</span><b>'+nc+'</b></div><ul>'+cds+'</ul></div>':'');
   var mini=!!opt.mini;
-  return '<div class="usk'+(mini?" mini":"")+(body?" has":"")+'" style="--sc:'+(SINC[x.sin]||"#555")+'"><div class="uskh"'+(body?' role="button" tabindex="0" aria-expanded="false"':'')+'><span class="usk-ic">'+ic+'</span><div class="usk-t">'+
-    '<div class="l1"><b>'+esc(x.name||"")+'</b>'+pwrHtml(x)+'</div>'+
+  var chg=lv>1&&s.up.some(function(e){return +e.lv===+lv&&+s.up[0].lv<+lv});
+  return '<div class="usk'+(mini?" mini":"")+(body?" has":"")+(chg?" chg":"")+'" data-skid="'+s.id+'" style="--sc:'+(SINC[x.sin]||"#555")+'"><div class="uskh"'+(body?' role="button" tabindex="0" aria-expanded="false"':'')+'><span class="usk-ic">'+ic+'</span><div class="usk-t">'+
+    '<div class="l1"><b>'+esc(x.name||"")+'</b>'+(chg?'<i class="chgb" title="동기화 '+ROMAN5[lv]+'에서 바뀜">'+ROMAN5[lv]+'</i>':'')+pwrHtml(x)+'</div>'+
     '<div class="l2">'+sub.join('<i class="dv"></i>')+(mini&&kws.length?'<span class="mk">'+kws.slice(0,4).map(function(k){return kwIco(k,"mki")}).join("")+'</span>':'')+(meta.length?'<span class="mt">'+meta.join(" · ")+'</span>':'')+'</div></div>'+(body?'<i class="chev"></i>':'')+'</div>'+
     (body?'<div class="usk-b">'+body+'</div>':'')+'</div>'}
 /* 기본 스킬 / 강화·특수 변형(n=0) 분리 */
@@ -9699,6 +9868,7 @@ function openUnit(id){
   h+=statRow(i,spd)+hpBar(i.st);
   var egos=U.egos.filter(function(e){return e.s===i.s}).sort(function(a,b){return GRADES.indexOf(a.g)-GRADES.indexOf(b.g)||b.id-a.id});
   h+=syncSeg("u",lv,4,i);
+  h+=lvDiffSec(i,lv);
   h+='<div class="usec sk"><h3>스킬<span class="hh">눌러서 설명 · 코인 효과</span></h3>'+skillList(i,lv,true)+'</div>';
   h+=passSec(i.ps,lv);
   if(egos.length){var ew=egoWith(i.id),top=egos.filter(function(e){return ew[e.id]}).sort(function(a,b){return ew[b.id]-ew[a.id]||GRADES.indexOf(a.g)-GRADES.indexOf(b.g)}).slice(0,5);
@@ -9717,6 +9887,7 @@ function openEgo(id){
   var h='<div class="ehero g-'+esc(e.g)+(bn?"":" nob")+'">'+(bn||'')+'<div class="eht"><span class="gr">'+gradeIco(e.g)+esc(e.g)+'</span><b class="en">'+esc(e.nm)+'</b>'+(e.en?'<span class="ee">'+esc(e.en)+'</span>':'')+'</div></div>';
   h+='<div class="umeta"><span class="tag sea">'+sinLogo(e.s,"tlg")+esc(e.sn)+'</span><span class="tag">'+esc(seasonLbl(e.se))+'</span>'+(e.atk?'<span class="tag">'+atkIco(e.atk,"tki")+esc(U.atk[e.atk]||"")+'</span>':'')+(e.sin?'<span class="tag kt" style="--sc:'+SINC[e.sin]+'">'+sinIco(e.sin,"tki")+esc(sinKr(e.sin))+'</span>':'')+
     e.kws.map(function(k){var n=KWKR[k]||k,ks=SIN[KWSIN[n]];return '<span class="tag kt"'+(ks?' style="--sc:'+ks+'"':'')+'>'+kwIco(k,"tki")+esc(n)+'</span>'}).join("")+'</div>';
+  egoUseCalc();if(e.use&&e.use.length)h+='<div class="euseh"><span class="ecl">용도</span>'+useChips(e,"big")+'<small>자동 분류 · 유저 평가가 쌓이면 바뀌어요</small></div>';
   h+='<div class="emeta"><span class="ecl">발동 비용</span>'+costChips(e.cost)+'<span class="ecl r">죄악 내성</span>';
   var grp={};SINS7.forEach(function(s){var l=resLv(e.res[s]);(grp[l]=grp[l]||[]).push(s)});
   h+='<span class="eres">'+RES_ORD.filter(function(l){return grp[l]}).map(function(l){return '<span class="eg" title="'+RES_KR[l]+'">'+grp[l].map(function(s){return sinIco(s,"sini")}).join("")+resSym(l)+'</span>'}).join("")+'</span></div>';
@@ -9763,20 +9934,65 @@ function eHay(e){if(e._hay)return e._hay;var s=[e.nm,e.en,(U.sinners[e.s-1]||{})
 function eMatch(e){var q=$("uq").value.trim().toLowerCase();if(q&&eHay(e).indexOf(q)<0)return false;
   if(uSel.sinner.length&&uSel.sinner.indexOf(String(e.s))<0)return false;
   if(uSel.eg.length&&uSel.eg.indexOf(e.g)<0)return false;
+  if(uSel.use.length&&!uSel.use.some(function(k){return (e.use||[]).indexOf(k)>=0}))return false;
   if(uSel.sin.length&&!uSel.sin.every(function(s){return e.sin===s||e.cost.some(function(c){return c[0]===s})}))return false;
   if(uSel.atk.length&&uSel.atk.indexOf(e.atk)<0)return false;
   if(uSel.kw.length&&!uSel.kw.some(function(k){return (e.kws||[]).indexOf(k)>=0}))return false;
   if(uSel.season.length&&uSel.season.indexOf(seasonKey(e.se))<0)return false;return true}
 function eCmp(a,b){if(uSort==="rank")return GRADES.indexOf(b.g)-GRADES.indexOf(a.g)||b.id-a.id;if(uSort==="sinner")return a.s-b.s||GRADES.indexOf(a.g)-GRADES.indexOf(b.g);
   if(uSort==="name")return a.nm.localeCompare(b.nm,"ko");return (b.date||"").localeCompare(a.date||"")||b.id-a.id}
-function egoCard(e){var sn=U.sinners[e.s-1]||{};return egoRow(e).replace('<span class="l1">','<span class="esn">'+sinLogo(e.s,"esl")+esc(sn.kr||"")+'</span><span class="l1">')}
-function renderEgos(){if(!$("uFil").innerHTML)buildUnitFilters();uModeSync();
-  var rows=U.egos.filter(eMatch).sort(eCmp),f=["sinner","eg","sin","atk","kw","season"].some(function(k){return uSel[k].length})||$("uq").value.trim();
+function egoCard(e){var sn=U.sinners[e.s-1]||{};return egoRow(e).replace('<span class="l1">','<span class="esn">'+sinLogo(e.s,"esl")+esc(sn.kr||"")+useChips(e)+'</span><span class="l1">')}
+function renderEgos(){egoUseCalc();if(!$("uFil").innerHTML)buildUnitFilters();uModeSync();
+  var rows=U.egos.filter(eMatch).sort(eCmp),f=["sinner","eg","use","sin","atk","kw","season"].some(function(k){return uSel[k].length})||$("uq").value.trim();
   $("uCount").innerHTML=f?'<b>'+rows.length+'</b> <i>/ '+U.egos.length+'</i>':'<b>'+U.egos.length+'</b>';
   var h="";if(!rows.length)h='<div class="uempty">조건에 맞는 E.G.O 없음</div>';
   else if(uSort==="sinner"){var last=null;rows.forEach(function(e){if(e.s!==last){h+=(last!==null?'</div>':'')+'<h4 class="ugh">'+sinLogo(e.s,"ghl")+esc(U.sinners[e.s-1].kr)+'<small>'+rows.filter(function(x){return x.s===e.s}).length+'</small></h4><div class="eglist">';last=e.s}h+=egoCard(e)});h+='</div>'}
   else h='<div class="eglist">'+rows.map(egoCard).join("")+'</div>';
   $("uGrid").innerHTML=h;artLoad("--ebp","EGOB_SPRITE_INLINE","EGOB_SPRITE_URL","getEgoBannerSprite")}
+
+/* ===== 동기화 단계 변화점: 선택한 단계에서 직전 단계 대비 바뀐 것만 ===== */
+function fieldLv(s,lv){var o={};s.up.forEach(function(e){if(+e.lv<=+lv){if(e.desc!=null)o.desc=+e.lv;if(e.cd!=null)o.cd=+e.lv}});return o}
+function noHl(t){return String(t||"").replace(/<style="highlight">([\s\S]*?)<\/style>/g,"$1")}
+function hlBits(t){var out=[],m,re=/<style="highlight">([\s\S]*?)<\/style>/g;t=String(t||"");while((m=re.exec(t))){var v=m[1].trim();if(v&&out.indexOf(v)<0)out.push(v)}return out}
+function lvDiff(s,lv){var e=s.up.filter(function(x){return +x.lv===+lv})[0];if(!e)return null;var a=upAt(s,lv-1),b=upAt(s,lv);if(!b)return null;
+  if(!a)return {s:s,b:b,items:['<span class="dnew">새로 해금</span>']};
+  var it=[];if(e.base!=null&&+a.base!==+b.base)it.push('기본 위력 <s>'+a.base+'</s> → <b>'+b.base+'</b>');
+  if(e.coin!=null&&+a.coin!==+b.coin)it.push('코인 위력 <s>+'+a.coin+'</s> → <b>+'+b.coin+'</b>');
+  if(e.coins!=null&&+a.coins!==+b.coins)it.push('코인 <s>'+a.coins+'개</s> → <b>'+b.coins+'개</b>');
+  if(e.alv!=null&&+a.alv!==+b.alv)it.push('공렙 <s>'+a.alv+'</s> → <b>'+b.alv+'</b>');
+  var lines=[];function grab(t){var open=false;String(t||"").split("\n").forEach(function(l){var s=(open?'<style="highlight">':'')+l,hit=open||l.indexOf('<style="highlight">')>=0;
+    var a=s.lastIndexOf('<style="highlight">'),z=s.lastIndexOf("</style>");open=a>z;if(open)s+="</style>";if(hit&&lines.indexOf(s)<0)lines.push(s)})}
+  grab(e.desc);(e.cd||[]).forEach(function(c){c.forEach(grab)});
+  var txt=lines.slice(0,4).map(function(l){return '<span class="dln">'+fmtDesc(l)+'</span>'});
+  if(!lines.length&&(e.desc!=null||e.cd!=null))it.push('<span class="dhl">효과 문구 변경</span>');
+  return it.length||txt.length?{s:s,b:b,items:it,lines:txt}:null}
+function lvDiffSec(i,lv){if(lv<2)return "";var L=[];i.sk.concat(i.dk||[]).forEach(function(s){var d=lvDiff(s,lv);if(d)L.push(d)});
+  var ps=i.ps.filter(function(p){return +p.u===+lv});
+  if(!L.length&&!ps.length)return "";
+  var h='<div class="usec ldf"><h3><span class="ldt">'+(uii("up_"+(lv-1),"upi",ROMAN5[lv-1])||ROMAN5[lv-1])+'<i>→</i>'+(uii("up_"+lv,"upi",ROMAN5[lv])||ROMAN5[lv])+'</span>달라지는 점<small>'+(L.length+ps.length)+'</small><span class="hh">눌러서 해당 스킬 보기</span></h3><div class="ldl">';
+  L.forEach(function(d){h+='<button class="ldr" data-skgo="'+d.s.id+'" style="--sc:'+(SINC[d.b.sin]||"#777")+'"><span class="ldn">'+(d.b.sin?sinIco(d.b.sin,"sinm"):'')+'<b>'+esc(d.b.name||"")+'</b></span><span class="ldi">'+d.items.join('<i class="dv"></i>')+'</span>'+(d.lines&&d.lines.length?'<span class="ldx">'+d.lines.join("")+'</span>':'')+'</button>'});
+  ps.forEach(function(p){h+='<div class="ldr ps"><span class="ldn"><span class="ptype'+(p.k==="s"?" sup":"")+'">'+(p.k==="s"?"서포트":"패시브")+'</span><b>'+esc(p.nm)+'</b></span><span class="ldi"><span class="dnew">해금</span></span></div>'});
+  return h+'</div></div>'}
+function skGo(id){var el=document.querySelector('#detailBody .usk[data-skid="'+id+'"]');if(!el)return;var x=el.closest("details");if(x)x.open=true;
+  if(el.classList.contains("has")&&!el.classList.contains("open")){el.classList.add("open");var hh=el.querySelector(".uskh");if(hh)hh.setAttribute("aria-expanded","true")}
+  el.scrollIntoView({block:"center",behavior:"smooth"});el.classList.remove("flash");void el.offsetWidth;el.classList.add("flash")}
+
+/* ===== E.G.O 용도 자동 분류 (참고용 · 나중에 유저 투표로 덮어씀) ===== */
+var EUSE=[["clash","합"],["deal","딜"],["util","유틸"],["pass","패시브"]],EUSE_KR={clash:"합",deal:"딜",util:"유틸",pass:"패시브"};
+function egoMain(e){var L=(e.sk||[]).filter(function(s){return s.n!==0});return (L.length?L:e.sk||[])[0]}
+function egoUseCalc(){if(!U||U._euse)return;U._euse=1;var mps=[];
+  U.egos.forEach(function(e){var s=egoMain(e),x=s&&upAt(s,9)||{};var n=+x.coins||0,mp=(+x.base||0)+n*(+x.coin||0);
+    var txt=noHl([x.desc||""].concat([].concat.apply([],x.cd||[])).join(" ")),ps=noHl((e.ps||[]).map(function(p){return p.d}).join(" "));
+    e._mp=mp;e._cant=/\[CantDuel\]|합을 진행하지 않|합 불가/.test(txt);e._t=txt;e._p=ps;e._tg=+x.tg||1;if(!e._cant)mps.push(mp)});
+  mps.sort(function(a,b){return a-b});var hi=mps[Math.floor(mps.length*0.62)]||30;
+  U.egos.forEach(function(e){var t=e._t,p=e._p,sc={clash:0,deal:0,util:0,pass:0};
+    if(!e._cant){if(e._mp>=hi)sc.clash+=2;if(/합 위력 \+|합 승리/.test(t))sc.clash+=1}
+    if(/피해량 \+|추가 피해|최종 위력 \+|폭발|피해량의 \d+%/.test(t))sc.deal+=1.5;if(e._tg>=3)sc.deal+=0.5;if(e._cant)sc.deal+=0.5;
+    var ally=(t.match(/아군[^.\n]{0,40}(회복|부여|증가|얻|감소)/g)||[]).length;if(ally)sc.util+=1+ally*0.5;if(/정신력 \d+ 회복|체력 회복|보호 \d|\[Protection\]/.test(t))sc.util+=1;
+    if(/아군|E\.G\.O 자원|전투 시작 시|턴 시작 시/.test(p))sc.pass+=1;if(/모든 아군|아군 전체|E\.G\.O 자원/.test(p))sc.pass+=1;if(e._mp<hi*0.8)sc.pass+=0.5;
+    var top=Object.keys(sc).filter(function(k){return sc[k]>=1.5}).sort(function(a,b){return sc[b]-sc[a]});
+    if(!top.length)top=[Object.keys(sc).sort(function(a,b){return sc[b]-sc[a]})[0]];e.use=top.slice(0,2)})}
+function useChips(e,cls){if(!e.use||!e.use.length)return "";return '<span class="euse'+(cls?" "+cls:"")+'">'+e.use.map(function(k){return '<i class="eu-'+k+'">'+EUSE_KR[k]+'</i>'}).join("")+'</span>'}
 
 /* ===== 덱 빌더 ===== */
 var DMODES=[["md","거울던전",7],["story","스토리",5],["rail","굴절철도",6],["lux","채광",7],["raid","사영전투",7]];
@@ -10710,6 +10926,221 @@ function impApply(){var k=IMP.kind,rows=IMP.rows;if(!rows)return;deckInit();
     deck.dep=[];for(var s=1;s<=12&&deck.dep.length<deck.n;s++)if(dUnit(s))deck.dep.push(s);deck.src=null;deck.title="내 편성 (캡처)"}
   else rows.forEach(function(r){if(!r.hit)return;if(!deck.m[r.s]||!deck.m[r.s].id)return;deck.m[r.s].e=deck.m[r.s].e||{};for(var g in r.e)deck.m[r.s].e[g]=r.e[g].id});
   deck.ui="deck";deckSave();hide();renderDeck();window.scrollTo(0,0);toast(k==="id"?"인격을 채웠어요 — 칸을 눌러 출격·E.G.O를 정해요":"E.G.O를 채웠어요")}
+
+/* ===== 투표 공통: 파편 우선순위 티어표 · E.G.O 평가 · 덱 루트 선택 ===== */
+var VDEF={tiers:["필수","강력추천","여유되면","굳이","트로피"],th:10,rounds:[{id:"base",name:"상시",recent:3,on:true}]};
+var VC=null,VAGG={},VLVS=["뉴비","중수","고인"],TIER_COL=["#E0675F","#E89A55","#E8C547","#CFCB72","#8DC97A"];
+function vOnline(){return !!((window.google&&google.script&&google.script.run)||window.API_URL)}
+function vParse(s){try{return typeof s==="string"?JSON.parse(s):s}catch(e){return null}}
+function vLS(k,d){try{var s=localStorage.getItem(k);return s==null?d:JSON.parse(s)}catch(e){return d}}
+function vLSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+var _vcq=null;
+function vCfgLoad(cb){if(VC){cb(VC);return}if(_vcq){_vcq.push(cb);return}_vcq=[cb];
+  function done(o){VC=o;var q=_vcq;_vcq=null;q.forEach(function(f){f(VC)})}
+  if(!vOnline()){done({cfg:VDEF,adm:{},ego:{},off:1});return}
+  api("getVoteCfg",[],function(s){var o=vParse(s);done(o&&o.cfg?o:{cfg:VDEF,adm:{},ego:{}})},function(){done({cfg:VDEF,adm:{},ego:{},off:1})})}
+var _vaq={};
+function vAggLoad(kind,round,cb,force){var k=kind+"|"+round;if(VAGG[k]&&!force){cb(VAGG[k]);return}if(_vaq[k]){_vaq[k].push(cb);return}_vaq[k]=[cb];
+  function done(o){VAGG[k]=o;var q=_vaq[k];delete _vaq[k];q.forEach(function(f){f(o)})}
+  if(!vOnline()){done({n:0,items:{},off:1});return}
+  api("getVotes",[kind,round],function(s){done(vParse(s)||{n:0,items:{}})},function(){done({n:0,items:{},err:1})})}
+function myLv(){return vLS("egoLv","")}
+function admKey(){return vLS("egoAdm","")}
+function vCast(kind,round,obj,ok){if(!vOnline()){toast("미리보기에선 저장되지 않아요");return}
+  api("castVote",[kind,round,fbVid(),myLv(),JSON.stringify(obj)],function(r){if(r==="wait"){setTimeout(function(){vCast(kind,round,obj,ok)},2200);return}
+    if(r!=="ok"){toast("저장 실패");return}delete VAGG[kind+"|"+round];ok&&ok()},function(){toast("저장 실패 — 잠시 후 다시")})}
+function vAdmin(what,obj,ok){api("adminSave",[admKey(),what,JSON.stringify(obj)],function(r){if(r==="ok"){VC=null;ok&&ok()}else toast(r==="denied"?"관리자 키가 맞지 않아요":"저장 실패")},function(){toast("저장 실패")})}
+function vTh(){return (VC&&VC.cfg&&+VC.cfg.th)||10}
+function vTiers(){return (VC&&VC.cfg&&VC.cfg.tiers)||VDEF.tiers}
+function dolls(v){var h='<span class="vdl">';for(var i=1;i<=5;i++){var f=Math.max(0,Math.min(1,v-i+1));h+='<i style="--f:'+f+'">'+dollIco()+'</i>'}return h+'</span>'}
+
+/* ---------- 관리자 모드 ---------- */
+function admOn(){return !!admKey()}
+function openAdmin(){var h='<div class="phead"><div class="banner K"><div>관리자 모드</div></div></div>';
+  if(admOn())h+='<p class="dinfo" style="margin:8px 0">관리자 모드가 켜져 있어요. 파편 우선순위·E.G.O 평가 화면에 편집 버튼이 보여요.</p><div class="dib"><button class="tbtn K" id="admOff"><span>관리자 모드 끄기</span></button></div>';
+  else h+='<p class="dinfo" style="margin:8px 0">운영자 비밀 키를 넣으면 이 기기에서 편집 버튼이 보여요.</p><input id="admIn" class="tcin" type="password" autocomplete="off" placeholder="비밀 키" style="width:100%;margin:0 0 10px"><div class="dib"><button class="tbtn K lit" id="admGo"><span>켜기</span></button></div>';
+  navStack=[];$("detailBody").innerHTML=h;$("detail").setAttribute("aria-label","관리자 모드");updBack();show("detail")}
+function admTry(){var v=($("admIn").value||"").trim();if(!v)return;api("adminSave",[v,"ping","{}"],function(r){if(r==="ok"){vLSet("egoAdm",v);hide();toast("관리자 모드 켜짐");if(curView==="tier")renderTier()}else toast("키가 맞지 않아요")},function(){toast("확인 실패 — 잠시 후 다시")})}
+
+/* ---------- 파편 우선순위 화면 ---------- */
+var TV={round:vLS("egoTvR","base"),sec:vLS("egoTvS","u"),lv:"",mode:"view",sel:null,sin:0,admLv:""};
+function tvItems(sec){return sec==="e"?U.egos.map(function(e){return "e"+e.id}):U.ids.slice().sort(function(a,b){return (b.date||"").localeCompare(a.date||"")||b.id-a.id}).map(function(i){return "u"+i.id})}
+function tvInfo(k){var id=+k.slice(1);if(k[0]==="e"){var e=EBY[id];return e?{k:k,id:id,e:1,nm:e.nm,s:e.s,sn:(U.sinners[e.s-1]||{}).kr||"",img:eface(id,"tvf")}:null}
+  var i=UBY[id];return i?{k:k,id:id,nm:i.t,s:i.s,sn:i.sn,r:i.r,img:face(id,"tvf")}:null}
+function tvRound(){var R=(VC&&VC.cfg.rounds)||VDEF.rounds;return R.filter(function(r){return r.id===TV.round})[0]||R.filter(function(r){return r.on})[0]||R[0]}
+function tvAdm(lv){var a=(VC&&VC.adm&&VC.adm[tvRound().id])||{};return lv&&a[lv]&&Object.keys(a[lv]).length?a[lv]:(a[""]||{})}
+function tvPlace(k,agg,adm){var it=agg&&agg.items&&agg.items[k],n=0,s=0;if(it){if(TV.lv){var L=it.lv&&it.lv[TV.lv];if(L){n=L[0];s=L[1]}}else{n=it.n;s=it.s}}
+  var a=adm[k];if(a===0)return {t:-1};
+  if(n>=vTh())return {t:Math.max(1,Math.min(5,Math.round(s/n))),src:"u",n:n,avg:s/n,a:a};
+  if(a)return {t:a,src:"a",n:n,avg:n?s/n:0,a:a};return {t:0,n:n,avg:n?s/n:0}}
+function tvDraftKey(){return "egoTier_"+tvRound().id}
+function tvDraft(){return TV.mode==="admin"?(TV._adm||{}):vLS(tvDraftKey(),{})}
+function tvSaveDraft(m){if(TV.mode==="admin")TV._adm=m;else vLSet(tvDraftKey(),m)}
+function renderTier(){var el=$("tierBody");if(!el)return;if(!U){el.innerHTML='<div class="uload">불러오는 중</div>';loadUnits();return}
+  vCfgLoad(function(){var r=tvRound();TV.round=r.id;vAggLoad("tier",r.id,function(agg){tvDraw(agg)})})}
+function tvHead(){var R=VC.cfg.rounds.filter(function(r){return r.on||admOn()}),r=tvRound();
+  var h='<div class="tvh">';
+  if(R.length>1)h+='<div class="tvr" role="tablist">'+R.map(function(x){return '<button role="tab" data-tvr="'+esc(x.id)+'" aria-selected="'+(x.id===r.id)+'">'+esc(x.name)+(x.on?'':'<small>숨김</small>')+'</button>'}).join("")+'</div>';
+  h+='<div class="tvt"><div class="tvseg" role="tablist">'+[["u","인격"],["e","E.G.O"]].map(function(x){return '<button role="tab" data-tvs="'+x[0]+'" aria-selected="'+(TV.sec===x[0])+'">'+x[1]+'</button>'}).join("")+'</div>';
+  if(TV.mode==="view")h+='<div class="tvseg sm" role="tablist" aria-label="기준">'+[["","전체"]].concat(VLVS.map(function(v){return [v,v]})).map(function(x){return '<button role="tab" data-tvl="'+x[0]+'" aria-selected="'+(TV.lv===x[0])+'">'+x[1]+'</button>'}).join("")+'</div>';
+  h+='</div></div>';return h}
+function tvTile(inf,extra,cls){return '<button class="tvi'+(cls?" "+cls:"")+'" '+extra+' title="'+esc(inf.sn+" · "+inf.nm)+'">'+inf.img+'<span class="tvn"><small>'+esc(inf.sn)+'</small>'+esc(inf.nm)+'</span></button>'}
+function tvDraw(agg){var el=$("tierBody"),T=vTiers(),h=tvHead(),r=tvRound();_pp=[];ppClose();
+  if(TV.mode==="view"){var adm=tvAdm(TV.lv),rows=[[],[],[],[],[]],un=[],items=tvItems(TV.sec);
+    items.forEach(function(k){var inf=tvInfo(k);if(!inf)return;var p=tvPlace(k,agg,adm);if(p.t<0)return;inf.p=p;if(p.t)rows[p.t-1].push(inf);else un.push(inf)});
+    rows.forEach(function(L){L.sort(function(a,b){return (a.p.src==="u"?a.p.avg:a.p.t)-(b.p.src==="u"?b.p.avg:b.p.t)||b.p.n-a.p.n})});
+    var nu=agg&&agg.n||0;
+    h+='<p class="tvinfo">'+(nu?'<b>'+nu+'명</b>이 티어표를 냈어요 · ':'')+'평가가 <b>'+vTh()+'명</b> 넘은 칸은 유저 평균, 나머지는 운영자 기준'+(r.recent?' · 최근 '+r.recent+'개월 투표만 반영':'')+'</p>';
+    h+='<div class="tvb" id="tvBoard">'+rows.map(function(L,ix){return '<div class="tvrow" style="--tc:'+TIER_COL[ix]+'"><div class="tvl"><b>'+esc(T[ix])+'</b><small>'+L.length+'</small></div><div class="tvis">'+
+      (L.length?L.map(function(inf){var k=_pp.length;_pp.push(tvPop(inf));return tvTile(inf,'data-pp="'+k+'"',inf.p.src==="u"?"usr":"")+(inf.p.src==="u"?'':'')}).join(""):'<span class="tvempty">—</span>')+'</div></div>'}).join("")+'</div>';
+    if(un.length)h+='<details class="tvun"><summary>아직 평가가 없는 '+(TV.sec==="e"?"E.G.O":"인격")+'<b>'+un.length+'</b><i class="chev"></i></summary><div class="tvis">'+un.slice(0,240).map(function(inf){var k=_pp.length;_pp.push(tvPop(inf));return tvTile(inf,'data-pp="'+k+'"')}).join("")+'</div></details>';
+    h+='<div class="tva"><button class="tbtn K lit" data-tvm="make"><span>내 티어표 만들기</span></button><button class="tbtn K" data-tvimg="view"><span>이미지로 저장</span></button>'+(admOn()?'<button class="tbtn K" data-tvm="admin"><span>운영자 표 편집</span></button><button class="tbtn K" data-tvset="1"><span>칸 이름 · 회차</span></button>':'')+'</div>';
+    el.innerHTML=h;TV._view=rows;return}
+  /* 만들기 / 운영자 편집 */
+  var adm2=TV.mode==="admin",m=tvDraft(),items2=tvItems(TV.sec),rows2=[[],[],[],[],[]],pool=[],ex=[],admX=tvAdm("");
+  items2.forEach(function(k){var inf=tvInfo(k);if(!inf)return;var t=m[k];if(!adm2&&admX[k]===0)return;if(t>=1&&t<=5)rows2[t-1].push(inf);else if(adm2&&t===0)ex.push(inf);else pool.push(inf)});
+  h+='<div class="tvmk'+(adm2?" adm":"")+'"><p class="tvinfo">'+(adm2?'<b>운영자 표 편집</b> · 기준 <span class="tvseg sm in">'+[["","전체"]].concat(VLVS.map(function(v){return [v,v]})).map(function(x){return '<button data-tval="'+x[0]+'" aria-selected="'+(TV.admLv===x[0])+'">'+x[1]+'</button>'}).join("")+'</span>':'<b>인격을 누른 뒤 칸을 눌러 넣어요</b>'+(window.innerWidth>=760?' · 끌어다 놓아도 돼요':''))+'</p>';
+  h+='<div class="tvb mk" id="tvBoard">'+rows2.map(function(L,ix){return '<div class="tvrow drop" data-trow="'+(ix+1)+'" style="--tc:'+TIER_COL[ix]+'"><div class="tvl"><b>'+esc(T[ix])+'</b><small>'+L.length+'</small></div><div class="tvis">'+L.map(function(inf){return tvTile(inf,'data-tmk="'+inf.k+'" draggable="true"',TV.sel===inf.k?"sel":"")}).join("")+'</div></div>'}).join("")+
+    (adm2?'<div class="tvrow drop ex" data-trow="0" style="--tc:#4A4237"><div class="tvl"><b>제외</b><small>'+ex.length+'</small></div><div class="tvis">'+ex.map(function(inf){return tvTile(inf,'data-tmk="'+inf.k+'" draggable="true"',TV.sel===inf.k?"sel":"")}).join("")+'</div></div>':'')+'</div>';
+  var sins=U.sinners.map(function(s){return '<button class="tvsf" data-tvsin="'+s.n+'" aria-pressed="'+(TV.sin===s.n)+'" title="'+esc(s.kr)+'">'+sinLogo(s.n,"flg")+'</button>'}).join("");
+  var pl=pool.filter(function(inf){return !TV.sin||inf.s===TV.sin});
+  h+='<div class="tvpool drop" data-trow="-1"><div class="tvph"><b>안 넣은 '+(TV.sec==="e"?"E.G.O":"인격")+'</b><small>'+pool.length+'</small><div class="tvsfs"><button class="tvsf all" data-tvsin="0" aria-pressed="'+(!TV.sin)+'">전체</button>'+sins+'</div></div><div class="tvis">'+pl.map(function(inf){return tvTile(inf,'data-tmk="'+inf.k+'" draggable="true"',TV.sel===inf.k?"sel":"")}).join("")+'</div></div>';
+  if(adm2)h+='<div class="tva"><button class="tbtn K lit" data-tvsave="adm"><span>운영자 표 저장</span></button><button class="tbtn K" data-tvfill="1"><span>현재 표 불러오기</span></button><button class="tbtn K" data-tvm="view"><span>닫기</span></button></div>';
+  else{var lv=myLv();h+='<div class="tvlv"><span>나는</span>'+VLVS.map(function(v){return '<button class="chip" data-mylv="'+v+'" aria-pressed="'+(lv===v)+'"><span>'+v+'</span></button>'}).join("")+'<small>기준별 평균에 쓰여요</small></div>'+
+    '<div class="tva"><button class="tbtn K lit" data-tvsave="me"><span>제출하기</span></button><button class="tbtn K" data-tvimg="make"><span>이미지로 저장</span></button><button class="tbtn K" data-tvfill="1"><span>현재 표로 시작</span></button><button class="tbtn K" data-tvclr="1"><span>비우기</span></button><button class="tbtn K" data-tvm="view"><span>닫기</span></button></div>'}
+  h+='</div>';var sy=window.scrollY;el.innerHTML=h;if(TV._keep){window.scrollTo(0,sy);TV._keep=false}}
+function tvPop(inf){var p=inf.p||{},T=vTiers();
+  var h='<div class="pph"><span class="ptype">'+esc(inf.sn)+'</span><b>'+esc(inf.nm)+'</b></div>';
+  if(p.n)h+='<div class="tvpp">'+dolls(6-p.avg)+'<span>유저 <b>'+(6-p.avg).toFixed(1)+'</b> · '+p.n+'명</span></div>';
+  else h+='<p class="uhint">아직 유저 평가가 없어요</p>';
+  if(p.n&&p.n<vTh())h+='<p class="uhint">'+p.n+'/'+vTh()+'명 · '+vTh()+'명부터 유저 평균으로 자리가 정해져요</p>';
+  if(p.a)h+='<p class="uhint">운영자 기준 · <b>'+esc(T[p.a-1]||"")+'</b></p>';
+  return h+'<div class="dib" style="margin-top:8px"><button class="tbtn K sm" '+(inf.e?'data-ego="'+inf.id+'"':'data-unit="'+inf.id+'"')+'><span>상세 보기</span></button></div>'}
+function tvSet(k,t){var m=tvDraft();if(t===-1||t==null)delete m[k];else m[k]=t;tvSaveDraft(m);TV.sel=null;TV._keep=true;renderTier()}
+function tvClick(t){
+  var a;
+  if((a=t.closest("[data-tvs]"))){TV.sec=a.dataset.tvs;vLSet("egoTvS",TV.sec);TV.sel=null;renderTier();return true}
+  if((a=t.closest("[data-tvl]"))){TV.lv=a.dataset.tvl;renderTier();return true}
+  if((a=t.closest("[data-tvr]"))){TV.round=a.dataset.tvr;vLSet("egoTvR",TV.round);renderTier();return true}
+  if((a=t.closest("[data-tval]"))){TV.admLv=a.dataset.tval;TV._adm=JSON.parse(JSON.stringify(tvAdm(TV.admLv)));renderTier();return true}
+  if((a=t.closest("[data-tvm]"))){TV.mode=a.dataset.tvm;TV.sel=null;if(TV.mode==="admin")TV._adm=JSON.parse(JSON.stringify(tvAdm(TV.admLv)));renderTier();window.scrollTo(0,0);return true}
+  if((a=t.closest("[data-tvsin]"))){TV.sin=+a.dataset.tvsin;TV._keep=true;renderTier();return true}
+  if((a=t.closest("[data-tmk]"))){var k=a.dataset.tmk;TV.sel=TV.sel===k?null:k;document.querySelectorAll("#tierBody .tvi.sel").forEach(function(b){b.classList.remove("sel")});if(TV.sel)a.classList.add("sel");document.getElementById("tierBody").classList.toggle("picking",!!TV.sel);return true}
+  if((a=t.closest("[data-trow]"))&&TV.sel){tvSet(TV.sel,+a.dataset.trow);document.getElementById("tierBody").classList.remove("picking");return true}
+  if((a=t.closest("[data-mylv]"))){vLSet("egoLv",a.dataset.mylv);document.querySelectorAll("[data-mylv]").forEach(function(b){b.setAttribute("aria-pressed",b===a)});return true}
+  if(t.closest("[data-tvclr]")){tvSaveDraft({});renderTier();return true}
+  if(t.closest("[data-tvfill]")){var src=TV.mode==="admin"?tvAdm(TV.admLv):tvCurMap();var m=JSON.parse(JSON.stringify(src));if(TV.mode!=="admin")Object.keys(m).forEach(function(k){if(!(m[k]>=1))delete m[k]});tvSaveDraft(m);renderTier();return true}
+  if((a=t.closest("[data-tvsave]"))){if(a.dataset.tvsave==="adm"){vAdmin("tier",{round:tvRound().id,lv:TV.admLv,map:TV._adm||{}},function(){toast("운영자 표 저장됨");vCfgLoad(function(){renderTier()})});return true}
+    var m2=tvDraft();if(!Object.keys(m2).length){toast("먼저 칸에 넣어 주세요");return true}if(!myLv()){toast("뉴비 · 중수 · 고인 중 하나를 골라 주세요");var lvb=document.querySelector(".tvlv");if(lvb){lvb.classList.add("need");lvb.scrollIntoView({block:"center",behavior:"smooth"})}return true}
+    vCast("tier",tvRound().id,m2,function(){toast("티어표가 반영됐어요");TV.mode="view";renderTier()});return true}
+  if((a=t.closest("[data-tvimg]"))){tvImage(a.dataset.tvimg);return true}
+  if(t.closest("[data-tvset]")){openTierSet();return true}
+  return false}
+/* 지금 보기 화면의 배치(운영자+유저)를 내 초안으로 */
+function tvCurMap(){var m={},agg=VAGG["tier|"+tvRound().id],adm=tvAdm("");["u","e"].forEach(function(sec){tvItems(sec).forEach(function(k){var p=tvPlace(k,agg,adm);if(p.t>=1)m[k]=p.t})});return m}
+/* PC 끌어다 놓기 */
+document.addEventListener("dragstart",function(e){var a=e.target.closest&&e.target.closest("[data-tmk]");if(!a)return;TV.sel=a.dataset.tmk;try{e.dataTransfer.setData("text/plain",TV.sel)}catch(x){}});
+document.addEventListener("dragover",function(e){var r=e.target.closest&&e.target.closest("[data-trow]");if(r&&TV.sel){e.preventDefault();r.classList.add("over")}});
+document.addEventListener("dragleave",function(e){var r=e.target.closest&&e.target.closest("[data-trow]");if(r)r.classList.remove("over")});
+document.addEventListener("drop",function(e){var r=e.target.closest&&e.target.closest("[data-trow]");if(r&&TV.sel){e.preventDefault();tvSet(TV.sel,+r.dataset.trow)}});
+/* 칸 이름 · 회차 설정 (관리자) */
+function openTierSet(){var c=JSON.parse(JSON.stringify(VC.cfg));TV._cfg=c;
+  var h='<div class="phead"><div class="banner K"><div>칸 이름 · 회차</div></div></div><h4 class="tvsh">칸 이름 (짧을수록 보기 좋아요)</h4><div class="tvsn">'+c.tiers.map(function(t,ix){return '<label style="--tc:'+TIER_COL[ix]+'"><i></i><input class="tcin" data-tsn="'+ix+'" value="'+esc(t)+'" maxlength="8"></label>'}).join("")+'</div>'+
+    '<h4 class="tvsh">유저 평균으로 넘어가는 인원</h4><input class="tcin" id="tsTh" type="number" min="1" max="200" value="'+(+c.th||10)+'" style="width:90px">'+
+    '<h4 class="tvsh">회차</h4><p class="dinfo">회차마다 투표가 따로 쌓여요. 새 시기가 오면 회차를 추가하고, 지난 회차는 숨겨 두세요. 「최근 N개월」은 그 기간 안에 낸 표만 셉니다(0 = 전부).</p><div id="tsRs">'+c.rounds.map(tsRow).join("")+'</div>'+
+    '<div class="dib" style="justify-content:flex-start;margin:6px 0 14px"><button class="tbtn K sm" id="tsAdd"><span>회차 추가</span></button></div><div class="dib"><button class="tbtn K lit" id="tsSave"><span>저장</span></button></div>';
+  navStack=[];$("detailBody").innerHTML=h;$("detail").setAttribute("aria-label","칸 이름 · 회차");updBack();show("detail")}
+function tsRow(r,ix){return '<div class="tsr" data-tsr="'+esc(r.id)+'"><input class="tcin" data-tsk="name" value="'+esc(r.name)+'" maxlength="20" placeholder="회차 이름"><label>최근<input class="tcin" data-tsk="recent" type="number" min="0" max="36" value="'+(+r.recent||0)+'">개월</label><label class="tson"><input type="checkbox" data-tsk="on"'+(r.on?" checked":"")+'>공개</label></div>'}
+function tsCollect(){var c=TV._cfg;document.querySelectorAll("[data-tsn]").forEach(function(i){c.tiers[+i.dataset.tsn]=i.value.trim()||c.tiers[+i.dataset.tsn]});c.th=Math.max(1,+$("tsTh").value||10);
+  c.rounds=[].map.call(document.querySelectorAll(".tsr"),function(d){return {id:d.dataset.tsr,name:d.querySelector('[data-tsk="name"]').value.trim()||"회차",recent:+d.querySelector('[data-tsk="recent"]').value||0,on:d.querySelector('[data-tsk="on"]').checked}});return c}
+function tsClick(t){if(t.closest("#tsAdd")){tsCollect();TV._cfg.rounds.push({id:"r"+Date.now().toString(36),name:"새 회차",recent:0,on:false});$("tsRs").innerHTML=TV._cfg.rounds.map(tsRow).join("");return true}
+  if(t.closest("#tsSave")){var c=tsCollect();if(!c.rounds.some(function(r){return r.on})){toast("공개된 회차가 하나는 있어야 해요");return true}vAdmin("cfg",c,function(){toast("저장됨");hide();vCfgLoad(function(){renderTier()})});return true}
+  if(t.closest("#admGo")){admTry();return true}if(t.closest("#admOff")){vLSet("egoAdm","");hide();toast("관리자 모드 꺼짐");if(curView==="tier")renderTier();return true}
+  return false}
+/* 이미지로 저장: 지금 보이는 표를 PNG로 */
+function tvImage(which){if(!window.THUMB_URL){toast("이미지 저장은 사이트에서만 돼요");return}var T=vTiers(),rows;
+  if(which==="view")rows=(TV._view||[]).map(function(L){return L.map(function(x){return x.k})});
+  else{var m=tvDraft();rows=[[],[],[],[],[]];tvItems(TV.sec).forEach(function(k){if(m[k]>=1&&m[k]<=5)rows[m[k]-1].push(k)})}
+  if(!rows.some(function(L){return L.length})){toast("칸에 넣은 게 없어요");return}
+  var W=1080,LW=170,S=92,G=6,per=Math.floor((W-LW-24)/(S+G)),y=110,lay=[];rows.forEach(function(L,ix){var h=Math.max(1,Math.ceil(L.length/per))*(S+G)+G;lay.push({y:y,h:h,L:L,ix:ix});y+=h+4});var H=y+50;
+  var cv=document.createElement("canvas");cv.width=W;cv.height=H;var x=cv.getContext("2d");x.fillStyle="#0E0C0A";x.fillRect(0,0,W,H);
+  var F='"KOTRA","SCDream",sans-serif';x.fillStyle="#FFF3DF";x.font="34px "+F;x.fillText("파편 우선순위 · "+(TV.sec==="e"?"E.G.O":"인격"),24,54);
+  x.fillStyle="#B8A68A";x.font="20px "+F;x.fillText(tvRound().name+(which==="view"?(TV.lv?" · "+TV.lv+" 기준":" · 유저 평균 + 운영자"):" · 내 티어표"+(myLv()?" ("+myLv()+")":"")),24,86);
+  var jobs=[];lay.forEach(function(r){x.fillStyle=TIER_COL[r.ix];x.fillRect(12,r.y,LW-8,r.h);x.fillStyle="#1A140A";x.font="26px "+F;x.textAlign="center";x.textBaseline="middle";x.fillText(T[r.ix],12+(LW-8)/2,r.y+r.h/2);x.textAlign="left";x.textBaseline="alphabetic";
+    x.fillStyle="#17130F";x.fillRect(LW+8,r.y,W-LW-20,r.h);
+    r.L.forEach(function(k,j){var cx=LW+14+(j%per)*(S+G),cy=r.y+G+Math.floor(j/per)*(S+G);jobs.push(new Promise(function(res){var im=new Image();im.onload=function(){x.drawImage(im,cx,cy,S,S);var inf=tvInfo(k);x.fillStyle="rgba(0,0,0,.72)";x.fillRect(cx,cy+S-22,S,22);x.fillStyle="#FFF3DF";x.font="13px "+F;var n=inf?inf.sn:"";x.fillText(n,cx+4,cy+S-6);res()};im.onerror=res;im.src=THUMB_URL+"f/"+k.charAt(0).replace("u","p")+k.slice(1)+".webp"}))})});
+  Promise.all(jobs).then(function(){x.fillStyle="#6F6556";x.font="16px "+F;x.textAlign="right";x.fillText("거울던전 사전",W-20,H-18);
+    cv.toBlob(function(b){if(!b){toast("저장 실패");return}var a=document.createElement("a");a.href=URL.createObjectURL(b);a.download="파편우선순위_"+(TV.sec==="e"?"EGO":"인격")+".png";document.body.appendChild(a);a.click();setTimeout(function(){URL.revokeObjectURL(a.href);a.remove()},1500);toast("이미지를 저장했어요")},"image/png")})}
+
+/* 화면 등록: 사이드 메뉴 + 보기 */
+(function(){function mount(){if($("viewTier"))return;var vu=$("viewUnit");if(!vu)return;
+  var v=document.createElement("div");v.className="view";v.id="viewTier";v.hidden=true;
+  v.innerHTML='<div class="cf tool"><div class="in"><div class="idbar"><span class="idl N">SHARD PRIORITY</span><span class="tvtt">파편 우선순위</span><div class="mwrap"><button class="mbtn" aria-haspopup="menu" aria-expanded="false" aria-label="메뉴"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4.5h10M3 8h10M3 11.5h10"/></svg></button></div></div></div></div><div class="cf gp"><div class="in"><span class="screw" style="top:6px;left:6px"></span><span class="screw" style="top:6px;right:6px"></span><span class="screw" style="bottom:6px;left:6px"></span><span class="screw" style="bottom:6px;right:6px"></span><div id="tierBody"></div></div></div>';
+  vu.parentNode.insertBefore(v,vu.nextSibling);
+  var nu=document.querySelector('.sn[data-view="unit"]');if(nu&&!document.querySelector('.sn[data-view="tier"]')){var a=document.createElement("a");a.className="sn";a.href="#";a.dataset.view="tier";
+    a.innerHTML='<i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16M4 10h12M4 15h8M4 20h4"/></svg></i><span class="sl"><b>파편 우선순위</b><em class="N">PRIORITY</em></span>';nu.parentNode.insertBefore(a,nu.nextSibling)}}
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",mount);else mount();
+  var _sv=setView;setView=function(v){mount();if(v==="tier"){var vt=$("viewTier");_sv(v);if(vt)vt.hidden=false;renderTier();return}var vt2=$("viewTier");if(vt2)vt2.hidden=true;_sv(v)}})();
+
+/* ---------- E.G.O 평가 (상세 창) ---------- */
+var _ePend={},_eT=null;
+function egoMine(id){return (vLS("egoErate",{})[id])||{}}
+function egoRateHtml(e,agg){var it=(agg&&agg.items&&agg.items[e.id])||{},mine=egoMine(e.id),th=vTh(),ad=(VC&&VC.ego&&VC.ego[e.id])||{};
+  function row(key,lb){var p=it[key],n=p?p[0]:0,avg=n?p[1]/n:0,ok=n>=th,av=ok?avg:(ad[key]||0);
+    return '<div class="erw"><span class="erl">'+lb+'</span><span class="stars" role="group" aria-label="'+lb+' 평가">'+[1,2,3,4,5].map(function(v){return '<button data-erate="'+e.id+'|'+key+'|'+v+'" aria-pressed="'+(mine[key]===v)+'" aria-label="'+v+'점"'+(v<=(mine[key]||0)?' class="on"':'')+'>'+dollIco()+'</button>'}).join("")+'</span>'+
+      '<span class="erv">'+(ok?'유저 <b>'+avg.toFixed(1)+'</b> · '+n+'명':av?'운영자 <b>'+av+'</b>'+(n?' · 유저 '+n+'/'+th:''):(n?'유저 '+n+'/'+th+'명':'평가 없음'))+'</span></div>'}
+  var uc=it.u||{},un=it.n||0,mu=mine.u||[];
+  var h='<div class="usec erate"><h3>평가<small>'+(un||"")+'</small><span class="hh">봉이 1~5개 · 이 기기 기준 · '+th+'명부터 유저 평균</span></h3>'+row("i","거던에서")+row("o","거던 밖에서")+
+    '<div class="erw"><span class="erl">주 용도</span><span class="eus">'+EUSE.map(function(x){var c=uc[x[0]]||0;return '<button class="chip" data-euv="'+e.id+'|'+x[0]+'" aria-pressed="'+(mu.indexOf(x[0])>=0)+'"><span>'+x[1]+(c?' <small>'+c+'</small>':'')+'</span></button>'}).join("")+'</span></div>';
+  if(admOn())h+='<div class="erw adm"><span class="erl">운영자</span><span class="eus">'+["i","o"].map(function(k){return '<label>'+(k==="i"?"거던":"밖")+' <select data-eadm="'+e.id+'|'+k+'">'+["",1,2,3,4,5].map(function(v){return '<option'+(String(ad[k]||"")===String(v)?" selected":"")+'>'+v+'</option>'}).join("")+'</select></label>'}).join("")+'</span></div>';
+  return h+'</div>'}
+function egoRateFill(id){var box=document.getElementById("egoRate");if(!box)return;vCfgLoad(function(){vAggLoad("ego","all",function(agg){var e=EBY[id];if(e&&box.isConnected)box.innerHTML=egoRateHtml(e,agg);egoUseApply(agg)})})}
+function egoRatePick(id,key,v){var all=vLS("egoErate",{}),m=all[id]||{};
+  if(key==="u"){var u=m.u||[],i=u.indexOf(v);i<0?u.push(v):u.splice(i,1);m.u=u}else m[key]=m[key]===v?undefined:v;
+  all[id]=m;vLSet("egoErate",all);_ePend[id]=m;var box=document.getElementById("egoRate");if(box){var e=EBY[id];box.innerHTML=egoRateHtml(e,VAGG["ego|all"])}
+  clearTimeout(_eT);_eT=setTimeout(function(){var o=_ePend;_ePend={};vCast("ego","all",o,function(){toast("평가가 반영됐어요");vAggLoad("ego","all",function(agg){egoUseApply(agg);var b=document.getElementById("egoRate");if(b&&curEgo)b.innerHTML=egoRateHtml(EBY[curEgo],agg)},true)})},1200)}
+/* 유저 용도 투표가 쌓이면 자동 분류를 덮어씀 */
+function egoUseApply(agg){if(!agg||!agg.items)return;egoUseCalc();var th=vTh();U.egos.forEach(function(e){var it=agg.items[e.id];if(!it||!it.u||(it.n||0)<th)return;var ks=Object.keys(it.u).filter(function(k){return it.u[k]>=it.n*0.3}).sort(function(a,b){return it.u[b]-it.u[a]});if(ks.length){e.use=ks.slice(0,2);e._useU=1}})}
+function egoScore(e){var it=VAGG["ego|all"]&&VAGG["ego|all"].items[e.id];if(!it)return 0;var a=it.i?it.i[1]/it.i[0]:0,b=it.o?it.o[1]/it.o[0]:0;return (a&&b)?(a+b)/2:(a||b)}
+(function(){var _oe=openEgo;openEgo=function(id){_oe(id);var em=document.querySelector("#detailBody .emeta");if(em&&!document.getElementById("egoRate")){var d=document.createElement("div");d.id="egoRate";d.innerHTML='<div class="usec erate"><h3>평가</h3><p class="uhint">불러오는 중…</p></div>';em.parentNode.insertBefore(d,em.nextSibling)}
+  var s=document.querySelector("#detailBody .euseh small");var e=EBY[id];if(s&&e&&e._useU)s.textContent="유저 투표 기준";egoRateFill(id)}})();
+
+/* ---------- 덱 루트: 구간별 유저 선택 비율 ---------- */
+function rvKey(no,seg){return no+"|"+seg}
+function rvHtml(no,seg,opts,agg){var lab=seg==="관측"?"관측 기프트":"";var it=(agg&&agg.items&&agg.items[rvKey(no,seg)])||{},tot=0,mine=(vLS("egoRv",{})[rvKey(no,seg)])||"";Object.keys(it).forEach(function(k){tot+=it[k]});
+  var L=Object.keys(it).sort(function(a,b){return it[b]-it[a]}),all=vLS("egoRvAll",false),h='<div class="rvote">'+(lab?'<p class="rvh">'+lab+'</p>':'');
+  if(tot){var top=L[0];h+='<span class="rvt"><i>유저 1위</i><b>'+esc(top)+'</b><em>'+Math.round(it[top]/tot*100)+'%</em><small>'+tot+'명</small></span>'+(L.length>1?'<button class="rvm" data-rvall="1" aria-expanded="'+all+'">'+(all?"접기":"나머지 "+(L.length-1))+'</button>':'');
+    if(all&&L.length>1)h+='<div class="rvbars">'+L.map(function(k){var p=Math.round(it[k]/tot*100);return '<div class="rvb"><span>'+esc(k)+'</span><i><b style="width:'+p+'%"></b></i><em>'+p+'%</em></div>'}).join("")+'</div>'}
+  else h=h.replace('class="rvote"','class="rvote empty"');
+  var cand=opts.slice();L.forEach(function(k){if(cand.indexOf(k)<0)cand.push(k)});
+  h+='<div class="rvme"><small>'+(tot?"내가 고른 것":"어떤 걸 골랐나요?")+'</small>'+cand.slice(0,8).map(function(o){return '<button class="chip sm" data-rvpick="'+esc(no+"|"+seg+"|"+o)+'" aria-pressed="'+(mine===o)+'"><span>'+esc(o)+'</span></button>'}).join("")+'</div>';
+  return h+'</div>'}
+function rvFill(){var g=gdOf&&gdOf();if(!g)return;var els=document.querySelectorAll("[data-rvseg]");if(!els.length)return;
+  vAggLoad("route","all",function(agg){els.forEach(function(el){if(!el.isConnected)return;el.innerHTML=rvHtml(g.no,el.dataset.rvseg,JSON.parse(el.dataset.rvopt||"[]"),agg)})})}
+function rvPick(s){var p=s.split("|"),no=p[0],seg=p[1],o=p.slice(2).join("|"),all=vLS("egoRv",{}),k=rvKey(no,seg),obj={};
+  all[k]=all[k]===o?"":o;vLSet("egoRv",all);obj[k]=all[k]||null;
+  var g=gdOf();vCast("route","all",obj,function(){toast(all[k]?"선택이 반영됐어요":"선택을 지웠어요");vAggLoad("route","all",function(){rvFill()},true)});
+  document.querySelectorAll('[data-rvpick^="'+no+"|"+seg+'|"]').forEach(function(b){b.setAttribute("aria-pressed",b.dataset.rvpick===s&&!!all[k])})}
+function rvMount(){var g=gdOf&&gdOf();if(!g||!g.r||deck.ui!=="deck"||dTab!=="route")return;
+  document.querySelectorAll(".rtl .rfl").forEach(function(el){if(el.querySelector(".rvw"))return;var f=(el.querySelector(".rfh b")||{}).textContent;var r=g.r.filter(function(x){return x.f.replace("층","")===f})[0];if(!r)return;
+    var d=document.createElement("div");d.className="rvw";d.dataset.rvseg=r.f;d.dataset.rvopt=JSON.stringify(r.ps.map(function(p){return p.p}));(el.querySelector(".rfb")||el).appendChild(d)});
+  var st=document.querySelector("#dAnal .dsec");if(st&&g.obs&&g.obs.length&&!st.querySelector(".rvw")){var d2=document.createElement("div");d2.className="rvw obs";d2.dataset.rvseg="관측";d2.dataset.rvopt=JSON.stringify(g.obs.slice(0,6));st.appendChild(d2)}
+  rvFill()}
+(function(){var _tr=tabRoute;tabRoute=function(){var h=_tr();setTimeout(rvMount,0);return h}})();
+document.addEventListener("click",function(e){var t=e.target;if(!t.closest)return;
+  if(curView==="tier"&&t.closest("#tierBody")&&tvClick(t)){e.preventDefault();return}
+  if(t.closest("#detailBody")&&tsClick(t)){e.preventDefault();return}
+  var a;
+  if((a=t.closest("[data-erate]"))){var p=a.dataset.erate.split("|");egoRatePick(+p[0],p[1],+p[2]);return}
+  if((a=t.closest("[data-euv]"))){var q=a.dataset.euv.split("|");egoRatePick(+q[0],"u",q[1]);return}
+  if((a=t.closest("[data-rvpick]"))){rvPick(a.dataset.rvpick);return}
+  if(t.closest("[data-rvall]")){vLSet("egoRvAll",!vLS("egoRvAll",false));rvFill();return}
+  if(t.closest("#admOpen")){openAdmin();return}},true);
+document.addEventListener("change",function(e){var t=e.target;if(t&&t.dataset&&t.dataset.eadm){var p=t.dataset.eadm.split("|"),id=p[0],ad=JSON.parse(JSON.stringify((VC&&VC.ego&&VC.ego[id])||{}));if(t.value)ad[p[1]]=+t.value;else delete ad[p[1]];var o={};o[id]=Object.keys(ad).length?ad:null;vAdmin("ego",o,function(){toast("운영자 평가 저장");vCfgLoad(function(){egoRateFill(+id)})})}});
+document.addEventListener("keydown",function(e){if(e.key==="Enter"&&e.target&&e.target.id==="admIn")admTry()});
+
+/* 개인 설정 아래 관리자 모드 입구 (작게) */
+(function(){var _rm=renderMy;renderMy=function(){_rm();var v=$("viewMy");if(!v||document.getElementById("admOpen"))return;var host=v.querySelector(".cf.gp .in")||v;var d=document.createElement("div");d.className="admw";d.innerHTML='<button class="admb" id="admOpen">'+(admOn()?"관리자 모드 켜짐":"운영자")+'</button>';host.appendChild(d)}})();
 
 /* ===== 입수 난이도 점수제 =====
    팩 비용(들어가야 하는 팩마다) + 재료 비용(가장 찾기 어려운 재료) + 조합 비용 */
