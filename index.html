@@ -10599,7 +10599,7 @@ function svAns(){var A={};document.querySelectorAll(".svq").forEach(function(s){
 function svCheck(){var A=svAns(),ok=SV_Q.every(function(q){return A[q.k]&&A[q.k].length}),b=$("svSend");if(b)b.disabled=!ok;
   document.querySelectorAll(".svq").forEach(function(s){s.classList.toggle("ok",!!(A[s.dataset.svk]||[]).length)})}
 function sendSurvey(){var A=svAns();if(!SV_Q.every(function(q){return A[q.k]&&A[q.k].length})){toast("모든 문항에 답해 주세요");return}var b=$("svSend");b.disabled=true;
-  api("sendSurvey",[SV_ID,JSON.stringify(A),fbVid()],function(){try{localStorage.setItem("egoSv",SV_ID);localStorage.setItem("egoSvA",JSON.stringify(A))}catch(e){}hide();toast("고마워요, 설문이 전달됐어요");var fb=$("homeFb"),s=$("svOpen");if(fb&&s)s.outerHTML=svStrip()},function(){b.disabled=false;toast("전송 실패 — 잠시 후 다시")})}
+  var L={};SV_Q.forEach(function(q){L[q.k]=q.t});api("sendSurvey",[SV_ID,JSON.stringify(A),fbVid(),JSON.stringify(L)],function(){try{localStorage.setItem("egoSv",SV_ID);localStorage.setItem("egoSvA",JSON.stringify(A))}catch(e){}hide();toast("고마워요, 설문이 전달됐어요");var fb=$("homeFb"),s=$("svOpen");if(fb&&s)s.outerHTML=svStrip()},function(){b.disabled=false;toast("전송 실패 — 잠시 후 다시")})}
 
 /* ===== 내 편성 가져오기: 팀 코드 · 게임 캡처(인격 화면 / E.G.O 화면) ===== */
 var IMP={kind:null,img:null,rows:null};
