@@ -973,6 +973,22 @@ em.st{font-style:normal}
 .th{background:#161310!important}
 .th>img{display:block;width:100%;height:100%;object-fit:cover}
 .ucard{content-visibility:auto;contain-intrinsic-size:auto 180px}
+
+/* 인격 / E.G.O 전환 */
+.umseg{display:flex;margin-left:auto;margin-right:8px;border:1px solid #4A4237;border-radius:4px;overflow:hidden}
+.umseg button{min-width:58px;height:30px;padding:0 12px;border:0;background:#110E0B;color:#9E8F78;font:400 13px/1 "KOTRA",sans-serif;cursor:pointer}
+.umseg button+button{border-left:1px solid #4A4237}
+.umseg button[aria-selected="true"]{background:linear-gradient(#E8C547,#B8941F);color:#1A140A}
+#viewUnit .ego-only{display:none}
+#viewUnit.emode .ego-only{display:flex}
+#viewUnit.emode .unit-only,#viewUnit.emode [data-uk="rank"]{display:none}
+#viewUnit.emode .prow:has([data-uk="rank"]){display:none}
+.eglist{grid-column:1/-1;display:grid;grid-template-columns:1fr;gap:6px}
+@media (min-width:760px){.eglist{grid-template-columns:1fr 1fr}}
+.eglist .erow{min-height:68px}
+.erow .esn{display:flex;align-items:center;gap:4px;margin-bottom:3px;font:500 11px/1 "SCDream",sans-serif;color:#B8A68A}
+.erow .esn .esl{height:16px;width:auto}
+@media (max-width:480px){.umseg button{min-width:50px;padding:0 9px;font-size:12px}}
 /* deck */
 .dbar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:9px}
 .dmode{display:inline-flex;border:1px solid #6F6556;border-radius:3px;overflow:hidden}
@@ -2328,6 +2344,7 @@ em.st{font-style:normal}
   <div class="view" id="viewUnit" hidden>
   <div class="cf tool"><div class="in">
   <div class="idbar"><span class="idl N">IDENTITY</span><span class="idc N" id="uCount"></span>
+    <div class="umseg" role="tablist" aria-label="보기"><button role="tab" data-umode="unit">인격</button><button role="tab" data-umode="ego">E.G.O</button></div>
     <div class="mwrap"><button class="mbtn" aria-haspopup="menu" aria-expanded="false" aria-label="메뉴"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4.5h10M3 8h10M3 11.5h10"/></svg></button>
     </div></div>
   <div class="bar">
@@ -2878,6 +2895,7 @@ document.addEventListener("click",function(e){
   var uc=t.closest("[data-uk]");
   if(uc){var ua=uSel[uc.dataset.uk],ui=ua.indexOf(uc.dataset.v);ui<0?ua.push(uc.dataset.v):ua.splice(ui,1);uc.setAttribute("aria-pressed",ui<0);renderUnits();return}
   if(t.closest("#uFilterBtn")){var uf=$("uFil"),uo=uf.classList.toggle("open");$("uFilterBtn").setAttribute("aria-expanded",uo);return}
+  var umb=t.closest("[data-umode]");if(umb){uModeSet(umb.dataset.umode);return}
   var us=t.closest("[data-usort]");
   if(us){uSort=us.dataset.usort;document.querySelectorAll("[data-usort]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.usort===uSort)});renderUnits();return}
   var pc=t.closest(".chip[data-pk]");
@@ -9382,7 +9400,7 @@ var GDECKS={
  ]
 };
 /* ===== 인격 / 에고 ===== */
-var U=null,UBY={},EBY={},uSel={sinner:[],rank:[],sin:[],atk:[],kw:[],season:[]},uSort="date",uUp=4,uLoading=false,curUnit=null,curEgo=null,uArt="n",uTab="sum";
+var U=null,UBY={},EBY={},uSel={sinner:[],rank:[],sin:[],atk:[],kw:[],season:[],eg:[]},uSort="date",uUp=4,uLoading=false,curUnit=null,curEgo=null,uArt="n",uTab="sum";
 var SINC={CRIMSON:"var(--wrath)",SCARLET:"var(--lust)",AMBER:"var(--sloth)",SHAMROCK:"var(--gluttony)",AZURE:"var(--gloom)",INDIGO:"var(--pride)",VIOLET:"var(--envy)"};
 var SINS7=["CRIMSON","SCARLET","AMBER","SHAMROCK","AZURE","INDIGO","VIOLET"];
 var SIN_EN={CRIMSON:"Wrath",SCARLET:"Lust",AMBER:"Sloth",SHAMROCK:"Gluttony",AZURE:"Gloom",INDIGO:"Pride",VIOLET:"Envy"};
@@ -9494,12 +9512,13 @@ function buildUnitFilters(){
   $("uFil").innerHTML='<div class="ufsn" role="group" aria-label="수감자">'+U.sinners.map(function(s){var on=uSel.sinner.indexOf(String(s.n))>=0;
       return '<button class="fbtn" data-uk="sinner" data-v="'+s.n+'" aria-pressed="'+on+'" title="'+esc(s.kr)+'">'+sinLogo(s.n,"flg")+'<span>'+esc(s.kr)+'</span></button>'}).join("")+'</div>'+
     '<div class="ufg">'+
+    row("E.G.O 등급",ch("eg",GRADES.filter(function(g){return U.egos.some(function(e){return e.g===g})}).map(function(g){return [g,g]}),"kwc",function(a){return gradeIco(a[0])+esc(a[1])}),"ego-only")+
     row("등급",ch("rank",RANKS,"rkc",function(a){return uii("rank_"+a[0],"rki",a[1])||a[1]}))+
     row("유형",ch("atk",ATKS,"kwc",function(a){return atkIco(a[0],"atki")+esc(a[1])}))+
     row("키워드",ch("kw",kws,"kwc",function(a){return kwIco(a[0],"kwc-i")+esc(a[1])}),"full")+
     row("죄악",ch("sin",SINS7.map(function(s){return [s,sinKr(s)]}),"sinc ico",function(a){return sinIco(a[0],"sini")+'<em>'+esc(a[1])+'</em>'}),"full")+
     row("시즌",ch("season",USEASON,"sea"))+
-    row("정렬",[["date","출시순"],["rank","등급순"],["sinner","수감자순"],["name","이름순"],["give","키워드 부여량"]].map(function(a){return '<button class="chip" data-usort="'+a[0]+'" aria-pressed="'+(uSort===a[0])+'"><span>'+a[1]+'</span></button>'}).join(""))+
+    row("정렬",[["date","출시순"],["rank","등급순"],["sinner","수감자순"],["name","이름순"],["give","키워드 부여량"]].map(function(a){return '<button class="chip'+(a[0]==="give"?" unit-only":"")+'" data-usort="'+a[0]+'" aria-pressed="'+(uSort===a[0])+'"><span>'+a[1]+'</span></button>'}).join(""))+
     '</div>'}
 function uCmp(a,b){
   if(uSort==="rank")return b.r-a.r||b.id-a.id;
@@ -9507,6 +9526,7 @@ function uCmp(a,b){
   if(uSort==="name")return a.t.localeCompare(b.t,"ko")||a.s-b.s;
   return (b.date||"").localeCompare(a.date||"")||b.id-a.id}
 function renderUnits(){
+  if(U&&uMode==="ego"){renderEgos();return}if(U)uModeSync();
   if(!U){$("uGrid").innerHTML='<div class="uload">인격 데이터를 불러오는 중</div>';loadUnits();return}
   if(!$("uFil").innerHTML)buildUnitFilters();
   var rows=U.ids.filter(uMatch).sort(uCmp);
@@ -9732,6 +9752,31 @@ function giveHtml(rows){var k=giveK,L=rows.map(function(i){var g=unitGive(i,k);r
   h+='<ol class="gvl">'+L.slice(0,60).map(function(r,ix){var v=giveM==="cnt"?r.c:r.p;
     return '<li><button class="gvr" data-unit="'+r.i.id+'"><b class="gvo">'+(ix+1)+'</b>'+face(r.i.id,"gvf")+'<span class="gvt"><small>'+esc(r.i.sn)+'</small><b>'+esc(r.i.t)+'</b></span><span class="gvb"><i style="width:'+(v/mx*100).toFixed(1)+'%"></i></span><span class="gvv"><em class="'+(giveM==="pot"?"on":"")+'">위력 <b>'+r.p+'</b></em><em class="'+(giveM==="cnt"?"on":"")+'">횟수 <b>'+r.c+'</b></em></span></button></li>'}).join("")+'</ol></div>';
   return h}
+
+/* ===== 인격 / E.G.O 보기 전환 ===== */
+var uMode=(function(){try{return localStorage.getItem("egoUMode")==="ego"?"ego":"unit"}catch(e){return "unit"}})();
+function uModeSet(m){uMode=m;try{localStorage.setItem("egoUMode",m)}catch(e){}uModeSync();if(uMode==="ego"&&uSort==="give")uSort="date";
+  document.querySelectorAll("[data-usort]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.usort===uSort)});renderUnits()}
+function uModeSync(){var e=uMode==="ego",v=$("viewUnit");if(v)v.classList.toggle("emode",e);document.querySelectorAll("[data-umode]").forEach(function(b){b.setAttribute("aria-selected",b.dataset.umode===uMode)});
+  var q=$("uq");if(q)q.placeholder=e?"E.G.O 이름·스킬·패시브로 검색":"인격·스킬·패시브로 검색";var l=document.querySelector("#viewUnit .idl");if(l)l.textContent=e?"E.G.O":"IDENTITY"}
+function eHay(e){if(e._hay)return e._hay;var s=[e.nm,e.en,(U.sinners[e.s-1]||{}).kr,e.g];(e.sk||[]).forEach(function(k){(k.up||[]).forEach(function(x){s.push(x.name,x.desc)})});(e.ps||[]).forEach(function(p){s.push(p.nm,p.d)});return e._hay=s.join(" ").toLowerCase()}
+function eMatch(e){var q=$("uq").value.trim().toLowerCase();if(q&&eHay(e).indexOf(q)<0)return false;
+  if(uSel.sinner.length&&uSel.sinner.indexOf(String(e.s))<0)return false;
+  if(uSel.eg.length&&uSel.eg.indexOf(e.g)<0)return false;
+  if(uSel.sin.length&&!uSel.sin.every(function(s){return e.sin===s||e.cost.some(function(c){return c[0]===s})}))return false;
+  if(uSel.atk.length&&uSel.atk.indexOf(e.atk)<0)return false;
+  if(uSel.kw.length&&!uSel.kw.some(function(k){return (e.kws||[]).indexOf(k)>=0}))return false;
+  if(uSel.season.length&&uSel.season.indexOf(seasonKey(e.se))<0)return false;return true}
+function eCmp(a,b){if(uSort==="rank")return GRADES.indexOf(b.g)-GRADES.indexOf(a.g)||b.id-a.id;if(uSort==="sinner")return a.s-b.s||GRADES.indexOf(a.g)-GRADES.indexOf(b.g);
+  if(uSort==="name")return a.nm.localeCompare(b.nm,"ko");return (b.date||"").localeCompare(a.date||"")||b.id-a.id}
+function egoCard(e){var sn=U.sinners[e.s-1]||{};return egoRow(e).replace('<span class="l1">','<span class="esn">'+sinLogo(e.s,"esl")+esc(sn.kr||"")+'</span><span class="l1">')}
+function renderEgos(){if(!$("uFil").innerHTML)buildUnitFilters();uModeSync();
+  var rows=U.egos.filter(eMatch).sort(eCmp),f=["sinner","eg","sin","atk","kw","season"].some(function(k){return uSel[k].length})||$("uq").value.trim();
+  $("uCount").innerHTML=f?'<b>'+rows.length+'</b> <i>/ '+U.egos.length+'</i>':'<b>'+U.egos.length+'</b>';
+  var h="";if(!rows.length)h='<div class="uempty">조건에 맞는 E.G.O 없음</div>';
+  else if(uSort==="sinner"){var last=null;rows.forEach(function(e){if(e.s!==last){h+=(last!==null?'</div>':'')+'<h4 class="ugh">'+sinLogo(e.s,"ghl")+esc(U.sinners[e.s-1].kr)+'<small>'+rows.filter(function(x){return x.s===e.s}).length+'</small></h4><div class="eglist">';last=e.s}h+=egoCard(e)});h+='</div>'}
+  else h='<div class="eglist">'+rows.map(egoCard).join("")+'</div>';
+  $("uGrid").innerHTML=h;artLoad("--ebp","EGOB_SPRITE_INLINE","EGOB_SPRITE_URL","getEgoBannerSprite")}
 
 /* ===== 덱 빌더 ===== */
 var DMODES=[["md","거울던전",7],["story","스토리",5],["rail","굴절철도",6],["lux","채광",7],["raid","사영전투",7]];
