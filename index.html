@@ -2093,6 +2093,71 @@ em.st{font-style:normal}
 .nmore summary{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border:1px solid #3A3328;border-radius:3px;list-style:none;cursor:pointer;font:500 12px/1 "SCDream",sans-serif;color:#B8A68A}
 .nmore summary::-webkit-details-marker{display:none}
 .nmore[open] summary{margin-bottom:6px}
+/* ===== 적 도감 v3 ===== */
+.prow.one .pchips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+.prow.one .pchips .chip.grd{flex:none;padding:0 8px}
+@media (max-width:480px){.prow.one .pchips .chip.grd{padding:0 6px}.prow.one .pchips .chip.grd .N{font-size:10px}}
+.nc2-b{position:absolute;left:5px;bottom:6px;padding:2px 5px;border-radius:2px;background:#B8322A;color:#FFE9E4;font:400 9.5px/1 "Excelsior",sans-serif;letter-spacing:.04em;font-style:normal}
+.nc2.boss{border-color:#5A2A24}
+.nc2-t .mpd{display:inline-block;width:6px;height:6px;margin:0 0 1px 5px;border-radius:50%;background:#7FD3FF;vertical-align:middle}
+/* 상세 머리 */
+.nbd{display:flex;flex-wrap:wrap;gap:4px}
+.nbd .b{display:inline-flex;align-items:center;gap:3px;padding:3px 6px 2px;border:1px solid #6F6556;border-radius:2px;font:500 10.5px/1 "SCDream",sans-serif;font-style:normal;color:#D9C9A5}
+.nbd .b.boss{border-color:#B8322A;background:#3A1512;color:#FFB4A8}
+.nbd .b.gr{font-family:"Excelsior",sans-serif}.nbd .gri{height:11px}
+.nst .mpy{color:#7FD3FF}.nst .mpn{color:#8C7F6A}
+.nsa{display:inline-flex;align-items:center;gap:4px;margin-top:2px;font:500 12px/1 "SCDream",sans-serif;color:#E6DCC8}
+.nsa small{color:#9E8F78;font-size:10.5px;margin-right:2px}.nsa .sinm{width:16px;height:16px}
+/* 공략 단서 */
+.ngm{padding:12px;border:1px solid #4A3F2C;border-left:3px solid #E8C547;border-radius:4px;background:linear-gradient(90deg,#1E180F,#120F0C 70%)}
+.ngm h3{margin-top:0}
+.nmemo{margin:0 0 10px;padding:10px 12px;border-radius:3px;background:#2C2416;color:#FFF3DF;font:500 13px/1.6 "SCDream",sans-serif;box-shadow:inset 0 0 0 1px #6F5A30}
+.ngl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.ngl li{display:flex;gap:10px;align-items:baseline;font:500 12.5px/1.5 "SCDream",sans-serif;color:#D9CDB6}
+.ngl li b{flex:none;width:68px;font:400 12.5px/1.5 "KOTRA",sans-serif;color:#E8C547}
+.nps{display:flex;flex-direction:column;gap:4px;margin-top:10px}
+.nps-r{display:flex;align-items:center;gap:8px;width:100%;padding:8px 10px;border:1px solid #3A3328;border-radius:3px;background:#0E0C0A;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.nps-r b{flex:none;font:400 13px/1.2 "KOTRA",sans-serif;color:#FFF3DF}
+.nps-r span{flex:1;min-width:0;font:500 11.5px/1.3 "SCDream",sans-serif;color:#9E8F78;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nmemo-e{display:flex;flex-direction:column;gap:6px;margin-top:10px}
+.nmemo-e .tbtn{align-self:flex-end}
+/* 내성표 */
+.rgrid{display:flex;flex-direction:column;gap:4px}
+.rgr{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+.rgr.s{grid-template-columns:repeat(7,1fr)}
+.rgc{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 2px 6px;border:1px solid color-mix(in srgb,var(--rc) 40%,#2E2922);border-radius:3px;background:color-mix(in srgb,var(--rc) 10%,#0E0C0A)}
+.rgc .rgi{width:22px;height:22px}
+.rgc b{font:400 12px/1 "KOTRA",sans-serif;color:var(--rc)}
+.rgc small{font:500 10px/1 "SCDream",sans-serif;color:#9E8F78}
+.rgc.rg-fatal,.rgc.rg-weak{box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--rc) 60%,transparent)}
+.rgr:not(.s) .rgc{flex-direction:row;justify-content:center;gap:6px;padding:8px 4px}
+@media (max-width:420px){.rgr.s{grid-template-columns:repeat(4,1fr)}}
+.npart2{margin-bottom:8px}.nph{display:flex;align-items:center;gap:8px;margin-bottom:4px;font:400 13px/1 "KOTRA",sans-serif;color:#FFF3DF}.nph span{font:500 11px/1 "SCDream",sans-serif;color:#B8A68A}
+/* 스킬 요약 */
+.eskl{display:flex;flex-direction:column;gap:4px}
+.esk{border:1px solid #2E2922;border-left:3px solid var(--sc);border-radius:3px;background:#0E0C0A}
+.esk.hot{border-color:#5A2A24;border-left-color:var(--sc);background:linear-gradient(90deg,#1F100D,#0E0C0A 60%)}
+.eskh{display:flex;align-items:center;gap:8px;padding:7px 10px}
+.esk.has .eskh{cursor:pointer}
+.esk-i{flex:none;display:grid;place-items:center;width:26px;height:26px}.esk-i .tb{width:22px;height:22px}
+.esk-n{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.esk-n b{font:400 13.5px/1.2 "KOTRA",sans-serif;color:#FFF3DF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.esk-n small{display:flex;align-items:center;gap:3px;font:500 10.5px/1 "SCDream",sans-serif;color:#9E8F78}.esk-n .sinm{width:13px;height:13px}
+.esk-p{flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:2px}
+.esk-p b{font:400 16px/1 "Excelsior",sans-serif;color:#FFE28A}.esk-p small{font:500 9.5px/1 "SCDream",sans-serif;color:#7A7266}
+.esk-hot{flex:none;padding:2px 5px;border-radius:2px;background:#B8322A;color:#FFE9E4;font:500 10px/1 "SCDream",sans-serif;font-style:normal}
+.esk .chev{flex:none;transition:transform .15s}.esk.open .chev{transform:rotate(180deg)}
+.esk-b{display:none;padding:0 10px 10px 44px}.esk.open .esk-b{display:block}
+.esk-b .usk-d{margin:0 0 6px}
+.esk-cd{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:3px;font:500 12px/1.5 "SCDream",sans-serif;color:#D9CDB6}
+.esk-cd li{display:flex;gap:6px;align-items:baseline}
+/* 관찰 기록 */
+.nobs .nclue{margin:0 0 8px;padding:8px 10px;border-left:2px solid #8A7350;background:#14110D;font:500 12.5px/1.6 "SCDream",sans-serif;color:#E6DCC8}
+.nobs .nstory{padding:12px 14px;border:1px solid #2E2922;border-radius:3px;background:#0F0D0B;font:500 13px/1.8 "SCDream",sans-serif;color:#D9CDB6;white-space:normal}
+/* 등장 (접힘) */
+.nwh .nwr{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px}
+.nwh .nwl{flex:none;width:46px;padding-top:4px;font:400 12px/1 "KOTRA",sans-serif;color:#B8A68A}
+.nwh .nwhere{flex:1}
 /* ===== 테마팩 v2 ===== */
 .pkimg{display:block;flex:none;width:46px;aspect-ratio:1/2;border-radius:3px;background-image:var(--pksp);background-repeat:no-repeat;background-color:#161310;box-shadow:0 0 0 1px #000,0 2px 6px rgba(0,0,0,.5)}
 .pkimg.none{background-image:linear-gradient(#2A241C,#161310)}
@@ -10812,12 +10877,92 @@ nCard=function(e){var nw=e.where.length;
   return '<button class="nc2'+(e.ab?" ab":"")+'" data-enemy="'+esc(e.nm)+'" style="--sc:'+(SINC[e.sin]||"#6F6556")+'"><span class="nc2-a">'+enImg(e,"nc2i")+
     (e.cls?'<i class="nc2-g">'+gradeIco(e.cls)+'</i>':'')+(e.sin&&SINC[e.sin]?'<i class="nc2-s">'+sinIco(e.sin,"sinm")+'</i>':'')+'</span>'+
     '<span class="nc2-t"><b>'+esc(e.nm)+'</b><small>'+(e.lv?'Lv '+e.lv:'')+(e.lv&&nw?' · ':'')+(nw?'등장 '+nw:'')+'</small></span></button>'};
-function nKindSeg(){var ab=X.en.filter(function(e){return e.ab}).length,cur=nSel.kind.length===1?nSel.kind[0]:"";
-  return [["","전체",X.en.length],["ab","환상체",ab],["en","일반 적",X.en.length-ab]].map(function(a){return '<button role="tab" data-nkind="'+a[0]+'" aria-selected="'+(cur===a[0])+'">'+a[1]+'<small>'+a[2]+'</small></button>'}).join("")}
-(function(){var _re=renderEnemy;renderEnemy=function(){_re();if(!X)return;var g=$("nGrid");if(!g)return;var seg=$("nKind");
-  if(!seg){seg=document.createElement("div");seg.id="nKind";seg.className="nkind";seg.setAttribute("role","tablist");var fil=$("nFil");fil.parentNode.insertBefore(seg,fil)}seg.innerHTML=nKindSeg()}})();
-document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-nkind]");if(!b)return;var k=b.dataset.nkind;nSel.kind=k?[k]:[];
-  document.querySelectorAll('[data-nk="kind"]').forEach(function(c){c.setAttribute("aria-pressed",nSel.kind.indexOf(c.dataset.v)>=0)});renderEnemy();window.scrollTo(0,0)});
+
+/* ===== 적 도감 v3: 필터 정리 · 상세(기믹·내성·스킬·관찰 기록) ===== */
+nSel.mp=[];if(!nSort)nSort="name";
+nMatch=function(e){var q=$("nq").value.trim().toLowerCase();if(q&&e.hay.indexOf(q)<0)return false;
+  if(nSel.kind.length&&!nSel.kind.some(function(k){return k==="boss"?e.boss:k==="ab"?e.ab:!e.ab}))return false;
+  if(nSel.mp.length&&nSel.mp.indexOf(e.mp?"y":"n")<0)return false;
+  if(nSel.where.length&&!nSel.where.some(function(w){return nWhereKinds(e).indexOf(w)>=0}))return false;
+  if(nSel.sin.length&&nSel.sin.indexOf(e.sin)<0)return false;
+  if(nSel.cls.length&&nSel.cls.indexOf(e.cls||"")<0)return false;return true};
+buildEnemyFilters=function(){
+  function ch(k,arr,cls,lab){return arr.map(function(a){return '<button class="chip'+(cls?" "+cls:"")+'" data-nk="'+k+'" data-v="'+esc(a[0])+'" aria-pressed="'+(nSel[k].indexOf(a[0])>=0)+'"><span>'+(lab?lab(a):esc(a[1]))+'</span></button>'}).join("")}
+  function row(t,body,cls){return '<div class="prow'+(cls?" "+cls:"")+'"><h3>'+t+'</h3><div class="pchips">'+body+'</div></div>'}
+  var wc={};X.en.forEach(function(e){var s={};e.where.forEach(function(w){s[w[0]]=1});Object.keys(s).forEach(function(k){wc[k]=(wc[k]||0)+1})});
+  var ws=["테마팩","끈 던전","사영전투","스토리","굴절철도"].filter(function(k){return wc[k]});
+  var nb=X.en.filter(function(e){return e.boss}).length,na=X.en.filter(function(e){return e.ab}).length,nm=X.en.filter(function(e){return e.mp}).length;
+  $("nFil").innerHTML='<div class="ufg">'+
+    row("종류",ch("kind",[["ab","환상체"],["en","일반 적"],["boss","보스"]],"",function(a){return esc(a[1])+'<small class="cn">'+(a[0]==="ab"?na:a[0]==="en"?X.en.length-na:nb)+'</small>'}))+
+    row("정신력",ch("mp",[["y","있음"],["n","없음"]],"",function(a){return esc(a[1])+'<small class="cn">'+(a[0]==="y"?nm:X.en.length-nm)+'</small>'}))+
+    row("등장",ch("where",ws.map(function(w){return [w,w]}),"",function(a){return esc(a[1])+'<small class="cn">'+wc[a[0]]+'</small>'}),"wide")+
+    row("등급",ch("cls",GRADES.map(function(g){return [g,g]}),"grd",function(a){return gradeIco(a[0])+'<span class="N">'+a[1]+'</span>'}),"wide one")+
+    row("속성",ch("sin",SINS7.map(function(s){return [s,sinKr(s)]}),"sinc ico",function(a){return sinIco(a[0],"sini")+'<em>'+esc(a[1])+'</em>'}),"wide")+
+    row("정렬",[["name","이름순"],["lv","레벨순"],["sin","죄악순"]].map(function(a){return '<button class="chip" data-nsort="'+a[0]+'" aria-pressed="'+(nSort===a[0])+'"><span>'+a[1]+'</span></button>'}).join(""),"wide")+'</div>'};
+(function(){var _re=renderEnemy;renderEnemy=function(){if(X&&$("nFil").innerHTML&&!$("nFil").querySelector('[data-nk="mp"]'))$("nFil").innerHTML="";_re();if(!X||!U)return;
+  if(nSort==="sin"){var rows=X.en.filter(nMatch);rows.sort(function(a,b){var x=a.sin?SINS7.indexOf(a.sin):99,y=b.sin?SINS7.indexOf(b.sin):99;return x-y||a.nm.localeCompare(b.nm,"ko")});$("nGrid").innerHTML=rows.length?rows.map(nCard).join(""):'<div class="uempty">조건에 맞는 적 없음</div>'}
+  else if(nSort==="name"){var r2=X.en.filter(nMatch).sort(function(a,b){return a.nm.localeCompare(b.nm,"ko")});$("nGrid").innerHTML=r2.length?r2.map(nCard).join(""):'<div class="uempty">조건에 맞는 적 없음</div>'}}})();
+nCard=function(e){var nw=e.where.length;
+  return '<button class="nc2'+(e.ab?" ab":"")+(e.boss?" boss":"")+'" data-enemy="'+esc(e.nm)+'" style="--sc:'+(SINC[e.sin]||"#6F6556")+'"><span class="nc2-a">'+enImg(e,"nc2i")+
+    (e.cls?'<i class="nc2-g">'+gradeIco(e.cls)+'</i>':'')+(e.sin&&SINC[e.sin]?'<i class="nc2-s">'+sinIco(e.sin,"sinm")+'</i>':'')+(e.boss?'<i class="nc2-b">BOSS</i>':'')+'</span>'+
+    '<span class="nc2-t"><b>'+esc(e.nm)+'</b><small>'+[e.lv?'Lv '+e.lv:'',nw?'등장 '+nw:''].filter(Boolean).join(' · ')+(e.mp?'<i class="mpd" title="정신력 있음"></i>':'')+'</small></span></button>'};
+/* 스킬 위험도: 최대 위력 + 광역 + 코인 수 + 위험 키워드 */
+function enSkMax(s){return (s.base||0)+(s.n||0)*(s.coin||0)}
+function enDanger(s){var t=(s.d||"")+(s.cd||[]).map(function(c){return c.join(" ")}).join(" ");return enSkMax(s)+(s.tg>1?6+s.tg:0)+(s.n||0)*1.5+(/파괴 불가|합 불가|즉사|광역|Unbreakable|CantDuel/.test(t)?6:0)}
+function enSkRow(s,top){var isDef=s.def&&s.def!=="ATTACK",ty=isDef?(U.defk[s.def]||""):(U.atk[s.atk]||""),mx=enSkMax(s),body=(s.d?'<p class="usk-d">'+fmtDesc(s.d)+'</p>':'')+
+    (s.cd&&s.cd.some(function(c){return c.length})?'<ul class="esk-cd">'+s.cd.map(function(cl,ci){return cl.map(function(d){return '<li>'+pipsAt(s.n,ci)+'<span>'+fmtDesc(d)+'</span></li>'}).join("")}).join("")+'</ul>':'');
+  return '<div class="esk'+(top?" hot":"")+(body?" has":"")+'" style="--sc:'+(SINC[s.sin]||"#555")+'"><div class="eskh"'+(body?' role="button" tabindex="0"':'')+'>'+
+    '<span class="esk-i">'+(isDef?uii("def_"+DEF_EN[s.def],"tb",ty):uii("atk_"+ATK_EN[s.atk],"tb",ty))+'</span>'+
+    '<span class="esk-n"><b>'+esc(s.nm)+'</b><small>'+(s.sin&&SINC[s.sin]?sinIco(s.sin,"sinm")+esc(sinKr(s.sin))+' · ':'')+esc(ty)+(s.tg>1?' · 대상 '+s.tg:'')+(s.x>1?' · ×'+s.x:'')+'</small></span>'+
+    (s.base!=null?'<span class="esk-p" title="기본 '+s.base+' · 코인 '+(s.n||0)+'개 × '+(s.coin||0)+'"><b>'+mx+'</b><small>'+s.base+(s.n?' + '+s.n+'×'+s.coin:'')+'</small></span>':'')+(top?'<i class="esk-hot">위험</i>':'')+(body?'<i class="chev"></i>':'')+'</div>'+(body?'<div class="esk-b">'+body+'</div>':'')+'</div>'}
+/* 인게임식 내성표 */
+var RES_COL={fatal:"#FF5A4E",weak:"#FF9A55",norm:"#C9BFAE",endure:"#7FB2E0",resist:"#5F8FD8",ineff:"#8C8C8C"};
+function resGrid(res){var A=ATKS.map(function(a){return a[0]}),S=SINS7;function cell(k){var v=res[k];if(v==null)return "";var lv=resLv(v,true);
+    return '<div class="rgc rg-'+lv+'" style="--rc:'+RES_COL[lv]+'">'+(ATK_EN[k]?atkIco(k,"rgi"):sinIco(k,"rgi"))+'<b>'+RES_KR[lv]+'</b><small>×'+v+'</small></div>'}
+  return '<div class="rgrid"><div class="rgr">'+A.map(cell).join("")+'</div><div class="rgr s">'+S.map(cell).join("")+'</div></div>'}
+/* 기믹 자동 요약 */
+function enGimmick(e){var L=[];if(e.boss)L.push(['보스','테마팩 보스·끈 던전·사영전투에 보스로 나와요']);
+  if(e.parts.length>1)L.push(['집중 전투','부위 '+e.parts.length+'개 · 부위마다 체력·내성이 달라요']);
+  if(e.brk&&e.brk.length)L.push(['흐트러짐','체력 '+e.brk.map(function(x){return x+'%'}).join(' · ')+'에서 흐트러져요']);
+  L.push(['정신력',e.mp?'있음 · 정신력이 떨어지면 공황·동요가 와요':'없음 · 정신력 피해·공황이 통하지 않아요']);
+  var top=e.sk.slice().sort(function(a,b){return enDanger(b)-enDanger(a)})[0];if(top&&top.base!=null)L.push(['위험 스킬',top.nm+' · 최대 위력 '+enSkMax(top)+(top.tg>1?' · 대상 '+top.tg:'')]);
+  return L}
+function enMemo(e){return (window.VC&&VC.enm&&VC.enm[e.nm])||""}
+openEnemy=function(nm){var e=ENBY[nm];if(!e)return;navPush("n",nm);curUnit=null;curEgo=null;curGift=null;_pp=[];ppClose();
+  var szm={LARGE:"대형",REGULAR:"보통",SMALL:"소형",HUGE:"초대형"},sz=(e.kw||[]).filter(function(k){return szm[k]}).map(function(k){return szm[k]})[0];
+  var h='<div class="nhero" style="--sc:'+(SINC[e.sin]||"#555")+'">'+enImg(e,"nhi")+'<div class="nht">'+
+    '<span class="nbd">'+(e.boss?'<i class="b boss">보스</i>':'')+'<i class="b">'+(e.ab?"환상체":"일반 적")+'</i>'+(e.cls?'<i class="b gr">'+gradeIco(e.cls)+esc(e.cls)+'</i>':'')+'</span>'+
+    (e.code?'<span class="N ncode">'+esc(e.code)+'</span>':'')+'<b class="en">'+esc(e.nm)+'</b>'+
+    '<span class="nst">'+(e.lv?'<span>Lv '+e.lv+'</span>':'')+(e.hp?'<span>'+uii("hp","sti")+esc(e.hp)+'</span>':'')+(e.slots?'<span>슬롯 '+e.slots+'</span>':'')+(sz?'<span>'+sz+'</span>':'')+'<span class="'+(e.mp?"mpy":"mpn")+'">정신력 '+(e.mp?"있음":"없음")+'</span></span>'+
+    (e.sin&&SINC[e.sin]?'<span class="nsa"><small>죄악 속성</small>'+sinIco(e.sin,"sinm")+esc(sinKr(e.sin))+'</span>':'')+'</div></div>';
+  /* 1. 공략 단서 (기믹) */
+  var G=enGimmick(e),memo=enMemo(e);
+  h+='<div class="nsec ngm"><h3>공략 단서<span class="hh">'+(memo?'운영자 메모 · ':'')+'자동 요약</span></h3>'+(memo?'<div class="nmemo">'+esc(memo).replace(/\n/g,"<br>")+'</div>':'')+
+    '<ul class="ngl">'+G.map(function(g){return '<li><b>'+g[0]+'</b><span>'+esc(g[1])+'</span></li>'}).join("")+'</ul>'+
+    (e.ps.length?'<div class="nps">'+e.ps.map(function(p){var k=_pp.length;_pp.push('<div class="pph"><span class="ptype">패시브</span><b>'+esc(p.nm)+'</b></div><p>'+fmtDesc(p.d)+'</p>');return '<button class="nps-r" data-pp="'+k+'"><b>'+esc(p.nm)+'</b><span>'+esc(firstLine(p.s||p.d||"").replace(/\[[A-Za-z0-9_]+\]/g,"").slice(0,80))+'</span><i class="chev"></i></button>'}).join("")+'</div>':'')+
+    (window.admOn&&admOn()?'<div class="nmemo-e"><textarea id="enMemoIn" class="tcin" rows="3" placeholder="운영자 공략 메모 (예: 2턴마다 광역기 → 수비 스킬 준비)">'+esc(memo)+'</textarea><button class="tbtn K sm" data-enmemo="'+esc(e.nm)+'"><span>메모 저장</span></button></div>':'')+'</div>';
+  /* 2. 내성 */
+  if(Object.keys(e.res||{}).length||e.parts.length){h+='<div class="nsec"><h3>내성<span class="hh">치명·취약은 잘 들어가요</span></h3>';
+    if(e.parts.length>1)h+=e.parts.map(function(p){return '<div class="npart2"><div class="nph"><b>'+esc(p.nm||"부위")+'</b>'+(p.hp?'<span>'+uii("hp","sti")+p.hp+'</span>':'')+'</div>'+resGrid(p.res||{})+'</div>'}).join("");
+    else h+=resGrid(Object.keys(e.res||{}).length?e.res:(e.parts[0]||{}).res||{});
+    h+='</div>'}
+  /* 3. 스킬: 위험한 순 */
+  if(e.sk.length){var sk=e.sk.slice().sort(function(a,b){return enDanger(b)-enDanger(a)});h+='<div class="nsec"><h3>스킬<small>'+sk.length+'</small><span class="hh">위험한 순 · 눌러서 효과</span></h3><div class="eskl">'+sk.map(function(s,i){return enSkRow(s,i===0&&sk.length>1)}).join("")+'</div></div>'}
+  /* 4. 관찰 기록 (펼친 상태) */
+  if((e.clue&&e.clue.replace(/\s/g,"").length>4)||e.story)h+='<div class="nsec nobs"><h3>관찰 기록</h3>'+(e.clue&&e.clue.replace(/\s/g,"").length>4?'<p class="nclue">'+fmtDesc(e.clue)+'</p>':'')+(e.story?'<div class="nstory">'+fmtDesc(e.story)+'</div>':'')+'</div>';
+  /* 5. 전투 중 선택지 */
+  var evs=EN_EVENTS[e.nm]||[];if(evs.length)h+='<div class="nsec"><h3>전투 중 선택지<small>'+evs.length+'</small></h3><div class="ulist">'+evs.map(function(x){return '<button class="urow" data-choice="'+x.id+'"><span class="nm">'+esc(x.title)+'</span></button>'}).join("")+'</div></div>';
+  /* 6. 등장 (접힘) */
+  if(e.where.length){var st=e.where.filter(function(w){return w[0]==="스토리"}),tp=e.where.filter(function(w){return w[0]==="테마팩"}),ot=e.where.filter(function(w){return w[0]!=="테마팩"&&w[0]!=="스토리"});
+    h+='<details class="dfold nwh"><summary><b>등장</b><small>'+[st.length?'스토리 '+st.length:'',tp.length?'테마팩 '+tp.length:'',ot.length?'기타 '+ot.length:''].filter(Boolean).join(' · ')+'</small><i class="chev"></i></summary><div class="dfb">'+
+      (st.length?'<div class="nwr"><span class="nwl">스토리</span><div class="nwhere">'+st.map(function(w){return '<span class="tag c3">'+esc([w[1],w[2]].filter(Boolean).join(" · "))+'</span>'}).join("")+'</div></div>':'')+
+      (ot.length?'<div class="nwr"><span class="nwl">기타</span><div class="nwhere">'+ot.map(function(w){return '<span class="tag c3"><small>'+esc(w[0])+'</small>'+esc([w[1],w[2]].filter(Boolean).join(" · "))+'</span>'}).join("")+'</div></div>':'')+
+      (tp.length?'<div class="nwr"><span class="nwl">테마팩</span><div class="nwhere">'+tp.map(function(w){return '<span class="tag c1"><small>'+esc(w[2]||"테마팩")+'</small>'+packLink(w[1])+'</span>'}).join("")+'</div></div>':'')+'</div></details>'}
+  if(e.n>1)h+='<p class="ufoot">같은 이름의 변형 '+e.n+'종 중 등장이 많은 것 기준 · 수치는 기본 레벨 기준</p>';
+  $("detailBody").innerHTML=h;$("detail").setAttribute("aria-label",e.nm+" 상세");updBack();show("detail");
+  if(window.vCfgLoad&&!(window.VC&&VC.enm))vCfgLoad(function(){if(curView==="enemy"&&enMemo(e)&&document.querySelector("#detailBody .ngm")&&!document.querySelector("#detailBody .nmemo"))openEnemy(nm)})};
+document.addEventListener("click",function(ev){var t=ev.target;if(!t.closest)return;var h=t.closest(".esk.has>.eskh");if(h){h.parentElement.classList.toggle("open");return}
+  var m=t.closest("[data-enmemo]");if(m){var nm=m.dataset.enmemo,v=($("enMemoIn").value||"").trim(),o={};o[nm]=v||null;vAdmin("enm",o,function(){toast("메모 저장됨");vCfgLoad(function(){openEnemy(nm)})})}});
 
 /* ===== 테마팩 탭 재구성 (기본 사이트 함수 런타임 교체) =====
    카드: 팩 일러스트 + 이름 + 층 요약 + 키워드 + 한정 기프트 / 필터: 난이도·층 1~15·키워드 / 상세: 일러스트, 팩 선택지 */
