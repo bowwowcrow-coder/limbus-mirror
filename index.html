@@ -1028,6 +1028,26 @@ em.st{font-style:normal}
 .euseh{display:flex;align-items:center;flex-wrap:wrap;gap:6px;margin:8px 0}
 .euseh .euse{margin-left:0}.euse.big i{padding:4px 9px;font-size:12px}
 .euseh small{font:500 11px/1.3 "SCDream",sans-serif;color:#8C7F6A}
+/* 기프트 필터를 다른 탭과 같은 모양으로: 정렬 줄을 아래로, OPTION 라벨 제거, 초기화는 칩 */
+.drawer>div{display:flex;flex-direction:column}
+.drawer #filterBody{order:1}
+.drawer .fhead{order:2;position:relative;display:grid;grid-template-columns:48px 1fr;align-items:start;gap:4px;margin:4px 0 0;padding:0;border:0}
+.drawer #fApplied{display:none}
+.drawer .sortsw{flex-wrap:wrap;gap:5px}
+.drawer .sortsw>span{height:25px;display:flex;align-items:center;margin:0;padding:2px 0 0 7px;border-left:2px solid #9A7650;font:400 12px/1 "KOTRA",sans-serif;color:#D9B98A;grid-column:1}
+.drawer .sortsw{display:flex;flex-wrap:wrap;gap:5px;grid-column:1/-1;grid-template-columns:none}
+.drawer .fhead{display:block}
+.drawer .sortsw>span{flex:none;width:44px}
+.drawer .sortsw .chip{margin:0;flex:none;width:auto}
+.drawer .fhead::after{content:"";display:none}
+.drawer .sortsw .chip{height:28px;padding:0 20px 0 10px;font-size:12.5px}
+.drawer .trash{order:3;position:static;align-self:flex-end;margin:-30px 0 4px;width:auto;height:28px;padding:0 10px;display:inline-flex;align-items:center;border:1px dashed #4A4237;border-radius:3px;background:#110E0B;color:#B8A68A;font:500 12px/1 "SCDream",sans-serif;box-shadow:none}
+.drawer .trash svg{display:none}
+.drawer .trash::after{content:"초기화"}
+.drawer .trash:hover{border-color:#8A7350;color:#F3EADA}
+/* 초기화 칩 공통 */
+.chip.rst{margin-left:auto;border-style:dashed;color:#B8A68A}
+.chip.rst:hover{color:#F3EADA}
 /* deck */
 .dbar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:9px}
 .dmode{display:inline-flex;border:1px solid #6F6556;border-radius:3px;overflow:hidden}
@@ -2159,13 +2179,21 @@ em.st{font-style:normal}
 .nwh .nwl{flex:none;width:46px;padding-top:4px;font:400 12px/1 "KOTRA",sans-serif;color:#B8A68A}
 .nwh .nwhere{flex:1}
 
-.nc2-b.add{background:rgba(20,16,12,.85);color:#E8A59A;box-shadow:inset 0 0 0 1px #8A3A30;font-family:"SCDream",sans-serif;font-size:9.5px;font-weight:600}
 .nbd .b.add{border-color:#8A3A30;color:#E8A59A}
 .eni.none2{position:relative}
 .eni.none2 .enx{position:absolute;left:0;right:0;bottom:8%;text-align:center;font:500 9.5px/1 "SCDream",sans-serif;font-style:normal;color:#6F6556}
 .eni.none2 .enq{font:400 34px/1 "Excelsior",sans-serif;font-style:normal;color:#3A3328}
 .eni.none2 .enx{bottom:auto;top:72%}
 .nhero .eni.none2 .enx{top:auto;bottom:6%}
+
+/* 보스전 동행: 정보 줄 끝에 작은 글자 */
+.nc2-t .bsd{display:inline-block;width:6px;height:6px;margin:0 0 1px 5px;border-radius:50%;background:#E0675F;vertical-align:middle}
+.nc2-t small{display:flex;align-items:center;white-space:nowrap;overflow:hidden}
+
+.nleg{display:flex;flex-wrap:wrap;align-items:center;gap:4px;margin:8px 0 6px;font:500 11px/1.3 "SCDream",sans-serif;color:#8C7F6A}
+.nleg .mpd,.nleg .bsd{display:inline-block;width:6px;height:6px;border-radius:50%;margin:0 2px 0 6px}
+.nleg .mpd{background:#7FD3FF}.nleg .bsd{background:#E0675F}
+.nleg .mpd:first-child{margin-left:0}
 /* ===== 테마팩 v2 ===== */
 .pkimg{display:block;flex:none;width:46px;aspect-ratio:1/2;border-radius:3px;background-image:var(--pksp);background-repeat:no-repeat;background-color:#161310;box-shadow:0 0 0 1px #000,0 2px 6px rgba(0,0,0,.5)}
 .pkimg.none{background-image:linear-gradient(#2A241C,#161310)}
@@ -3223,6 +3251,9 @@ document.addEventListener("click",function(e){
   if(uc){var ua=uSel[uc.dataset.uk],ui=ua.indexOf(uc.dataset.v);ui<0?ua.push(uc.dataset.v):ua.splice(ui,1);uc.setAttribute("aria-pressed",ui<0);renderUnits();return}
   if(t.closest("#uFilterBtn")){var uf=$("uFil"),uo=uf.classList.toggle("open");$("uFilterBtn").setAttribute("aria-expanded",uo);return}
   var skg=t.closest("[data-skgo]");if(skg){skGo(skg.dataset.skgo);return}
+  if(t.closest("[data-ureset]")){for(var uk in uSel)uSel[uk]=[];uSort="date";$("uq").value="";$("uFil").innerHTML="";renderUnits();return}
+  if(t.closest("[data-nreset]")){for(var nk in nSel)nSel[nk]=[];nSort="name";$("nq").value="";$("nFil").innerHTML="";renderEnemy();return}
+  if(t.closest("[data-preset]")){for(var pk in pSel)pSel[pk]=[];pSort="cat";if($("pq"))$("pq").value="";if($("pFil"))$("pFil").innerHTML="";renderPacks();return}
   var umb=t.closest("[data-umode]");if(umb){uModeSet(umb.dataset.umode);return}
   var us=t.closest("[data-usort]");
   if(us){uSort=us.dataset.usort;document.querySelectorAll("[data-usort]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.usort===uSort)});renderUnits();return}
@@ -9847,7 +9878,7 @@ function buildUnitFilters(){
     row("키워드",ch("kw",kws,"kwc",function(a){return kwIco(a[0],"kwc-i")+esc(a[1])}),"full")+
     row("죄악",ch("sin",SINS7.map(function(s){return [s,sinKr(s)]}),"sinc ico",function(a){return sinIco(a[0],"sini")+'<em>'+esc(a[1])+'</em>'}),"full")+
     row("시즌",ch("season",USEASON,"sea"))+
-    row("정렬",[["date","출시순"],["rank","등급순"],["sinner","수감자순"],["name","이름순"],["give","키워드 부여량"]].map(function(a){return '<button class="chip'+(a[0]==="give"?" unit-only":"")+'" data-usort="'+a[0]+'" aria-pressed="'+(uSort===a[0])+'"><span>'+a[1]+'</span></button>'}).join(""))+
+    row("정렬",[["date","출시순"],["rank","등급순"],["sinner","수감자순"],["name","이름순"],["give","키워드 부여량"]].map(function(a){return '<button class="chip'+(a[0]==="give"?" unit-only":"")+'" data-usort="'+a[0]+'" aria-pressed="'+(uSort===a[0])+'"><span>'+a[1]+'</span></button>'}).join("")+'<button class="chip rst" data-ureset="1"><span>초기화</span></button>')+
     '</div>'}
 function uCmp(a,b){
   if(uSort==="rank")return b.r-a.r||b.id-a.id;
@@ -10906,14 +10937,15 @@ buildEnemyFilters=function(){
     row("등장",ch("where",ws.map(function(w){return [w,w]}),"",function(a){return esc(a[1])+'<small class="cn">'+wc[a[0]]+'</small>'}),"wide")+
     row("등급",ch("cls",GRADES.map(function(g){return [g,g]}),"grd",function(a){return gradeIco(a[0])+'<span class="N">'+a[1]+'</span>'}),"wide one")+
     row("속성",ch("sin",SINS7.map(function(s){return [s,sinKr(s)]}),"sinc ico",function(a){return sinIco(a[0],"sini")+'<em>'+esc(a[1])+'</em>'}),"wide")+
-    row("정렬",[["name","이름순"],["lv","레벨순"],["sin","죄악순"]].map(function(a){return '<button class="chip" data-nsort="'+a[0]+'" aria-pressed="'+(nSort===a[0])+'"><span>'+a[1]+'</span></button>'}).join(""),"wide")+'</div>'};
+    row("정렬",[["name","이름순"],["lv","레벨순"],["sin","죄악순"]].map(function(a){return '<button class="chip" data-nsort="'+a[0]+'" aria-pressed="'+(nSort===a[0])+'"><span>'+a[1]+'</span></button>'}).join("")+'<button class="chip rst" data-nreset="1"><span>초기화</span></button>',"wide")+'</div>'+
+    '<p class="nleg"><i class="mpd"></i>정신력 있음<i class="bsd"></i>보스전 동행</p>'};
 (function(){var _re=renderEnemy;renderEnemy=function(){if(X&&$("nFil").innerHTML&&!$("nFil").querySelector('[data-nk="mp"]'))$("nFil").innerHTML="";_re();if(!X||!U)return;
   if(nSort==="sin"){var rows=X.en.filter(nMatch);rows.sort(function(a,b){var x=a.sin?SINS7.indexOf(a.sin):99,y=b.sin?SINS7.indexOf(b.sin):99;return x-y||a.nm.localeCompare(b.nm,"ko")});$("nGrid").innerHTML=rows.length?rows.map(nCard).join(""):'<div class="uempty">조건에 맞는 적 없음</div>'}
   else if(nSort==="name"){var r2=X.en.filter(nMatch).sort(function(a,b){return a.nm.localeCompare(b.nm,"ko")});$("nGrid").innerHTML=r2.length?r2.map(nCard).join(""):'<div class="uempty">조건에 맞는 적 없음</div>'}}})();
 nCard=function(e){var nw=e.where.length;
   return '<button class="nc2'+(e.ab?" ab":"")+(e.boss===1?" boss":"")+'" data-enemy="'+esc(e.nm)+'" style="--sc:'+(SINC[e.sin]||"#6F6556")+'"><span class="nc2-a">'+enImg(e,"nc2i")+
-    (e.cls?'<i class="nc2-g">'+gradeIco(e.cls)+'</i>':'')+(e.sin&&SINC[e.sin]?'<i class="nc2-s">'+sinIco(e.sin,"sinm")+'</i>':'')+(e.boss===1?'<i class="nc2-b">BOSS</i>':e.boss===2?'<i class="nc2-b add">보스전</i>':'')+'</span>'+
-    '<span class="nc2-t"><b>'+esc(e.nm)+'</b><small>'+[e.lv?'Lv '+e.lv:'',nw?'등장 '+nw:''].filter(Boolean).join(' · ')+(e.mp?'<i class="mpd" title="정신력 있음"></i>':'')+'</small></span></button>'};
+    (e.cls?'<i class="nc2-g">'+gradeIco(e.cls)+'</i>':'')+(e.sin&&SINC[e.sin]?'<i class="nc2-s">'+sinIco(e.sin,"sinm")+'</i>':'')+(e.boss===1?'<i class="nc2-b">BOSS</i>':'')+'</span>'+
+    '<span class="nc2-t"><b>'+esc(e.nm)+'</b><small>'+[e.lv?'Lv '+e.lv:'',nw?'등장 '+nw:''].filter(Boolean).join(' · ')+(e.mp?'<i class="mpd" title="정신력 있음"></i>':'')+(e.boss===2?'<i class="bsd" title="보스전 동행"></i>':'')+'</small></span></button>'};
 /* 스킬 위험도: 최대 위력 + 광역 + 코인 수 + 위험 키워드 */
 function enSkMax(s){return (s.base||0)+(s.n||0)*(s.coin||0)}
 function enDanger(s){var t=(s.d||"")+(s.cd||[]).map(function(c){return c.join(" ")}).join(" ");return enSkMax(s)+(s.tg>1?6+s.tg:0)+(s.n||0)*1.5+(/파괴 불가|합 불가|즉사|광역|Unbreakable|CantDuel/.test(t)?6:0)}
@@ -11008,7 +11040,7 @@ buildPackFilters=function(){
     '<div class="prow"><h3>난이도</h3><div class="pchips">'+ch("mode",PMODES)+'</div></div>'+
     '<div class="prow"><h3>층</h3><div class="pchips pfl15">'+ch("floor",PFLG15," N fl")+'</div></div>'+
     '<div class="prow"><h3>키워드</h3><div class="pchips">'+ch("kw",PKWS.map(function(k){return [k,k]})," kwc",function(a){return kwImg(a[0],"kwc-i")+esc(a[1])})+'</div><span class="shint">이 키워드의 한정 기프트가 나오는 팩 — 덱에 맞춰 꼭 들러야 할 팩을 찾을 때</span></div>'+
-    '<div class="prow"><h3>정렬</h3><div class="pchips"><button class="chip" data-psort="cat" aria-pressed="'+(pSort==="cat")+'"><span>분류순</span></button><button class="chip" data-psort="floor" aria-pressed="'+(pSort==="floor")+'"><span>등장 층순</span></button></div></div>'};
+    '<div class="prow"><h3>정렬</h3><div class="pchips"><button class="chip" data-psort="cat" aria-pressed="'+(pSort==="cat")+'"><span>분류순</span></button><button class="chip" data-psort="floor" aria-pressed="'+(pSort==="floor")+'"><span>등장 층순</span></button><button class="chip rst" data-preset="1"><span>초기화</span></button></div></div>'};
 (function(){var _rp=renderPacks;renderPacks=function(){$("packGrid").classList.add("v3");_rp();var nf=pSel.cat.length+pSel.mode.length+pSel.floor.length+pSel.kw.length;$("pFilterBtn").classList.toggle("lit",nf>0);
   if(!U&&!uLoading)loadUnits()}})();
 /* 팩 선택지: X.ev 중 w=[테마팩, 팩이름] */
