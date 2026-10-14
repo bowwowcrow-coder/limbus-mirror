@@ -2158,6 +2158,14 @@ em.st{font-style:normal}
 .nwh .nwr{display:flex;gap:8px;align-items:flex-start;margin-bottom:8px}
 .nwh .nwl{flex:none;width:46px;padding-top:4px;font:400 12px/1 "KOTRA",sans-serif;color:#B8A68A}
 .nwh .nwhere{flex:1}
+
+.nc2-b.add{background:rgba(20,16,12,.85);color:#E8A59A;box-shadow:inset 0 0 0 1px #8A3A30;font-family:"SCDream",sans-serif;font-size:9.5px;font-weight:600}
+.nbd .b.add{border-color:#8A3A30;color:#E8A59A}
+.eni.none2{position:relative}
+.eni.none2 .enx{position:absolute;left:0;right:0;bottom:8%;text-align:center;font:500 9.5px/1 "SCDream",sans-serif;font-style:normal;color:#6F6556}
+.eni.none2 .enq{font:400 34px/1 "Excelsior",sans-serif;font-style:normal;color:#3A3328}
+.eni.none2 .enx{bottom:auto;top:72%}
+.nhero .eni.none2 .enx{top:auto;bottom:6%}
 /* ===== 테마팩 v2 ===== */
 .pkimg{display:block;flex:none;width:46px;aspect-ratio:1/2;border-radius:3px;background-image:var(--pksp);background-repeat:no-repeat;background-color:#161310;box-shadow:0 0 0 1px #000,0 2px 6px rgba(0,0,0,.5)}
 .pkimg.none{background-image:linear-gradient(#2A241C,#161310)}
@@ -10872,7 +10880,7 @@ function rerollList(){if(!window.GDECKS)return "";var cnt={},ecnt={},tot=0;
 
 /* ===== 적 도감 v2: 고화질 낱장 그림 + 작은 카드 + 종류 탭 ===== */
 (function(){var _ei=enImg;enImg=function(e,cls){if(window.THUMB_URL&&e.img)return '<span class="eni th2'+(cls?" "+cls:"")+'"><img src="'+THUMB_URL+'en/'+e.img+'.webp" alt="" loading="lazy" decoding="async"></span>';
-  if(!e.img)return '<span class="eni none2'+(cls?" "+cls:"")+'">'+(e.sin&&SINC[e.sin]?sinIco(e.sin,"enp"):'')+'</span>';return _ei(e,cls)}})();
+  if(!e.img)return '<span class="eni none2'+(cls?" "+cls:"")+'">'+(e.sin&&SINC[e.sin]?sinIco(e.sin,"enp"):'<i class="enq">?</i>')+'<i class="enx">그림 준비 중</i></span>';return _ei(e,cls)}})();
 nCard=function(e){var nw=e.where.length;
   return '<button class="nc2'+(e.ab?" ab":"")+'" data-enemy="'+esc(e.nm)+'" style="--sc:'+(SINC[e.sin]||"#6F6556")+'"><span class="nc2-a">'+enImg(e,"nc2i")+
     (e.cls?'<i class="nc2-g">'+gradeIco(e.cls)+'</i>':'')+(e.sin&&SINC[e.sin]?'<i class="nc2-s">'+sinIco(e.sin,"sinm")+'</i>':'')+'</span>'+
@@ -10881,7 +10889,7 @@ nCard=function(e){var nw=e.where.length;
 /* ===== 적 도감 v3: 필터 정리 · 상세(기믹·내성·스킬·관찰 기록) ===== */
 nSel.mp=[];if(!nSort)nSort="name";
 nMatch=function(e){var q=$("nq").value.trim().toLowerCase();if(q&&e.hay.indexOf(q)<0)return false;
-  if(nSel.kind.length&&!nSel.kind.some(function(k){return k==="boss"?e.boss:k==="ab"?e.ab:!e.ab}))return false;
+  if(nSel.kind.length&&!nSel.kind.some(function(k){return k==="boss"?e.boss===1:k==="add"?e.boss===2:k==="ab"?e.ab:!e.ab}))return false;
   if(nSel.mp.length&&nSel.mp.indexOf(e.mp?"y":"n")<0)return false;
   if(nSel.where.length&&!nSel.where.some(function(w){return nWhereKinds(e).indexOf(w)>=0}))return false;
   if(nSel.sin.length&&nSel.sin.indexOf(e.sin)<0)return false;
@@ -10891,9 +10899,9 @@ buildEnemyFilters=function(){
   function row(t,body,cls){return '<div class="prow'+(cls?" "+cls:"")+'"><h3>'+t+'</h3><div class="pchips">'+body+'</div></div>'}
   var wc={};X.en.forEach(function(e){var s={};e.where.forEach(function(w){s[w[0]]=1});Object.keys(s).forEach(function(k){wc[k]=(wc[k]||0)+1})});
   var ws=["테마팩","끈 던전","사영전투","스토리","굴절철도"].filter(function(k){return wc[k]});
-  var nb=X.en.filter(function(e){return e.boss}).length,na=X.en.filter(function(e){return e.ab}).length,nm=X.en.filter(function(e){return e.mp}).length;
+  var nb=X.en.filter(function(e){return e.boss===1}).length,nd=X.en.filter(function(e){return e.boss===2}).length,na=X.en.filter(function(e){return e.ab}).length,nm=X.en.filter(function(e){return e.mp}).length;
   $("nFil").innerHTML='<div class="ufg">'+
-    row("종류",ch("kind",[["ab","환상체"],["en","일반 적"],["boss","보스"]],"",function(a){return esc(a[1])+'<small class="cn">'+(a[0]==="ab"?na:a[0]==="en"?X.en.length-na:nb)+'</small>'}))+
+    row("종류",ch("kind",[["ab","환상체"],["en","일반 적"],["boss","보스"],["add","보스전 동행"]],"",function(a){return esc(a[1])+'<small class="cn">'+(a[0]==="ab"?na:a[0]==="en"?X.en.length-na:a[0]==="boss"?nb:nd)+'</small>'}))+
     row("정신력",ch("mp",[["y","있음"],["n","없음"]],"",function(a){return esc(a[1])+'<small class="cn">'+(a[0]==="y"?nm:X.en.length-nm)+'</small>'}))+
     row("등장",ch("where",ws.map(function(w){return [w,w]}),"",function(a){return esc(a[1])+'<small class="cn">'+wc[a[0]]+'</small>'}),"wide")+
     row("등급",ch("cls",GRADES.map(function(g){return [g,g]}),"grd",function(a){return gradeIco(a[0])+'<span class="N">'+a[1]+'</span>'}),"wide one")+
@@ -10903,8 +10911,8 @@ buildEnemyFilters=function(){
   if(nSort==="sin"){var rows=X.en.filter(nMatch);rows.sort(function(a,b){var x=a.sin?SINS7.indexOf(a.sin):99,y=b.sin?SINS7.indexOf(b.sin):99;return x-y||a.nm.localeCompare(b.nm,"ko")});$("nGrid").innerHTML=rows.length?rows.map(nCard).join(""):'<div class="uempty">조건에 맞는 적 없음</div>'}
   else if(nSort==="name"){var r2=X.en.filter(nMatch).sort(function(a,b){return a.nm.localeCompare(b.nm,"ko")});$("nGrid").innerHTML=r2.length?r2.map(nCard).join(""):'<div class="uempty">조건에 맞는 적 없음</div>'}}})();
 nCard=function(e){var nw=e.where.length;
-  return '<button class="nc2'+(e.ab?" ab":"")+(e.boss?" boss":"")+'" data-enemy="'+esc(e.nm)+'" style="--sc:'+(SINC[e.sin]||"#6F6556")+'"><span class="nc2-a">'+enImg(e,"nc2i")+
-    (e.cls?'<i class="nc2-g">'+gradeIco(e.cls)+'</i>':'')+(e.sin&&SINC[e.sin]?'<i class="nc2-s">'+sinIco(e.sin,"sinm")+'</i>':'')+(e.boss?'<i class="nc2-b">BOSS</i>':'')+'</span>'+
+  return '<button class="nc2'+(e.ab?" ab":"")+(e.boss===1?" boss":"")+'" data-enemy="'+esc(e.nm)+'" style="--sc:'+(SINC[e.sin]||"#6F6556")+'"><span class="nc2-a">'+enImg(e,"nc2i")+
+    (e.cls?'<i class="nc2-g">'+gradeIco(e.cls)+'</i>':'')+(e.sin&&SINC[e.sin]?'<i class="nc2-s">'+sinIco(e.sin,"sinm")+'</i>':'')+(e.boss===1?'<i class="nc2-b">BOSS</i>':e.boss===2?'<i class="nc2-b add">보스전</i>':'')+'</span>'+
     '<span class="nc2-t"><b>'+esc(e.nm)+'</b><small>'+[e.lv?'Lv '+e.lv:'',nw?'등장 '+nw:''].filter(Boolean).join(' · ')+(e.mp?'<i class="mpd" title="정신력 있음"></i>':'')+'</small></span></button>'};
 /* 스킬 위험도: 최대 위력 + 광역 + 코인 수 + 위험 키워드 */
 function enSkMax(s){return (s.base||0)+(s.n||0)*(s.coin||0)}
@@ -10921,7 +10929,7 @@ function resGrid(res){var A=ATKS.map(function(a){return a[0]}),S=SINS7;function 
     return '<div class="rgc rg-'+lv+'" style="--rc:'+RES_COL[lv]+'">'+(ATK_EN[k]?atkIco(k,"rgi"):sinIco(k,"rgi"))+'<b>'+RES_KR[lv]+'</b><small>×'+v+'</small></div>'}
   return '<div class="rgrid"><div class="rgr">'+A.map(cell).join("")+'</div><div class="rgr s">'+S.map(cell).join("")+'</div></div>'}
 /* 기믹 자동 요약 */
-function enGimmick(e){var L=[];if(e.boss)L.push(['보스','테마팩 보스·끈 던전·사영전투에 보스로 나와요']);
+function enGimmick(e){var L=[];if(e.boss===1)L.push(['보스','층 보스·끈 던전·사영전투의 보스예요']);else if(e.boss===2)L.push(['보스전 동행','보스전에 보스와 같이 나와요']);
   if(e.parts.length>1)L.push(['집중 전투','부위 '+e.parts.length+'개 · 부위마다 체력·내성이 달라요']);
   if(e.brk&&e.brk.length)L.push(['흐트러짐','체력 '+e.brk.map(function(x){return x+'%'}).join(' · ')+'에서 흐트러져요']);
   L.push(['정신력',e.mp?'있음 · 정신력이 떨어지면 공황·동요가 와요':'없음 · 정신력 피해·공황이 통하지 않아요']);
@@ -10931,7 +10939,7 @@ function enMemo(e){return (window.VC&&VC.enm&&VC.enm[e.nm])||""}
 openEnemy=function(nm){var e=ENBY[nm];if(!e)return;navPush("n",nm);curUnit=null;curEgo=null;curGift=null;_pp=[];ppClose();
   var szm={LARGE:"대형",REGULAR:"보통",SMALL:"소형",HUGE:"초대형"},sz=(e.kw||[]).filter(function(k){return szm[k]}).map(function(k){return szm[k]})[0];
   var h='<div class="nhero" style="--sc:'+(SINC[e.sin]||"#555")+'">'+enImg(e,"nhi")+'<div class="nht">'+
-    '<span class="nbd">'+(e.boss?'<i class="b boss">보스</i>':'')+'<i class="b">'+(e.ab?"환상체":"일반 적")+'</i>'+(e.cls?'<i class="b gr">'+gradeIco(e.cls)+esc(e.cls)+'</i>':'')+'</span>'+
+    '<span class="nbd">'+(e.boss===1?'<i class="b boss">보스</i>':e.boss===2?'<i class="b add">보스전 동행</i>':'')+'<i class="b">'+(e.ab?"환상체":"일반 적")+'</i>'+(e.cls?'<i class="b gr">'+gradeIco(e.cls)+esc(e.cls)+'</i>':'')+'</span>'+
     (e.code?'<span class="N ncode">'+esc(e.code)+'</span>':'')+'<b class="en">'+esc(e.nm)+'</b>'+
     '<span class="nst">'+(e.lv?'<span>Lv '+e.lv+'</span>':'')+(e.hp?'<span>'+uii("hp","sti")+esc(e.hp)+'</span>':'')+(e.slots?'<span>슬롯 '+e.slots+'</span>':'')+(sz?'<span>'+sz+'</span>':'')+'<span class="'+(e.mp?"mpy":"mpn")+'">정신력 '+(e.mp?"있음":"없음")+'</span></span>'+
     (e.sin&&SINC[e.sin]?'<span class="nsa"><small>죄악 속성</small>'+sinIco(e.sin,"sinm")+esc(sinKr(e.sin))+'</span>':'')+'</div></div>';
