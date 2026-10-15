@@ -9925,8 +9925,9 @@ function loadUnits(){
       google.script.run.withSuccessHandler(function(s){var u=parse(s);u?done(u):fail()}).withFailureHandler(fail).getUnits()}).getUnitsGz()}
   else google.script.run.withSuccessHandler(function(s){var u=parse(s);u?done(u):fail()}).withFailureHandler(fail).getUnits()}
 /* 본문 서식: 게임 리치텍스트 정리, [태그] → 라벨, 키워드 강조 */
-function fmtDesc(t){
+function fmtDesc(t,base){
   if(!t)return "";
+  if(typeof U==="undefined"||!U||!U.tags){if(base&&base!==t&&typeof markDiff==="function")t=markDiff(base,t);return String(t).split(/\n/).filter(function(l){return l.trim()}).map(fmtLine).join("")}
   t=String(t).replace(/<style="[^"]*">/g,"\u0001").replace(/<\/style>/g,"\u0002").replace(/<\/?[A-Za-z][^>]*>/g,"");
   var parts=t.split(/(\[[A-Za-z0-9_]+\])/),out="";
   parts.forEach(function(p,ix){
