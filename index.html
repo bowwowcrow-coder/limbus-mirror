@@ -1048,6 +1048,19 @@ em.st{font-style:normal}
 /* 초기화 칩 공통 */
 .chip.rst{margin-left:auto;border-style:dashed;color:#B8A68A}
 .chip.rst:hover{color:#F3EADA}
+/* 동기화 변화: 스킬 칸에 불 들어오게 + 요약은 접기 */
+.usk.chg{box-shadow:0 0 0 1.5px #D9AE52,0 0 12px rgba(233,190,92,.32),inset 0 0 0 1px rgba(232,197,71,.25)!important;background:linear-gradient(90deg,rgba(233,190,92,.13),transparent 55%),linear-gradient(90deg,color-mix(in srgb,var(--sc) 10%,#15110E),#110E0B 55%)}
+.usk.chg .l1>b{color:#FFE28A}
+.pwold{margin-left:auto;margin-right:4px;font:600 11px/1 "SCDream",sans-serif;color:#9E8F78;white-space:nowrap}
+.pwold s{opacity:.8}
+.usk.chg .pwold+.pwr{margin-left:0}
+details.ldf{margin:0 0 8px;border:1px solid #3A3226;border-radius:3px;background:#120F0B}
+details.ldf>summary{display:flex;align-items:center;gap:8px;padding:9px 10px;list-style:none;cursor:pointer;font:600 13px/1.2 "SCDream",sans-serif;color:#E6DCC8}
+details.ldf>summary::-webkit-details-marker{display:none}
+details.ldf>summary small{color:#E8C547;font-weight:700}
+details.ldf>summary .chev{margin-left:auto}
+details.ldf[open]>summary .chev{transform:rotate(180deg)}
+details.ldf>.ldl{padding:0 8px 8px}
 /* deck */
 .dbar{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:9px}
 .dmode{display:inline-flex;border:1px solid #6F6556;border-radius:3px;overflow:hidden}
@@ -10002,7 +10015,7 @@ function skillBox(s,lv,opt){opt=opt||{};
   var mini=!!opt.mini;
   var chg=lv>1&&s.up.some(function(e){return +e.lv===+lv&&+s.up[0].lv<+lv});
   return '<div class="usk'+(mini?" mini":"")+(body?" has":"")+(chg?" chg":"")+'" data-skid="'+s.id+'" style="--sc:'+(SINC[x.sin]||"#555")+'"><div class="uskh"'+(body?' role="button" tabindex="0" aria-expanded="false"':'')+'><span class="usk-ic">'+ic+'</span><div class="usk-t">'+
-    '<div class="l1"><b>'+esc(x.name||"")+'</b>'+(chg?'<i class="chgb" title="동기화 '+ROMAN5[lv]+'에서 바뀜">'+ROMAN5[lv]+'</i>':'')+pwrHtml(x)+'</div>'+
+    '<div class="l1"><b>'+esc(x.name||"")+'</b>'+(chg?'<i class="chgb" title="동기화 '+ROMAN5[lv]+'에서 바뀜">'+ROMAN5[lv]+'</i>':'')+(function(){if(!chg)return "";var a=upAt(s,lv-1);var t=[];if(a&&+a.base!==+x.base)t.push('<s>'+a.base+'</s>');if(a&&+a.coin!==+x.coin)t.push('<s>+'+a.coin+'</s>');return t.length?'<span class="pwold" title="이전 위력">'+t.join(" ")+'→</span>':""})()+pwrHtml(x)+'</div>'+
     '<div class="l2">'+sub.join('<i class="dv"></i>')+(mini&&kws.length?'<span class="mk">'+kws.slice(0,4).map(function(k){return kwIco(k,"mki")}).join("")+'</span>':'')+(meta.length?'<span class="mt">'+meta.join(" · ")+'</span>':'')+'</div></div>'+(body?'<i class="chev"></i>':'')+'</div>'+
     (body?'<div class="usk-b">'+body+'</div>':'')+'</div>'}
 /* 기본 스킬 / 강화·특수 변형(n=0) 분리 */
@@ -10083,8 +10096,7 @@ function openUnit(id){
   h+=statRow(i,spd)+hpBar(i.st);
   var egos=U.egos.filter(function(e){return e.s===i.s}).sort(function(a,b){return GRADES.indexOf(a.g)-GRADES.indexOf(b.g)||b.id-a.id});
   h+=syncSeg("u",lv,4,i);
-  h+=lvDiffSec(i,lv);
-  h+='<div class="usec sk"><h3>스킬<span class="hh">눌러서 설명 · 코인 효과</span></h3>'+skillList(i,lv,true)+'</div>';
+  h+='<div class="usec sk"><h3>스킬<span class="hh">'+(lv>1?'빛나는 칸이 '+ROMAN5[lv]+'에서 바뀐 스킬':'눌러서 설명 · 코인 효과')+'</span></h3>'+lvDiffSec(i,lv)+skillList(i,lv,true)+'</div>';
   h+=passSec(i.ps,lv);
   if(egos.length){var ew=egoWith(i.id),top=egos.filter(function(e){return ew[e.id]}).sort(function(a,b){return ew[b.id]-ew[a.id]||GRADES.indexOf(a.g)-GRADES.indexOf(b.g)}).slice(0,5);
     h+='<div class="usec"><h3>E.G.O<small>'+egos.length+'</small><span class="hh">공격 유형 · 죄악 · 지원 키워드</span></h3>';
@@ -10186,10 +10198,10 @@ function lvDiff(s,lv){var e=s.up.filter(function(x){return +x.lv===+lv})[0];if(!
 function lvDiffSec(i,lv){if(lv<2)return "";var L=[];i.sk.concat(i.dk||[]).forEach(function(s){var d=lvDiff(s,lv);if(d)L.push(d)});
   var ps=i.ps.filter(function(p){return +p.u===+lv});
   if(!L.length&&!ps.length)return "";
-  var h='<div class="usec ldf"><h3><span class="ldt">'+(uii("up_"+(lv-1),"upi",ROMAN5[lv-1])||ROMAN5[lv-1])+'<i>→</i>'+(uii("up_"+lv,"upi",ROMAN5[lv])||ROMAN5[lv])+'</span>달라지는 점<small>'+(L.length+ps.length)+'</small><span class="hh">눌러서 해당 스킬 보기</span></h3><div class="ldl">';
+  var h='<details class="ldf"><summary><span class="ldt">'+(uii("up_"+(lv-1),"upi",ROMAN5[lv-1])||ROMAN5[lv-1])+'<i>→</i>'+(uii("up_"+lv,"upi",ROMAN5[lv])||ROMAN5[lv])+'</span>달라지는 점 모아 보기<small>'+(L.length+ps.length)+'</small><i class="chev"></i></summary><div class="ldl">';
   L.forEach(function(d){h+='<button class="ldr" data-skgo="'+d.s.id+'" style="--sc:'+(SINC[d.b.sin]||"#777")+'"><span class="ldn">'+(d.b.sin?sinIco(d.b.sin,"sinm"):'')+'<b>'+esc(d.b.name||"")+'</b></span><span class="ldi">'+d.items.join('<i class="dv"></i>')+'</span>'+(d.lines&&d.lines.length?'<span class="ldx">'+d.lines.join("")+'</span>':'')+'</button>'});
   ps.forEach(function(p){h+='<div class="ldr ps"><span class="ldn"><span class="ptype'+(p.k==="s"?" sup":"")+'">'+(p.k==="s"?"서포트":"패시브")+'</span><b>'+esc(p.nm)+'</b></span><span class="ldi"><span class="dnew">해금</span></span></div>'});
-  return h+'</div></div>'}
+  return h+'</div></details>'}
 function skGo(id){var el=document.querySelector('#detailBody .usk[data-skid="'+id+'"]');if(!el)return;var x=el.closest("details");if(x)x.open=true;
   if(el.classList.contains("has")&&!el.classList.contains("open")){el.classList.add("open");var hh=el.querySelector(".uskh");if(hh)hh.setAttribute("aria-expanded","true")}
   el.scrollIntoView({block:"center",behavior:"smooth"});el.classList.remove("flash");void el.offsetWidth;el.classList.add("flash")}
