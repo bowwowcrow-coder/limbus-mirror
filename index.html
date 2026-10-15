@@ -10286,11 +10286,11 @@ function gdV(g,vi){return g.v[Math.min(vi||0,g.v.length-1)]}
 function gdUnits(v){var out=[];v.m.forEach(function(x,ix){if(x[0]&&UBY[x[0]])out[ix+1]=UBY[x[0]]});return out}
 function gdDep(v,n){var u=gdUnits(v),d=v.dep.filter(function(s){return u[s]});for(var s=1;s<=12&&d.length<n;s++)if(u[s]&&d.indexOf(s)<0)d.push(s);return d.slice(0,n)}
 /* 덱 성격(출격 인원 기준): 3명 이상인 키워드, 2명 이상인 기프트 소속 */
-function gdProf(g){if(g._p&&g._p.n===deck.n)return g._p;var v=gdV(g,0),u=gdUnits(v),dep=gdDep(v,deck.n),kc={},fc={},GF=window.gifts?giftFacs():{};
+function gdProf(g){var DN=(deck&&deck.n)||g.n||7;if(g._p&&g._p.n===DN)return g._p;var v=gdV(g,0),u=gdUnits(v),dep=gdDep(v,DN),kc={},fc={},GF=window.gifts?giftFacs():{};
   dep.forEach(function(s){u[s].kw.forEach(function(k){kc[k]=(kc[k]||0)+1});u[s].asn.forEach(function(a){if(GF[a])fc[a]=(fc[a]||0)+1})});
   var kws=Object.keys(kc).filter(function(k){return kc[k]>=3}).sort(function(a,b){return kc[b]-kc[a]});
   var facs=Object.keys(fc).filter(function(f){return fc[f]>=2}).sort(function(a,b){return fc[b]-fc[a]});
-  g._p={n:deck.n,kws:kws,facs:facs,kc:kc,fc:fc};return g._p}
+  g._p={n:DN,kws:kws,facs:facs,kc:kc,fc:fc};return g._p}
 function gdOwn(v){var u=gdUnits(v),n=0,t=0;u.forEach(function(i){if(!i)return;t++;if(owned(i))n++});return {n:n,t:t}}
 /* 대표 인격: 출격 중 덱 키워드를 가진 최고 등급 (없으면 첫 칸) */
 function gdHero(g,u,dep,P){var best=null;dep.forEach(function(s){var i=u[s],sc=(P.kws[0]&&i.kw.indexOf(P.kws[0])>=0?10:0)+i.r;if(!best||sc>best.sc)best={s:s,sc:sc}});return best?best.s:dep[0]}
@@ -10727,8 +10727,9 @@ function xdSec(title,L,sub){if(!L.length)return "";var more=L.length>4;
     (more?'<details class="xdm"><summary>나머지 '+(L.length-4)+'개 더 보기</summary><div class="xdl">'+L.slice(4).map(function(x){return gdRow(x.g,x.tag)}).join("")+'</div></details>':'')+'</div>'}
 (function(){var _ou=openUnit;openUnit=function(id){_ou(id);var i=UBY[id];if(!i)return;var L=unitDecks(i.id);if(!L.length)return;
     var f=[].filter.call(document.querySelectorAll("#detailBody .usec"),function(x){var t=x.querySelector("h3");return t&&/^E\.G\.O/.test(t.textContent)})[0]||document.querySelector("#detailBody .ufoot");var h=xdSec("이 인격이 들어간 추천 덱",L,"출격 먼저");if(f)f.insertAdjacentHTML("beforebegin",h);else $("detailBody").insertAdjacentHTML("beforeend",h)};
-  if(typeof openDetail==="function"){var _od=openDetail;openDetail=function(name){_od(name);if(!window.GDECKS||!U)return;var L=giftDecks(name);if(!L.length)return;
-    $("detailBody").insertAdjacentHTML("beforeend",xdSec("이 기프트를 노리는 추천 덱",L,"공략 루트 기준"))}}})();
+  if(typeof openDetail==="function"){var _od=openDetail;openDetail=function(name){try{_od(name)}catch(e){if(window.toast)toast("상세 오류: "+(e&&e.message||e));throw e}
+    try{if(!window.GDECKS||!U)return;var L=giftDecks(name);if(!L.length)return;
+    $("detailBody").insertAdjacentHTML("beforeend",xdSec("이 기프트를 노리는 추천 덱",L,"공략 루트 기준"))}catch(e){if(window.console)console.warn(e)}}}})();
 
 /* ===== 선택지 · 적 도감 · 채광/사영 · 덱 평가 · 리세 ===== */
 var X=null,EVBY={},EVROOTS=[],ENBY={},EN_EVENTS={},cSel={cat:[],sin:[],pack:[]},nSel={kind:[],where:[],sin:[],cls:[]},cSort="",nSort="";
