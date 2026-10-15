@@ -2652,6 +2652,14 @@ em.st{font-style:normal}
 @media (max-width:759px){.tvl .tvg{width:46px;height:46px}}
 .tvl .tvg::before,.tvl .tvg::after{content:none!important}
 .tvl .tvg{aspect-ratio:auto}
+/* 결과 표: 얼굴만 작게 (이름은 눌러서) */
+.tvb:not(.mk) .tvis,.tvun .tvis{display:grid;grid-template-columns:repeat(auto-fill,minmax(36px,1fr));gap:2px;padding:2px}
+.tvb:not(.mk) .tvi,.tvun .tvi{width:auto;height:auto;aspect-ratio:1}
+.tvb:not(.mk) .tvn,.tvun .tvn{display:none}
+.tvb:not(.mk) .tvrow{min-height:46px}
+.tvb:not(.mk) .tvl{width:56px;padding:4px 2px}
+.tvb:not(.mk) .tvl .tvg{width:40px;height:40px}
+@media (min-width:760px){.tvb:not(.mk) .tvis,.tvun .tvis{grid-template-columns:repeat(auto-fill,minmax(52px,1fr))}.tvb:not(.mk) .tvl{width:84px}.tvb:not(.mk) .tvl .tvg{width:56px;height:56px}}
 </style>
 </head>
 <body>
