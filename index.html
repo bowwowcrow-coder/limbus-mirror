@@ -2527,6 +2527,17 @@ details.ldf>.ldl{padding:0 8px 8px}
 .hgf.gi{position:relative;background:none;border:0;box-shadow:none}
 .hgf.gi .sp{inset:0}
 .htc.tu .hta,.htc.td .hta{-webkit-mask-image:linear-gradient(90deg,transparent,#000 40%);mask-image:linear-gradient(90deg,transparent,#000 40%)}
+/* 설문 주관식 */
+.svxh{margin:16px 0 8px;padding:8px 12px;border-radius:4px;background:#0B0907;font:500 12px/1.5 "SCDream",sans-serif;color:#9E8F78}
+.svxh b{color:#E6DCC8}
+.svq.svx{border-style:dashed;border-left-style:solid}
+.svt{position:relative;margin-top:8px}
+.svt textarea.tcin{width:100%;box-sizing:border-box;min-height:52px;padding:9px 11px 20px;resize:vertical;font:500 13.5px/1.5 "SCDream",sans-serif}
+.svc{position:absolute;right:9px;bottom:7px;font:500 10.5px/1 "SCDream",sans-serif;color:#6F6556;pointer-events:none}
+@media (max-width:480px){.svt textarea.tcin{font-size:16px}}
+.svq[hidden]{display:none!important}
+.svq.svif{margin-left:14px;border-left-color:#6B5A36;animation:svin .2s ease}
+@keyframes svin{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
 /* ===== 파편 우선순위 티어표 ===== */
 .tvtt{margin-left:8px;font:400 15px/1 "KOTRA",sans-serif;color:#FFF3DF}
 #tierBody{display:flex;flex-direction:column;gap:10px}
@@ -11272,27 +11283,42 @@ function sendFeedback(){var msg=($("fbIn").value||"").trim();if(msg.length<10){t
   var cat=(document.querySelector('[data-fbc][aria-pressed="true"]')||{}).dataset;cat=cat?cat.fbc:"기타";var btn=$("fbSend");btn.disabled=true;
   api("sendFeedback",[cat,msg,curView,navigator.userAgent.slice(0,80),fbVid()],function(r){if(r==="wait"){btn.disabled=false;toast("건의는 10분에 한 번씩 보낼 수 있어요");return}try{localStorage.setItem("egoFbT",Date.now())}catch(e){}hide();toast("고마워요, 잘 전달됐어요")},function(){btn.disabled=false;toast("전송 실패 — 잠시 후 다시")})}
 
-/* ===== 설문 (객관식, 기기당 1회 · 다시 내면 덮어씀) ===== */
-var SV_ID="s1",SV_Q=[
-  {k:"login",t:"로그인 기능",d:"구글 계정으로 로그인하면 보유 인격·즐겨찾기를 폰과 PC에서 같이 쓸 수 있어요. 있으면?",o:["쓸 것 같다","없어도 된다","로그인은 싫다"]},
-  {k:"honor",t:"명예 · 칭호",d:"건의나 덱 평가에 참여하면 칭호·배지를 받는 기능, 관심 있으세요?",o:["재밌을 것 같다","상관없다","필요 없다"]},
+/* ===== 설문 (객관식 + 짧은 주관식, 기기·계정당 1회 · 다시 내면 덮어씀) =====
+   x:1 = 주관식(선택). 키가 t_로 시작해야 서버가 긴 글로 받고 욕설을 걸러요. */
+var SV_ID="s2",SV_Q=[
+  {k:"acct",t:"사이트 계정",d:"지금 로그인은 폰·PC 동기화용이에요. 닉네임·프로필 창·내 활동 모아보기가 있는 사이트 계정이 있으면?",o:["있으면 좋겠다","지금 동기화로 충분"]},
+  {k:"prof",t:"프로필에 있으면 좋을 것",d:"여러 개 골라도 돼요",o:["닉네임","내 덱 공개","보유 인격 현황","칭호 · 배지"],m:1,on:["acct","있으면 좋겠다"]},
   {k:"next",t:"다음에 열렸으면 하는 메뉴",d:"여러 개 골라도 돼요",o:["선택지 이벤트","적 정보","전출 시뮬레이터","유저 덱 공유"],m:1},
-  {k:"level",t:"거울던전 숙련도",o:["입문","하드 클리어","익스트림까지"]},
-  {k:"device",t:"주로 쓰는 기기",o:["폰","PC","둘 다"]}];
+  {k:"play",t:"게임을 주로 하는 기기",o:["PC","모바일"]},
+  {k:"device",t:"이 사이트를 주로 볼 기기",o:["PC","모바일"]},
+  {k:"t_good",t:"제일 유용한 기능",d:"한 줄이면 충분해요",x:1,ph:"예: 기프트 검색, 추천 덱"},
+  {k:"t_bad",t:"불편하거나 고쳤으면 하는 점",x:1,ph:"예: 폰에서 표가 너무 길어요"},
+  {k:"t_want",t:"꼭 생겼으면 하는 기능",x:1,ph:"예: 덱 공유 게시판"}];
+var SV_MAX=120;
+function svShow(q,A){if(!q.on)return true;return ((A||svAns())[q.on[0]]||[]).indexOf(q.on[1])>=0}
+function svReq(q,A){return !q.x&&svShow(q,A)}
 function svDone(){try{return localStorage.getItem("egoSv")===SV_ID}catch(e){return false}}
-function svStrip(){var d=svDone();return '<button class="hsv'+(d?" done":"")+'" id="svOpen"><span class="hsv-n">'+(d?"✓":"Q")+'</span><span class="hsv-t"><b>'+(d?"설문 참여 완료":"설문 · 30초")+'</b><small>'+(d?"고마워요! 답을 바꾸려면 다시 눌러 주세요":"로그인·칭호·다음 메뉴, 어떻게 생각하세요?")+'</small></span><i class="chev"></i></button>'}
+function svStrip(){var d=svDone();return '<button class="hsv'+(d?" done":"")+'" id="svOpen"><span class="hsv-n">'+(d?"✓":"Q")+'</span><span class="hsv-t"><b>'+(d?"설문 참여 완료":"설문 · 1분")+'</b><small>'+(d?"고마워요! 답을 바꾸려면 다시 눌러 주세요":"사이트 계정·프로필, 그리고 한마디")+'</small></span><i class="chev"></i></button>'}
 function svSaved(){try{return JSON.parse(localStorage.getItem("egoSvA")||"{}")}catch(e){return {}}}
 function openSurvey(){var A=svSaved(),h='<div class="phead"><div class="banner K"><div>설문</div></div></div><p class="dinfo" style="margin:8px 0 10px">익명이에요. 결과는 다음 업데이트 방향을 정하는 데만 써요.</p>';
-  SV_Q.forEach(function(q,ix){var cur=A[q.k]||[];h+='<section class="svq" data-svk="'+q.k+'"'+(q.m?' data-svm="1"':'')+'><h4><em>'+(ix+1)+'</em>'+esc(q.t)+(q.m?'<small>복수 선택</small>':'')+'</h4>'+(q.d?'<p>'+esc(q.d)+'</p>':'')+
-    '<div class="svo">'+q.o.map(function(o){return '<button class="chip" data-svv="'+esc(o)+'" aria-pressed="'+(cur.indexOf(o)>=0)+'"><span>'+esc(o)+'</span></button>'}).join("")+'</div></section>'});
+  var xs=false;SV_Q.forEach(function(q,ix){var cur=A[q.k]||[];
+    if(q.x&&!xs){xs=true;h+='<p class="svxh">여기부터는 <b>선택</b>이에요 · 비워 둬도 돼요 · 욕설이나 부적절한 말은 저장되지 않아요</p>'}
+    h+='<section class="svq'+(q.x?" svx":"")+(q.on?" svif":"")+'" data-svk="'+q.k+'"'+(q.m?' data-svm="1"':'')+(q.x?' data-svx="1"':'')+(q.on&&!svShow(q,A)?' hidden':'')+'><h4><em class="svn"></em>'+esc(q.t)+(q.m?'<small>복수 선택</small>':'')+'</h4>'+(q.d?'<p>'+esc(q.d)+'</p>':'')+
+    (q.x?'<div class="svt"><textarea class="tcin" rows="2" maxlength="'+SV_MAX+'" data-svt="1" placeholder="'+esc(q.ph||"")+'">'+esc(cur[0]||"")+'</textarea><small class="svc">'+String(cur[0]||"").length+' / '+SV_MAX+'</small></div>':
+    '<div class="svo">'+q.o.map(function(o){return '<button class="chip" data-svv="'+esc(o)+'" aria-pressed="'+(cur.indexOf(o)>=0)+'"><span>'+esc(o)+'</span></button>'}).join("")+'</div>')+'</section>'});
   h+='<div class="dib"><button class="tbtn K lit" id="svSend"><span>'+(svDone()?"답 바꾸기":"보내기")+'</span></button></div>';
   navStack=[];$("detailBody").innerHTML=h;$("detail").setAttribute("aria-label","설문");updBack();show("detail");svCheck()}
 function svPick(b){var sec=b.closest(".svq");if(!sec)return;var multi=sec.dataset.svm==="1",on=b.getAttribute("aria-pressed")!=="true";
   if(!multi)sec.querySelectorAll("[data-svv]").forEach(function(x){x.setAttribute("aria-pressed","false")});b.setAttribute("aria-pressed",multi?String(on):"true");svCheck()}
-function svAns(){var A={};document.querySelectorAll(".svq").forEach(function(s){A[s.dataset.svk]=[].map.call(s.querySelectorAll('[data-svv][aria-pressed="true"]'),function(b){return b.dataset.svv})});return A}
-function svCheck(){var A=svAns(),ok=SV_Q.every(function(q){return A[q.k]&&A[q.k].length}),b=$("svSend");if(b)b.disabled=!ok;
+function svAns(){var A={};document.querySelectorAll(".svq").forEach(function(s){if(s.hidden)return;
+  if(s.dataset.svx){var t=s.querySelector("[data-svt]"),v=t?t.value.replace(/\s+/g," ").trim().slice(0,SV_MAX):"";if(v)A[s.dataset.svk]=[v];return}
+  A[s.dataset.svk]=[].map.call(s.querySelectorAll('[data-svv][aria-pressed="true"]'),function(b){return b.dataset.svv})});return A}
+document.addEventListener("input",function(e){var t=e.target;if(!t||!t.dataset||!t.dataset.svt)return;var c=t.parentNode.querySelector(".svc");if(c)c.textContent=t.value.length+" / "+SV_MAX;var s=t.closest(".svq");if(s)s.classList.toggle("ok",!!t.value.trim())});
+function svCheck(){var A0=svAns();SV_Q.forEach(function(q){if(!q.on)return;var el=document.querySelector('.svq[data-svk="'+q.k+'"]');if(el)el.hidden=!svShow(q,A0)});
+  var n=0;document.querySelectorAll(".svq").forEach(function(s){var e=s.querySelector(".svn");if(e&&!s.hidden)e.textContent=++n});
+  var A=svAns(),ok=SV_Q.every(function(q){return !svReq(q,A)||(A[q.k]&&A[q.k].length)}),b=$("svSend");if(b)b.disabled=!ok;
   document.querySelectorAll(".svq").forEach(function(s){s.classList.toggle("ok",!!(A[s.dataset.svk]||[]).length)})}
-function sendSurvey(){var A=svAns();if(!SV_Q.every(function(q){return A[q.k]&&A[q.k].length})){toast("모든 문항에 답해 주세요");return}var b=$("svSend");b.disabled=true;
+function sendSurvey(){var A=svAns();if(!SV_Q.every(function(q){return !svReq(q,A)||(A[q.k]&&A[q.k].length)})){toast("선택 문항 말고는 모두 답해 주세요");return}var b=$("svSend");b.disabled=true;
   var L={};SV_Q.forEach(function(q){L[q.k]=q.t});api("sendSurvey",[SV_ID,JSON.stringify(A),fbVid(),JSON.stringify(L)],function(){try{localStorage.setItem("egoSv",SV_ID);localStorage.setItem("egoSvA",JSON.stringify(A))}catch(e){}hide();toast("고마워요, 설문이 전달됐어요");var fb=$("homeFb"),s=$("svOpen");if(fb&&s)s.outerHTML=svStrip()},function(){b.disabled=false;toast("전송 실패 — 잠시 후 다시")})}
 
 /* 바로 가기: 그림이 들어간 카드 4장 */
@@ -11647,7 +11673,7 @@ var _svStrip0=svStrip;svStrip=function(){rfLoad();return rfStrip()+_svStrip0()};
 var _sendSurvey0=sendSurvey;
 sendSurvey=function(){
   if(!rfLive()||RF.sv!==SV_ID){_sendSurvey0();return}
-  var A=svAns();if(!SV_Q.every(function(q){return A[q.k]&&A[q.k].length})){toast("모든 문항에 답해 주세요");return}
+  var A=svAns();if(!SV_Q.every(function(q){return !svReq(q)||(A[q.k]&&A[q.k].length)})){toast("선택 문항 말고는 모두 답해 주세요");return}
   needLogin("추첨은 한 사람당 한 번만 참여할 수 있어서 로그인이 필요해요.",function(){
     var b=$("svSend");if(b)b.disabled=true;var L={};SV_Q.forEach(function(q){L[q.k]=q.t});
     api("sendSurvey2",[SV_ID,JSON.stringify(A),AUTH.tok,JSON.stringify(L)],function(s){var o={};try{o=JSON.parse(s)}catch(e){}
