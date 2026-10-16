@@ -2738,6 +2738,19 @@ details.ldf>.ldl{padding:0 8px 8px}
 .rfp .tcin.n{flex:0 0 58px!important;width:58px!important}
 .rfr .tcin{width:auto!important}
 .rfp small{width:auto!important;padding:0!important;flex:none}
+/* 개인 설정 · 계정 칸 */
+.mysec.acc .accb{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:12px 14px;border:1px dashed #4A4237;border-radius:6px;background:#100D0A}
+.mysec.acc .accb.on{border-style:solid;border-color:#5C4C2C;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
+.acct{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:4px}
+.acct b{display:flex;align-items:center;gap:7px;font:600 14px/1.3 "SCDream",sans-serif;color:#F6DC8C}
+.acct span{font:500 12px/1.5 "SCDream",sans-serif;color:#9E8F78}
+.accd{flex:none;width:8px;height:8px;border-radius:50%;background:#8DC97A;box-shadow:0 0 8px rgba(141,201,122,.7)}
+.accbs{display:flex;gap:6px;flex:none}
+.accg{flex:none;display:inline-flex;align-items:center;gap:9px;height:40px;padding:0 16px 0 8px;border:1px solid #8A7444;border-radius:4px;background:linear-gradient(#2A2110,#17120B);box-shadow:inset 0 1px 0 rgba(255,226,138,.12);color:#F6DC8C;font:600 13.5px/1 "SCDream",sans-serif;cursor:pointer;transition:border-color .15s,box-shadow .15s}
+.accg:hover{border-color:#D9AE52;box-shadow:0 0 12px rgba(233,190,92,.25),inset 0 1px 0 rgba(255,226,138,.18)}
+.accg i{width:26px;height:26px;border-radius:50%;background:#FFF8EA url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 48'%3E%3Cpath fill='%23EA4335' d='M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.3l7.9 6.1C12.4 13.7 17.7 9.5 24 9.5z'/%3E%3Cpath fill='%234285F4' d='M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.3 5.7c4.3-4 7-9.9 7-17.1z'/%3E%3Cpath fill='%23FBBC05' d='M10.5 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C.9 16.6 0 20.2 0 24s.9 7.4 2.6 10.7l7.9-6.1z'/%3E%3Cpath fill='%2334A853' d='M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.3-5.7c-2 1.4-4.7 2.3-8.6 2.3-6.3 0-11.6-4.2-13.5-10l-7.9 6.1C6.6 42.6 14.6 48 24 48z'/%3E%3C/svg%3E") center/16px no-repeat}
+.accadm{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:8px;padding:8px 12px;border-radius:4px;background:#0B0907;font:500 12px/1.3 "SCDream",sans-serif;color:#9E8F78}
+@media (max-width:480px){.mysec.acc .accb{padding:11px 12px;gap:10px}.accg,.accbs{width:100%;justify-content:center}.accbs .chip{flex:1;justify-content:center}}
 </style>
 </head>
 <body>
@@ -10637,7 +10650,7 @@ function introCard(){return "";if(OWN.set)return "";try{if(localStorage.getItem(
 function renderMy(){if(!U){$("myBody").innerHTML='<div class="uload">인격 데이터를 불러오는 중</div>';loadUnits();return}
   var n=Object.keys(OWN.ids).filter(function(k){return OWN.ids[k]>0}).length;
   var h='<div class="mysec"><h3>보유 인격<small>'+(OWN.set?n+" / "+U.ids.length:"전부 보유로 취급")+'</small></h3>'+
-    '<p class="dinfo" style="margin:0 0 8px">덱 자동 편성과 계산이 이 설정을 따라요. 이 기기 브라우저에 저장되고, 아래 설정 코드로 다른 기기에 옮길 수 있어요. 로그인은 필요 없어요.</p>'+
+    '<p class="dinfo" style="margin:0 0 8px">덱 자동 편성과 계산이 이 설정을 따라요. 이 기기에 저장돼요. 위에서 로그인하면 다른 기기와 자동으로 이어지고, 로그인 없이도 아래 설정 코드로 옮길 수 있어요.</p>'+
     '<div class="ownhead"><span class="dseg"><button data-ownall="0" aria-pressed="'+(!OWN.set)+'">전부 보유</button><button data-ownall="1" aria-pressed="'+(OWN.set)+'">직접 체크</button></span>'+(OWN.set?'<button class="chip" data-ownall="fill"><span>전부 IV</span></button><button class="chip" data-ownall="clear"><span>모두 해제</span></button>':'')+'</div>';
   if(OWN.set){h+='<p class="ownh">얼굴을 누를 때마다 <b>보유(IV)</b> → <b>III</b> → <b>없음</b> 순으로 바뀌어요</p><div class="owng2">';U.sinners.forEach(function(sn){var list=U.ids.filter(function(i){return i.s===sn.n}).sort(uCmp),own=list.filter(owned).length;
     h+='<div class="owns2"><div class="ownsh">'+sinLogo(sn.n,"olg")+'<b>'+esc(sn.kr)+'</b><small>'+own+'/'+list.length+'</small><button class="ownall" data-owns="'+sn.n+'">'+(own===list.length?"전부 해제":"전부 보유")+'</button></div><div class="ownt">'+list.map(function(i){var lv=ownLv(i.id);
@@ -10991,7 +11004,7 @@ function loadRates(){if(_rateLoaded)return;_rateLoaded=true;
   api("getDeckRatings",[],function(r){try{RATES=JSON.parse(r)||{}}catch(e){RATES={}}if(curView==="deck")renderDeck()},function(){})}
 function rateDeck(no,score){try{var o=JSON.parse(localStorage.getItem("egoRates")||"{}");o[no]=score;localStorage.setItem("egoRates",JSON.stringify(o))}catch(e){}
   var r=RATES[no]||{s:0,n:0};RATES[no]=r;
-  if((window.google&&google.script&&google.script.run)||window.API_URL){api("rateDeck",[no,score,VID],function(res){try{var o=typeof res==="string"?JSON.parse(res):res;if(o&&o.n!=null)RATES[no]=o}catch(e){}renderDeck()},function(){toast("저장 실패 — 나중에 다시")});toast("평가 보냈어요")}
+  if((window.google&&google.script&&google.script.run)||window.API_URL){api("rateDeck",[no,score,(window.authOk&&authOk())?AUTH.tok:VID],function(res){try{var o=typeof res==="string"?JSON.parse(res):res;if(o&&o.n!=null)RATES[no]=o}catch(e){}renderDeck()},function(){toast("저장 실패 — 나중에 다시")});toast("평가 보냈어요")}
   else toast("미리보기에선 이 기기에만 저장돼요");renderDeck()}
 function dollIco(){var g=window.byName&&byName["봉이 인형"];var sp=g&&window.spr?spr(g):"";return sp?'<span class="gi doll">'+sp+'</span>':'<i class="dollt">★</i>'}
 function starsHtml(no,small){var r=RATES[no],avg=r&&r.n?r.s/r.n:0,mine=myRate(no);
@@ -11351,8 +11364,12 @@ function vAggLoad(kind,round,cb,force){var k=kind+"|"+round;if(VAGG[k]&&!force){
   api("getVotes",[kind,round],function(s){done(vParse(s)||{n:0,items:{}})},function(){done({n:0,items:{},err:1})})}
 function myLv(){return vLS("egoLv","")}
 function admKey(){return vLS("egoAdm","")}
+function vNeedLogin(){return !(VC&&VC.cfg&&VC.cfg.login===false)}
 function vCast(kind,round,obj,ok){if(!vOnline()){toast("미리보기에선 저장되지 않아요");return}
-  api("castVote",[kind,round,fbVid(),myLv(),JSON.stringify(obj)],function(r){if(r==="wait"){setTimeout(function(){vCast(kind,round,obj,ok)},2200);return}
+  var again=function(){vCast(kind,round,obj,ok)};
+  if(vNeedLogin()&&!authOk()){needLogin("투표는 한 사람이 여러 번 내지 못하게 로그인한 사람만 낼 수 있어요. 이메일은 저장하지 않아요.",again);return}
+  api("castVote",[kind,round,authOk()?AUTH.tok:fbVid(),myLv(),JSON.stringify(obj)],function(r){if(r==="wait"){setTimeout(again,2200);return}
+    if(r==="login"){authOut();needLogin("로그인이 풀렸어요. 다시 로그인하면 바로 저장돼요.",again);return}
     if(r!=="ok"){toast("저장 실패");return}delete VAGG[kind+"|"+round];ok&&ok()},function(){toast("저장 실패 — 잠시 후 다시")})}
 function vAdmin(what,obj,ok){api("adminSave",[admKey(),what,JSON.stringify(obj)],function(r){if(r==="ok"){VC=null;ok&&ok()}else toast(r==="denied"?"관리자 키가 맞지 않아요":"저장 실패")},function(){toast("저장 실패")})}
 function vTh(){return (VC&&VC.cfg&&+VC.cfg.th)||10}
@@ -11556,9 +11573,11 @@ document.addEventListener("keydown",function(e){if(e.key==="Enter"&&e.target&&e.
 (function(){var _rm=renderMy;renderMy=function(){_rm();var v=$("viewMy");if(!v||document.getElementById("admOpen"))return;var host=v.querySelector(".cf.gp .in")||v;var d=document.createElement("div");d.className="admw";d.innerHTML='<button class="admb" id="admOpen">'+(admOn()?"관리자 모드 켜짐":"운영자")+'</button>';host.appendChild(d)}})();
 
 /* ===== 구글 로그인 · 설문 추첨 =====
-   서버는 이메일을 저장하지 않고, 되돌릴 수 없는 계정키로만 기억함. 토큰은 이 탭에만(sessionStorage) 잠깐 보관. */
+   서버는 이메일을 저장하지 않고, 되돌릴 수 없는 계정키로만 기억함. 로그인하면 서버가 180일짜리 세션 토큰을 줘서 이 기기(localStorage)에 보관. */
 var AUTH={tok:"",exp:0,me:null},RF=null,_rfLoading=false,_gsi=false,_gsiCb=[];
-(function(){try{var o=JSON.parse(sessionStorage.getItem("egoTok")||"null");if(o&&o.exp>Date.now()){AUTH.tok=o.tok;AUTH.exp=o.exp}}catch(e){}})();
+(function(){try{var o=JSON.parse(localStorage.getItem("egoSess")||"null");if(o&&o.exp>Date.now()){AUTH.tok=o.tok;AUTH.exp=o.exp}}catch(e){}})();
+function authSave(){try{if(AUTH.tok)localStorage.setItem("egoSess",JSON.stringify({tok:AUTH.tok,exp:AUTH.exp}));else localStorage.removeItem("egoSess")}catch(e){}}
+function authOut(){AUTH.tok="";AUTH.exp=0;AUTH.me=null;authSave();try{google.accounts.id.disableAutoSelect()}catch(e){}}
 function authOk(){return AUTH.tok&&AUTH.exp>Date.now()+60000}
 function gsiLoad(cb){if(window.google&&google.accounts&&google.accounts.id){cb();return}_gsiCb.push(cb);if(_gsi)return;_gsi=true;
   var s=document.createElement("script");s.src="https://accounts.google.com/gsi/client";s.async=true;s.onload=function(){var L=_gsiCb;_gsiCb=[];L.forEach(function(f){f()})};s.onerror=function(){_gsi=false;toast("구글 로그인을 불러오지 못했어요")};document.head.appendChild(s)}
@@ -11569,12 +11588,13 @@ function openLogin(why,after){
   var w=$("rfLogin");if(!w){w=document.createElement("div");w.id="rfLogin";document.body.appendChild(w)}
   w.innerHTML='<div class="rfl-bg" data-rfclose="1"></div><div class="rfl" role="dialog" aria-modal="true" aria-label="로그인"><button class="rfl-x" data-rfclose="1" aria-label="닫기">✕</button>'+
     '<b class="rfl-t K">로그인</b><p class="rfl-d">'+esc(why||"")+'</p><div class="rfl-g"><span class="rfl-gf"><i><svg viewBox="0 0 48 48" width="18" height="18" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.3l7.9 6.1C12.4 13.7 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.3 5.7c4.3-4 7-9.9 7-17.1z"/><path fill="#FBBC05" d="M10.5 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C.9 16.6 0 20.2 0 24s.9 7.4 2.6 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.3-5.7c-2 1.4-4.7 2.3-8.6 2.3-6.3 0-11.6-4.2-13.5-10l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg></i>Google 계정으로 로그인</span><div id="gBtn"></div></div>'+
-    '<ul class="rfl-n"><li>이메일·이름은 <b>저장하지 않아요</b></li><li>구글 계정은 알아볼 수 없는 번호로만 기억해요 · 운영자도 누군지 몰라요</li><li>로그인은 이 탭을 닫으면 풀려요</li></ul></div>';
+    '<ul class="rfl-n"><li>이메일·이름은 <b>저장하지 않아요</b></li><li>구글 계정은 알아볼 수 없는 번호로만 기억해요 · 운영자도 누군지 몰라요</li><li>이 기기에서 로그인이 유지돼요 · 개인 설정에서 로그아웃</li></ul></div>';
   w.classList.add("on");
   gsiLoad(function(){
     google.accounts.id.initialize({client_id:G_CLIENT_ID,auto_select:false,cancel_on_tap_outside:true,callback:function(r){
-      var tok=r&&r.credential;if(!tok)return;AUTH.tok=tok;AUTH.exp=jwtExp(tok);try{sessionStorage.setItem("egoTok",JSON.stringify({tok:tok,exp:AUTH.exp}))}catch(e){}
-      api("login",[tok],function(s){var o={};try{o=JSON.parse(s)}catch(e){}if(!o.ok){AUTH.tok="";toast("로그인 확인 실패");return}AUTH.me=o.me||{};closeLogin();toast("로그인됐어요");after&&after()},function(){toast("로그인 확인 실패 — 잠시 후 다시")})}});
+      var tok=r&&r.credential;if(!tok)return;
+      api("login",[tok],function(s){var o={};try{o=JSON.parse(s)}catch(e){}if(!o.ok){authOut();toast("로그인 확인 실패");return}
+        if(o.sess){AUTH.tok=o.sess;AUTH.exp=Date.now()+(o.days||180)*86400000-86400000}else{AUTH.tok=tok;AUTH.exp=jwtExp(tok)}authSave();AUTH.me=o.me||{};closeLogin();toast("로그인됐어요");if(window.syncNow)syncNow(true);after&&after()},function(){toast("로그인 확인 실패 — 잠시 후 다시")})}});
     google.accounts.id.renderButton($("gBtn"),{theme:"filled_black",size:"large",shape:"rectangular",text:"signin_with",locale:"ko",width:280})})}
 function closeLogin(){var w=$("rfLogin");if(w)w.classList.remove("on")}
 document.addEventListener("click",function(e){var t=e.target;if(t.closest&&t.closest("[data-rfclose]"))closeLogin()});
@@ -11602,7 +11622,7 @@ sendSurvey=function(){
   needLogin("추첨은 한 사람당 한 번만 참여할 수 있어서 로그인이 필요해요.",function(){
     var b=$("svSend");if(b)b.disabled=true;var L={};SV_Q.forEach(function(q){L[q.k]=q.t});
     api("sendSurvey2",[SV_ID,JSON.stringify(A),AUTH.tok,JSON.stringify(L)],function(s){var o={};try{o=JSON.parse(s)}catch(e){}
-      if(!o.ok){if(b)b.disabled=false;if(o.err==="login"){AUTH.tok="";toast("로그인이 풀렸어요 — 다시 눌러 주세요")}else toast("전송 실패");return}
+      if(!o.ok){if(b)b.disabled=false;if(o.err==="login"){authOut();toast("로그인이 풀렸어요 — 다시 눌러 주세요")}else toast("전송 실패");return}
       try{localStorage.setItem("egoSv",SV_ID);localStorage.setItem("egoSvA",JSON.stringify(A))}catch(e){}
       if(o.t){RF.n=(RF.n||0)+(AUTH.me&&AUTH.me.t?0:1);AUTH.me=AUTH.me||{};AUTH.me.t=o.t}
       rfDone(o.t);var s2=$("svOpen");if(s2)s2.outerHTML=_svStrip0();rfPaint()},function(){if(b)b.disabled=false;toast("전송 실패 — 잠시 후 다시")})})};
@@ -11613,7 +11633,7 @@ function rfDone(t){var h='<div class="phead"><div class="banner K"><div>참여 �
 
 /* 당첨 확인 */
 function rfCheck(){needLogin("같은 구글 계정으로 로그인하면 당첨 결과를 볼 수 있어요.",function(){
-  api("raffleMe",[AUTH.tok],function(s){var o={};try{o=JSON.parse(s)}catch(e){}if(!o.ok){AUTH.tok="";toast("로그인이 풀렸어요 — 다시 눌러 주세요");return}
+  api("raffleMe",[AUTH.tok],function(s){var o={};try{o=JSON.parse(s)}catch(e){}if(!o.ok){authOut();toast("로그인이 풀렸어요 — 다시 눌러 주세요");return}
     var me=o.me||{},h='<div class="phead"><div class="banner K"><div>당첨 확인</div></div></div>';
     if(!me.t)h+='<p class="dinfo" style="margin:12px 0">이 계정으로는 이번 추첨에 참여한 기록이 없어요.</p>';
     else if(!me.drawn)h+='<div class="rft"><small>내 추첨 번호</small><b class="N">'+esc(me.t)+'</b></div><p class="dinfo" style="margin:10px 0">아직 추첨 전이에요.</p>';
@@ -11651,6 +11671,57 @@ document.addEventListener("click",function(e){var t=e.target;if(!t.closest)retur
   if(t.closest("#rfUndo")){if(Date.now()-_rfArm>3000){_rfArm=Date.now();toast("한 번 더 누르면 추첨을 취소해요");return}vAdmin("rundraw",{},function(){RF=null;toast("추첨을 취소했어요");rfLoad(rfAdmin)});return}
   if(t.closest("#rfPinSave")){var o={};document.querySelectorAll("[data-pin]").forEach(function(i){o[i.dataset.pin]=i.value.trim()});vAdmin("rpin",o,function(){toast("PIN을 저장했어요");rfAdmin()});return}
 },true);
+
+/* ===== 계정 · 기기 간 동기화 =====
+   로그인하면 보유 인격 · 저장한 덱 · 투표 기록이 계정에 저장되고, 다른 기기에서 로그인하면 그대로 이어짐.
+   항목마다 마지막으로 바꾼 시각(egoSyncT)을 기억해서, 더 최근에 바꾼 쪽이 이김. */
+var SYNC_RE=/^(egoOwn|egoDecks|egoDeckN|egoLv|egoErate|egoRv|egoRates|egoTier_[\w-]{1,24})$/,_syT=null,_syBusy=false,_syAgain=false,_syRaw=false;
+function syMeta(){try{return JSON.parse(localStorage.getItem("egoSyncT")||"{}")||{}}catch(e){return {}}}
+function syMetaSet(m){_syRaw=true;try{localStorage.setItem("egoSyncT",JSON.stringify(m))}catch(e){}_syRaw=false}
+(function(){try{var P=Storage.prototype,S=P.setItem,R=P.removeItem;
+  function mark(st,k){if(_syRaw||st!==window.localStorage||!SYNC_RE.test(k))return;var m=syMeta();m[k]=Date.now();syMetaSet(m);if(authOk())syLater()}
+  P.setItem=function(k,v){S.call(this,k,v);mark(this,k)};P.removeItem=function(k){R.call(this,k);mark(this,k)}}catch(e){}})();
+function syLater(){clearTimeout(_syT);_syT=setTimeout(function(){syncNow()},2500)}
+function syAt(){try{return +localStorage.getItem("egoSyncAt")||0}catch(e){return 0}}
+function syncNow(loud){if(!authOk()||!(window.API_URL||(window.google&&google.script&&google.script.run)))return;
+  if(_syBusy){_syAgain=true;return}_syBusy=true;
+  var m=syMeta(),P={};
+  try{for(var i=0;i<localStorage.length;i++){var k=localStorage.key(i);if(SYNC_RE.test(k))P[k]={v:localStorage.getItem(k),t:m[k]||0}}}catch(e){}
+  Object.keys(m).forEach(function(k){if(SYNC_RE.test(k)&&!P[k])P[k]={v:null,t:m[k]}});
+  api("sync",[AUTH.tok,JSON.stringify(P)],function(s){_syBusy=false;var o={};try{o=JSON.parse(s)}catch(e){}
+    if(!o.ok){if(o.err==="login"){authOut();accPaint();toast("로그인이 풀렸어요 — 개인 설정에서 다시 로그인")}else toast(o.err==="big"?"동기화할 내용이 너무 커요":"동기화 실패");return}
+    var d=o.d||{},mm=syMeta(),ch=[];
+    Object.keys(d).forEach(function(k){if(!SYNC_RE.test(k))return;var x=d[k],lt=mm[k]||0,cur=null;try{cur=localStorage.getItem(k)}catch(e){}
+      if(x.v===cur)return;if(!(+x.t>lt||(lt===0&&x.v!=null)))return;
+      _syRaw=true;try{if(x.v==null)localStorage.removeItem(k);else localStorage.setItem(k,x.v)}catch(e){}_syRaw=false;mm[k]=+x.t||0;ch.push(k)});
+    syMetaSet(mm);try{localStorage.setItem("egoSyncAt",Date.now())}catch(e){}
+    if(ch.length)syApply(ch);else if(loud)toast("동기화됐어요");accPaint();
+    if(_syAgain){_syAgain=false;syncNow()}},
+  function(){_syBusy=false;if(loud)toast("동기화 실패 — 잠시 후 다시")})}
+/* 받아온 값을 화면 상태에 반영 */
+function syApply(ch){
+  if(ch.indexOf("egoOwn")>=0){try{var o=JSON.parse(localStorage.getItem("egoOwn")||"{}");OWN=o&&o.ids?o:{set:false,ids:{}}}catch(e){}try{_presetCache={}}catch(e){}}
+  var v=$("viewMy");if(v&&v.offsetParent!==null)renderMy();
+  toast("다른 기기의 설정을 불러왔어요")}
+setTimeout(function(){if(authOk())syncNow()},1500);
+document.addEventListener("visibilitychange",function(){if(document.visibilityState==="visible"&&authOk()&&Date.now()-syAt()>60000)syncNow()});
+
+/* 개인 설정 맨 위: 계정 칸 */
+function accHtml(){var on=authOk(),at=syAt(),h='<h3>계정<small>'+(on?"로그인됨":"선택")+'</small></h3>';
+  if(!on)h+='<div class="accb"><div class="acct"><b>로그인하면 기기끼리 이어져요</b><span>보유 인격 · 저장한 덱 · 투표가 폰과 PC에서 똑같이 보여요. 이메일·이름은 저장하지 않아요.</span></div><button class="accg" data-acc="in"><i></i><span>구글로 로그인</span></button></div>';
+  else h+='<div class="accb on"><div class="acct"><b><i class="accd"></i>자동 동기화 켜짐</b><span>'+(at?"마지막 동기화 "+accTime(at):"동기화 준비 중")+' · 바꾸면 몇 초 뒤 저장돼요</span></div><div class="accbs"><button class="chip" data-acc="sync"><span>지금 동기화</span></button><button class="chip" data-acc="out"><span>로그아웃</span></button></div></div>';
+  if(window.admOn&&admOn()){var lg=!(VC&&VC.cfg&&VC.cfg.login===false);
+    h+='<div class="accadm"><span>운영 · 투표는 로그인한 사람만</span><button class="chip'+(lg?" on":"")+'" data-acc="vlogin" aria-pressed="'+lg+'"><span>'+(VC?(lg?"켜짐":"꺼짐"):"불러오는 중")+'</span></button></div>';
+    if(!VC)vCfgLoad(function(){accPaint()})}
+  return h}
+function accTime(t){var d=new Date(t),p=function(n){return ("0"+n).slice(-2)},td=new Date().toDateString()===d.toDateString();return (td?"오늘 ":(d.getMonth()+1)+"/"+d.getDate()+" ")+p(d.getHours())+":"+p(d.getMinutes())}
+function accPaint(){var b=$("myBody");if(!b)return;var s=$("accSec");if(!s){s=document.createElement("div");s.id="accSec";s.className="mysec acc";b.insertBefore(s,b.firstChild)}s.innerHTML=accHtml()}
+(function(){var _rm=renderMy;renderMy=function(){_rm();if(U)accPaint()}})();
+document.addEventListener("click",function(e){var t=e.target.closest&&e.target.closest("[data-acc]");if(!t)return;var a=t.dataset.acc;
+  if(a==="in")openLogin("한 번 로그인하면 이 기기에서 계속 유지돼요. 지금 이 기기의 설정이 계정에 올라가요.",function(){accPaint()});
+  else if(a==="sync")syncNow(true);
+  else if(a==="out"){authOut();accPaint();toast("로그아웃했어요 · 이 기기 설정은 그대로 남아요")}
+  else if(a==="vlogin"){if(!VC)return;var on=VC.cfg.login===false;vAdmin("vlogin",{on:on},function(){vCfgLoad(function(){accPaint();toast(on?"투표 로그인 필수 켬":"투표 로그인 필수 끔")})})}});
 
 /* ===== 입수 난이도 점수제 =====
    팩 비용(들어가야 하는 팩마다) + 재료 비용(가장 찾기 어려운 재료) + 조합 비용 */
