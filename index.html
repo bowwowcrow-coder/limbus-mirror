@@ -2673,6 +2673,67 @@ details.ldf>.ldl{padding:0 8px 8px}
 .tvb:not(.mk) .tvl{width:56px;padding:4px 2px}
 .tvb:not(.mk) .tvl .tvg{width:40px;height:40px}
 @media (min-width:760px){.tvb:not(.mk) .tvis,.tvun .tvis{grid-template-columns:repeat(auto-fill,minmax(52px,1fr))}.tvb:not(.mk) .tvl{width:84px}.tvb:not(.mk) .tvl .tvg{width:56px;height:56px}}
+/* 추첨 띠 (홈 설문 위) */
+#rfStrip:empty{display:none}
+.rfs{display:flex;align-items:center;gap:12px;width:100%;margin:0 0 8px;padding:11px 14px;border:1.5px solid #D9AE52;border-radius:6px;background:linear-gradient(100deg,#2A2110,#15110B 60%);box-shadow:0 0 14px rgba(233,190,92,.18);color:inherit;font:inherit;text-align:left}
+.rfs.off{border-style:dashed;border-color:#4A4237;background:#120F0B;box-shadow:none;cursor:pointer;justify-content:space-between}
+.rfs.off b{font:600 13px/1.2 "SCDream",sans-serif;color:#B8A68A}.rfs.off small{color:#7A7266}
+.rfs-i{flex:none;font-size:24px;line-height:1}
+.rfs-t{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.rfs-t>b{font:600 14px/1.25 "SCDream",sans-serif;color:#F6DC8C}
+.rfs-t>small{font:500 11.5px/1.3 "SCDream",sans-serif;color:#9E8F78}
+.rfs-p{display:flex;flex-wrap:wrap;gap:2px 10px;font:500 12px/1.35 "SCDream",sans-serif;color:#E6DCC8}
+.rfs-p em{font-style:normal;margin-right:4px;padding:0 4px;border-radius:2px;background:#D9A63F;color:#1A1408;font-weight:800;font-size:10.5px}
+.rfs-p b{color:#FFE28A}
+.rfs-b{flex:none;padding:0 14px!important}
+.rfa{flex:none;height:28px;padding:0 8px;border:1px solid #4A4237;border-radius:3px;background:#0E0C0A;color:#9E8F78;font:500 11px/1 "SCDream",sans-serif;cursor:pointer}
+@media (max-width:480px){.rfs{padding:10px 11px;gap:9px}.rfs-i{font-size:20px}.rfs-t>b{font-size:13px}}
+
+/* 로그인 창 */
+#rfLogin{position:fixed;inset:0;z-index:9000;display:none}
+#rfLogin.on{display:block}
+.rfl-bg{position:absolute;inset:0;background:rgba(0,0,0,.66)}
+.rfl{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:min(340px,calc(100% - 32px));padding:20px 18px 16px;border:1.5px solid #6B5A36;border-radius:8px;background:#15110D;box-shadow:0 10px 40px rgba(0,0,0,.6);text-align:center}
+.rfl-x{position:absolute;top:8px;right:8px;width:30px;height:30px;border:0;background:none;color:#9E8F78;font-size:16px;cursor:pointer}
+.rfl-t{display:block;font-size:20px;color:#FFF3DF;margin-bottom:6px}
+.rfl-d{margin:0 0 14px;font:500 13px/1.5 "SCDream",sans-serif;color:#CFC3AE}
+.rfl-g{display:flex;justify-content:center;min-height:44px}
+.rfl-n{margin:14px 0 0;padding:10px 12px 10px 26px;border-radius:4px;background:#0E0C0A;text-align:left;font:500 11.5px/1.55 "SCDream",sans-serif;color:#9E8F78}
+.rfl-n b{color:#E6DCC8}
+
+/* 참여 완료 · 당첨 확인 */
+.rft{display:flex;flex-direction:column;align-items:center;gap:4px;margin:14px 0 4px;padding:16px;border:1px solid #4A4237;border-radius:6px;background:#100D0A}
+.rft small{font:600 12px/1 "SCDream",sans-serif;color:#9E8F78}
+.rft b{font-size:30px;letter-spacing:.08em;color:#FFE28A}
+.rft.win{border-color:#D9AE52;background:linear-gradient(#2A2110,#120E08);box-shadow:0 0 18px rgba(233,190,92,.25)}
+.rft.win small{color:#F6DC8C;font-size:14px}.rft.win b{font:600 20px/1.3 "SCDream",sans-serif;letter-spacing:0}
+.rfpin{display:flex;align-items:center;gap:8px;margin:10px 0 0;padding:10px;border:1px dashed #6B5A36;border-radius:4px;background:#0B0907}
+.rfpin small{flex:none;font:600 11px/1.2 "SCDream",sans-serif;color:#9E8F78}
+.rfpin code{flex:1;min-width:0;font:600 16px/1.3 ui-monospace,Menlo,monospace;color:#FFF3DF;word-break:break-all;user-select:all}
+
+/* 운영자 추첨 관리 */
+.rfad{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.rfr{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.rfr>span{flex:none;width:56px;font:600 12px/1.2 "SCDream",sans-serif;color:#9E8F78}
+.rfr .tcin{flex:1;min-width:140px}
+.rfr small{width:100%;padding-left:66px;font-size:11px;color:#7A7266}
+.rfps{flex:1;display:flex;flex-direction:column;gap:6px}
+.rfp{display:flex;align-items:center;gap:6px}
+.rfp em{flex:none;font-style:normal;font:700 11px/1 "SCDream",sans-serif;color:#E8C547}
+.rfp .tcin{flex:1;min-width:0}.rfp .tcin.n{flex:none;width:58px}
+.rfh{margin:8px 0 0;font:600 13px/1.3 "SCDream",sans-serif;color:#E6DCC8}
+.rfws{display:flex;flex-direction:column;gap:6px}
+.rfw{display:flex;align-items:center;gap:8px}
+.rfw em{flex:none;font-style:normal;font:700 11px/1 "SCDream",sans-serif;color:#E8C547;width:28px}
+.rfw b{flex:none;width:76px;color:#FFE28A}
+.rfw .tcin{flex:1;min-width:0}
+.rfl{display:block!important;flex-direction:column}
+.rfl>*{writing-mode:horizontal-tb}
+.rfl-t{width:100%}
+.rfp .tcin{width:auto!important;flex:1 1 0!important;min-width:0!important}
+.rfp .tcin.n{flex:0 0 58px!important;width:58px!important}
+.rfr .tcin{width:auto!important}
+.rfp small{width:auto!important;padding:0!important;flex:none}
 </style>
 </head>
 <body>
@@ -11489,6 +11550,103 @@ document.addEventListener("keydown",function(e){if(e.key==="Enter"&&e.target&&e.
 
 /* 개인 설정 아래 관리자 모드 입구 (작게) */
 (function(){var _rm=renderMy;renderMy=function(){_rm();var v=$("viewMy");if(!v||document.getElementById("admOpen"))return;var host=v.querySelector(".cf.gp .in")||v;var d=document.createElement("div");d.className="admw";d.innerHTML='<button class="admb" id="admOpen">'+(admOn()?"관리자 모드 켜짐":"운영자")+'</button>';host.appendChild(d)}})();
+
+/* ===== 구글 로그인 · 설문 추첨 =====
+   서버는 이메일을 저장하지 않고, 되돌릴 수 없는 계정키로만 기억함. 토큰은 이 탭에만(sessionStorage) 잠깐 보관. */
+var AUTH={tok:"",exp:0,me:null},RF=null,_rfLoading=false,_gsi=false,_gsiCb=[];
+(function(){try{var o=JSON.parse(sessionStorage.getItem("egoTok")||"null");if(o&&o.exp>Date.now()){AUTH.tok=o.tok;AUTH.exp=o.exp}}catch(e){}})();
+function authOk(){return AUTH.tok&&AUTH.exp>Date.now()+60000}
+function gsiLoad(cb){if(window.google&&google.accounts&&google.accounts.id){cb();return}_gsiCb.push(cb);if(_gsi)return;_gsi=true;
+  var s=document.createElement("script");s.src="https://accounts.google.com/gsi/client";s.async=true;s.onload=function(){var L=_gsiCb;_gsiCb=[];L.forEach(function(f){f()})};s.onerror=function(){_gsi=false;toast("구글 로그인을 불러오지 못했어요")};document.head.appendChild(s)}
+function jwtExp(t){try{var p=JSON.parse(atob(t.split(".")[1].replace(/-/g,"+").replace(/_/g,"/")));return (p.exp||0)*1000}catch(e){return Date.now()+3000000}}
+/* 로그인 창: 화면 위에 작게 띄워서, 쓰던 설문 답이 날아가지 않게 */
+function openLogin(why,after){
+  if(!window.G_CLIENT_ID){toast("로그인 준비 중이에요");return}
+  var w=$("rfLogin");if(!w){w=document.createElement("div");w.id="rfLogin";document.body.appendChild(w)}
+  w.innerHTML='<div class="rfl-bg" data-rfclose="1"></div><div class="rfl" role="dialog" aria-modal="true" aria-label="로그인"><button class="rfl-x" data-rfclose="1" aria-label="닫기">✕</button>'+
+    '<b class="rfl-t K">로그인</b><p class="rfl-d">'+esc(why||"")+'</p><div id="gBtn" class="rfl-g"></div>'+
+    '<ul class="rfl-n"><li>이메일·이름은 <b>저장하지 않아요</b></li><li>구글 계정은 알아볼 수 없는 번호로만 기억해요 · 운영자도 누군지 몰라요</li><li>로그인은 이 탭을 닫으면 풀려요</li></ul></div>';
+  w.classList.add("on");
+  gsiLoad(function(){
+    google.accounts.id.initialize({client_id:G_CLIENT_ID,auto_select:false,cancel_on_tap_outside:true,callback:function(r){
+      var tok=r&&r.credential;if(!tok)return;AUTH.tok=tok;AUTH.exp=jwtExp(tok);try{sessionStorage.setItem("egoTok",JSON.stringify({tok:tok,exp:AUTH.exp}))}catch(e){}
+      api("login",[tok],function(s){var o={};try{o=JSON.parse(s)}catch(e){}if(!o.ok){AUTH.tok="";toast("로그인 확인 실패");return}AUTH.me=o.me||{};closeLogin();toast("로그인됐어요");after&&after()},function(){toast("로그인 확인 실패 — 잠시 후 다시")})}});
+    google.accounts.id.renderButton($("gBtn"),{theme:"filled_black",size:"large",shape:"rectangular",text:"signin_with",locale:"ko",width:260})})}
+function closeLogin(){var w=$("rfLogin");if(w)w.classList.remove("on")}
+document.addEventListener("click",function(e){var t=e.target;if(t.closest&&t.closest("[data-rfclose]"))closeLogin()});
+function needLogin(why,fn){if(authOk())fn();else openLogin(why,fn)}
+
+/* 추첨 설정 불러오기 */
+function rfLoad(cb){if(RF){cb&&cb();return}if(_rfLoading)return;_rfLoading=true;
+  api("getRaffle",[],function(s){_rfLoading=false;try{RF=JSON.parse(s)}catch(e){RF={on:false}}rfPaint();cb&&cb()},function(){_rfLoading=false})}
+function rfLive(){return RF&&RF.on&&!RF.drawn&&RF.cid&&!(RF.end&&Date.now()>Date.parse(RF.end+"T23:59:59+09:00"))}
+function rfPrizeTxt(){return (RF.prizes||[]).filter(function(p){return p.n>0}).map(function(p){return '<span><em>'+p.r+'등</em>'+esc(p.label)+' <b>'+p.n+'명</b></span>'}).join("")}
+function rfStrip(){if(!RF||!RF.on)return admOn()&&RF?'<div id="rfStrip"><button class="rfs off" data-rfadm="1"><b>추첨 관리</b><small>꺼져 있음</small></button></div>':'<div id="rfStrip"></div>';
+  var adm=admOn()?'<button class="rfa" data-rfadm="1">관리</button>':'';
+  if(RF.drawn)return '<div id="rfStrip"><div class="rfs won"><span class="rfs-i">🎁</span><span class="rfs-t"><b>'+esc(RF.title||"추첨")+' · 당첨 발표</b><small>로그인만 하면 당첨 여부와 상품 번호를 볼 수 있어요</small></span><button class="tbtn K lit rfs-b" data-rfcheck="1"><span>당첨 확인</span></button>'+adm+'</div></div>';
+  var end=RF.end?RF.end.slice(5).replace("-","/")+"까지":"";
+  return '<div id="rfStrip"><div class="rfs"><span class="rfs-i">🎁</span><span class="rfs-t"><b>설문 참여하고 스팀 기프트 받기</b><span class="rfs-p">'+rfPrizeTxt()+'</span><small>'+[end,RF.n?"참여 "+RF.n+"명":""].filter(Boolean).join(" · ")+'</small></span><button class="tbtn K lit rfs-b" data-rfgo="1"><span>참여</span></button>'+adm+'</div></div>'}
+function rfPaint(){var el=$("rfStrip");if(el)el.outerHTML=rfStrip()}
+/* 홈 설문 띠 앞에 추첨 띠를 붙임 */
+var _svStrip0=svStrip;svStrip=function(){rfLoad();return rfStrip()+_svStrip0()};
+
+/* 설문 보내기: 추첨 중이면 로그인 → 계정당 1회, 번호 발급 */
+var _sendSurvey0=sendSurvey;
+sendSurvey=function(){
+  if(!rfLive()||RF.sv!==SV_ID){_sendSurvey0();return}
+  var A=svAns();if(!SV_Q.every(function(q){return A[q.k]&&A[q.k].length})){toast("모든 문항에 답해 주세요");return}
+  needLogin("추첨은 한 사람당 한 번만 참여할 수 있어서 로그인이 필요해요.",function(){
+    var b=$("svSend");if(b)b.disabled=true;var L={};SV_Q.forEach(function(q){L[q.k]=q.t});
+    api("sendSurvey2",[SV_ID,JSON.stringify(A),AUTH.tok,JSON.stringify(L)],function(s){var o={};try{o=JSON.parse(s)}catch(e){}
+      if(!o.ok){if(b)b.disabled=false;if(o.err==="login"){AUTH.tok="";toast("로그인이 풀렸어요 — 다시 눌러 주세요")}else toast("전송 실패");return}
+      try{localStorage.setItem("egoSv",SV_ID);localStorage.setItem("egoSvA",JSON.stringify(A))}catch(e){}
+      if(o.t){RF.n=(RF.n||0)+(AUTH.me&&AUTH.me.t?0:1);AUTH.me=AUTH.me||{};AUTH.me.t=o.t}
+      rfDone(o.t);var s2=$("svOpen");if(s2)s2.outerHTML=_svStrip0();rfPaint()},function(){if(b)b.disabled=false;toast("전송 실패 — 잠시 후 다시")})})};
+function rfDone(t){var h='<div class="phead"><div class="banner K"><div>참여 완료</div></div></div>';
+  if(t)h+='<div class="rft"><small>내 추첨 번호</small><b class="N">'+esc(t)+'</b></div><p class="dinfo" style="margin:10px 0">번호는 외우지 않아도 돼요. 발표 뒤 같은 구글 계정으로 로그인해서 「당첨 확인」을 누르면 결과와 상품 번호가 나와요.</p>'+(RF.end?'<p class="dinfo">발표: '+esc(RF.end)+' 이후</p>':'');
+  else h+='<p class="dinfo" style="margin:10px 0">설문이 전달됐어요. 고마워요!</p>';
+  navStack=[];$("detailBody").innerHTML=h;$("detail").setAttribute("aria-label","참여 완료");updBack();show("detail")}
+
+/* 당첨 확인 */
+function rfCheck(){needLogin("같은 구글 계정으로 로그인하면 당첨 결과를 볼 수 있어요.",function(){
+  api("raffleMe",[AUTH.tok],function(s){var o={};try{o=JSON.parse(s)}catch(e){}if(!o.ok){AUTH.tok="";toast("로그인이 풀렸어요 — 다시 눌러 주세요");return}
+    var me=o.me||{},h='<div class="phead"><div class="banner K"><div>당첨 확인</div></div></div>';
+    if(!me.t)h+='<p class="dinfo" style="margin:12px 0">이 계정으로는 이번 추첨에 참여한 기록이 없어요.</p>';
+    else if(!me.drawn)h+='<div class="rft"><small>내 추첨 번호</small><b class="N">'+esc(me.t)+'</b></div><p class="dinfo" style="margin:10px 0">아직 추첨 전이에요.</p>';
+    else if(me.win)h+='<div class="rft win"><small>🎉 '+me.win.r+'등 당첨</small><b>'+esc(me.win.label)+'</b></div>'+(me.win.pin?'<div class="rfpin"><small>상품 번호 (PIN)</small><code id="rfPin">'+esc(me.win.pin)+'</code><button class="tbtn K" data-rfcopy="1"><span>복사</span></button></div><p class="dinfo" style="margin:8px 0">스팀 → 계정 → 「Steam 지갑 코드 등록」에 넣으면 돼요. 다른 사람에게 보여주지 마세요.</p>':'<p class="dinfo" style="margin:10px 0">상품 번호를 준비 중이에요. 조금 뒤 다시 확인해 주세요.</p>');
+    else h+='<div class="rft"><small>내 추첨 번호</small><b class="N">'+esc(me.t)+'</b></div><p class="dinfo" style="margin:10px 0">아쉽게도 이번엔 당첨되지 않았어요. 참여해 주셔서 고마워요!</p>';
+    navStack=[];$("detailBody").innerHTML=h;$("detail").setAttribute("aria-label","당첨 확인");updBack();show("detail")},function(){toast("확인 실패 — 잠시 후 다시")})})}
+
+/* 운영자: 추첨 관리 */
+var RFA=null;
+function rfAdmin(){api("raffleAdmin",[admKey()],function(s){if(s==="denied"){toast("관리자 키가 맞지 않아요");return}try{RFA=JSON.parse(s)}catch(e){toast("불러오기 실패");return}rfAdminPaint()},function(){toast("불러오기 실패")})}
+function rfAdminPaint(){var c=RFA.cfg,w=RFA.win||[];
+  var h='<div class="phead"><div class="banner K"><div>추첨 관리</div></div></div><div class="rfad">'+
+    '<label class="rfr"><span>진행</span><button class="chip" id="rfOn" aria-pressed="'+(!!c.on)+'"><span>'+(c.on?"켜짐":"꺼짐")+'</span></button></label>'+
+    '<label class="rfr"><span>제목</span><input class="tcin" id="rfTitle" value="'+esc(c.title||"")+'"></label>'+
+    '<label class="rfr"><span>마감일</span><input class="tcin" id="rfEnd" type="date" value="'+esc(c.end||"")+'"></label>'+
+    '<label class="rfr"><span>회차 ID</span><input class="tcin" id="rfId" value="'+esc(c.id||"r1")+'"><small>새 이벤트를 열 땐 바꾸세요 (r2…)</small></label>'+
+    '<div class="rfr"><span>상품</span><div class="rfps">'+(c.prizes||[]).map(function(p,ix){return '<div class="rfp" data-rfp="'+ix+'"><em>'+p.r+'등</em><input class="tcin" data-k="label" value="'+esc(p.label)+'"><input class="tcin n" data-k="n" type="number" min="0" max="50" value="'+p.n+'"><small>명</small></div>'}).join("")+'</div></div>'+
+    '<div class="dib"><button class="tbtn K lit" id="rfSave"><span>설정 저장</span></button></div>'+
+    '<h4 class="rfh">참여 '+((RF&&RF.n)||0)+'명 · '+(c.drawn?"추첨 완료":"추첨 전")+'</h4>';
+  if(!c.drawn)h+='<div class="dib"><button class="tbtn K" id="rfDraw"><span>지금 추첨하기</span></button></div><p class="dinfo">누르면 참여자 중에서 무작위로 뽑아요. 두 번 눌러야 실행돼요.</p>';
+  else{h+='<div class="rfws">'+w.map(function(x){return '<div class="rfw"><em>'+x.r+'등</em><b class="N">'+esc(x.t)+'</b><input class="tcin" data-pin="'+esc(x.t)+'" placeholder="PIN 붙여넣기" value="'+esc(x.pin||"")+'" autocomplete="off"></div>'}).join("")+'</div>'+
+    '<div class="dib"><button class="tbtn K lit" id="rfPinSave"><span>PIN 저장</span></button><button class="tbtn K" id="rfUndo"><span>추첨 취소</span></button></div><p class="dinfo">PIN은 당첨자 본인이 로그인했을 때만 보여요. 홈에는 당첨 번호도 나오지 않아요.</p>'}
+  h+='</div>';navStack=[];$("detailBody").innerHTML=h;$("detail").setAttribute("aria-label","추첨 관리");updBack();show("detail")}
+function rfCfgFromForm(){var c=Object.assign({},RFA.cfg);c.on=$("rfOn").getAttribute("aria-pressed")==="true";c.title=$("rfTitle").value.trim();c.end=$("rfEnd").value;c.id=$("rfId").value.trim()||c.id;
+  c.prizes=[].map.call(document.querySelectorAll(".rfp"),function(el,ix){var p=Object.assign({},RFA.cfg.prizes[ix]);p.label=el.querySelector('[data-k="label"]').value.trim();p.n=+el.querySelector('[data-k="n"]').value||0;return p});return c}
+var _rfArm=0;
+document.addEventListener("click",function(e){var t=e.target;if(!t.closest)return;var a;
+  if(t.closest("[data-rfgo]")){e.preventDefault();openSurvey();return}
+  if(t.closest("[data-rfcheck]")){e.preventDefault();rfCheck();return}
+  if(t.closest("[data-rfadm]")){e.preventDefault();e.stopPropagation();rfAdmin();return}
+  if(t.closest("[data-rfcopy]")){var p=$("rfPin");if(p){try{navigator.clipboard.writeText(p.textContent);toast("복사했어요")}catch(er){toast("길게 눌러 복사해 주세요")}}return}
+  if(t.closest("#rfOn")){a=$("rfOn");var on=a.getAttribute("aria-pressed")!=="true";a.setAttribute("aria-pressed",on);a.querySelector("span").textContent=on?"켜짐":"꺼짐";return}
+  if(t.closest("#rfSave")){var c=rfCfgFromForm();vAdmin("raffle",c,function(){RF=null;toast("저장했어요");rfLoad(rfAdmin)});return}
+  if(t.closest("#rfDraw")){if(Date.now()-_rfArm>3000){_rfArm=Date.now();toast("한 번 더 누르면 추첨해요");return}vAdmin("rdraw",{},function(){RF=null;toast("추첨했어요");rfLoad(rfAdmin)});return}
+  if(t.closest("#rfUndo")){if(Date.now()-_rfArm>3000){_rfArm=Date.now();toast("한 번 더 누르면 추첨을 취소해요");return}vAdmin("rundraw",{},function(){RF=null;toast("추첨을 취소했어요");rfLoad(rfAdmin)});return}
+  if(t.closest("#rfPinSave")){var o={};document.querySelectorAll("[data-pin]").forEach(function(i){o[i.dataset.pin]=i.value.trim()});vAdmin("rpin",o,function(){toast("PIN을 저장했어요");rfAdmin()});return}
+},true);
 
 /* ===== 입수 난이도 점수제 =====
    팩 비용(들어가야 하는 팩마다) + 재료 비용(가장 찾기 어려운 재료) + 조합 비용 */
