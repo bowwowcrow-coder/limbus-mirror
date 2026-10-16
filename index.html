@@ -2697,7 +2697,11 @@ details.ldf>.ldl{padding:0 8px 8px}
 .rfl-x{position:absolute;top:8px;right:8px;width:30px;height:30px;border:0;background:none;color:#9E8F78;font-size:16px;cursor:pointer}
 .rfl-t{display:block;font-size:20px;color:#FFF3DF;margin-bottom:6px}
 .rfl-d{margin:0 0 14px;font:500 13px/1.5 "SCDream",sans-serif;color:#CFC3AE}
-.rfl-g{display:flex;justify-content:center;min-height:44px}
+.rfl-g{position:relative;width:280px;max-width:100%;height:44px;margin:0 auto}
+.rfl-gf{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:10px;border:1px solid #8A7444;border-radius:4px;background:linear-gradient(#2A2110,#17120B);box-shadow:inset 0 1px 0 rgba(255,226,138,.12);font:600 14px/1 "SCDream",sans-serif;color:#F6DC8C;pointer-events:none;transition:border-color .15s,box-shadow .15s}
+.rfl-gf i{display:flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:50%;background:#FFF8EA}
+.rfl-g:hover .rfl-gf{border-color:#D9AE52;box-shadow:0 0 12px rgba(233,190,92,.25),inset 0 1px 0 rgba(255,226,138,.18)}
+#gBtn{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;opacity:.011;overflow:hidden}
 .rfl-n{margin:14px 0 0;padding:10px 12px 10px 26px;border-radius:4px;background:#0E0C0A;text-align:left;font:500 11.5px/1.55 "SCDream",sans-serif;color:#9E8F78}
 .rfl-n b{color:#E6DCC8}
 
@@ -11564,14 +11568,14 @@ function openLogin(why,after){
   if(!window.G_CLIENT_ID){toast("로그인 준비 중이에요");return}
   var w=$("rfLogin");if(!w){w=document.createElement("div");w.id="rfLogin";document.body.appendChild(w)}
   w.innerHTML='<div class="rfl-bg" data-rfclose="1"></div><div class="rfl" role="dialog" aria-modal="true" aria-label="로그인"><button class="rfl-x" data-rfclose="1" aria-label="닫기">✕</button>'+
-    '<b class="rfl-t K">로그인</b><p class="rfl-d">'+esc(why||"")+'</p><div id="gBtn" class="rfl-g"></div>'+
+    '<b class="rfl-t K">로그인</b><p class="rfl-d">'+esc(why||"")+'</p><div class="rfl-g"><span class="rfl-gf"><i><svg viewBox="0 0 48 48" width="18" height="18" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.3l7.9 6.1C12.4 13.7 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.3 5.7c4.3-4 7-9.9 7-17.1z"/><path fill="#FBBC05" d="M10.5 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C.9 16.6 0 20.2 0 24s.9 7.4 2.6 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.3-5.7c-2 1.4-4.7 2.3-8.6 2.3-6.3 0-11.6-4.2-13.5-10l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg></i>Google 계정으로 로그인</span><div id="gBtn"></div></div>'+
     '<ul class="rfl-n"><li>이메일·이름은 <b>저장하지 않아요</b></li><li>구글 계정은 알아볼 수 없는 번호로만 기억해요 · 운영자도 누군지 몰라요</li><li>로그인은 이 탭을 닫으면 풀려요</li></ul></div>';
   w.classList.add("on");
   gsiLoad(function(){
     google.accounts.id.initialize({client_id:G_CLIENT_ID,auto_select:false,cancel_on_tap_outside:true,callback:function(r){
       var tok=r&&r.credential;if(!tok)return;AUTH.tok=tok;AUTH.exp=jwtExp(tok);try{sessionStorage.setItem("egoTok",JSON.stringify({tok:tok,exp:AUTH.exp}))}catch(e){}
       api("login",[tok],function(s){var o={};try{o=JSON.parse(s)}catch(e){}if(!o.ok){AUTH.tok="";toast("로그인 확인 실패");return}AUTH.me=o.me||{};closeLogin();toast("로그인됐어요");after&&after()},function(){toast("로그인 확인 실패 — 잠시 후 다시")})}});
-    google.accounts.id.renderButton($("gBtn"),{theme:"filled_black",size:"large",shape:"rectangular",text:"signin_with",locale:"ko",width:260})})}
+    google.accounts.id.renderButton($("gBtn"),{theme:"filled_black",size:"large",shape:"rectangular",text:"signin_with",locale:"ko",width:280})})}
 function closeLogin(){var w=$("rfLogin");if(w)w.classList.remove("on")}
 document.addEventListener("click",function(e){var t=e.target;if(t.closest&&t.closest("[data-rfclose]"))closeLogin()});
 function needLogin(why,fn){if(authOk())fn();else openLogin(why,fn)}
