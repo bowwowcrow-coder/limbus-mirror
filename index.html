@@ -1926,6 +1926,11 @@ details.ldf>.ldl{padding:0 8px 8px}
 
 /* 지원 공격으로 확보하는 자원: 경고 아님 */
 .dv2 .aid,.aid{color:#9FB58A;font-style:normal}
+/* 보유 E.G.O */
+.eoc .owr.eog{top:3px;left:3px}.eoc .owr.eog .gri{height:11px;width:auto}
+.eoc.base .fci.owf{box-shadow:0 0 0 1.5px #5C5546}
+.erow.eoff{opacity:.5}.erow.eoff:hover{opacity:.8}
+.enown{flex:none;margin-left:6px;padding:2px 5px;border:1px solid #4A4237;border-radius:2px;font:600 10px/1 "SCDream",sans-serif;font-style:normal;color:#9E8F78}
 /* ===== 선택지 ===== */
 .cgrid{display:grid;gap:8px;grid-template-columns:1fr}
 @media (min-width:760px){.cgrid{grid-template-columns:1fr 1fr}}
@@ -10385,7 +10390,7 @@ function buildFor(c,n){
   var m={},dep=order.slice(0,n);dep.forEach(function(s){m[s]={id:pick[s].i.id,e:{}}});
   var E=prodOf(m,dep);
   order.slice(n).forEach(function(s){var best=null;U.ids.filter(function(i){return i.s===s&&owned(i)}).forEach(function(i){var sc=supFit(i,E)*12+iScore(i,c).s*0.5;if(!best||sc>best.sc)best={i:i,sc:sc}});m[s]={id:best.i.id,e:{}}});
-  dep.forEach(function(s){GRADES.forEach(function(g){var best=null;U.egos.filter(function(e){return e.s===s&&e.g===g}).forEach(function(e){var r=egoScore(e,E,c);if(!best||r.s>best.r.s)best={e:e,r:r}});if(best&&best.r.turns<=8)m[s].e[g]=best.e.id})});
+  dep.forEach(function(s){GRADES.forEach(function(g){var best=null;U.egos.filter(function(e){return e.s===s&&e.g===g&&egoOwned(e)}).forEach(function(e){var r=egoScore(e,E,c);if(!best||r.s>best.r.s)best={e:e,r:r}});if(best&&best.r.turns<=8)m[s].e[g]=best.e.id})});
   return {m:m,dep:dep}}
 function autoBuild(){var c=dCond();if(!condCount(c)&&!c.st){toast("먼저 키워드나 목표를 골라 주세요");return}
   if(!U.ids.some(owned)){toast("개인 설정에 보유 인격이 없어요");return}
@@ -10628,10 +10633,10 @@ function openPickUnit(s){var sn=U.sinners[s-1],cur=deck.m[s]&&deck.m[s].id,ci=cu
   h+='<h4 class="dsub">'+(ci?"다른 인격으로 바꾸기":"인격 선택")+(goal?' <small>조건에 맞는 순</small>':'')+'</h4><div class="dpicks">'+
     list.map(function(i,ix){var r=sc[i.id];return '<button class="urow pk'+(i.id===cur?" cur":"")+(owned(i)?"":" unown")+'" data-setu="'+s+'|'+i.id+'">'+face(i.id,"ef")+'<span class="nm"><span class="l1">'+(goal&&ix<3&&r.s>=40?'<em class="rec">추천</em>':'')+rkHtml(i.r)+'<b>'+esc(i.t)+'</b>'+(i.id===cur?'<em class="curb">현재</em>':'')+'</span><span class="sub">'+(i.kw.map(function(k){return kwIco(k,"tki")}).join(""))+'<span>'+esc((goal&&r.why.length?r.why:i.kwn).join(" · "))+'</span></span></span></button>'}).join("")+'</div>';
   navStack=[];$("detailBody").innerHTML=h;$("detail").setAttribute("aria-label",sn.kr+" 인격 선택");updBack();show("detail")}
-function openPickEgo(s,g){var sn=U.sinners[s-1],cur=deck.m[s]&&deck.m[s].e&&deck.m[s].e[g],list=U.egos.filter(function(e){return e.s===s&&e.g===g}).sort(function(a,b){return b.id-a.id});
+function openPickEgo(s,g){var sn=U.sinners[s-1],cur=deck.m[s]&&deck.m[s].e&&deck.m[s].e[g],list=U.egos.filter(function(e){return e.s===s&&e.g===g}).sort(function(a,b){return egoOwned(b)-egoOwned(a)||b.id-a.id});
   var h='<div class="phead"><div class="banner K"><div>'+esc(sn.kr)+' '+g+' E.G.O</div></div></div><div class="elist" style="margin-top:8px">'+
     (cur?'<button class="urow none" data-sete="'+s+'|'+g+'|0">장착 해제</button>':'')+
-    list.map(function(e){return egoRow(e).replace('data-ego="'+e.id+'"','data-sete="'+s+'|'+g+'|'+e.id+'"'+(e.id===cur?' data-cur="1"':''))}).join("")+'</div>'+
+    list.map(function(e){var r=egoRow(e).replace('data-ego="'+e.id+'"','data-sete="'+s+'|'+g+'|'+e.id+'"'+(e.id===cur?' data-cur="1"':''));return egoOwned(e)?r:r.replace('class="erow','class="erow eoff').replace(esc(e.nm)+'</b>',esc(e.nm)+'</b><i class="enown">미보유</i>')}).join("")+'</div>'+
     (cur?'<p class="dinfo" style="text-align:center"><button class="plink" data-ego="'+cur+'">현재 E.G.O 상세 보기</button></p>':'');
   navStack=[];$("detailBody").innerHTML=h;$("detail").setAttribute("aria-label",sn.kr+" "+g+" E.G.O 선택");updBack();show("detail")}
 function dSavedList(){try{return JSON.parse(localStorage.getItem("egoDecks")||"[]")}catch(e){return []}}
@@ -10655,12 +10660,36 @@ function renderMy(){if(!U){$("myBody").innerHTML='<div class="uload">인격 데�
   if(OWN.set){h+='<p class="ownh">얼굴을 누를 때마다 <b>보유(IV)</b> → <b>III</b> → <b>없음</b> 순으로 바뀌어요</p><div class="owng2">';U.sinners.forEach(function(sn){var list=U.ids.filter(function(i){return i.s===sn.n}).sort(uCmp),own=list.filter(owned).length;
     h+='<div class="owns2"><div class="ownsh">'+sinLogo(sn.n,"olg")+'<b>'+esc(sn.kr)+'</b><small>'+own+'/'+list.length+'</small><button class="ownall" data-owns="'+sn.n+'">'+(own===list.length?"전부 해제":"전부 보유")+'</button></div><div class="ownt">'+list.map(function(i){var lv=ownLv(i.id);
       return '<button class="owc'+(lv?"":" off")+(lv===3?" l3":"")+'" data-ownc="'+i.id+'" aria-pressed="'+(lv>0)+'" title="'+esc(i.t)+'">'+face(i.id,"owf")+'<span class="owr">'+rkHtml(i.r)+'</span>'+(lv===3?'<i class="owl">III</i>':'')+(lv?'':'<i class="owx"></i>')+'<span class="own">'+esc(i.t)+'</span></button>'}).join("")+'</div></div>'});h+='</div>'}
-  h+='</div><div class="mysec"><h3>설정 코드<small>다른 기기로 옮기기</small></h3><textarea id="ocIn" class="tcin" rows="2" placeholder="설정 코드 붙여넣기">'+(OWN.set?esc(ownCode()):"")+'</textarea><div class="dib"><button class="tbtn K" id="ocCopy"><span>내 설정 코드 복사</span></button><button class="tbtn K" id="ocLoad"><span>붙여넣은 코드 적용</span></button></div></div>';
+  h+='</div>'+egoOwnSec()+'<div class="mysec"><h3>설정 코드<small>다른 기기로 옮기기</small></h3><textarea id="ocIn" class="tcin" rows="2" placeholder="설정 코드 붙여넣기">'+(OWN.set||OWN.eset?esc(ownCode()):"")+'</textarea><div class="dib"><button class="tbtn K" id="ocCopy"><span>내 설정 코드 복사</span></button><button class="tbtn K" id="ocLoad"><span>붙여넣은 코드 적용</span></button></div></div>';
   if(window.admOn&&admOn())h+='<div class="mysec"><h3>이미지 진단<small>흐릴 때 이 칸을 캡처해서 보내 주세요</small></h3><pre class="diag">'+esc(Object.keys(window.ART_DIAG||{}).map(function(k){var d=ART_DIAG[k];return k+": "+(d.err?"로드 실패→서버 경유":(d.w+"px / 기대 "+d.exp+"px"+(d.fallback?" → 서버 경유":" OK")))+"\n   "+String(d.url||"").slice(0,70)}).join("\n")||"아직 불러온 그림 없음 (인격 탭 한번 열고 다시)")+'</pre></div>';
   var sc=window.scrollY;$("myBody").innerHTML=h;$("myCount").innerHTML=OWN.set?'<b>'+n+'</b> <i>/ '+U.ids.length+' 보유</i>':'<i>전부 보유</i>';window.scrollTo(0,sc)}
 /* 설정 코드: v1|id:lv,… (lv 4는 생략) */
-function ownCode(){var a=[];for(var k in OWN.ids){var v=OWN.ids[k];if(v>0)a.push(b36(+k)+(v===4?"":":"+v))}return "v1|"+a.join(",")}
-function ownFromCode(s){s=String(s||"").trim();if(s.indexOf("v1|")!==0)return false;var ids={};s.slice(3).split(",").forEach(function(x){if(!x)return;var q=x.split(":"),id=parseInt(q[0],36);if(id&&UBY[id])ids[id]=q[1]?+q[1]:4});OWN={set:true,ids:ids};ownSave();return true}
+/* 설정 코드: v1|인격(* = 전부 보유)|e보유E.G.O (E.G.O를 직접 체크할 때만) */
+function ownCode(){var a=[];for(var k in OWN.ids){var v=OWN.ids[k];if(v>0)a.push(b36(+k)+(v===4?"":":"+v))}
+  var c="v1|"+(OWN.set?a.join(","):"*");if(OWN.eset)c+="|e"+Object.keys(OWN.e||{}).filter(function(k){return OWN.e[k]}).map(function(k){return b36(+k-20000)}).join(",");return c}
+function ownFromCode(s){s=String(s||"").trim();if(s.indexOf("v1|")!==0)return false;var p=s.slice(3).split("|"),ids={},o={set:p[0]!=="*",ids:ids,eset:false,e:{}};
+  if(o.set)p[0].split(",").forEach(function(x){if(!x)return;var q=x.split(":"),id=parseInt(q[0],36);if(id&&UBY[id])ids[id]=q[1]?+q[1]:4});
+  if(p[1]&&p[1].charAt(0)==="e"){o.eset=true;p[1].slice(1).split(",").forEach(function(x){var id=parseInt(x,36)+20000;if(EBY[id])o.e[id]=1})}
+  OWN=o;ownSave();return true}
+/* 보유 E.G.O: OWN.eset이 아니면 전부 보유. 처음부터 있는 기본 ZAYIN(…01)은 늘 보유 */
+function egoBase(e){return e.id%100===1}
+function egoOwned(e){return !OWN.eset||egoBase(e)||!!(OWN.e&&OWN.e[e.id])}
+function egoOwnSec(){var L=U.egos,n=L.filter(egoOwned).length;
+  var h='<div class="mysec"><h3>보유 E.G.O<small>'+(OWN.eset?n+" / "+L.length:"전부 보유로 취급")+'</small></h3>'+
+    '<p class="dinfo" style="margin:0 0 8px">자동 편성이 가진 E.G.O만 넣어요. 처음부터 있는 기본 ZAYIN은 늘 보유로 쳐요.</p>'+
+    '<div class="ownhead"><span class="dseg"><button data-eownall="0" aria-pressed="'+(!OWN.eset)+'">전부 보유</button><button data-eownall="1" aria-pressed="'+(!!OWN.eset)+'">직접 체크</button></span>'+(OWN.eset?'<button class="chip" data-eownall="fill"><span>전부 체크</span></button><button class="chip" data-eownall="clear"><span>모두 해제</span></button>':'')+'</div>';
+  if(OWN.eset){h+='<p class="ownh">누를 때마다 <b>보유</b> ↔ <b>없음</b></p><div class="owng2">';
+    U.sinners.forEach(function(sn){var list=L.filter(function(e){return e.s===sn.n}).sort(function(a,b){return GRADES.indexOf(a.g)-GRADES.indexOf(b.g)||a.id-b.id}),own=list.filter(egoOwned).length;if(!list.length)return;
+      h+='<div class="owns2"><div class="ownsh">'+sinLogo(sn.n,"olg")+'<b>'+esc(sn.kr)+'</b><small>'+own+'/'+list.length+'</small><button class="ownall" data-eowns="'+sn.n+'">'+(own===list.length?"전부 해제":"전부 보유")+'</button></div><div class="ownt">'+
+        list.map(function(e){var o=egoOwned(e);return '<button class="owc eoc'+(o?"":" off")+(egoBase(e)?" base":"")+'" data-eown="'+e.id+'" aria-pressed="'+o+'" title="'+esc(e.nm)+'">'+eface(e.id,"owf")+'<span class="owr eog">'+gradeIco(e.g)+'</span>'+(o?'':'<i class="owx"></i>')+'<span class="own">'+esc(e.nm)+'</span></button>'}).join("")+'</div></div>'});
+    h+='</div>'}
+  return h+'</div>'}
+document.addEventListener("click",function(ev){var t=ev.target;if(!t.closest)return;
+  var b=t.closest("[data-eown]");if(b){var e=EBY[+b.dataset.eown];if(!e)return;if(egoBase(e)){toast("기본 E.G.O라 늘 보유예요");return}OWN.e=OWN.e||{};if(OWN.e[e.id])delete OWN.e[e.id];else OWN.e[e.id]=1;ownSave();renderMy();return}
+  var sb=t.closest("[data-eowns]");if(sb){var sn=+sb.dataset.eowns,L=U.egos.filter(function(e){return e.s===sn&&!egoBase(e)}),all=L.every(egoOwned);OWN.e=OWN.e||{};L.forEach(function(e){if(all)delete OWN.e[e.id];else OWN.e[e.id]=1});ownSave();renderMy();return}
+  var ab=t.closest("[data-eownall]");if(ab){var v=ab.dataset.eownall;OWN.e=OWN.e||{};
+    if(v==="0")OWN.eset=false;else if(v==="1"){OWN.eset=true;if(!Object.keys(OWN.e).length)U.egos.forEach(function(e){OWN.e[e.id]=1})}else if(v==="fill")U.egos.forEach(function(e){OWN.e[e.id]=1});else if(v==="clear")OWN.e={};
+    ownSave();renderMy();return}});
 var TC_EGO=[7,7,7,7,6];
 function tcBytes(s){var bin=atob(s.replace(/\s+/g,"").replace(/-/g,"+").replace(/_/g,"/")),a=new Uint8Array(bin.length);for(var i=0;i<bin.length;i++)a[i]=bin.charCodeAt(i);return a}
 function tcB64(bytes){var s="";for(var i=0;i<bytes.length;i++)s+=String.fromCharCode(bytes[i]);return btoa(s)}
