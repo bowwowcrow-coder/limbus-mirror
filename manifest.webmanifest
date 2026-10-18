@@ -1,0 +1,16 @@
+{
+  "name": "림버스 도감",
+  "short_name": "림버스 도감",
+  "description": "림버스 컴퍼니 인격·E.G.O 기프트·테마팩·추천 덱 정리 (비공식 팬 사이트)",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0E0B08",
+  "theme_color": "#0E0B08",
+  "lang": "ko",
+  "icons": [
+    {"src": "/pwa/icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "/pwa/icon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "/pwa/maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
