@@ -2845,6 +2845,11 @@ body{overscroll-behavior-x:none}
 .ec-m .cst i,.ec-m .cst i .sinb{width:21px;height:21px}
 .ec-m .cst i b{width:14px;height:14px;font-size:9px;line-height:14px}
 @media (min-width:760px){.eglist{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}}
+/* 티어 하단 바: 칸 이름 줄바꿈 방지 */
+.tvbar button{white-space:nowrap;letter-spacing:-.3px}
+@media (max-width:400px){.tvbar{gap:4px;padding:7px}.tvbar button{font-size:11px;padding:0 2px}.tvbar button.out{padding:0 8px}}
+/* 공유 창 버튼 크기 */
+.shopt>.tbtn{height:36px;padding:0 16px;font-size:13px}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -2954,7 +2959,7 @@ body{overscroll-behavior-x:none}
 <div class="shead"><div class="splate"><em class="N">LIMBUS COMPANY</em><b>림버스 도감</b></div><button class="stog" id="sideTog" aria-label="메뉴 접기"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button></div>
 <h3 class="stab">메뉴</h3>
 <nav class="snav"><a class="sn" href="#" data-view="home"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 4.5l8 7"/><path d="M6.5 10v10h11V10"/><path d="M10 20v-5h4v5"/></svg></i><span class="sl"><b>홈</b><em class="N">HOME</em></span></a><a class="sn on" href="#" data-view="gift" aria-current="page"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 9h15v3.5h-15zM6 12.5V20h12v-7.5M12 9v11"/><path d="M12 9C10.5 5.5 7 5 7 7.2 7 9 10 9 12 9c2 0 5 0 5-1.8C17 5 13.5 5.5 12 9z"/></svg></i><span class="sl"><b>기프트</b><em class="N">E.G.O GIFT</em></span></a><a class="sn" href="#" data-view="pack"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h8.5L19 7v13.5H7z"/><path d="M15.5 3.5V7H19"/><path d="M4.5 6.5v14h2.5"/><path d="M10 11h6M10 14h6M10 17h4"/></svg></i><span class="sl"><b>테마팩</b><em class="N">THEME PACK</em></span></a><a class="sn" href="#" data-view="unit"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 11.5a3.6 3.6 0 1 0 0-7.2 3.6 3.6 0 0 0 0 7.2z"/><path d="M5 20.5c.8-4.2 3.6-6.3 7-6.3s6.2 2.1 7 6.3"/><path d="M9.5 14.6 12 17.5l2.5-2.9"/></svg></i><span class="sl"><b>인격</b><em class="N">IDENTITY</em></span></a><a class="sn" href="#" data-view="deck"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 6.5h10v14h-10z"/><path d="M5.5 17.5v-14h10"/><path d="M11.5 11h4M11.5 14h4"/></svg></i><span class="sl"><b>덱</b><em class="N">DECK</em></span></a><a class="sn" href="#" data-view="choice"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.5h14v10H9.5L5 19z"/><path d="M8.5 9.5h7M8.5 12.5h5"/></svg></i><span class="sl"><b>선택지</b><em class="N">EVENT</em></span></a><a class="sn" href="#" data-view="enemy"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c4 0 7 3 7 7.2 0 2.4-1 4-2.4 5.2L17 20.5h-3l-.6-2h-2.8l-.6 2H7l.4-4.6C6 14.7 5 13.1 5 10.7 5 6.5 8 3.5 12 3.5z"/><circle cx="9.5" cy="11" r="1.2"/><circle cx="14.5" cy="11" r="1.2"/></svg></i><span class="sl"><b>적</b><em class="N">ENEMY</em></span></a><a class="sn" href="#" data-view="sim"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16v11H4z"/><path d="M8 10l2.5 2L8 14M12.5 14h4"/></svg></i><span class="sl"><b>시뮬레이터</b><em class="N">SIM</em></span></a><a class="sn" href="#" data-view="my"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.6M12 18.6v2.6M21.2 12h-2.6M5.4 12H2.8M18.5 5.5l-1.8 1.8M7.3 16.7l-1.8 1.8M18.5 18.5l-1.8-1.8M7.3 7.3 5.5 5.5"/></svg></i><span class="sl"><b>개인 설정</b><em class="N">MY</em></span></a></nav>
-<div class="sfoot"><span class="N">MIRROR DUNGEON</span><span>비공식 팬 사이트</span></div>
+<div class="sfoot"><span class="N">LIMBUS COMPANY</span><span>비공식 팬 사이트</span></div>
 </div></div></aside>
 <div class="wrap">
 
@@ -3059,7 +3064,7 @@ body{overscroll-behavior-x:none}
   </div></div>
   </div>
   <div class="view" id="viewHome" hidden>
-  <div class="hbar"><div class="mwrap"><button class="mbtn" aria-haspopup="menu" aria-expanded="false" aria-label="메뉴"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4.5h10M3 8h10M3 11.5h10"/></svg></button></div><span class="hbt">거울던전 사전</span></div>
+  <div class="hbar"><div class="mwrap"><button class="mbtn" aria-haspopup="menu" aria-expanded="false" aria-label="메뉴"><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M3 4.5h10M3 8h10M3 11.5h10"/></svg></button></div><span class="hbt">림버스 도감</span></div>
   <div class="cf gp"><div class="in">
     <span class="screw" style="top:6px;left:6px"></span><span class="screw" style="top:6px;right:6px"></span>
     <span class="screw" style="bottom:6px;left:6px"></span><span class="screw" style="bottom:6px;right:6px"></span>
@@ -3116,7 +3121,7 @@ body{overscroll-behavior-x:none}
   </div></div>
   </div>
 
-  <p class="credit">본 사이트에는 S-Core에서 제공한 에스코어 드림, KOTRA에서 제공한 KOTRA 볼드체가 적용되어 있습니다.<br>비공식 팬 사이트이며 게임 관련 모든 권리는 Project Moon에 있습니다.<br>기프트 설명 출처: 나무위키 「Limbus Company/거울 던전/E.G.O 기프트」 문서 (CC BY-NC-SA 2.0 KR)를 요약·재구성</p>
+  <p class="credit">본 사이트에는 S-Core에서 제공한 에스코어 드림, KOTRA에서 제공한 KOTRA 볼드체가 적용되어 있습니다.<br>비공식 팬 사이트이며 게임 관련 모든 권리는 Project Moon에 있습니다.<br>기프트 설명 출처: 나무위키 「Limbus Company/거울 던전/E.G.O 기프트」 문서 (CC BY-NC-SA 2.0 KR)를 요약·재구성<br><a href="privacy.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">개인정보 처리방침</a></p>
 </div>
 
 <div class="scrim" id="scrim"></div>
@@ -11833,7 +11838,7 @@ function openLogin(why,after){
   var w=$("rfLogin");if(!w){w=document.createElement("div");w.id="rfLogin";document.body.appendChild(w)}
   w.innerHTML='<div class="rql-bg" data-rfclose="1"></div><div class="rql" role="dialog" aria-modal="true" aria-label="로그인"><button class="rql-x" data-rfclose="1" aria-label="닫기">✕</button>'+
     '<b class="rql-t K">로그인</b><p class="rql-d">'+esc(why||"")+'</p><div class="rql-g"><span class="rql-gf"><i><svg viewBox="0 0 48 48" width="18" height="18" aria-hidden="true"><path fill="#EA4335" d="M24 9.5c3.5 0 6.6 1.2 9.1 3.6l6.8-6.8C35.8 2.4 30.3 0 24 0 14.6 0 6.6 5.4 2.6 13.3l7.9 6.1C12.4 13.7 17.7 9.5 24 9.5z"/><path fill="#4285F4" d="M46.1 24.5c0-1.6-.1-3.1-.4-4.5H24v9h12.4c-.5 2.9-2.2 5.3-4.6 6.9l7.3 5.7c4.3-4 7-9.9 7-17.1z"/><path fill="#FBBC05" d="M10.5 28.6c-.5-1.4-.8-3-.8-4.6s.3-3.2.8-4.6l-7.9-6.1C.9 16.6 0 20.2 0 24s.9 7.4 2.6 10.7l7.9-6.1z"/><path fill="#34A853" d="M24 48c6.5 0 11.9-2.1 15.9-5.8l-7.3-5.7c-2 1.4-4.7 2.3-8.6 2.3-6.3 0-11.6-4.2-13.5-10l-7.9 6.1C6.6 42.6 14.6 48 24 48z"/></svg></i>Google 계정으로 로그인</span><div id="gBtn"></div></div>'+
-    '<ul class="rql-n"><li>이메일·이름은 <b>저장하지 않아요</b></li><li>구글 계정은 알아볼 수 없는 번호로만 기억해요 · 운영자도 누군지 몰라요</li><li>이 기기에서 로그인이 유지돼요 · 개인 설정에서 로그아웃</li></ul></div>';
+    '<ul class="rql-n"><li>이메일·이름은 <b>저장하지 않아요</b></li><li>구글 계정은 알아볼 수 없는 번호로만 기억해요 · 운영자도 누군지 몰라요</li><li>이 기기에서 로그인이 유지돼요 · 개인 설정에서 로그아웃</li><li><a href="privacy.html" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">개인정보 처리방침</a></li></ul></div>';
   w.classList.add("on");
   gsiLoad(function(){
     google.accounts.id.initialize({client_id:G_CLIENT_ID,auto_select:false,cancel_on_tap_outside:true,callback:function(r){
@@ -11976,7 +11981,7 @@ function shOnline(){return !!(window.API_URL||(window.google&&google.script&&goo
 function shErr(e){return {login:"로그인이 풀렸어요 — 다시 로그인해 주세요",nick:"먼저 닉네임을 정해 주세요",word:"쓸 수 없는 말이 들어 있어요. 다르게 바꿔 주세요",taken:"이미 누가 쓰는 닉네임이에요",form:"닉네임은 2~12자 한글·영문·숫자로 · 자음만, 숫자만, 같은 글자 반복은 안 돼요",title:"제목을 2자 이상 적어 주세요",wait:"1분에 한 번만 올릴 수 있어요",many:"덱은 30개까지 올릴 수 있어요",code:"덱 정보가 이상해요",gone:"지워진 덱이에요",owner:"내 덱만 지울 수 있어요"}[e]||"처리하지 못했어요 — 잠시 후 다시"}
 function shJ(s){try{return typeof s==="string"?JSON.parse(s):s||{}}catch(e){return {}}}
 function shLoad(cb,force){if(SH.items&&!force){cb&&cb();return}if(cb)_shq.push(cb);if(SH.loading)return;SH.loading=true;
-  api("deckList",[],function(s){SH.loading=false;var o=shJ(s);SH.items=o.items||[];var q=_shq;_shq=[];q.forEach(function(f){f()})},function(){SH.loading=false;SH.items=SH.items||[];var q=_shq;_shq=[];q.forEach(function(f){f()});toast("유저 덱을 불러오지 못했어요")})}
+  api("deckList",[],function(s){SH.loading=false;var o=shJ(s);SH.items=o.items||[];SH.fail=false;var q=_shq;_shq=[];q.forEach(function(f){f()})},function(){SH.loading=false;if(!SH.items){SH.items=[];SH.fail=true}var q=_shq;_shq=[];q.forEach(function(f){f()})})}
 function shMe(cb){if(!authOk()){SH.me=null;cb&&cb();return}if(SH.meLoading)return;SH.meLoading=true;
   api("myProfile",[AUTH.tok],function(s){SH.meLoading=false;var o=shJ(s);if(o.ok)SH.me=o;else if(o.err==="login"){authOut()}cb&&cb()},function(){SH.meLoading=false;cb&&cb()})}
 function shDeck(x){if(!x._d){x._d=(typeof deckFromCode==="function"&&U)?deckFromCode(x.c):null}return x._d}
@@ -12003,7 +12008,7 @@ function renderShare(){var el=$("shareBody");if(!el)return;
     '<span class="dseg"><button data-shsort="new" aria-pressed="'+(SH.sort==="new")+'">최신</button><button data-shsort="top" aria-pressed="'+(SH.sort==="top")+'">추천순</button></span></div>'+
     '<div class="shfil"><button class="chip" data-shkw="" aria-pressed="'+(!SH.kw)+'"><span>전체</span></button>'+KW7.map(function(k){return '<button class="chip" data-shkw="'+k+'" aria-pressed="'+(SH.kw===k)+'">'+kwIco(k,"kwc")+'<span>'+esc(KWKR[k])+'</span></button>'}).join("")+'</div>'+
     '<div class="shfil sm">'+[["","모든 모드"]].concat(DMODES.map(function(m){return [m[0],m[1]]})).map(function(m){return '<button class="chip" data-shmode="'+m[0]+'" aria-pressed="'+(SH.mode===m[0])+'"><span>'+esc(m[1])+'</span></button>'}).join("")+'</div>';
-  h+=L.length?'<div class="shg">'+L.map(shCard).join("")+'</div>':'<div class="dempty">'+((SH.items||[]).length?"조건에 맞는 덱이 없어요.":"아직 올라온 덱이 없어요. 첫 번째로 올려 보세요!")+'</div>';
+  h+=L.length?'<div class="shg">'+L.map(shCard).join("")+'</div>':'<div class="dempty">'+((SH.items||[]).length?"조건에 맞는 덱이 없어요.":(SH.fail?"유저 덱을 불러오지 못했어요. 인터넷 연결을 확인하고 다시 시도해 주세요.":"아직 올라온 덱이 없어요. 첫 번째로 올려 보세요!"))+(SH.fail?'<div class="dib" style="justify-content:center"><button class="tbtn K" data-shretry="1"><span>다시 불러오기</span></button></div>':'')+'</div>';
   var sy=window.scrollY,ae=document.activeElement&&document.activeElement.id;el.innerHTML=h;window.scrollTo(0,sy);if(ae==="shQ"){var qi=$("shQ");qi.focus();qi.setSelectionRange(qi.value.length,qi.value.length)}}
 function shFind(id){return (SH.items||[]).filter(function(x){return x.id===id})[0]}
 function openShared(id){var x=shFind(id);if(!x){shLoad(function(){if(shFind(id))openShared(id);else toast("지워졌거나 없는 덱이에요")},true);return}
@@ -12063,6 +12068,7 @@ function shSend(){var b=$("shSend");if(!b||b.disabled)return;var nick=$("shNick"
 function shSaveProf(){var n=($("myNick").value||"").trim(),sh=$("myShow").checked;if(n.length<2){toast("닉네임은 2자 이상이에요");return}
   api("setProfile",[AUTH.tok,JSON.stringify({nick:n,show:sh})],function(s){var o=shJ(s);if(!o.ok){toast(shErr(o.err));return}SH.me.nick=o.nick;SH.me.show=sh;SH.items=null;toast("프로필을 저장했어요");accPaint()},function(){toast("저장하지 못했어요")})}
 /* 클릭 */
+document.addEventListener("click",function(e){if(e.target.closest&&e.target.closest("[data-shretry]")){SH.items=null;SH.fail=false;renderShare()}});
 document.addEventListener("click",function(e){var t=e.target;if(!t.closest)return;var a;
   if((a=t.closest("[data-shopen]"))){openShared(a.dataset.shopen);return}
   if((a=t.closest("[data-shnick]"))){e.preventDefault();openProfile(a.dataset.shnick);return}
