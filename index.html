@@ -2823,28 +2823,6 @@ body{overscroll-behavior-x:none}
 .sl em{min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
 
 /* E.G.O 목록 카드 */
-.eglist .ecard{position:relative;display:flex;flex-direction:column;min-width:0;padding:0;border:1px solid #3A3328;border-radius:6px;background:#0E0C0A;color:inherit;text-align:left;font:inherit;cursor:pointer;overflow:hidden;box-shadow:inset 0 -2px 0 var(--gc,#6F6556);transition:border-color .15s,transform .15s}
-.eglist .ecard:hover,.eglist .ecard:focus-visible{border-color:var(--gc);outline:none}
-.ec-a{position:relative;display:block;width:100%;aspect-ratio:4/1;overflow:hidden;background:#15110D}
-.ec-a .ebn{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto}
-.ec-a::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,8,6,.85),rgba(10,8,6,.15) 45%,transparent),linear-gradient(0deg,rgba(10,8,6,.75),transparent 55%)}
-.ec-g{position:absolute;z-index:2;top:7px;left:8px;line-height:0}
-.ec-g .gri{height:22px;filter:drop-shadow(0 1px 2px #000)}
-.ec-s{position:absolute;z-index:2;left:8px;bottom:6px;display:flex;align-items:center;gap:5px;font:600 12px/1 "SCDream",sans-serif;color:#E6DCC8;text-shadow:0 1px 2px #000}
-.ec-s .esl{height:20px;width:auto;filter:drop-shadow(0 1px 2px #000)}
-.ec-s i{font-style:normal}
-.ec-u{position:absolute;z-index:2;top:7px;right:7px;margin:0}
-.ec-b{display:flex;flex-direction:column;gap:6px;padding:8px 10px 10px}
-.ec-b>b{font:600 15px/1.3 "SCDream",sans-serif;color:#FFF3DF;word-break:keep-all;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}
-.ec-m{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:24px}
-.ec-i{display:inline-flex;align-items:center;gap:4px;min-width:0;flex-wrap:wrap}
-.ec-i .eai,.ec-i .esi{height:18px;width:auto}
-.ec-i .eki{height:19px;width:19px;object-fit:contain}
-.ec-i .dv{width:1px;height:12px;background:#4A4237;margin:0 2px}
-.ec-m .cst{gap:8px;padding:0 4px 4px 0}
-.ec-m .cst i,.ec-m .cst i .sinb{width:21px;height:21px}
-.ec-m .cst i b{width:14px;height:14px;font-size:9px;line-height:14px}
-@media (min-width:760px){.eglist{grid-template-columns:repeat(auto-fill,minmax(300px,1fr))}}
 /* 티어 하단 바: 칸 이름 줄바꿈 방지 */
 .tvbar button{white-space:nowrap;letter-spacing:-.3px}
 @media (max-width:400px){.tvbar{gap:4px;padding:7px}.tvbar button{font-size:11px;padding:0 2px}.tvbar button.out{padding:0 8px}}
@@ -2858,6 +2836,33 @@ body{overscroll-behavior-x:none}
 .gtips li{font:500 13px/1.6 "SCDream",sans-serif;color:#D9CBAA}
 .gtips li::marker{color:var(--gold);font-weight:700}
 .gset button{height:32px;font-size:12.5px}
+
+/* E.G.O 목록: 일러 크게 (그림자 없이) */
+.eglist{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+@media (min-width:600px){.eglist{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:900px){.eglist{grid-template-columns:repeat(auto-fill,minmax(190px,1fr))}}
+.eglist .ecard{--gc:#6F6556;position:relative;display:flex;flex-direction:column;min-width:0;padding:0;border:1px solid #3A3328;border-radius:6px;background:#0E0C0A;color:inherit;text-align:left;font:inherit;cursor:pointer;overflow:hidden;transition:border-color .15s,transform .15s}
+.eglist .ecard.g-ZAYIN{--gc:#C9B98A}.eglist .ecard.g-TETH{--gc:#5FA35A}.eglist .ecard.g-HE{--gc:#D9A33A}.eglist .ecard.g-WAW{--gc:#8C5AC8}.eglist .ecard.g-ALEPH{--gc:#D2463C}
+.eglist .ecard:hover,.eglist .ecard:focus-visible{border-color:var(--gc);outline:none}
+@media (hover:hover){.eglist .ecard:hover{transform:translateY(-2px)}}
+.ec-a{position:relative;display:block;width:100%;aspect-ratio:1/1;overflow:hidden;background:#15110D;border-bottom:2px solid var(--gc)}
+.ec-a .fci.eca{position:absolute;inset:0;display:block;width:100%;height:100%;border-radius:0;box-shadow:none}
+.ec-a .fci.eca img{width:100%;height:100%;object-fit:cover;display:block}
+.ec-g{position:absolute;z-index:2;top:6px;left:6px;line-height:0;padding:4px 5px;border-radius:4px;background:rgba(12,10,8,.72)}
+.ec-g .gri{height:18px}
+.ec-u{position:absolute;z-index:2;top:6px;right:6px;margin:0}
+.ec-b{display:flex;flex-direction:column;gap:5px;padding:8px 9px 9px;flex:1}
+.ec-s{display:flex;align-items:center;gap:5px;font:600 11.5px/1 "SCDream",sans-serif;color:#9E8F78}
+.ec-s .esl{height:16px;width:auto}
+.ec-s i{font-style:normal}
+.ec-b>b{font:600 14.5px/1.3 "SCDream",sans-serif;color:#FFF3DF;word-break:keep-all;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}
+.ec-i{display:flex;align-items:center;gap:4px;min-width:0;flex-wrap:wrap}
+.ec-i .eai,.ec-i .esi{height:17px;width:auto}
+.ec-i .eki{height:18px;width:18px;object-fit:contain}
+.ec-i .dv{width:1px;height:12px;background:#4A4237;margin:0 2px}
+.ec-b .cst{gap:7px;padding:0 4px 4px 0;margin-top:auto;flex-wrap:wrap}
+.ec-b .cst i,.ec-b .cst i .sinb{width:20px;height:20px}
+.ec-b .cst i b{width:14px;height:14px;font-size:9px;line-height:14px}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -4107,9 +4112,7 @@ function eCmp(a,b){if(uSort==="rank")return GRADES.indexOf(b.g)-GRADES.indexOf(a
 /* E.G.O 목록 카드: 그림 띠(위) + 이름·속성·비용(아래) — 인격 카드처럼 그림이 주인공 */
 function egoCard(e){var sn=U.sinners[e.s-1]||{};
   var ic=(e.atk?atkIco(e.atk,"eai"):'')+(e.sin?sinIco(e.sin,"esi"):'')+(e.kws.length?'<i class="dv"></i>'+e.kws.map(function(k){return kwIco(k,"eki")}).join(""):'');
-  return '<button class="ecard g-'+esc(e.g)+'" data-ego="'+e.id+'" aria-label="'+esc((sn.kr||"")+" "+e.nm)+'"><span class="ec-a">'+(egoBanner(e.id)||'<span class="ebn none"></span>')+
-    '<span class="ec-g">'+gradeIco(e.g)+'</span>'+useChips(e,"ec-u")+'<span class="ec-s">'+sinLogo(e.s,"esl")+'<i>'+esc(sn.kr||"")+'</i></span></span>'+
-    '<span class="ec-b"><b>'+esc(e.nm)+'</b><span class="ec-m"><span class="ec-i">'+ic+'</span>'+costChips(e.cost)+'</span></span></button>'}
+  return '<button class="ecard g-'+esc(e.g)+'" data-ego="'+e.id+'"><span class="ec-a">'+eface(e.id,"eca")+'<span class="ec-g">'+gradeIco(e.g)+'</span>'+useChips(e,"ec-u")+'</span><span class="ec-b"><span class="ec-s">'+sinLogo(e.s,"esl")+'<i>'+esc(sn.kr||"")+'</i></span><b>'+esc(e.nm)+'</b><span class="ec-i">'+ic+'</span>'+costChips(e.cost)+'</span></button>'}
 function renderEgos(){egoUseCalc();if(!$("uFil").innerHTML)buildUnitFilters();uModeSync();
   var rows=U.egos.filter(eMatch).sort(eCmp),f=["sinner","eg","use","sin","atk","kw","season"].some(function(k){return uSel[k].length})||$("uq").value.trim();
   $("uCount").innerHTML=f?'<b>'+rows.length+'</b> <i>/ '+U.egos.length+'</i>':'<b>'+U.egos.length+'</b>';
