@@ -2928,6 +2928,19 @@ body{overscroll-behavior-x:none}
 .ualias{display:flex;align-items:center;flex-wrap:wrap;gap:5px;margin:6px 0 8px}
 .ualias em{font-style:normal;padding:3px 8px;border:1px solid #8A7444;border-radius:12px;background:#1E180F;font:600 12px/1.2 "SCDream",sans-serif;color:#FFE28A}
 .ualias small{font:500 10.5px/1 "SCDream",sans-serif;color:#7A7266}
+/* E.G.O 목록: 인격 카드와 같은 틀 (정사각 일러) */
+.ucard.ecard2{aspect-ratio:1/1}
+.egi{position:absolute;inset:0;display:block;overflow:hidden}
+.egi img{display:block;width:100%;height:100%;object-fit:cover;transition:transform .25s}
+.ucard.ecard2:hover .egi img{transform:scale(1.04)}
+.ucard.ecard2 .unm{display:flex;flex-direction:column;gap:1px}
+.ucard.ecard2 .unm small{font:400 10.5px/1 "KOTRA",sans-serif;color:#C9BFAE;text-shadow:0 1px 0 #000}
+.uc-l .egr{display:block;line-height:0;margin-top:2px}.uc-l .egr .gri{height:18px;filter:drop-shadow(0 1px 2px #000)}
+.ufb-s .egr{line-height:0}.ufb-s .egr .gri{height:22px;filter:drop-shadow(0 1px 2px #000)}
+.efb .egi img{object-position:50% 35%}
+.efm .egi img{object-position:50% 35%}
+@media (max-width:479.98px){.uc-l .egr .gri{height:15px}}
+.ufb .egi,.ufm .egi{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;top:0;transform:none}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -4175,15 +4188,21 @@ function eMatch(e){var q=$("uq").value.trim().toLowerCase();if(q&&eHay(e).indexO
 function eCmp(a,b){if(uSort==="rank")return GRADES.indexOf(b.g)-GRADES.indexOf(a.g)||b.id-a.id;if(uSort==="sinner")return a.s-b.s||GRADES.indexOf(a.g)-GRADES.indexOf(b.g);
   if(uSort==="name")return a.nm.localeCompare(b.nm,"ko");return (b.date||"").localeCompare(a.date||"")||b.id-a.id}
 /* E.G.O 목록 카드: 그림 띠(위) + 이름·속성·비용(아래) — 인격 카드처럼 그림이 주인공 */
+function egoArt(id,sub){return '<span class="uimg th egi"><img src="img/ecg/'+(sub||"s")+'/'+id+'.webp" alt="" loading="lazy" decoding="async"></span>'}
 function egoCard(e){var sn=U.sinners[e.s-1]||{};
-  var ic=(e.atk?atkIco(e.atk,"eai"):'')+(e.sin?sinIco(e.sin,"esi"):'')+(e.kws.length?'<i class="dv"></i>'+e.kws.map(function(k){return kwIco(k,"eki")}).join(""):'');
-  return '<button class="ecard g-'+esc(e.g)+'" data-ego="'+e.id+'"><span class="ec-a"><span class="fci eca th"><img src="img/ecg/s/'+e.id+'.webp" alt="" loading="lazy" decoding="async"></span><span class="ec-g">'+gradeIco(e.g)+'</span>'+useChips(e,"ec-u")+'</span><span class="ec-b"><span class="ec-t" title="'+esc((sn.kr||"")+" · "+e.nm)+'">'+sinLogo(e.s,"esl")+'<b>'+esc(e.nm)+'</b></span><span class="ec-m"><span class="ec-i">'+ic+'</span>'+costChips(e.cost)+'</span></span></button>'}
+  return '<button class="ucard ecard2" data-ego="'+e.id+'" aria-label="'+esc((sn.kr||"")+" "+e.nm)+'">'+egoArt(e.id)+'<span class="uc-l">'+sinLogo(e.s,"slg")+'<span class="egr">'+gradeIco(e.g)+'</span></span>'+
+    (e.kws.length?'<span class="uc-k">'+e.kws.slice(0,3).map(function(k){return kwIco(k,"kwg")}).join("")+'</span>':'')+'<span class="unm"><small>'+esc(sn.kr||"")+'</small><b>'+esc(e.nm)+'</b></span></button>'}
+/* 최신 E.G.O 강조: 1개 크게 + 같은 시즌 나머지 중간 (인격 목록과 같은 방식) */
+function eFeat(S){var t=S[0],sn=U.sinners[t.s-1]||{};
+  var big='<button class="ufb efb" data-ego="'+t.id+'">'+egoArt(t.id,"w")+'<span class="ufb-t"><em><i>NEW</i>'+esc(seasonLbl(t.se))+'</em><span class="ufb-s">'+sinLogo(t.s,"hlg")+'<span class="egr">'+gradeIco(t.g)+'</span>'+esc(sn.kr||"")+(t.kws.length?'<span class="ufb-k">'+t.kws.map(function(k){return kwIco(k,"hki")}).join("")+'</span>':'')+'</span><b>'+esc(t.nm)+'</b></span></button>';
+  var mid=S.slice(1).map(function(e){var s2=U.sinners[e.s-1]||{};return '<button class="ufm efm" data-ego="'+e.id+'">'+egoArt(e.id,"w")+'<span class="uc-l">'+sinLogo(e.s,"slg")+'<span class="egr">'+gradeIco(e.g)+'</span></span>'+(e.kws.length?'<span class="uc-k">'+e.kws.slice(0,3).map(function(k){return kwIco(k,"kwg")}).join("")+'</span>':'')+'<span class="unm"><small>'+esc(s2.kr||"")+'</small><b>'+esc(e.nm)+'</b></span></button>'}).join("");
+  return '<div class="ufeat">'+big+(mid?'<div class="ufms">'+mid+'</div>':'')+'</div><h4 class="ugh ugh-all">전체 E.G.O</h4>'}
 function renderEgos(){egoUseCalc();if(!$("uFil").innerHTML)buildUnitFilters();uModeSync();
   var rows=U.egos.filter(eMatch).sort(eCmp),f=["sinner","eg","use","sin","atk","kw","season"].some(function(k){return uSel[k].length})||$("uq").value.trim();
   $("uCount").innerHTML=f?'<b>'+rows.length+'</b> <i>/ '+U.egos.length+'</i>':'<b>'+U.egos.length+'</b>';
   var h="";if(!rows.length)h='<div class="uempty">조건에 맞는 E.G.O 없음</div>';
-  else if(uSort==="sinner"){var last=null;rows.forEach(function(e){if(e.s!==last){h+=(last!==null?'</div>':'')+'<h4 class="ugh">'+sinLogo(e.s,"ghl")+esc(U.sinners[e.s-1].kr)+'<small>'+rows.filter(function(x){return x.s===e.s}).length+'</small></h4><div class="eglist">';last=e.s}h+=egoCard(e)});h+='</div>'}
-  else h='<div class="eglist">'+rows.map(egoCard).join("")+'</div>';
+  else if(uSort==="sinner"){var last=null;rows.forEach(function(e){if(e.s!==last){h+='<h4 class="ugh">'+sinLogo(e.s,"ghl")+esc(U.sinners[e.s-1].kr)+'<small>'+rows.filter(function(x){return x.s===e.s}).length+'</small></h4>';last=e.s}h+=egoCard(e)})}
+  else{if(!f&&uSort==="date"){var now=rows[0]&&rows[0].se,S=rows.filter(function(e){return e.se===now&&e.se}).slice(0,4);if(S.length){h+=eFeat(S);rows=rows.filter(function(e){return S.indexOf(e)<0})}}h+=rows.map(egoCard).join("")}
   $("uGrid").innerHTML=h;artLoad("--ebp","EGOB_SPRITE_INLINE","EGOB_SPRITE_URL","getEgoBannerSprite")}
 
 /* ===== 동기화 단계 변화점: 선택한 단계에서 직전 단계 대비 바뀐 것만 ===== */
@@ -5948,7 +5967,7 @@ document.addEventListener("toggle",function(e){if(e.target&&e.target.classList&&
 /* ===== 인격 별칭 (커뮤니티 약칭): [소속 줄임]+[수감자 줄임] 규칙으로 자동 생성 + 자주 쓰는 고유 별칭 =====
    예) 흑수 - 묘 필두 파우스트 → 묘파우 · 거미집 약지 제자 파우스트 → 약지파우 · 서부 섕크 3과 뫼르소 → 섕뫼 */
 var AL_SIN={1:["상","이상"],2:["파우","파우스트"],3:["돈키","키호","동키"],4:["슈","료슈"],5:["뫼","뫼르"],6:["루","홍루"],7:["히스","히클"],8:["마엘","이스"],9:["쟈","로쟈"],10:["싱","클레어"],11:["티스","오티스"],12:["그렉","그레"]};
-var AL_FIX={10114:["말상"],10613:["군루"],10413:["방슈"],10812:["가주마엘"],10912:["사로쟈"],11212:["사그렉"],10714:["유히스"],10212:["묘파우"],10415:["거검슈","하라슈"],10310:["실장키호","라실키"],11115:["거중티스"],10508:["검두뫼"],10808:["선장마엘"],11216:["새벽그렉"]};
+var AL_FIX={10110:["애도상"],10412:["경멸슈"],10312:["사증돈키"],10913:["눈물쟈"],10114:["말상"],10613:["군루"],10413:["방슈"],10812:["가주마엘"],10912:["사로쟈"],11212:["사그렉"],10714:["유히스"],10212:["묘파우"],10415:["거검슈","하라슈"],10310:["실장키호","라실키"],11115:["거중티스"],10508:["검두뫼"],10808:["선장마엘"],11216:["새벽그렉"]};
 var AL_PRE=[
   [/^흑수 - 사/,["사","흑수"]],[/^흑수 - 오/,["말","오","흑수"]],[/^흑수 - 묘/,["묘","흑수"]],[/^흑수 - 유/,["유","흑수"]],[/^흑수 - 미/,["미","양","흑수"]],
   [/^홍원 군주/,["군","홍원"]],[/^홍원 방랑/,["방","홍원"]],[/^가주 후보/,["가주"]],
@@ -5956,15 +5975,15 @@ var AL_PRE=[
   [/^검지 대행자/,["대행","검지"]],[/^검지 수행자/,["쪽지","검지"]],
   [/^약지 점묘파/,["점묘","약지"]],[/^약지 야수파/,["야수","약지"]],[/^중지/,["중지"]],[/엄지/,["엄지"]],
   [/^검계/,["검","검계"]],[/(세븐|디에치|리우|츠바이|섕크|외우피|제뱌찌|시) 협회/,["$1"]],[/섕크 협회/,["섕"]],[/츠바이 협회/,["츠"]],[/제뱌찌 협회/,["제뱌"]],[/디에치 협회/,["뒤에치"]],
-  [/^W사/,["W"]],[/^N사 E\.G\.O:: (\S+)/,["$1","N"]],[/^N사/,["N","망치"]],[/순록팀/,["순록","R"]],[/토끼팀/,["토끼","R"]],[/코뿔소팀/,["코뿔","R"]],
+  [/^W사/,["W"]],[/^N사 E\.G\.O:: (.+)$/,["$1","N"]],[/^N사/,["N","망치"]],[/순록팀/,["순록","R"]],[/토끼팀/,["토끼","R"]],[/코뿔소팀/,["코뿔","R"]],
   [/^T사/,["T"]],[/^K사/,["K"]],[/^G사/,["G"]],[/^S사/,["S"]],[/^LCCB/,["LCCB"]],[/^LCA/,["LCA"]],[/^LCD/,["LCD"]],
   [/^라만차랜드/,["라만차","라"]],[/^피쿼드호/,["피쿼드"]],[/^흑운회/,["흑운"]],[/르누아르/,["르누아르","르누"]],[/르루주/,["르루주"]],[/수선실/,["수선"]],
   [/^새벽 사무소/,["새벽"]],[/^마침표/,["마침표"]],[/^어금니/,["어금니"]],[/^멀티크랙/,["멀크"]],[/^장미스패너/,["장미","스패너"]],[/^에드가/,["에드가"]],
   [/^워더링하이츠/,["워더링","버틀러"]],[/^료\. 고\. 파\./,["료고파"]],[/유로지비/,["유로지비"]],[/^쥐는 자/,["쥐는"]],[/^쥐어들 자/,["쥐어들"]],
   [/^살아남은 로보토미/,["생존"]],[/^데드레빗츠/,["데렙"]],[/^마리아치/,["마리아치"]],[/^와일드헌트/,["와헌"]],[/^콩콩이파/,["콩콩"]],[/^정사무소/,["정"]],
-  [/^갈고리/,["갈고리"]],[/^송곳니/,["송곳니"]],[/^불주먹/,["불주먹"]],[/^쌍갈고리/,["쌍갈"]],[/^밤의 송곳/,["송곳"]],[/^개화 E\.G\.O:: (\S+)/,["$1"]],
-  [/E\.G\.O:: (\S+)/,["$1"]]];
-function unitAlias(i){if(i._al)return i._al;var pre=[],t=i.t||"";AL_PRE.forEach(function(r){var m=t.match(r[0]);if(m)r[1].forEach(function(p){p=p.replace("$1",m[1]||"").replace(/[【】\[\]・]/g,"");if(p&&pre.indexOf(p)<0)pre.push(p)})});
+  [/^갈고리/,["갈고리"]],[/^송곳니/,["송곳니"]],[/^불주먹/,["불주먹"]],[/^쌍갈고리/,["쌍갈"]],[/^밤의 송곳/,["송곳"]],[/^개화 E\.G\.O:: (.+)$/,["$1"]],
+  [/E\.G\.O:: (.+)$/,["$1"]]];
+function unitAlias(i){if(i._al)return i._al;var pre=[],t=i.t||"";AL_PRE.forEach(function(r){var m=t.match(r[0]);if(m)r[1].forEach(function(p){p=p.replace("$1",m[1]||"").replace(/[\s,【】\[\]・]/g,"");if(p&&pre.indexOf(p)<0)pre.push(p)})});
   var sn=AL_SIN[i.s]||[],out=(AL_FIX[i.id]||[]).slice();pre.forEach(function(p){sn.forEach(function(s){var a=p+s;if(out.indexOf(a)<0)out.push(a)})});i._al1=(AL_FIX[i.id]||[]).concat(pre.map(function(p){return p+(sn[0]||"")})).filter(function(x,k,a){return a.indexOf(x)===k});return i._al=out}
 /* 검색에 별칭 포함 */
 (function(){var _um=uMatch;uMatch=function(i){if(i.hay&&!i._alh){i.hay+=" "+unitAlias(i).join(" ").toLowerCase();i._alh=1}return _um(i)}})();
