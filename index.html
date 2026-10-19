@@ -2924,6 +2924,7 @@ body{overscroll-behavior-x:none}
 .ecg{display:block;width:min(100%,420px);aspect-ratio:1/1;height:auto}
 .ecg{width:min(100%,460px);border-radius:6px;border:1px solid #3A3328}
 .ecgw+.ehero.nob{padding-top:2px}.ecgw{margin-bottom:4px}
+.shnote.warn{color:#FFB070}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -5799,10 +5800,11 @@ function shFormPaint(){var el=$("shUpForm");if(!el)return;
   h+='<label class="shl">제목<input class="tcin" id="shT" maxlength="30" value="'+esc(deck.title||"")+'" placeholder="예: 침잠 하드 안정 덱"></label>'+
     '<label class="shl">설명 <small>선택 · 300자</small><textarea class="tcin" id="shD" rows="3" maxlength="300" placeholder="운영 팁, 가는 팩, 바꿔도 되는 인격 등"></textarea></label>'+
     '<div class="shl">키워드 <small>최대 3개</small><div class="shfil">'+KW7.map(function(k){return '<button class="chip" data-shpk="'+k+'" aria-pressed="'+(_shKw.indexOf(k)>=0)+'">'+kwIco(k,"kwc")+'<span>'+esc(KWKR[k])+'</span></button>'}).join("")+'</div></div>'+
-    '<p class="shnote">'+esc(modeLbl(deck.mode))+' · 출격 '+deck.dep.length+'명 · 욕설이나 부적절한 표현은 올라가지 않아요</p><button class="tbtn K lit" id="shSend"><span>올리기</span></button>';
+    (shSame()?'<p class="shnote warn">지금은 추천 덱 「'+esc(shSame())+'」과 똑같아요. 내 보유 인격으로 바꾸거나 직접 손본 덱만 올라가요.</p>':'')+'<p class="shnote">'+esc(modeLbl(deck.mode))+' · 출격 '+deck.dep.length+'명 · 욕설이나 부적절한 표현은 올라가지 않아요</p><button class="tbtn K lit" id="shSend"><span>올리기</span></button>';
   el.innerHTML=h}
 function shSend(){var b=$("shSend");if(!b||b.disabled)return;var nick=$("shNick"),t=($("shT").value||"").trim(),dsc=($("shD").value||"").trim();
   if(nick&&nick.value.trim().length<2){toast("닉네임을 2자 이상 적어 주세요");nick.focus();return}if(t.length<2){toast("제목을 2자 이상 적어 주세요");$("shT").focus();return}
+  var same=shSame();if(same){toast("추천 덱 「"+same+"」과 똑같은 편성이에요 · 인격이나 E.G.O를 바꾼 뒤 올려 주세요");return}
   b.disabled=true;function up(){api("shareDeck",[AUTH.tok,JSON.stringify({t:t,d:dsc,c:deckCode(deck),m:deck.mode,k:_shKw})],function(s){var o=shJ(s);b.disabled=false;
       if(!o.ok){if(o.err==="login"){authOut();shFormPaint()}toast(shErr(o.err));return}
       toast("유저 덱에 올렸어요");SH.items=null;shMe(function(){});shLoad(function(){openShared(o.id)},true)},function(){b.disabled=false;toast("올리지 못했어요 — 잠시 후 다시")})}
@@ -5853,6 +5855,13 @@ var _shqt;document.addEventListener("input",function(e){if(e.target&&e.target.id
 /* ?sd=덱ID 로 들어오면 그 덱 열기 */
 (function(){var m=(location.search+location.hash).match(/[?&#]sd=([A-Za-z0-9]+)/);if(!m)return;var id=m[1];
   function go(){if(!U){setTimeout(go,400);return}setView("share");shLoad(function(){openShared(id)})}setTimeout(go,600)})();
+
+/* 추천 덱을 그대로 올리는 것 막기: 인격 12칸 · E.G.O · 출격 인원이 전부 같으면 같은 덱 */
+function shSame(){if(!window.GDECKS||!deck)return "";var dep=deck.dep.slice().sort().join(",");
+  for(var i=0;i<GDECKS.list.length;i++){var g=GDECKS.list[i];for(var j=0;j<g.v.length;j++){var v=g.v[j],ok=true;
+    for(var s=1;s<=12&&ok;s++){var m=deck.m[s]||{},x=v.m[s-1]||[];if((m.id||0)!==(x[0]||0)){ok=false;break}
+      for(var k=0;k<5;k++){var e=(m.e||{})[GRADES[k]]||0;if(x[k+1]&&e!==x[k+1]){ok=false;break}}}
+    if(ok&&gdDep(v,g.n||7).slice().sort().join(",")===dep)return g.t}}return ""}
 
 /* ===== 길잡이: 처음 순서 + 용어 사전 =====
    용어는 구글 시트 '용어' 탭(또는 관리자 모드의 「용어 편집」)에서 고침. 비어 있으면 아래 기본 목록. */
