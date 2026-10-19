@@ -2925,6 +2925,9 @@ body{overscroll-behavior-x:none}
 .ecg{width:min(100%,460px);border-radius:6px;border:1px solid #3A3328}
 .ecgw+.ehero.nob{padding-top:2px}.ecgw{margin-bottom:4px}
 .shnote.warn{color:#FFB070}
+.ualias{display:flex;align-items:center;flex-wrap:wrap;gap:5px;margin:6px 0 8px}
+.ualias em{font-style:normal;padding:3px 8px;border:1px solid #8A7444;border-radius:12px;background:#1E180F;font:600 12px/1.2 "SCDream",sans-serif;color:#FFE28A}
+.ualias small{font:500 10.5px/1 "SCDream",sans-serif;color:#7A7266}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -5884,7 +5887,9 @@ var GL_SEED=[
   ["복각","","예전 팩이 다시 나오는 것. 노드 수나 기프트가 조금 다를 수 있어요.","거울던전"],
   ["별의 가호","시작 버프","거울던전을 시작할 때 고르는 강화.","거울던전"],
   ["뉴비 · 림청년 · 림할배","숙련도","막 시작한 사람 · 어느 정도 한 사람 · 오래 한 사람. 이 사이트의 파편 우선순위는 뉴비·중수·고인으로 나눠요.","커뮤니티"],
-  ["덱","편성","출격시킬 인격과 E.G.O 묶음.","커뮤니티"]];
+  ["덱","편성","출격시킬 인격과 E.G.O 묶음.","커뮤니티"],
+  ["인격 약칭","묘파우 · 사로쟈 · 섕뫼","[소속 줄임]+[수감자 줄임]으로 불러요. 묘파우=흑수 - 묘 필두 파우스트, 사로쟈=흑수 - 사 로쟈, 섕뫼=섕크 협회 뫼르소. 인격 메뉴 검색창에 약칭을 넣어도 찾아져요.","커뮤니티"],
+  ["키워드 줄임","충출 · 호파 · 진침","키워드 첫 글자를 이어 불러요. 충=충전 · 출=출혈 · 호=호흡 · 파=파열 · 진=진동 · 침=침잠 · 화=화상.","커뮤니티"]];
 var GL={list:null,loading:false,cat:"",q:""};
 function glList(){return GL.list||GL_SEED.map(function(r){return {t:r[0],a:r[1],d:r[2],c:r[3]}})}
 function glLoad(cb){if(GL.list||GL.loading){cb&&cb();return}GL.loading=true;
@@ -5939,6 +5944,33 @@ function ugPaint(){var v=$("viewGift");if(!v)return;var p=$("ugPanel");if(!p){va
 document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-ugk]");if(!b)return;UG.k=b.dataset.ugk;try{localStorage.setItem("egoUgK",UG.k)}catch(x){}ugPaint()});
 document.addEventListener("toggle",function(e){if(e.target&&e.target.classList&&e.target.classList.contains("ugp")){UG.open=e.target.open;try{localStorage.setItem("egoUgOpen",UG.open?"1":"0")}catch(x){}}},true);
 (function(){var _sv=setView;setView=function(v){_sv(v);if(v==="gift")setTimeout(ugPaint,0)};setTimeout(function(){if(curView==="gift")ugPaint()},800)})();
+
+/* ===== 인격 별칭 (커뮤니티 약칭): [소속 줄임]+[수감자 줄임] 규칙으로 자동 생성 + 자주 쓰는 고유 별칭 =====
+   예) 흑수 - 묘 필두 파우스트 → 묘파우 · 거미집 약지 제자 파우스트 → 약지파우 · 서부 섕크 3과 뫼르소 → 섕뫼 */
+var AL_SIN={1:["상","이상"],2:["파우","파우스트"],3:["돈키","키호","동키"],4:["슈","료슈"],5:["뫼","뫼르"],6:["루","홍루"],7:["히스","히클"],8:["마엘","이스"],9:["쟈","로쟈"],10:["싱","클레어"],11:["티스","오티스"],12:["그렉","그레"]};
+var AL_FIX={10114:["말상"],10613:["군루"],10413:["방슈"],10812:["가주마엘"],10912:["사로쟈"],11212:["사그렉"],10714:["유히스"],10212:["묘파우"],10415:["거검슈","하라슈"],10310:["실장키호","라실키"],11115:["거중티스"],10508:["검두뫼"],10808:["선장마엘"],11216:["새벽그렉"]};
+var AL_PRE=[
+  [/^흑수 - 사/,["사","흑수"]],[/^흑수 - 오/,["말","오","흑수"]],[/^흑수 - 묘/,["묘","흑수"]],[/^흑수 - 유/,["유","흑수"]],[/^흑수 - 미/,["미","양","흑수"]],
+  [/^홍원 군주/,["군","홍원"]],[/^홍원 방랑/,["방","홍원"]],[/^가주 후보/,["가주"]],
+  [/^거미집의 검/,["거검"]],[/^거미집 (검지|약지|중지|엄지|소지)/,["$1","거미집","거"]],
+  [/^검지 대행자/,["대행","검지"]],[/^검지 수행자/,["쪽지","검지"]],
+  [/^약지 점묘파/,["점묘","약지"]],[/^약지 야수파/,["야수","약지"]],[/^중지/,["중지"]],[/엄지/,["엄지"]],
+  [/^검계/,["검","검계"]],[/(세븐|디에치|리우|츠바이|섕크|외우피|제뱌찌|시) 협회/,["$1"]],[/섕크 협회/,["섕"]],[/츠바이 협회/,["츠"]],[/제뱌찌 협회/,["제뱌"]],[/디에치 협회/,["뒤에치"]],
+  [/^W사/,["W"]],[/^N사 E\.G\.O:: (\S+)/,["$1","N"]],[/^N사/,["N","망치"]],[/순록팀/,["순록","R"]],[/토끼팀/,["토끼","R"]],[/코뿔소팀/,["코뿔","R"]],
+  [/^T사/,["T"]],[/^K사/,["K"]],[/^G사/,["G"]],[/^S사/,["S"]],[/^LCCB/,["LCCB"]],[/^LCA/,["LCA"]],[/^LCD/,["LCD"]],
+  [/^라만차랜드/,["라만차","라"]],[/^피쿼드호/,["피쿼드"]],[/^흑운회/,["흑운"]],[/르누아르/,["르누아르","르누"]],[/르루주/,["르루주"]],[/수선실/,["수선"]],
+  [/^새벽 사무소/,["새벽"]],[/^마침표/,["마침표"]],[/^어금니/,["어금니"]],[/^멀티크랙/,["멀크"]],[/^장미스패너/,["장미","스패너"]],[/^에드가/,["에드가"]],
+  [/^워더링하이츠/,["워더링","버틀러"]],[/^료\. 고\. 파\./,["료고파"]],[/유로지비/,["유로지비"]],[/^쥐는 자/,["쥐는"]],[/^쥐어들 자/,["쥐어들"]],
+  [/^살아남은 로보토미/,["생존"]],[/^데드레빗츠/,["데렙"]],[/^마리아치/,["마리아치"]],[/^와일드헌트/,["와헌"]],[/^콩콩이파/,["콩콩"]],[/^정사무소/,["정"]],
+  [/^갈고리/,["갈고리"]],[/^송곳니/,["송곳니"]],[/^불주먹/,["불주먹"]],[/^쌍갈고리/,["쌍갈"]],[/^밤의 송곳/,["송곳"]],[/^개화 E\.G\.O:: (\S+)/,["$1"]],
+  [/E\.G\.O:: (\S+)/,["$1"]]];
+function unitAlias(i){if(i._al)return i._al;var pre=[],t=i.t||"";AL_PRE.forEach(function(r){var m=t.match(r[0]);if(m)r[1].forEach(function(p){p=p.replace("$1",m[1]||"").replace(/[【】\[\]・]/g,"");if(p&&pre.indexOf(p)<0)pre.push(p)})});
+  var sn=AL_SIN[i.s]||[],out=(AL_FIX[i.id]||[]).slice();pre.forEach(function(p){sn.forEach(function(s){var a=p+s;if(out.indexOf(a)<0)out.push(a)})});i._al1=(AL_FIX[i.id]||[]).concat(pre.map(function(p){return p+(sn[0]||"")})).filter(function(x,k,a){return a.indexOf(x)===k});return i._al=out}
+/* 검색에 별칭 포함 */
+(function(){var _um=uMatch;uMatch=function(i){if(i.hay&&!i._alh){i.hay+=" "+unitAlias(i).join(" ").toLowerCase();i._alh=1}return _um(i)}})();
+/* 인격 상세에 대표 별칭 표시 */
+(function(){var _ou=openUnit;openUnit=function(id){_ou(id);try{var i=UBY[id];if(i)unitAlias(i);var a=i&&i._al1;if(!a||!a.length)return;var b=$("detailBody"),m=b&&b.querySelector(".umeta");if(!m||b.querySelector(".ualias"))return;
+  var el=document.createElement("div");el.className="ualias";el.innerHTML='<span class="ecl">부르는 말</span>'+a.slice(0,3).map(function(x){return '<em>'+esc(x)+'</em>'}).join("")+'<small>커뮤 약칭 · 자동 정리</small>';m.parentNode.insertBefore(el,m.nextSibling)}catch(e){}}})();
 
 /* ===== 설문 반영 손보기 (2026-10) ===== */
 /* 덱 기프트 루트: 위에 층 바로가기 막대 */
