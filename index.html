@@ -2947,6 +2947,18 @@ body{overscroll-behavior-x:none}
 .ualias.edit em.top{background:#3A2C10;border-color:#F6DC8C}
 .ualias.edit .alin{flex:1 1 140px;min-width:0;height:30px;font-size:13px}
 @media (max-width:480px){.ualias.edit .alin{font-size:16px}}
+/* EGO skill art: square tile instead of circle */
+.usk.egsk .uskh{grid-template-columns:60px minmax(0,1fr);gap:12px;padding:8px 10px 8px 8px}
+.usk.egsk .usk-ic{width:60px;height:60px;border-radius:8px;background:#0b0a09;box-shadow:0 0 0 1px color-mix(in srgb,var(--sc) 55%,#000);overflow:hidden}
+.usk.egsk .usk-ic .fci{width:100%;height:100%;border-radius:0;display:block}
+.usk.egsk .usk-ic .fci img{width:100%;height:100%;object-fit:cover;display:block}
+.usk.egsk.cor .usk-ic{box-shadow:0 0 0 1px #7a2a2a}
+.usk.egsk .l1>b{font-size:17px}
+.usk.egsk.cor .l1>b{color:#E58A7E}
+@media(min-width:900px){.usk.egsk .uskh{grid-template-columns:68px minmax(0,1fr)}.usk.egsk .usk-ic{width:68px;height:68px}}
+.eht .eab{display:block;margin-top:5px;font-size:11.5px;color:rgba(217,201,165,.48);letter-spacing:-.01em}
+.eht .eab i{font-style:normal;font-family:"Excelsior",sans-serif;font-size:10px;opacity:.8;margin-left:2px}
+.usk.egsk .l1>b{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:keep-all}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -4026,10 +4038,10 @@ function pipsAt(n,ci){var s="";for(var i=0;i<n;i++)s+='<i'+(i===ci?' class="on"'
 function skillBox(s,lv,opt){opt=opt||{};
   var x=upAt(s,lv);
   if(x){var sl=fieldLv(s,lv);x=Object.assign({},x);if(sl.desc!==+lv&&x.desc)x.desc=noHl(x.desc);if(sl.cd!==+lv&&x.cd)x.cd=x.cd.map(function(c){return c.map(noHl)})}
-  if(!x){var f=s.up[0];return '<div class="usk locked" style="--sc:'+(SINC[f.sin]||"#555")+'"><div class="uskh"><span class="usk-ic">'+(opt.art||skIco(s))+'</span><div class="usk-t"><div class="l1"><b>'+esc(f.name||"")+'</b></div><div class="l2">동기화 '+ROMAN5[f.lv]+'에서 해금</div></div></div></div>'}
+  if(!x){var f=s.up[0];return '<div class="usk locked'+(opt.cls?" "+opt.cls:"")+'" style="--sc:'+(SINC[f.sin]||"#555")+'"><div class="uskh"><span class="usk-ic">'+(opt.art||skIco(s))+'</span><div class="usk-t"><div class="l1"><b>'+esc(opt.title||f.name||"")+'</b></div><div class="l2">동기화 '+ROMAN5[f.lv]+'에서 해금</div></div></div></div>'}
   var isDef=x.def&&x.def!=="ATTACK",atkKr=U.atk[x.atk]||"",defKr=U.defk[x.def]||"";
   var art=opt.art||skIco(s),badge=isDef?uii("def_"+DEF_EN[x.def],"tb",defKr):uii("atk_"+ATK_EN[x.atk],"tb",atkKr);
-  var ic=art?art+(badge?'<i class="tbw">'+badge+'</i>':''):'<b>'+esc((isDef?defKr:atkKr).slice(0,1))+'</b>';
+  var ic=art?art+(badge&&!opt.nobadge?'<i class="tbw">'+badge+'</i>':''):'<b>'+esc((isDef?defKr:atkKr).slice(0,1))+'</b>';
   var sub=[];if(opt.label)sub.push('<span class="lb">'+esc(opt.label)+'</span>');
   sub.push('<span class="ty">'+(isDef?esc(defKr):esc(atkKr))+'</span>');
   if(x.sin&&SINC[x.sin])sub.push('<span class="skn">'+sinIco(x.sin,"sinm")+esc(sinKr(x.sin))+'</span>');
@@ -4039,8 +4051,8 @@ function skillBox(s,lv,opt){opt=opt||{};
   var body=(x.desc?'<p class="usk-d">'+fmtDesc(x.desc)+'</p>':'')+(nc?'<div class="cfx"><div class="cfh"><span>코인 효과</span><b>'+nc+'</b></div><ul>'+cds+'</ul></div>':'');
   var mini=!!opt.mini;
   var chg=lv>1&&s.up.some(function(e){return +e.lv===+lv&&+s.up[0].lv<+lv});
-  return '<div class="usk'+(mini?" mini":"")+(body?" has":"")+(chg?" chg":"")+'" data-skid="'+s.id+'" style="--sc:'+(SINC[x.sin]||"#555")+'"><div class="uskh"'+(body?' role="button" tabindex="0" aria-expanded="false"':'')+'><span class="usk-ic">'+ic+'</span><div class="usk-t">'+
-    '<div class="l1"><b>'+esc(x.name||"")+'</b>'+(chg?'<i class="chgb" title="동기화 '+ROMAN5[lv]+'에서 바뀜">'+ROMAN5[lv]+'</i>':'')+(function(){if(!chg)return "";var a=upAt(s,lv-1);var t=[];if(a&&+a.base!==+x.base)t.push('<s>'+a.base+'</s>');if(a&&+a.coin!==+x.coin)t.push('<s>+'+a.coin+'</s>');return t.length?'<span class="pwold" title="이전 위력">'+t.join(" ")+'→</span>':""})()+pwrHtml(x)+'</div>'+
+  return '<div class="usk'+(mini?" mini":"")+(opt.cls?" "+opt.cls:"")+(body?" has":"")+(chg?" chg":"")+'" data-skid="'+s.id+'" style="--sc:'+(SINC[x.sin]||"#555")+'"><div class="uskh"'+(body?' role="button" tabindex="0" aria-expanded="false"':'')+'><span class="usk-ic">'+ic+'</span><div class="usk-t">'+
+    '<div class="l1"><b>'+esc(opt.title||x.name||"")+'</b>'+(chg?'<i class="chgb" title="동기화 '+ROMAN5[lv]+'에서 바뀜">'+ROMAN5[lv]+'</i>':'')+(function(){if(!chg)return "";var a=upAt(s,lv-1);var t=[];if(a&&+a.base!==+x.base)t.push('<s>'+a.base+'</s>');if(a&&+a.coin!==+x.coin)t.push('<s>+'+a.coin+'</s>');return t.length?'<span class="pwold" title="이전 위력">'+t.join(" ")+'→</span>':""})()+pwrHtml(x)+'</div>'+
     '<div class="l2">'+sub.join('<i class="dv"></i>')+(mini&&kws.length?'<span class="mk">'+kws.slice(0,4).map(function(k){return kwIco(k,"mki")}).join("")+'</span>':'')+(meta.length?'<span class="mt">'+meta.join(" · ")+'</span>':'')+'</div></div>'+(body?'<i class="chev"></i>':'')+'</div>'+
     (body?'<div class="usk-b">'+body+'</div>':'')+'</div>'}
 /* 기본 스킬 / 강화·특수 변형(n=0) 분리 */
@@ -4136,7 +4148,7 @@ var _uKeepScroll=false,_uArtAuto=true;
 function openEgo(id){
   var e=EBY[id];if(!e)return;navPush("e",id);curEgo=id;curUnit=null;curGift=null;_pp=[];ppClose();artLoad("--ebp","EGOB_SPRITE_INLINE","EGOB_SPRITE_URL","getEgoBannerSprite");artLoad("--bfp","BUFF_SPRITE_INLINE","BUFF_SPRITE_URL","getBuffSprite");
   var bn=egoBanner(e.id);
-  var h='<div class="ecgw"><img class="ecg" src="img/ecg/'+e.id+'.webp" alt="" decoding="async" onerror="this.parentNode.remove()"></div><div class="ehero nob g-'+esc(e.g)+'"><div class="eht"><span class="gr">'+gradeIco(e.g)+esc(e.g)+'</span><b class="en">'+esc(e.nm)+'</b>'+(e.en?'<span class="ee">'+esc(e.en)+'</span>':'')+'</div></div>';
+  var h='<div class="ecgw"><img class="ecg" src="img/ecg/'+e.id+'.webp" alt="" decoding="async" onerror="this.parentNode.remove()"></div><div class="ehero nob g-'+esc(e.g)+'"><div class="eht"><span class="gr">'+gradeIco(e.g)+esc(e.g)+'</span><b class="en">'+esc(e.nm)+'</b>'+(e.en?'<span class="ee">'+esc(e.en)+'</span>':'')+(function(){var ab=egoAb(e);return ab?'<span class="eab">원본 환상체 · '+esc(ab[0])+(ab[2]?' <i>'+esc(ab[2])+'</i>':'')+'</span>':''})()+'</div></div>';
   h+='<div class="umeta"><span class="tag sea">'+sinLogo(e.s,"tlg")+esc(e.sn)+'</span><span class="tag">'+esc(seasonLbl(e.se))+'</span>'+(e.atk?'<span class="tag">'+atkIco(e.atk,"tki")+esc(U.atk[e.atk]||"")+'</span>':'')+(e.sin?'<span class="tag kt" style="--sc:'+SINC[e.sin]+'">'+sinIco(e.sin,"tki")+esc(sinKr(e.sin))+'</span>':'')+
     e.kws.map(function(k){var n=KWKR[k]||k,ks=SIN[KWSIN[n]];return '<span class="tag kt"'+(ks?' style="--sc:'+ks+'"':'')+'>'+kwIco(k,"tki")+esc(n)+'</span>'}).join("")+'</div>';
   egoUseCalc();if(e.use&&e.use.length)h+='<div class="euseh"><span class="ecl">용도</span>'+useChips(e,"big")+'<small>자동 분류 · 유저 평가가 쌓이면 바뀌어요</small></div>';
@@ -4146,8 +4158,11 @@ function openEgo(id){
   var emax=Math.max.apply(null,e.sk.map(function(s){return Math.max.apply(null,s.up.map(function(x){return x.lv}))}).concat([4]));
   var lv=Math.min(uEgoUp||4,emax);
   h+=syncSeg("e",lv,emax,e);
+  var enk=function(t){return String(t||"").replace(/\s*\[[^\]]*\]\s*/g,"").replace(/\s+/g,"")};
   e.sk.forEach(function(s){var cor=s.lab&&s.lab.indexOf("cor")===0;
-    h+=skillBox(s,lv,{art:cor?xface(e.id,"eart"):eface(e.id,"eart"),label:s.lab==="awk"?"각성":s.lab==="cor"?"침식":s.lab&&s.lab.indexOf("awk")===0?"각성 "+s.lab.slice(3):"침식 "+(s.lab||"").slice(3)})});
+    var lab=s.lab==="awk"?"각성":s.lab==="cor"?"침식":s.lab&&s.lab.indexOf("awk")===0?"각성 "+s.lab.slice(3):"침식 "+(s.lab||"").slice(3);
+    var nm=(s.up[0]||{}).name,same=enk(nm)===enk(e.nm);
+    h+=skillBox(s,lv,{art:cor?xface(e.id,"eskart"):eface(e.id,"eskart"),cls:"egsk "+(cor?"cor":"awk"),nobadge:1,title:same?lab:null,label:same?null:lab})});
   h+=passSec(e.ps.filter(function(p){var r=p.ts||[];return !r[0]||(lv>=r[0]&&(!r[1]||lv<=r[1]))}));
   var owners=U.ids.filter(function(o){return o.s===e.s}).sort(uCmp);
   if(owners.length)h+=foldList(esc(e.sn)+'의 인격',owners.length,'<div class="ulist">'+owners.map(function(o){return '<button class="urow" data-unit="'+o.id+'">'+face(o.id,"ef")+rkHtml(o.r)+'<span class="nm">'+esc(o.t)+'</span></button>'}).join("")+'</div>');
@@ -4182,7 +4197,9 @@ function uModeSet(m){uMode=m;try{localStorage.setItem("egoUMode",m)}catch(e){}uM
   document.querySelectorAll("[data-usort]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.usort===uSort)});renderUnits()}
 function uModeSync(){var e=uMode==="ego",v=$("viewUnit");if(v)v.classList.toggle("emode",e);document.querySelectorAll("[data-umode]").forEach(function(b){b.setAttribute("aria-selected",b.dataset.umode===uMode)});
   var q=$("uq");if(q)q.placeholder=e?"E.G.O 이름·스킬·패시브로 검색":"인격·스킬·패시브로 검색";var l=document.querySelector("#viewUnit .idl");if(l)l.textContent=e?"E.G.O":"IDENTITY"}
-function eHay(e){if(e._hay)return e._hay;var s=[e.nm,e.en,(U.sinners[e.s-1]||{}).kr,e.g];(e.sk||[]).forEach(function(k){(k.up||[]).forEach(function(x){s.push(x.name,x.desc)})});(e.ps||[]).forEach(function(p){s.push(p.nm,p.d)});return e._hay=s.join(" ").toLowerCase()}
+var EGO_AB={};/*EGO_AB*/
+function egoAb(e){var k=String(e.nm||"").replace(/\s+/g,"");return EGO_AB[k]||null}
+function eHay(e){if(e._hay)return e._hay;var ab=egoAb(e);var s=[e.nm,e.en,(U.sinners[e.s-1]||{}).kr,e.g,ab?ab[0]+" "+(ab[1]||""):""];(e.sk||[]).forEach(function(k){(k.up||[]).forEach(function(x){s.push(x.name,x.desc)})});(e.ps||[]).forEach(function(p){s.push(p.nm,p.d)});return e._hay=s.join(" ").toLowerCase()}
 function eMatch(e){var q=$("uq").value.trim().toLowerCase();if(q&&eHay(e).indexOf(q)<0)return false;
   if(uSel.sinner.length&&uSel.sinner.indexOf(String(e.s))<0)return false;
   if(uSel.eg.length&&uSel.eg.indexOf(e.g)<0)return false;
