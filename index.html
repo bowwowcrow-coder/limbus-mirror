@@ -2916,9 +2916,9 @@ body{overscroll-behavior-x:none}
 /* 덱 상세: 층 이동 바가 길어도 화면 폭을 넘지 않게 */
 .dlay>*{min-width:0}
 @media (max-width:899px){.dlay{grid-template-columns:minmax(0,1fr)}}
-/* E.G.O 일러를 덱 썸네일로: 정사각 일러를 늘리지 않고 오른쪽에 통째로 */
-.bigw.egoart{display:flex;justify-content:flex-end;position:absolute;inset:0;overflow:hidden;background:linear-gradient(90deg,#0B0907 30%,#17130F)}
-.bigw.egoart img{display:block;height:100%;width:auto;aspect-ratio:1/1;max-width:100%;object-fit:cover;-webkit-mask-image:linear-gradient(90deg,transparent,#000 35%);mask-image:linear-gradient(90deg,transparent,#000 35%)}
+/* E.G.O 각성 일러(원형)를 덱 썸네일로: 음영 없이 통째로 */
+.bigw.egoart{display:flex;justify-content:flex-end;align-items:center;position:absolute;inset:0;overflow:hidden;background:#0B0907}
+.bigw.egoart img{display:block;height:100%;width:auto;aspect-ratio:1/1;max-width:100%;object-fit:contain}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -4316,7 +4316,7 @@ function autoBuild(){var c=dCond();if(!condCount(c)&&!c.st){toast("먼저 키워
 var _presetCache={},gKw=null;
 function presetOf(kw){var key=deck.mode+deck.n+kw;if(!_presetCache[key]){var c=normCond({kws:[kw]});_presetCache[key]=buildFor(c,deck.n)}return _presetCache[key]}
 function gdV(g,vi){return g.v[Math.min(vi||0,g.v.length-1)]}
-function gdArt(g,id){if(g&&g.art&&window.THUMB_URL)return '<span class="bigw egoart"><img src="'+THUMB_URL+'f/e'+g.art+'.webp" alt="" loading="lazy" decoding="async"></span>';return bigWrap(id,!!(U.sprg&&U.sprg.pos[id]),hSpr(id))}
+function gdArt(g,id){if(g&&g.art)return '<span class="bigw egoart"><img src="img/ecg/'+g.art+'.webp" alt="" loading="lazy" decoding="async"></span>';return bigWrap(id,!!(U.sprg&&U.sprg.pos[id]),hSpr(id))}
 function gdUnits(v){var out=[];v.m.forEach(function(x,ix){if(x[0]&&UBY[x[0]])out[ix+1]=UBY[x[0]]});return out}
 function gdDep(v,n){var u=gdUnits(v),d=v.dep.filter(function(s){return u[s]});for(var s=1;s<=12&&d.length<n;s++)if(u[s]&&d.indexOf(s)<0)d.push(s);return d.slice(0,n)}
 /* 덱 성격(출격 인원 기준): 3명 이상인 키워드, 2명 이상인 기프트 소속 */
