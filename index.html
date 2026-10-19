@@ -2966,7 +2966,7 @@ body{overscroll-behavior-x:none}
 .uc-l .gtag{display:block;margin-top:4px;width:max-content}
 .ufb-s .gtag{font-size:12px;padding:4px 7px 3px;margin-right:2px}
 .eht .gtag{font-size:12px;padding:4px 8px 3px}
-.ucard.ecard2,.ufm.efm,.ufb.efb{border-bottom:3px solid var(--gc)}
+.ucard.ecard2,.ufm.efm,.ufb.efb{border-bottom:3px solid var(--bc)}
 @media (max-width:479.98px){.uc-l .gtag{font-size:10px;padding:3px 5px 2px}}
 .kwc .gtag{font-size:11px;padding:4px 7px 3px;box-shadow:none}
 /* ===== 유저 덱 공유 · 프로필 ===== */
@@ -4224,12 +4224,12 @@ function eCmp(a,b){if(uSort==="rank")return GRADES.indexOf(b.g)-GRADES.indexOf(a
 /* E.G.O 목록 카드: 그림 띠(위) + 이름·속성·비용(아래) — 인격 카드처럼 그림이 주인공 */
 function egoArt(id,sub){return '<span class="uimg th egi"><img src="img/ecg/'+(sub||"s")+'/'+id+'.webp" alt="" loading="lazy" decoding="async"></span>'}
 function egoCard(e){var sn=U.sinners[e.s-1]||{};
-  return '<button class="ucard ecard2 g-'+esc(e.g)+'" data-ego="'+e.id+'" aria-label="'+esc((sn.kr||"")+" "+e.nm)+'">'+egoArt(e.id)+'<span class="uc-l">'+sinLogo(e.s,"slg")+''+gradeTag(e.g)+'</span>'+
+  return '<button class="ucard ecard2 g-'+esc(e.g)+'" style="--bc:'+(SINC[e.sin]||"#4A4237")+'" data-ego="'+e.id+'" aria-label="'+esc((sn.kr||"")+" "+e.nm)+'">'+egoArt(e.id)+'<span class="uc-l">'+sinLogo(e.s,"slg")+''+gradeTag(e.g)+'</span>'+
     (e.kws.length?'<span class="uc-k">'+e.kws.slice(0,3).map(function(k){return kwIco(k,"kwg")}).join("")+'</span>':'')+'<span class="unm"><small>'+esc(sn.kr||"")+'</small><b>'+esc(e.nm)+'</b></span></button>'}
 /* 최신 E.G.O 강조: 1개 크게 + 같은 시즌 나머지 중간 (인격 목록과 같은 방식) */
 function eFeat(S){var t=S[0],sn=U.sinners[t.s-1]||{};
-  var big='<button class="ufb efb g-'+esc(t.g)+'" data-ego="'+t.id+'">'+egoArt(t.id,"w")+'<span class="ufb-t"><em><i>NEW</i>'+esc(seasonLbl(t.se))+'</em><span class="ufb-s">'+sinLogo(t.s,"hlg")+''+gradeTag(t.g)+''+esc(sn.kr||"")+(t.kws.length?'<span class="ufb-k">'+t.kws.map(function(k){return kwIco(k,"hki")}).join("")+'</span>':'')+'</span><b>'+esc(t.nm)+'</b></span></button>';
-  var mid=S.slice(1).map(function(e){var s2=U.sinners[e.s-1]||{};return '<button class="ufm efm g-'+esc(e.g)+'" data-ego="'+e.id+'">'+egoArt(e.id,"w")+'<span class="uc-l">'+sinLogo(e.s,"slg")+''+gradeTag(e.g)+'</span>'+(e.kws.length?'<span class="uc-k">'+e.kws.slice(0,3).map(function(k){return kwIco(k,"kwg")}).join("")+'</span>':'')+'<span class="unm"><small>'+esc(s2.kr||"")+'</small><b>'+esc(e.nm)+'</b></span></button>'}).join("");
+  var big='<button class="ufb efb g-'+esc(t.g)+'" style="--bc:'+(SINC[t.sin]||"#4A4237")+'" data-ego="'+t.id+'">'+egoArt(t.id,"w")+'<span class="ufb-t"><em><i>NEW</i>'+esc(seasonLbl(t.se))+'</em><span class="ufb-s">'+sinLogo(t.s,"hlg")+''+gradeTag(t.g)+''+esc(sn.kr||"")+(t.kws.length?'<span class="ufb-k">'+t.kws.map(function(k){return kwIco(k,"hki")}).join("")+'</span>':'')+'</span><b>'+esc(t.nm)+'</b></span></button>';
+  var mid=S.slice(1).map(function(e){var s2=U.sinners[e.s-1]||{};return '<button class="ufm efm g-'+esc(e.g)+'" style="--bc:'+(SINC[e.sin]||"#4A4237")+'" data-ego="'+e.id+'">'+egoArt(e.id,"w")+'<span class="uc-l">'+sinLogo(e.s,"slg")+''+gradeTag(e.g)+'</span>'+(e.kws.length?'<span class="uc-k">'+e.kws.slice(0,3).map(function(k){return kwIco(k,"kwg")}).join("")+'</span>':'')+'<span class="unm"><small>'+esc(s2.kr||"")+'</small><b>'+esc(e.nm)+'</b></span></button>'}).join("");
   return '<div class="ufeat">'+big+(mid?'<div class="ufms">'+mid+'</div>':'')+'</div><h4 class="ugh ugh-all">전체 E.G.O</h4>'}
 function renderEgos(){egoUseCalc();if(!$("uFil").innerHTML)buildUnitFilters();uModeSync();
   var rows=U.egos.filter(eMatch).sort(eCmp),f=["sinner","eg","use","sin","atk","kw","season"].some(function(k){return uSel[k].length})||$("uq").value.trim();
