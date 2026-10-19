@@ -2941,6 +2941,12 @@ body{overscroll-behavior-x:none}
 .efm .egi img{object-position:50% 35%}
 @media (max-width:479.98px){.uc-l .egr .gri{height:15px}}
 .ufb .egi,.ufm .egi{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;top:0;transform:none}
+.ualias.edit em{display:inline-flex;align-items:center;padding:0;overflow:hidden}
+.ualias.edit em button{border:0;background:none;color:inherit;font:inherit;padding:3px 6px 3px 9px;cursor:pointer}
+.ualias.edit em button+button{padding:3px 8px 3px 4px;color:#9E8F78}
+.ualias.edit em.top{background:#3A2C10;border-color:#F6DC8C}
+.ualias.edit .alin{flex:1 1 140px;min-width:0;height:30px;font-size:13px}
+@media (max-width:480px){.ualias.edit .alin{font-size:16px}}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -5910,9 +5916,10 @@ var GL_SEED=[
   ["인격 약칭","묘파우 · 사로쟈 · 섕뫼","[소속 줄임]+[수감자 줄임]으로 불러요. 묘파우=흑수 - 묘 필두 파우스트, 사로쟈=흑수 - 사 로쟈, 섕뫼=섕크 협회 뫼르소. 인격 메뉴 검색창에 약칭을 넣어도 찾아져요.","커뮤니티"],
   ["키워드 줄임","충출 · 호파 · 진침","키워드 첫 글자를 이어 불러요. 충=충전 · 출=출혈 · 호=호흡 · 파=파열 · 진=진동 · 침=침잠 · 화=화상.","커뮤니티"]];
 var GL={list:null,loading:false,cat:"",q:""};
-function glList(){return GL.list||GL_SEED.map(function(r){return {t:r[0],a:r[1],d:r[2],c:r[3]}})}
+function glAll(){return GL.list||GL_SEED.map(function(r){return {t:r[0],a:r[1],d:r[2],c:r[3]}})}
+function glList(){return glAll().filter(function(x){return x.c!=="약칭"})}
 function glLoad(cb){if(GL.list||GL.loading){cb&&cb();return}GL.loading=true;
-  api("getGloss",[],function(s){GL.loading=false;var o=shJ(s);if(o.list&&o.list.length)GL.list=o.list;cb&&cb()},function(){GL.loading=false;cb&&cb()})}
+  api("getGloss",[],function(s){GL.loading=false;var o=shJ(s);if(o.list&&o.list.length)GL.list=o.list;try{alApply()}catch(e){}cb&&cb()},function(){GL.loading=false;cb&&cb()})}
 function renderGuide(){var el=$("guideBody");if(!el)return;if(!GL.list&&!GL.loading&&shOnline())glLoad(function(){if(curView==="guide")renderGuide()});
   var steps=[["my","가진 인격부터 체크","개인 설정에서 보유 인격·E.G.O를 체크하면, 덱 추천이 그 안에서만 나와요. 로그인하면 폰·PC가 이어져요."],
     ["deck","덱 고르기","덱 메뉴에서 공략 덱을 고르거나, 키워드를 골라 자동 편성해요. 게임 팀 코드로 바로 옮길 수 있어요."],
@@ -5927,7 +5934,7 @@ function renderGuide(){var el=$("guideBody");if(!el)return;if(!GL.list&&!GL.load
     '<div class="shfil"><button class="chip" data-glc="" aria-pressed="'+(!GL.cat)+'"><span>전체</span></button>'+cats.map(function(c){return '<button class="chip" data-glc="'+esc(c)+'" aria-pressed="'+(GL.cat===c)+'"><span>'+esc(c)+'</span></button>'}).join("")+'</div>'+
     (F.length?'<dl class="gdl">'+F.map(function(x){return '<div class="gdr"><dt>'+esc(x.t)+(x.a?'<small>'+esc(x.a)+'</small>':'')+'</dt><dd>'+esc(x.d)+'</dd></div>'}).join("")+'</dl>':'<div class="dempty">찾는 용어가 없어요. 건의함으로 알려 주시면 추가할게요.</div>')+
     '<p class="dinfo" style="margin-top:10px">인격 별칭처럼 빠진 말이 있으면 홈의 건의함으로 알려 주세요.</p>'+
-    (window.admOn&&admOn()?'<div class="dib"><button class="tbtn K" data-gledit="1"><span>용어 편집 (운영자)</span></button></div>':'');
+    (window.admOn&&admOn()?'<div class="dib"><button class="tbtn K" data-gledit="1"><span>용어 편집 (운영자)</span></button><button class="tbtn K" data-albulk="1"><span>인격 약칭 일괄 편집</span></button></div>':'');
   var ae=document.activeElement&&document.activeElement.id;el.innerHTML=h;if(ae==="glQ"){var qi=$("glQ");qi.focus();qi.setSelectionRange(qi.value.length,qi.value.length)}}
 function glEdit(){var txt=glList().map(function(x){return [x.t,x.a,x.d,x.c].join(" | ")}).join("\n");
   var h='<div class="phead"><div class="banner K"><div>용어 편집</div></div></div><p class="dinfo" style="margin:8px 0">한 줄에 하나 · <b>용어 | 다른 이름 | 뜻 | 분류</b> · 구글 시트 「용어」 탭에서 고쳐도 돼요.</p><textarea class="tcin" id="glTxt" rows="18" style="width:100%;box-sizing:border-box;font:500 13px/1.5 monospace">'+esc(txt)+'</textarea><div class="dib"><button class="tbtn K lit" data-glsave="1"><span>저장</span></button></div>';
@@ -5936,7 +5943,7 @@ document.addEventListener("click",function(e){var t=e.target;if(!t.closest)retur
   if((a=t.closest("[data-glc]"))){GL.cat=a.dataset.glc;renderGuide();return}
   if(t.closest("[data-gledit]")){glEdit();return}
   if(t.closest("[data-glsave]")){var L=($("glTxt").value||"").split("\n").map(function(l){var p=l.split("|").map(function(x){return x.trim()});return p[0]?{t:p[0],a:p[1]||"",d:p[2]||"",c:p[3]||""}:null}).filter(Boolean);
-    vAdmin("gloss",{list:L},function(){GL.list=L;hide();toast("용어 사전을 저장했어요");renderGuide()});return}});
+    L=L.concat(glAll().filter(function(x){return x.c==="약칭"}));vAdmin("gloss",{list:L},function(){GL.list=L;hide();toast("용어 사전을 저장했어요");renderGuide()});return}});
 var _glqt;document.addEventListener("input",function(e){if(e.target&&e.target.id==="glQ"){GL.q=e.target.value;clearTimeout(_glqt);_glqt=setTimeout(renderGuide,150)}});
 (function(){function mount(){if($("viewGuide"))return;var vd=$("viewDeck");if(!vd)return;
   var v=document.createElement("div");v.className="view";v.id="viewGuide";v.hidden=true;
@@ -5983,13 +5990,47 @@ var AL_PRE=[
   [/^살아남은 로보토미/,["생존"]],[/^데드레빗츠/,["데렙"]],[/^마리아치/,["마리아치"]],[/^와일드헌트/,["와헌"]],[/^콩콩이파/,["콩콩"]],[/^정사무소/,["정"]],
   [/^갈고리/,["갈고리"]],[/^송곳니/,["송곳니"]],[/^불주먹/,["불주먹"]],[/^쌍갈고리/,["쌍갈"]],[/^밤의 송곳/,["송곳"]],[/^개화 E\.G\.O:: (.+)$/,["$1"]],
   [/E\.G\.O:: (.+)$/,["$1"]]];
+var AL_OV={};
 function unitAlias(i){if(i._al)return i._al;var pre=[],t=i.t||"";AL_PRE.forEach(function(r){var m=t.match(r[0]);if(m)r[1].forEach(function(p){p=p.replace("$1",m[1]||"").replace(/[\s,【】\[\]・]/g,"");if(p&&pre.indexOf(p)<0)pre.push(p)})});
-  var sn=AL_SIN[i.s]||[],out=(AL_FIX[i.id]||[]).slice();pre.forEach(function(p){sn.forEach(function(s){var a=p+s;if(out.indexOf(a)<0)out.push(a)})});i._al1=(AL_FIX[i.id]||[]).concat(pre.map(function(p){return p+(sn[0]||"")})).filter(function(x,k,a){return a.indexOf(x)===k});return i._al=out}
+  var sn=AL_SIN[i.s]||[],out=(AL_FIX[i.id]||[]).slice();pre.forEach(function(p){sn.forEach(function(s){var a=p+s;if(out.indexOf(a)<0)out.push(a)})});var ov=AL_OV[i.id];if(ov){ov.forEach(function(x){if(out.indexOf(x)<0)out.unshift(x)})}
+  i._al1=ov?ov.slice():(AL_FIX[i.id]||[]).concat(pre.map(function(p){return p+(sn[0]||"")})).filter(function(x,k,a){return a.indexOf(x)===k});return i._al=out}
 /* 검색에 별칭 포함 */
-(function(){var _um=uMatch;uMatch=function(i){if(i.hay&&!i._alh){i.hay+=" "+unitAlias(i).join(" ").toLowerCase();i._alh=1}return _um(i)}})();
+(function(){var _um=uMatch;uMatch=function(i){if(i.hay&&i._alh!==AL_V){i.hay=i.hay.split(" ‖")[0]+" ‖"+unitAlias(i).join(" ").toLowerCase();i._alh=AL_V}return _um(i)}})();
+var AL_V=0;
+/* 운영자가 고친 약칭(구글 시트 「용어」 탭, 분류=약칭, 용어=인격 번호, 다른 이름=약칭 쉼표 구분 · 앞쪽이 대표) */
+function alApply(){AL_OV={};(window.glAll?glAll():[]).forEach(function(x){if(x.c==="약칭"&&+x.t){AL_OV[+x.t]=String(x.a||"").split(/\s*,\s*/).filter(Boolean)}});AL_V++;if(window.U)U.ids.forEach(function(i){i._al=null;i._al1=null})}
+function alSave(id,list,cb){var L=glAll().filter(function(x){return !(x.c==="약칭"&&+x.t===id)});if(list)L.push({t:String(id),a:list.join(", "),d:(UBY[id]?UBY[id].sn+" "+UBY[id].t:""),c:"약칭"});
+  vAdmin("gloss",{list:L},function(){GL.list=L;alApply();toast("약칭을 저장했어요");cb&&cb()})}
+setTimeout(function(){if(window.glLoad&&window.shOnline&&shOnline())glLoad()},2500);
 /* 인격 상세에 대표 별칭 표시 */
 (function(){var _ou=openUnit;openUnit=function(id){_ou(id);try{var i=UBY[id];if(i)unitAlias(i);var a=i&&i._al1;if(!a||!a.length)return;var b=$("detailBody"),m=b&&b.querySelector(".umeta");if(!m||b.querySelector(".ualias"))return;
-  var el=document.createElement("div");el.className="ualias";el.innerHTML='<span class="ecl">부르는 말</span>'+a.slice(0,3).map(function(x){return '<em>'+esc(x)+'</em>'}).join("")+'<small>커뮤 약칭 · 자동 정리</small>';m.parentNode.insertBefore(el,m.nextSibling)}catch(e){}}})();
+  var el=document.createElement("div");el.className="ualias";if(window.admOn&&admOn()){alEditPaint(el,id);m.parentNode.insertBefore(el,m.nextSibling);return}
+  el.innerHTML='<span class="ecl">부르는 말</span>'+a.slice(0,3).map(function(x){return '<em>'+esc(x)+'</em>'}).join("")+'<small>커뮤 약칭 · 자동 정리</small>';m.parentNode.insertBefore(el,m.nextSibling)}catch(e){}}})();
+
+/* 운영자: 인격 상세에서 약칭 바로 고치기 — 칩 누르면 맨 앞(대표)으로, ✕로 빼기, 칸에 적어 추가 */
+var _alEd={};
+function alEditPaint(el,id){var i=UBY[id];unitAlias(i);var cur=_alEd[id]||(AL_OV[id]||i._al1.slice(0,3)).slice();_alEd[id]=cur;
+  el.className="ualias edit";el.dataset.alid=id;
+  el.innerHTML='<span class="ecl">부르는 말</span>'+cur.map(function(x,k){return '<em class="'+(k?"":"top")+'"><button data-alup="'+k+'" title="대표로">'+esc(x)+'</button><button data-aldel="'+k+'" aria-label="빼기">✕</button></em>'}).join("")+
+    '<input class="tcin alin" placeholder="약칭 추가 (쉼표로 여러 개)" maxlength="40"><button class="chip" data-aladd="1"><span>추가</span></button><button class="tbtn K lit" data-alsave="1"><span>저장</span></button>'+(AL_OV[id]?'<button class="chip" data-alreset="1"><span>자동으로 되돌리기</span></button>':'')+'<small>운영자만 보임 · 칩을 누르면 대표 약칭이 돼요</small>'}
+document.addEventListener("click",function(e){var t=e.target;if(!t.closest)return;var el=t.closest(".ualias.edit");if(!el)return;var id=+el.dataset.alid,cur=_alEd[id];var b;
+  if((b=t.closest("[data-alup]"))){var k=+b.dataset.alup;cur.unshift(cur.splice(k,1)[0]);alEditPaint(el,id);return}
+  if((b=t.closest("[data-aldel]"))){cur.splice(+b.dataset.aldel,1);alEditPaint(el,id);return}
+  if(t.closest("[data-aladd]")){var v=el.querySelector(".alin").value.split(/\s*,\s*/).map(function(x){return x.trim()}).filter(Boolean);v.forEach(function(x){if(cur.indexOf(x)<0)cur.push(x)});alEditPaint(el,id);return}
+  if(t.closest("[data-alsave]")){if(!cur.length){toast("약칭을 하나 이상 남겨 주세요");return}alSave(id,cur);return}
+  if(t.closest("[data-alreset]")){delete _alEd[id];alSave(id,null,function(){alEditPaint(el,id)});return}});
+document.addEventListener("keydown",function(e){if(e.key==="Enter"&&e.target.classList&&e.target.classList.contains("alin")){var b=e.target.parentNode.querySelector("[data-aladd]");b&&b.click()}});
+/* 운영자: 약칭 일괄 편집 (한 줄에 인격 하나 · 고친 줄만 저장) */
+function alBulk(){var L=U.ids.filter(function(i){return i.r>0&&!/^LCB 수감자$/.test(i.t)}).sort(function(a,b){return a.s-b.s||a.id-b.id});
+  var txt=L.map(function(i){unitAlias(i);return i.id+" "+i.sn+" "+i.t+" | "+(AL_OV[i.id]||i._al1.slice(0,3)).join(", ")}).join("\n");
+  $("detailBody").innerHTML='<div class="phead"><div class="banner K"><div>인격 약칭 일괄 편집</div></div></div><p class="dinfo" style="margin:8px 0">한 줄에 인격 하나 · <b>| 뒤의 약칭만 고치세요</b> · 쉼표로 구분 · 맨 앞이 대표 · 고친 줄만 저장돼요. 구글 시트 「용어」 탭(분류=약칭)에서 고쳐도 돼요.</p><textarea class="tcin" id="alTxt" rows="22" style="width:100%;box-sizing:border-box;font:500 13px/1.6 monospace">'+esc(txt)+'</textarea><div class="dib"><button class="tbtn K lit" data-albsave="1"><span>저장</span></button></div>';
+  navStack=[];updBack();show("detail")}
+document.addEventListener("click",function(e){var t=e.target;if(!t.closest)return;
+  if(t.closest("[data-albulk]")){alBulk();return}
+  if(t.closest("[data-albsave]")){var lines=($("alTxt").value||"").split("\n"),G=glAll(),n=0;
+    lines.forEach(function(l){var m=l.match(/^(\d{5})\b.*\|(.*)$/);if(!m)return;var id=+m[1],i=UBY[id];if(!i)return;unitAlias(i);var list=m[2].split(/\s*,\s*/).map(function(x){return x.trim()}).filter(Boolean),auto=i._al1.slice(0,3);
+      var was=AL_OV[id]||auto;if(list.join(",")===was.join(","))return;G=G.filter(function(x){return !(x.c==="약칭"&&+x.t===id)});if(list.length&&list.join(",")!==auto.join(","))G.push({t:String(id),a:list.join(", "),d:i.sn+" "+i.t,c:"약칭"});n++});
+    if(!n){toast("바뀐 줄이 없어요");return}vAdmin("gloss",{list:G},function(){GL.list=G;alApply();toast(n+"개 인격 약칭을 저장했어요");hide()});return}});
 
 /* ===== 설문 반영 손보기 (2026-10) ===== */
 /* 덱 기프트 루트: 위에 층 바로가기 막대 */
