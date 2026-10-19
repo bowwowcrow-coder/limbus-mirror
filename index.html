@@ -5910,7 +5910,7 @@ var UGIFT={"groups":[{"k":"화상","g":["부화하지 않은 불씨","불꽃의 
 var UG={k:null,open:false};try{UG.open=localStorage.getItem("egoUgOpen")==="1";UG.k=localStorage.getItem("egoUgK")}catch(e){}
 function ugHtml(){if(!window.byName)return "";var G=UGIFT.groups;if(!UG.k||!G.some(function(g){return g.k===UG.k}))UG.k=G[0].k;var g=G.filter(function(x){return x.k===UG.k})[0];
   var ch=UGIFT.chains.filter(function(c){return c.k===UG.k});
-  var kwI=function(k){var m={"화상":"Burn","출혈":"Bleeding","진동":"Tremor","파열":"Rupture","침잠":"Sinking","호흡":"Breath","충전":"Charge"}[k];return m&&window.kwIco?kwIco(m,"ugki"):""};
+  var kwI=function(k){var m={"화상":"Combustion","출혈":"Laceration","진동":"Vibration","파열":"Burst","침잠":"Sinking","호흡":"Breath","충전":"Charge"}[k];return m&&window.kwIco?kwIco(m,"ugki"):""};
   return '<details class="ugp"'+(UG.open?' open':'')+'><summary><b>어느 덱이든 먼저 챙길 기프트</b><small>15층 공략 시트 기준 · 앞에 있을수록 중요</small><i class="chev"></i></summary>'+
     '<div class="ugk">'+G.map(function(x){return '<button class="chip" data-ugk="'+esc(x.k)+'" aria-pressed="'+(x.k===UG.k)+'">'+kwI(x.k)+'<span>'+esc(x.k)+'</span></button>'}).join("")+'</div>'+
     '<div class="gtg ugg">'+g.g.map(function(n,i){var x=byName[n];return x?gTile(x,i+1):''}).join("")+'</div>'+
