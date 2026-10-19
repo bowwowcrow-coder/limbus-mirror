@@ -2959,6 +2959,16 @@ body{overscroll-behavior-x:none}
 .eht .eab{display:block;margin-top:5px;font-size:11.5px;color:rgba(217,201,165,.48);letter-spacing:-.01em}
 .eht .eab i{font-style:normal;font-family:"Excelsior",sans-serif;font-size:10px;opacity:.8;margin-left:2px}
 .usk.egsk .l1>b{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:keep-all}
+/* E.G.O 등급: 룬 대신 글자 + 위험등급 색 */
+.g-ZAYIN{--gc:#3DB45E}.g-TETH{--gc:#3A9BE0}.g-HE{--gc:#E9BC2A}.g-WAW{--gc:#9A5CDB}.g-ALEPH{--gc:#E0392F}
+.gtag{display:inline-block;font:700 10.5px/1 "Excelsior",sans-serif;font-style:normal;letter-spacing:.06em;padding:3px 6px 2px;border-radius:3px;background:var(--gc);color:#0E0C0A;text-shadow:none;box-shadow:0 1px 3px rgba(0,0,0,.6);vertical-align:middle}
+.g-ZAYIN.gtag,.g-HE.gtag{color:#14110C}.g-TETH.gtag,.g-WAW.gtag,.g-ALEPH.gtag{color:#fff}
+.uc-l .gtag{display:block;margin-top:4px;width:max-content}
+.ufb-s .gtag{font-size:12px;padding:4px 7px 3px;margin-right:2px}
+.eht .gtag{font-size:12px;padding:4px 8px 3px}
+.ucard.ecard2,.ufm.efm,.ufb.efb{border-bottom:3px solid var(--gc)}
+@media (max-width:479.98px){.uc-l .gtag{font-size:10px;padding:3px 5px 2px}}
+.kwc .gtag{font-size:11px;padding:4px 7px 3px;box-shadow:none}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -3860,6 +3870,7 @@ function face(id,cls){if(window.THUMB_URL&&U.ico&&U.ico.face.pos["p"+id])return 
 function eface(id,cls){if(window.THUMB_URL&&U.ico&&U.ico.face.pos["e"+id])return thImg("fci"+(cls?" "+cls:""),"f","e"+id);return spr2("face","e"+id,cls)||'<span class="fci none'+(cls?" "+cls:"")+'"></span>'}
 function xface(id,cls){if(window.THUMB_URL&&U.ico&&U.ico.face.pos["x"+id])return thImg("fci"+(cls?" "+cls:""),"f","x"+id);return spr2("face","x"+id,cls)||eface(id,cls)}
 function gradeIco(g){return uii("grade_"+g,"gri",g)}
+function gradeTag(g){return '<i class="gtag g-'+esc(g)+'">'+esc(g)+'</i>'}
 function egoBanner(id,cls){return sprAt(U.egob,String(id),"ebn"+(cls?" "+cls:""),"--ebp")}
 function sinKr(k){return U&&U.sins[k]?U.sins[k].kr:k}
 function assocKr(k){return ASSOC_FIX[k]||(U.ukw&&U.ukw[k])||(U.assoc&&U.assoc[k])||k.replace(/_/g," ")}
@@ -3942,7 +3953,7 @@ function buildUnitFilters(){
       return '<button class="fbtn" data-uk="sinner" data-v="'+s.n+'" aria-pressed="'+on+'" title="'+esc(s.kr)+'">'+sinLogo(s.n,"flg")+'<span>'+esc(s.kr)+'</span></button>'}).join("")+'</div>'+
     '<div class="ufg">'+
     row("용도",ch("use",EUSE,"kwc"),"ego-only")+
-    row("E.G.O 등급",ch("eg",GRADES.filter(function(g){return U.egos.some(function(e){return e.g===g})}).map(function(g){return [g,g]}),"kwc",function(a){return gradeIco(a[0])+esc(a[1])}),"ego-only")+
+    row("E.G.O 등급",ch("eg",GRADES.filter(function(g){return U.egos.some(function(e){return e.g===g})}).map(function(g){return [g,g]}),"kwc",function(a){return gradeTag(a[0])}),"ego-only")+
     row("등급",ch("rank",RANKS,"rkc",function(a){return uii("rank_"+a[0],"rki",a[1])||a[1]}))+
     row("유형",ch("atk",ATKS,"kwc",function(a){return atkIco(a[0],"atki")+esc(a[1])}))+
     row("키워드",ch("kw",kws,"kwc",function(a){return kwIco(a[0],"kwc-i")+esc(a[1])}),"full")+
@@ -4148,7 +4159,7 @@ var _uKeepScroll=false,_uArtAuto=true;
 function openEgo(id){
   var e=EBY[id];if(!e)return;navPush("e",id);curEgo=id;curUnit=null;curGift=null;_pp=[];ppClose();artLoad("--ebp","EGOB_SPRITE_INLINE","EGOB_SPRITE_URL","getEgoBannerSprite");artLoad("--bfp","BUFF_SPRITE_INLINE","BUFF_SPRITE_URL","getBuffSprite");
   var bn=egoBanner(e.id);
-  var h='<div class="ecgw"><img class="ecg" src="img/ecg/'+e.id+'.webp" alt="" decoding="async" onerror="this.parentNode.remove()"></div><div class="ehero nob g-'+esc(e.g)+'"><div class="eht"><span class="gr">'+gradeIco(e.g)+esc(e.g)+'</span><b class="en">'+esc(e.nm)+'</b>'+(e.en?'<span class="ee">'+esc(e.en)+'</span>':'')+(function(){var ab=egoAb(e);return ab?'<span class="eab">'+(ab[3]==="ak"?'콜라보 원본 · 명일방주 ':'원본 환상체 · ')+esc(ab[0])+(ab[2]?' <i>'+esc(ab[2])+'</i>':'')+'</span>':''})()+'</div></div>';
+  var h='<div class="ecgw"><img class="ecg" src="img/ecg/'+e.id+'.webp" alt="" decoding="async" onerror="this.parentNode.remove()"></div><div class="ehero nob g-'+esc(e.g)+'"><div class="eht">'+gradeTag(e.g)+'<b class="en">'+esc(e.nm)+'</b>'+(e.en?'<span class="ee">'+esc(e.en)+'</span>':'')+(function(){var ab=egoAb(e);return ab?'<span class="eab">'+(ab[3]==="ak"?'콜라보 원본 · 명일방주 ':'원본 환상체 · ')+esc(ab[0])+(ab[2]?' <i>'+esc(ab[2])+'</i>':'')+'</span>':''})()+'</div></div>';
   h+='<div class="umeta"><span class="tag sea">'+sinLogo(e.s,"tlg")+esc(e.sn)+'</span><span class="tag">'+esc(seasonLbl(e.se))+'</span>'+(e.atk?'<span class="tag">'+atkIco(e.atk,"tki")+esc(U.atk[e.atk]||"")+'</span>':'')+(e.sin?'<span class="tag kt" style="--sc:'+SINC[e.sin]+'">'+sinIco(e.sin,"tki")+esc(sinKr(e.sin))+'</span>':'')+
     e.kws.map(function(k){var n=KWKR[k]||k,ks=SIN[KWSIN[n]];return '<span class="tag kt"'+(ks?' style="--sc:'+ks+'"':'')+'>'+kwIco(k,"tki")+esc(n)+'</span>'}).join("")+'</div>';
   egoUseCalc();if(e.use&&e.use.length)h+='<div class="euseh"><span class="ecl">용도</span>'+useChips(e,"big")+'<small>자동 분류 · 유저 평가가 쌓이면 바뀌어요</small></div>';
@@ -4213,12 +4224,12 @@ function eCmp(a,b){if(uSort==="rank")return GRADES.indexOf(b.g)-GRADES.indexOf(a
 /* E.G.O 목록 카드: 그림 띠(위) + 이름·속성·비용(아래) — 인격 카드처럼 그림이 주인공 */
 function egoArt(id,sub){return '<span class="uimg th egi"><img src="img/ecg/'+(sub||"s")+'/'+id+'.webp" alt="" loading="lazy" decoding="async"></span>'}
 function egoCard(e){var sn=U.sinners[e.s-1]||{};
-  return '<button class="ucard ecard2" data-ego="'+e.id+'" aria-label="'+esc((sn.kr||"")+" "+e.nm)+'">'+egoArt(e.id)+'<span class="uc-l">'+sinLogo(e.s,"slg")+'<span class="egr">'+gradeIco(e.g)+'</span></span>'+
+  return '<button class="ucard ecard2 g-'+esc(e.g)+'" data-ego="'+e.id+'" aria-label="'+esc((sn.kr||"")+" "+e.nm)+'">'+egoArt(e.id)+'<span class="uc-l">'+sinLogo(e.s,"slg")+''+gradeTag(e.g)+'</span>'+
     (e.kws.length?'<span class="uc-k">'+e.kws.slice(0,3).map(function(k){return kwIco(k,"kwg")}).join("")+'</span>':'')+'<span class="unm"><small>'+esc(sn.kr||"")+'</small><b>'+esc(e.nm)+'</b></span></button>'}
 /* 최신 E.G.O 강조: 1개 크게 + 같은 시즌 나머지 중간 (인격 목록과 같은 방식) */
 function eFeat(S){var t=S[0],sn=U.sinners[t.s-1]||{};
-  var big='<button class="ufb efb" data-ego="'+t.id+'">'+egoArt(t.id,"w")+'<span class="ufb-t"><em><i>NEW</i>'+esc(seasonLbl(t.se))+'</em><span class="ufb-s">'+sinLogo(t.s,"hlg")+'<span class="egr">'+gradeIco(t.g)+'</span>'+esc(sn.kr||"")+(t.kws.length?'<span class="ufb-k">'+t.kws.map(function(k){return kwIco(k,"hki")}).join("")+'</span>':'')+'</span><b>'+esc(t.nm)+'</b></span></button>';
-  var mid=S.slice(1).map(function(e){var s2=U.sinners[e.s-1]||{};return '<button class="ufm efm" data-ego="'+e.id+'">'+egoArt(e.id,"w")+'<span class="uc-l">'+sinLogo(e.s,"slg")+'<span class="egr">'+gradeIco(e.g)+'</span></span>'+(e.kws.length?'<span class="uc-k">'+e.kws.slice(0,3).map(function(k){return kwIco(k,"kwg")}).join("")+'</span>':'')+'<span class="unm"><small>'+esc(s2.kr||"")+'</small><b>'+esc(e.nm)+'</b></span></button>'}).join("");
+  var big='<button class="ufb efb g-'+esc(t.g)+'" data-ego="'+t.id+'">'+egoArt(t.id,"w")+'<span class="ufb-t"><em><i>NEW</i>'+esc(seasonLbl(t.se))+'</em><span class="ufb-s">'+sinLogo(t.s,"hlg")+''+gradeTag(t.g)+''+esc(sn.kr||"")+(t.kws.length?'<span class="ufb-k">'+t.kws.map(function(k){return kwIco(k,"hki")}).join("")+'</span>':'')+'</span><b>'+esc(t.nm)+'</b></span></button>';
+  var mid=S.slice(1).map(function(e){var s2=U.sinners[e.s-1]||{};return '<button class="ufm efm g-'+esc(e.g)+'" data-ego="'+e.id+'">'+egoArt(e.id,"w")+'<span class="uc-l">'+sinLogo(e.s,"slg")+''+gradeTag(e.g)+'</span>'+(e.kws.length?'<span class="uc-k">'+e.kws.slice(0,3).map(function(k){return kwIco(k,"kwg")}).join("")+'</span>':'')+'<span class="unm"><small>'+esc(s2.kr||"")+'</small><b>'+esc(e.nm)+'</b></span></button>'}).join("");
   return '<div class="ufeat">'+big+(mid?'<div class="ufms">'+mid+'</div>':'')+'</div><h4 class="ugh ugh-all">전체 E.G.O</h4>'}
 function renderEgos(){egoUseCalc();if(!$("uFil").innerHTML)buildUnitFilters();uModeSync();
   var rows=U.egos.filter(eMatch).sort(eCmp),f=["sinner","eg","use","sin","atk","kw","season"].some(function(k){return uSel[k].length})||$("uq").value.trim();
