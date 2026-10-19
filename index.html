@@ -2851,18 +2851,20 @@ body{overscroll-behavior-x:none}
 .ec-g{position:absolute;z-index:2;top:6px;left:6px;line-height:0;padding:4px 5px;border-radius:4px;background:rgba(12,10,8,.72)}
 .ec-g .gri{height:18px}
 .ec-u{position:absolute;z-index:2;top:6px;right:6px;margin:0}
-.ec-b{display:flex;flex-direction:column;gap:5px;padding:8px 9px 9px;flex:1}
-.ec-s{display:flex;align-items:center;gap:5px;font:600 11.5px/1 "SCDream",sans-serif;color:#9E8F78}
-.ec-s .esl{height:16px;width:auto}
-.ec-s i{font-style:normal}
-.ec-b>b{font:600 14.5px/1.3 "SCDream",sans-serif;color:#FFF3DF;word-break:keep-all;overflow:hidden;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2}
-.ec-i{display:flex;align-items:center;gap:4px;min-width:0;flex-wrap:wrap}
-.ec-i .eai,.ec-i .esi{height:17px;width:auto}
-.ec-i .eki{height:18px;width:18px;object-fit:contain}
-.ec-i .dv{width:1px;height:12px;background:#4A4237;margin:0 2px}
-.ec-b .cst{gap:7px;padding:0 4px 4px 0;margin-top:auto;flex-wrap:wrap}
-.ec-b .cst i,.ec-b .cst i .sinb{width:20px;height:20px}
-.ec-b .cst i b{width:14px;height:14px;font-size:9px;line-height:14px}
+.ec-b{display:flex;flex-direction:column;gap:5px;padding:6px 7px 7px}
+.ec-t{display:flex;align-items:center;gap:5px;min-width:0}
+.ec-t .esl{flex:none;height:16px;width:auto}
+.ec-t b{min-width:0;font:600 13.5px/1.25 "SCDream",sans-serif;color:#FFF3DF;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ec-m{display:flex;align-items:center;justify-content:space-between;gap:4px;min-height:20px}
+.ec-i{display:flex;align-items:center;gap:2px;min-width:0;flex-wrap:nowrap;overflow:hidden}
+.ec-i .eai,.ec-i .esi{height:15px;width:auto}
+.ec-i .eki{height:15px;width:15px;object-fit:contain}
+.ec-i .dv{flex:none;width:1px;height:10px;background:#4A4237;margin:0 2px}
+.ec-m .cst{flex:none;gap:4px;padding:0 3px 3px 0;margin:0;flex-wrap:nowrap}
+.ec-m .cst i,.ec-m .cst i .sinb{width:17px;height:17px}
+.ec-m .cst i b{width:12px;height:12px;font-size:8px;line-height:12px}
+@media (min-width:600px){.ec-b{padding:7px 9px 8px}.ec-t b{font-size:14px}.ec-i .eai,.ec-i .esi,.ec-i .eki{height:17px}.ec-i .eki{width:17px}.ec-m .cst{gap:6px}.ec-m .cst i,.ec-m .cst i .sinb{width:19px;height:19px}}
+@media (max-width:599px){.ec-i .dv,.ec-i .eki{display:none}}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -4112,7 +4114,7 @@ function eCmp(a,b){if(uSort==="rank")return GRADES.indexOf(b.g)-GRADES.indexOf(a
 /* E.G.O 목록 카드: 그림 띠(위) + 이름·속성·비용(아래) — 인격 카드처럼 그림이 주인공 */
 function egoCard(e){var sn=U.sinners[e.s-1]||{};
   var ic=(e.atk?atkIco(e.atk,"eai"):'')+(e.sin?sinIco(e.sin,"esi"):'')+(e.kws.length?'<i class="dv"></i>'+e.kws.map(function(k){return kwIco(k,"eki")}).join(""):'');
-  return '<button class="ecard g-'+esc(e.g)+'" data-ego="'+e.id+'"><span class="ec-a">'+eface(e.id,"eca")+'<span class="ec-g">'+gradeIco(e.g)+'</span>'+useChips(e,"ec-u")+'</span><span class="ec-b"><span class="ec-s">'+sinLogo(e.s,"esl")+'<i>'+esc(sn.kr||"")+'</i></span><b>'+esc(e.nm)+'</b><span class="ec-i">'+ic+'</span>'+costChips(e.cost)+'</span></button>'}
+  return '<button class="ecard g-'+esc(e.g)+'" data-ego="'+e.id+'"><span class="ec-a">'+eface(e.id,"eca")+'<span class="ec-g">'+gradeIco(e.g)+'</span>'+useChips(e,"ec-u")+'</span><span class="ec-b"><span class="ec-t" title="'+esc((sn.kr||"")+" · "+e.nm)+'">'+sinLogo(e.s,"esl")+'<b>'+esc(e.nm)+'</b></span><span class="ec-m"><span class="ec-i">'+ic+'</span>'+costChips(e.cost)+'</span></span></button>'}
 function renderEgos(){egoUseCalc();if(!$("uFil").innerHTML)buildUnitFilters();uModeSync();
   var rows=U.egos.filter(eMatch).sort(eCmp),f=["sinner","eg","use","sin","atk","kw","season"].some(function(k){return uSel[k].length})||$("uq").value.trim();
   $("uCount").innerHTML=f?'<b>'+rows.length+'</b> <i>/ '+U.egos.length+'</i>':'<b>'+U.egos.length+'</b>';
