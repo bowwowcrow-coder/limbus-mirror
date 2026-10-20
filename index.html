@@ -3120,6 +3120,42 @@ details>summary>b{font-family:"KOTRA","SCDream",sans-serif;font-weight:400}
 /* 편성 타일 이름 위 잘림 */
 .dtile .tn{line-height:1.3;padding-top:1px;overflow:visible}
 .dtile{overflow:visible}
+/* ===== 덱 루트 레이아웃 정리 (어긋남·공백 제거) ===== */
+.rtl{gap:0}
+.rtl .rfl{grid-template-columns:30px minmax(0,1fr)!important;gap:0 8px!important;padding:9px 0 10px;border-top:1px solid #2A2520}
+.rtl .rfl:first-child{border-top:0;padding-top:2px}
+.rtl .rfh{padding-top:3px;border-right:1px solid #3A3328;align-items:flex-start}
+.rtl .rfh b{font-size:13px;line-height:1}.rtl .rfh span{font-size:9px;margin-top:2px}
+.rtl .rfb{gap:5px}
+.rtl .rpk{gap:5px}
+.rtl .rpn{min-height:22px;gap:6px}
+.rtl .rpn .pkimg.rpi{width:16px;height:21px;object-fit:cover;border-radius:2px}
+.rtl .rpn b{font-size:14px;line-height:1.1}
+/* 기프트 칸: 고정폭 가로 나열, 꽉 채우지 않음 */
+.rtl .gtg,.stbx .gtg{display:flex!important;flex-wrap:wrap;gap:4px;grid-template-columns:none!important}
+.rtl .gtl,.stbx .gtl{width:64px;flex:none;padding:4px 2px 4px;gap:2px;font:500 10px/1.25 "SCDream",sans-serif;background:#110E0B;border-color:#2A2520}
+.rtl .gtl .gi,.stbx .gtl .gi{width:34px}
+.stbx .gtl{width:72px}
+.rpnote,.rpnote.nt{margin:0;padding:0 0 0 8px;border:0;border-left:2px solid #5E4E34;background:none;border-radius:0;font-size:11.5px;line-height:1.4;color:#B8AA90}
+/* 투표/선택: 상자 없이 한 줄 */
+.rvw{margin-top:1px}.rvw.obs{margin-top:6px}
+.rvw .rvote,.rvw .rvote.empty{display:flex;flex-direction:column;gap:3px;padding:0;border:0;background:none;margin:0}
+.rvw .rvt{font-size:11.5px;gap:5px;color:#B8AA90}.rvw .rvt i{padding:1px 5px;font-size:10px}
+.rvw .rvm{position:static;order:9;margin-left:4px;padding:1px 6px;font-size:10px}
+.rvw .rvme{display:flex;flex-wrap:wrap;align-items:center;gap:4px;min-width:0;padding:1px 0}
+.rvw .rvme::-webkit-scrollbar{display:none}
+.rvw .rvme small{flex:none;font-size:10.5px;color:#7A7266;margin-right:2px;white-space:nowrap}
+.rvw .rvme .chip.sm{flex:none;height:24px;padding:0 8px;font-size:11px}
+.rvw .rvme .chip.rec .rvs{font-size:9px;margin-right:2px}
+.rvw .rvsel{flex:0 1 auto;height:24px;max-width:130px;min-width:84px;padding:0 4px;font-size:11px;appearance:auto}
+.rvw .rvbars{margin-top:2px}
+/* 시작 준비 상자 */
+.stbx{padding:7px 9px 8px}.stbx .sth{margin-bottom:5px}
+.dsec>h3{margin-bottom:6px}
+@media (max-width:480px){.rtl .rfl{grid-template-columns:28px minmax(0,1fr)!important}.rmiss,.ract{margin-left:36px}}
+.rvw .rvme{margin:0!important;justify-content:flex-start!important;width:100%}
+.rvw .rvsel{min-width:0;width:auto;max-width:110px}
+.rvw .rvme .chip.sm{max-width:150px}.rvw .rvme .chip.sm>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -4947,7 +4983,7 @@ function tabRoute(){var dep=dDeployed();if(!dep.length)return '<div class="dempt
       '</div></div>'}).join("")+'</div>'+
     (xtr.length?'<p class="rxtr"><b>11층~ 익스트림 추천</b>'+xtr.map(function(n){return '<button class="plink" data-pack="'+esc(n)+'">'+esc(n)+'</button>'}).join(" · ")+'</p>':'')+
     (miss.length?'<p class="rmiss">기프트 정리 안 된 팩 · '+miss.filter(function(n,i){return miss.indexOf(n)===i}).map(function(n){return '<button class="plink" data-pack="'+esc(n)+'">'+esc(n)+'</button>'}).join(" · ")+' · <a href="'+esc(g&&g.src||GDECKS.src)+'" target="_blank" rel="noopener">원문</a></p>':'')+
-    (g&&g.gn&&Object.keys(g.gn).length?'<div class="gnl"><b>기프트 메모</b><ul>'+Object.keys(g.gn).map(function(n){var x=byName[n];return '<li>'+(x?'<button class="plink" data-open="'+esc(n)+'">'+esc(n)+'</button>':esc(n))+' — '+esc(g.gn[n])+'</li>'}).join("")+'</ul></div>':'')+'<div class="ract"><button class="tbtn K sm" id="dRoute"><span>층마다 후보 팩 전부 보기</span></button></div>'+freeGiftsHtml(P,c)+'</div>';
+    (g&&g.gn&&Object.keys(g.gn).length?'<div class="gnl"><b>기프트 메모</b><ul>'+Object.keys(g.gn).map(function(n){var x=byName[n];return '<li>'+(x?'<button class="plink" data-open="'+esc(n)+'">'+esc(n)+'</button>':esc(n))+' — '+esc(g.gn[n])+'</li>'}).join("")+'</ul></div>':'')+''+freeGiftsHtml(P,c)+'</div>';
   return h}
 /* 편성 탭 */
 function tabTeam(){var dep=deck.dep.filter(function(s){return dUnit(s)}),bench=dBench(),E=dProd(),empty=[];for(var s=1;s<=12;s++)if(!dUnit(s))empty.push(s);
@@ -5755,8 +5791,8 @@ function rvHtml(no,seg,opts,agg,extra){var lab=seg==="관측"?"관측 기프트"
   else h=h.replace('class="rvote"','class="rvote empty"');
   var rec=opts.slice(),cand=rec.slice();if(mine&&cand.indexOf(mine)<0)cand.push(mine);
   var others=(extra||[]).filter(function(k){return cand.indexOf(k)<0});
-  h+='<div class="rvme"><small>'+(tot?"내가 고른 것":"어떤 걸 골랐나요?")+'</small>'+cand.slice(0,8).map(function(o){return '<button class="chip sm'+(rec.indexOf(o)>=0?" rec":"")+'" data-rvpick="'+esc(no+"|"+seg+"|"+o)+'" aria-pressed="'+(mine===o)+'"><span>'+(rec.indexOf(o)>=0?'<i class="rvs">★</i>':'')+esc(o)+'</span></button>'}).join("")+
-    (others.length?'<select class="rvsel" data-rvsel="'+esc(no+"|"+seg)+'" aria-label="다른 팩 고르기"><option value="">다른 팩 '+others.length+'</option>'+others.map(function(o){return '<option value="'+esc(o)+'">'+esc(o)+'</option>'}).join("")+'</select>':'')+'</div>';
+  h+='<div class="rvme"><small>'+(tot?"내 선택":"뭐 골랐어요?")+'</small>'+cand.slice(0,8).map(function(o){return '<button class="chip sm'+(rec.indexOf(o)>=0?" rec":"")+'" data-rvpick="'+esc(no+"|"+seg+"|"+o)+'" aria-pressed="'+(mine===o)+'"><span>'+(rec.indexOf(o)>=0?'<i class="rvs">★</i>':'')+esc(o)+'</span></button>'}).join("")+
+    (others.length?'<select class="rvsel" data-rvsel="'+esc(no+"|"+seg)+'" aria-label="다른 팩 고르기"><option value="">다른 팩 ('+others.length+')</option>'+others.map(function(o){return '<option value="'+esc(o)+'">'+esc(o)+'</option>'}).join("")+'</select>':'')+'</div>';
   return h+'</div>'}
 function rvFill(){var g=gdOf&&gdOf();if(!g)return;var els=document.querySelectorAll("[data-rvseg]");if(!els.length)return;
   vAggLoad("route","all",function(agg){els.forEach(function(el){if(!el.isConnected)return;el.innerHTML=rvHtml(g.no,el.dataset.rvseg,JSON.parse(el.dataset.rvopt||"[]"),agg,JSON.parse(el.dataset.rvext||"[]"))})})}
