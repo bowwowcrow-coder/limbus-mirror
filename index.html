@@ -3035,6 +3035,32 @@ body{overscroll-behavior-x:none}
 .gdi span>b{font-family:"KOTRA","SCDream",sans-serif;font-weight:400;font-size:14.5px}
 details>summary>b{font-family:"KOTRA","SCDream",sans-serif;font-weight:400}
 .euseh .ecl{font:400 14px/1 "KOTRA",sans-serif;color:#FFF3DF;text-shadow:0 1px 0 #000}
+/* ===== 칩 버튼 재질 개선: 누런 테두리 → 중립 톤, 눌림 = 안쪽으로 들어간 그늘 ===== */
+.chip{border:1px solid #4E473E;background:linear-gradient(#2A2622,#161411);box-shadow:inset 0 1px 0 rgba(255,240,215,.07),0 1px 0 rgba(0,0,0,.65),0 2px 3px rgba(0,0,0,.25);transition:border-color .12s,background .12s,box-shadow .12s,transform .06s}
+@media (hover:hover){.chip:hover{border-color:#7A6F60;background:linear-gradient(#302B26,#1A1714)}}
+.chip:active{transform:translateY(1px)}
+.chip[aria-pressed="true"]{border-color:#9C6B34;background:linear-gradient(#120F0C,#1F1A15 60%,#241D16);box-shadow:inset 0 2px 4px rgba(0,0,0,.85),inset 0 0 0 1px rgba(0,0,0,.5),inset 0 -1px 0 rgba(255,190,110,.10),0 1px 0 rgba(255,240,215,.05);transform:translateY(1px)}
+.chip[aria-pressed="true"]::after{content:"";position:absolute;left:22%;right:22%;bottom:2px;height:2px;border-radius:2px;background:linear-gradient(90deg,transparent,#E39A3E,transparent);opacity:.9;pointer-events:none}
+/* 필터 라벨: 칩 줄이 여러 개여도 라벨은 그 묶음 세로 가운데 + 세로선이 묶음 전체 높이 */
+#filterBody .fgroup>h3,.pfil .prow>h3,.ufil .prow>h3,#viewChoice .prow>h3{align-self:stretch}
+/* 탭 말풍선 */
+[data-tip]{cursor:help}
+.tipb{position:fixed;z-index:9999;max-width:min(300px,calc(100vw - 16px));padding:7px 10px 6px;border:1px solid #6A5A44;border-radius:4px;background:rgba(18,15,12,.97);color:#F3E8D2;font:500 12.5px/1.4 "SCDream",sans-serif;box-shadow:0 4px 14px rgba(0,0,0,.6);pointer-events:none;opacity:0;transform:translateY(3px);transition:opacity .12s,transform .12s}
+.tipb.on{opacity:1;transform:none}
+/* 평가: 줄마다 상자 → 한 상자 안 촘촘한 줄 (폰에서 높이 절반 이하로) */
+.erate .erbox{border:1px solid #3A3122;border-left:3px solid #8A7040;border-radius:3px;background:linear-gradient(90deg,#1A150E,#120F0C 70%);overflow:hidden}
+.erate .erbox .erw{margin:0;padding:7px 10px;border:0;border-bottom:1px solid rgba(255,235,200,.06);border-radius:0;background:none;flex-wrap:nowrap;gap:8px}
+.erate .erbox .erw:last-child{border-bottom:0}
+.erate .erbox .erl{width:72px;flex:none;font-size:13px}
+.erate .erbox .erv{flex:1;min-width:0;text-align:right;font-size:11px}
+.erate .erbox .eus{flex-wrap:wrap}
+.erate .erbox .eus .chip{min-height:0;height:26px;padding:0 9px}
+@media (max-width:480px){
+  .erate .erbox .erl{width:74px;font-size:12.5px;white-space:nowrap}
+  .erate .stars button{width:25px;height:25px;padding:1px}
+  .erate .erbox .erw{padding:6px 8px;gap:6px}
+  .erate .erbox .erv{font-size:10.5px}
+}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -3143,7 +3169,7 @@ details>summary>b{font-family:"KOTRA","SCDream",sans-serif;font-weight:400}
 <div class="scrim2" id="sideScrim"></div><aside class="side" id="side" aria-label="사이트 메뉴"><div class="sframe"><div class="sin"><span class="screw" style="top:7px;left:7px"></span><span class="screw" style="top:7px;right:7px"></span><span class="screw" style="bottom:7px;left:7px"></span><span class="screw" style="bottom:7px;right:7px"></span>
 <div class="shead"><div class="splate"><em class="N">LIMBUS COMPANY</em><b>림버스 도감</b></div><button class="stog" id="sideTog" aria-label="메뉴 접기"><svg viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button></div>
 <h3 class="stab">메뉴</h3>
-<nav class="snav"><a class="sn" href="#" data-view="home"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 4.5l8 7"/><path d="M6.5 10v10h11V10"/><path d="M10 20v-5h4v5"/></svg></i><span class="sl"><b>홈</b><em class="N">HOME</em></span></a><a class="sn on" href="#" data-view="gift" aria-current="page"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 9h15v3.5h-15zM6 12.5V20h12v-7.5M12 9v11"/><path d="M12 9C10.5 5.5 7 5 7 7.2 7 9 10 9 12 9c2 0 5 0 5-1.8C17 5 13.5 5.5 12 9z"/></svg></i><span class="sl"><b>기프트</b><em class="N">E.G.O GIFT</em></span></a><a class="sn" href="#" data-view="pack"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h8.5L19 7v13.5H7z"/><path d="M15.5 3.5V7H19"/><path d="M4.5 6.5v14h2.5"/><path d="M10 11h6M10 14h6M10 17h4"/></svg></i><span class="sl"><b>테마팩</b><em class="N">THEME PACK</em></span></a><a class="sn" href="#" data-view="unit"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 11.5a3.6 3.6 0 1 0 0-7.2 3.6 3.6 0 0 0 0 7.2z"/><path d="M5 20.5c.8-4.2 3.6-6.3 7-6.3s6.2 2.1 7 6.3"/><path d="M9.5 14.6 12 17.5l2.5-2.9"/></svg></i><span class="sl"><b>인격</b><em class="N">IDENTITY</em></span></a><a class="sn" href="#" data-view="deck"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 6.5h10v14h-10z"/><path d="M5.5 17.5v-14h10"/><path d="M11.5 11h4M11.5 14h4"/></svg></i><span class="sl"><b>덱</b><em class="N">DECK</em></span></a><a class="sn" href="#" data-view="choice"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.5h14v10H9.5L5 19z"/><path d="M8.5 9.5h7M8.5 12.5h5"/></svg></i><span class="sl"><b>선택지</b><em class="N">EVENT</em></span></a><a class="sn" href="#" data-view="enemy"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c4 0 7 3 7 7.2 0 2.4-1 4-2.4 5.2L17 20.5h-3l-.6-2h-2.8l-.6 2H7l.4-4.6C6 14.7 5 13.1 5 10.7 5 6.5 8 3.5 12 3.5z"/><circle cx="9.5" cy="11" r="1.2"/><circle cx="14.5" cy="11" r="1.2"/></svg></i><span class="sl"><b>적</b><em class="N">ENEMY</em></span></a><a class="sn" href="#" data-view="sim"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16v11H4z"/><path d="M8 10l2.5 2L8 14M12.5 14h4"/></svg></i><span class="sl"><b>시뮬레이터</b><em class="N">SIM</em></span></a><a class="sn" href="#" data-view="my"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.6M12 18.6v2.6M21.2 12h-2.6M5.4 12H2.8M18.5 5.5l-1.8 1.8M7.3 16.7l-1.8 1.8M18.5 18.5l-1.8-1.8M7.3 7.3 5.5 5.5"/></svg></i><span class="sl"><b>개인 설정</b><em class="N">MY</em></span></a></nav>
+<nav class="snav"><a class="sn" href="#" data-view="home"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 11.5 12 4.5l8 7"/><path d="M6.5 10v10h11V10"/><path d="M10 20v-5h4v5"/></svg></i><span class="sl"><b>홈</b><em class="N">HOME</em></span></a><a class="sn on" href="#" data-view="gift" aria-current="page"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 9h15v3.5h-15zM6 12.5V20h12v-7.5M12 9v11"/><path d="M12 9C10.5 5.5 7 5 7 7.2 7 9 10 9 12 9c2 0 5 0 5-1.8C17 5 13.5 5.5 12 9z"/></svg></i><span class="sl"><b>기프트</b><em class="N">E.G.O GIFT</em></span></a><a class="sn" href="#" data-view="pack"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3.5h8.5L19 7v13.5H7z"/><path d="M15.5 3.5V7H19"/><path d="M4.5 6.5v14h2.5"/><path d="M10 11h6M10 14h6M10 17h4"/></svg></i><span class="sl"><b>테마팩</b><em class="N">THEME PACK</em></span></a><a class="sn" href="#" data-view="unit"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 11.5a3.6 3.6 0 1 0 0-7.2 3.6 3.6 0 0 0 0 7.2z"/><path d="M5 20.5c.8-4.2 3.6-6.3 7-6.3s6.2 2.1 7 6.3"/><path d="M9.5 14.6 12 17.5l2.5-2.9"/></svg></i><span class="sl"><b>인격·E.G.O</b><em class="N">IDENTITY</em></span></a><a class="sn" href="#" data-view="deck"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 6.5h10v14h-10z"/><path d="M5.5 17.5v-14h10"/><path d="M11.5 11h4M11.5 14h4"/></svg></i><span class="sl"><b>덱</b><em class="N">DECK</em></span></a><a class="sn" href="#" data-view="choice"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 5.5h14v10H9.5L5 19z"/><path d="M8.5 9.5h7M8.5 12.5h5"/></svg></i><span class="sl"><b>선택지</b><em class="N">EVENT</em></span></a><a class="sn" href="#" data-view="enemy"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5c4 0 7 3 7 7.2 0 2.4-1 4-2.4 5.2L17 20.5h-3l-.6-2h-2.8l-.6 2H7l.4-4.6C6 14.7 5 13.1 5 10.7 5 6.5 8 3.5 12 3.5z"/><circle cx="9.5" cy="11" r="1.2"/><circle cx="14.5" cy="11" r="1.2"/></svg></i><span class="sl"><b>적</b><em class="N">ENEMY</em></span></a><a class="sn" href="#" data-view="sim"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6.5h16v11H4z"/><path d="M8 10l2.5 2L8 14M12.5 14h4"/></svg></i><span class="sl"><b>시뮬레이터</b><em class="N">SIM</em></span></a><a class="sn" href="#" data-view="my"><i class="sf"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2.8v2.6M12 18.6v2.6M21.2 12h-2.6M5.4 12H2.8M18.5 5.5l-1.8 1.8M7.3 16.7l-1.8 1.8M18.5 18.5l-1.8-1.8M7.3 7.3 5.5 5.5"/></svg></i><span class="sl"><b>개인 설정</b><em class="N">MY</em></span></a></nav>
 <div class="sfoot"><span class="N">LIMBUS COMPANY</span><span>비공식 팬 사이트</span></div>
 </div></div></aside>
 <div class="wrap">
@@ -4195,7 +4221,7 @@ function statRow(i,spd){
     '<span class="sv" title="속도">'+SVG_SPD+'<em>속도</em><b>'+spd[0]+'–'+spd[1]+'</b></span>'+
     '<span class="sv" title="방어 레벨">'+uii("def","sti")+'<em>방어</em><b>'+(U.cap+i.df)+'</b></span>'+
     '<span class="sv" title="공격 레벨">'+SVG_ATK+'<em>공격</em><b>'+U.cap+'</b></span></span>'+
-    '<span class="rsv"><span class="rsl">내성</span>'+ATKS.map(function(a){var v=i.res[a[0]],l=resLv(v);return '<span class="rv" title="'+a[1]+' '+RES_KR[l]+' ×'+(v==null?1:v)+'">'+atkIco(a[0],"rsi")+resSym(l)+'</span>'}).join("")+'</span></div>'}
+    '<span class="rsv"><span class="rsl">내성</span>'+ATKS.map(function(a){var v=i.res[a[0]],l=resLv(v);return '<span class="rv" data-tip="'+a[1]+' '+RES_KR[l]+' ×'+(v==null?1:v)+'">'+atkIco(a[0],"rsi")+resSym(l)+'</span>'}).join("")+'</span></div>'}
 function foldList(title,n,body){return '<details class="ufold"><summary><h3>'+title+'<small>'+n+'</small></h3><span class="fo">펼치기<i class="chev"></i></span></summary>'+body+'</details>'}
 function openUnit(id){
   var i=UBY[id];if(!i)return;navPush("u",id);if(!_uKeepScroll)_uArtAuto=true;curUnit=id;curEgo=null;curGift=null;_pp=[];ppClose();artLoad("--gsp","SYNC_SPRITE_INLINE","SYNC_SPRITE_URL","getSyncSprite");artLoad("--ebp","EGOB_SPRITE_INLINE","EGOB_SPRITE_URL","getEgoBannerSprite");artLoad("--bfp","BUFF_SPRITE_INLINE","BUFF_SPRITE_URL","getBuffSprite");
@@ -4231,7 +4257,7 @@ function openEgo(id){
   egoUseCalc();if(e.use&&e.use.length)h+='<div class="euseh"><span class="ecl">용도</span>'+useChips(e,"big")+'<small>자동 분류 · 유저 평가가 쌓이면 바뀌어요</small></div>';
   h+='<div class="emeta"><span class="ecl">발동 비용</span>'+costChips(e.cost)+'<span class="ecl r">죄악 내성</span>';
   var grp={};SINS7.forEach(function(s){var l=resLv(e.res[s]);(grp[l]=grp[l]||[]).push(s)});
-  h+='<span class="eres">'+RES_ORD.filter(function(l){return grp[l]}).map(function(l){return '<span class="eg" title="'+RES_KR[l]+'">'+grp[l].map(function(s){return sinIco(s,"sini")}).join("")+resSym(l)+'</span>'}).join("")+'</span></div>';
+  h+='<span class="eres">'+RES_ORD.filter(function(l){return grp[l]}).map(function(l){return '<span class="eg" data-tip="'+esc(RES_KR[l]+' · '+grp[l].map(function(s){var v=e.res[s];return sinKr(s)+' ×'+(v==null?1:v)}).join(', '))+'">'+grp[l].map(function(s){return sinIco(s,"sini")}).join("")+resSym(l)+'</span>'}).join("")+'</span></div>';
   var emax=Math.max.apply(null,e.sk.map(function(s){return Math.max.apply(null,s.up.map(function(x){return x.lv}))}).concat([4]));
   var lv=Math.min(uEgoUp||4,emax);
   h+=syncSeg("e",lv,emax,e);
@@ -4239,7 +4265,10 @@ function openEgo(id){
   e.sk.forEach(function(s){var cor=s.lab&&s.lab.indexOf("cor")===0;
     var lab=s.lab==="awk"?"각성":s.lab==="cor"?"침식":s.lab&&s.lab.indexOf("awk")===0?"각성 "+s.lab.slice(3):"침식 "+(s.lab||"").slice(3);
     var nm=(s.up[0]||{}).name,same=enk(nm)===enk(e.nm);
-    h+=skillBox(s,lv,{art:cor?xface(e.id,"eskart"):eface(e.id,"eskart"),cls:"egsk "+(cor?"cor":"awk"),nobadge:1,title:same?lab:null,label:same?null:lab})});
+    var fb=THUMB_URL+"f/"+(cor?"x":"e")+e.id+".webp";
+    var ECG_NOE={"20101":1,"20104":1,"20201":1,"20301":1,"20401":1,"20501":1,"20601":1,"20603":1,"20701":1,"20801":1,"20901":1,"21001":1,"21101":1,"21201":1};var useCg=!cor||!ECG_NOE[e.id];
+    var art='<span class="fci eskart th"><img src="'+(useCg?'img/ecg/sk/'+e.id+(cor?"e":"")+'.webp':fb)+'" alt="" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\''+fb+'\'"></span>';
+    h+=skillBox(s,lv,{art:art,cls:"egsk "+(cor?"cor":"awk"),nobadge:1,title:same?lab:null,label:same?null:lab})});
   h+=passSec(e.ps.filter(function(p){var r=p.ts||[];return !r[0]||(lv>=r[0]&&(!r[1]||lv<=r[1]))}));
   var owners=U.ids.filter(function(o){return o.s===e.s}).sort(uCmp);
   if(owners.length)h+=foldList(esc(e.sn)+'의 인격',owners.length,'<div class="ulist">'+owners.map(function(o){return '<button class="urow" data-unit="'+o.id+'">'+face(o.id,"ef")+rkHtml(o.r)+'<span class="nm">'+esc(o.t)+'</span></button>'}).join("")+'</div>');
@@ -5054,7 +5083,7 @@ function renderEnemy(){if(!U){$("nGrid").innerHTML='<div class="uload">데이터
   $("nCount").innerHTML='<b>'+rows.length+'</b> <i>/ '+X.en.length+'</i>';
   $("nGrid").innerHTML=rows.length?rows.map(nCard).join(""):'<div class="uempty">조건에 맞는 적 없음</div>'}
 function resRow(res){var ks=ATKS.map(function(a){return a[0]}).concat(SINS7);
-  return '<span class="nres">'+ks.filter(function(k){return res[k]!=null}).map(function(k){var v=res[k],lv=resLv(v,true);return '<span class="rv" title="'+esc(sinKr2(k))+' ×'+v+'">'+(ATK_EN[k]?atkIco(k,"rsi"):sinIco(k,"rsi"))+resSym(lv,v)+'</span>'}).join("")+'</span>'}
+  return '<span class="nres">'+ks.filter(function(k){return res[k]!=null}).map(function(k){var v=res[k],lv=resLv(v,true);return '<span class="rv" data-tip="'+esc(sinKr2(k))+' '+RES_KR[lv]+' ×'+v+'">'+(ATK_EN[k]?atkIco(k,"rsi"):sinIco(k,"rsi"))+resSym(lv,v)+'</span>'}).join("")+'</span>'}
 function enSkill(s){var isDef=s.def&&s.def!=="ATTACK",ty=isDef?(U.defk[s.def]||""):(U.atk[s.atk]||"");
   var x={base:s.base,coins:s.n,coin:s.coin,ck:[]};
   return '<div class="usk" style="--sc:'+(SINC[s.sin]||"#555")+'"><div class="uskh"><span class="usk-ic sm">'+(isDef?uii("def_"+DEF_EN[s.def],"tb",ty):uii("atk_"+ATK_EN[s.atk],"tb",ty))+'</span><div class="usk-t">'+
@@ -5390,7 +5419,7 @@ function homeTools(){var L=latestUnits(4),u=L[1]||L[0],g=window.GDECKS&&GDECKS.l
   var gs=["봉이 인형","만화경","프레스티지 카드","생강꽃 가지","흑염 파이프"].map(function(n){return window.byName&&byName[n]}).filter(Boolean).slice(0,3);
   function card(go,kr,en,n,art,cls){return '<button class="htc '+cls+'" data-go="'+go+'"><span class="hta">'+art+'</span><span class="htx"><em class="N">'+en+'</em><b>'+kr+'</b><small class="N">'+n+'</small></span><i class="chev"></i></button>'}
   return '<div class="hsec"><h3>바로 가기</h3><div class="htools v3">'+
-    card("unit","인격","IDENTITY",U.ids.length,u?uSpr(u.id):"","tu")+
+    card("unit","인격·E.G.O","IDENTITY",U.ids.length,u?uSpr(u.id):"","tu")+
     card("deck","추천 덱","DECK",g?GDECKS.list.length:"",du?(U.sprg&&U.sprg.pos[du]?gSpr(du):uSpr(du)):"","td")+
     card("pack","테마팩","THEME PACK",P.length||"",pk.map(function(n,i){return '<span class="hpk p'+i+'">'+pkImg(n,"hpki")+'</span>'}).join(""),"tp")+
     card("gift","기프트","E.G.O GIFT",window.gifts?gifts.length:"",gs.map(function(x,i){return '<span class="hgf gi g'+i+'">'+spr(x)+'</span>'}).join(""),"tg")+'</div></div>'}
@@ -5642,10 +5671,10 @@ function egoRateHtml(e,agg){var it=(agg&&agg.items&&agg.items[e.id])||{},mine=eg
     return '<div class="erw"><span class="erl">'+lb+'</span><span class="stars" role="group" aria-label="'+lb+' 평가">'+[1,2,3,4,5].map(function(v){return '<button data-erate="'+e.id+'|'+key+'|'+v+'" aria-pressed="'+(mine[key]===v)+'" aria-label="'+v+'점"'+(v<=(mine[key]||0)?' class="on"':'')+'>'+dollIco()+'</button>'}).join("")+'</span>'+
       '<span class="erv">'+(ok?'유저 <b>'+avg.toFixed(1)+'</b> · '+n+'명':av?'운영자 <b>'+av+'</b>'+(n?' · 유저 '+n+'/'+th:''):(n?'유저 '+n+'/'+th+'명':'평가 없음'))+'</span></div>'}
   var uc=it.u||{},un=it.n||0,mu=mine.u||[];
-  var h='<div class="usec erate"><h3>평가<small>'+(un||"")+'</small><span class="hh">봉이 1~5개 · 이 기기 기준 · '+th+'명부터 유저 평균</span></h3>'+row("i","거던에서")+row("o","거던 밖에서")+
+  var h='<div class="usec erate"><h3>평가<small>'+(un||"")+'</small><span class="hh">봉이 1~5개 · 이 기기 기준 · '+th+'명부터 유저 평균</span></h3><div class="erbox">'+row("i","거던에서")+row("o","거던 밖에서")+
     '<div class="erw"><span class="erl">주 용도</span><span class="eus">'+EUSE.map(function(x){var c=uc[x[0]]||0;return '<button class="chip" data-euv="'+e.id+'|'+x[0]+'" aria-pressed="'+(mu.indexOf(x[0])>=0)+'"><span>'+x[1]+(c?' <small>'+c+'</small>':'')+'</span></button>'}).join("")+'</span></div>';
   if(admOn())h+='<div class="erw adm"><span class="erl">운영자</span><span class="eus">'+["i","o"].map(function(k){return '<label>'+(k==="i"?"거던":"밖")+' <select data-eadm="'+e.id+'|'+k+'">'+["",1,2,3,4,5].map(function(v){return '<option'+(String(ad[k]||"")===String(v)?" selected":"")+'>'+v+'</option>'}).join("")+'</select></label>'}).join("")+'</span></div>';
-  return h+'</div>'}
+  return h+'</div></div>'}
 function egoRateFill(id){var box=document.getElementById("egoRate");if(!box)return;vCfgLoad(function(){vAggLoad("ego","all",function(agg){var e=EBY[id];if(e&&box.isConnected)box.innerHTML=egoRateHtml(e,agg);egoUseApply(agg)})})}
 function egoRatePick(id,key,v){var all=vLS("egoErate",{}),m=all[id]||{};
   if(key==="u"){var u=m.u||[],i=u.indexOf(v);i<0?u.push(v):u.splice(i,1);m.u=u}else m[key]=m[key]===v?undefined:v;
@@ -6162,6 +6191,18 @@ function evSec(title,L,gift,more){return '<div class="sec evsec"><h3 class="K">'
 (function(){var _oe=openEnemy;openEnemy=function(nm){_oe.apply(this,arguments);try{var b=$("detailBody");if(!b||b.querySelector(".enkw"))return;var seen={},L=[];
   b.querySelectorAll("[data-st]").forEach(function(el){var k=el.dataset.st;if(!k||seen[k])return;seen[k]=1;var d=(window.STATUS&&STATUS[k])||"";if(d)L.push([k,d,el.querySelector("img,.bfi")?el.querySelector("img,.bfi").outerHTML:""])});
   if(!L.length)return;b.insertAdjacentHTML("beforeend",'<div class="sec enkw"><h3 class="K">키워드 설명<small>'+L.length+'</small></h3><dl class="gdl">'+L.map(function(x){return '<div class="gdr"><dt>'+x[2]+esc(x[0])+'</dt><dd>'+esc(x[1]).replace(/\n/g,"<br>")+'</dd></div>'}).join("")+'</dl></div>')}catch(e){}}})();
+/* 내성 기호 등 [data-tip] 눌렀을 때 말풍선 (폰은 hover가 없어서) */
+(function(){var tb=null,tm=0;
+  function hide(){if(tb){tb.classList.remove("on")}}
+  document.addEventListener("click",function(ev){var t=ev.target.closest&&ev.target.closest("[data-tip]");
+    if(!t){hide();return}
+    if(!tb){tb=document.createElement("div");tb.className="tipb";tb.setAttribute("role","status");document.body.appendChild(tb)}
+    tb.textContent=t.getAttribute("data-tip");tb.classList.add("on");
+    var r=t.getBoundingClientRect(),w=tb.offsetWidth,h=tb.offsetHeight,x=Math.max(8,Math.min(innerWidth-w-8,r.left+r.width/2-w/2)),y=r.top-h-8;
+    if(y<8){y=r.bottom+8;tb.classList.add("dn")}else tb.classList.remove("dn");
+    tb.style.left=x+"px";tb.style.top=y+"px";clearTimeout(tm);tm=setTimeout(hide,2600)},true);
+  window.addEventListener("scroll",hide,{passive:true,capture:true});
+})();
 
 /* ===== 뒤로가기 (브라우저·폰 뒤로가기 버튼) =====
    화면 바꾸기·상세 창·창 안의 이동·메뉴를 기록에 쌓아서, 뒤로가기를 누르면 한 단계씩 되돌아감.
