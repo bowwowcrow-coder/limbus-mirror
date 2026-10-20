@@ -3156,6 +3156,17 @@ details>summary>b{font-family:"KOTRA","SCDream",sans-serif;font-weight:400}
 .rvw .rvme{margin:0!important;justify-content:flex-start!important;width:100%}
 .rvw .rvsel{min-width:0;width:auto;max-width:110px}
 .rvw .rvme .chip.sm{max-width:150px}.rvw .rvme .chip.sm>span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;display:block}
+/* 팩 상세: 등장 적 */
+.pken{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:5px;margin-top:6px}
+.pke2{display:flex;align-items:center;gap:8px;min-width:0;padding:5px 8px 5px 5px;border:1px solid #2E2922;border-left:3px solid var(--sc);border-radius:4px;background:#100D0A;color:inherit;font:inherit;text-align:left;cursor:pointer}
+.pke2:hover{border-color:#7A6F60;border-left-color:var(--sc)}
+.pke2.boss{background:linear-gradient(90deg,#1C1410,#100D0A)}
+.pke2 .eni.pkei{width:36px;height:36px;flex:none;border-radius:3px;background-color:#0A0908}
+.pke2-t{display:flex;flex-direction:column;gap:2px;min-width:0}
+.pke2-t b{font:400 13px/1.2 "KOTRA",sans-serif;color:#FFF3DF;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.pke2-t small{font:500 10.5px/1 "SCDream",sans-serif;color:#8C7F6A}
+.pke2.boss .pke2-t small{color:#D08A6A}
+.pke2-t b{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:keep-all;font-size:12.5px}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -5406,6 +5417,10 @@ openPack=function(name){
     if(hid.length)h+='<details class="pkhid"><summary><b>설명에 안 적힌 결과</b><small>'+hid.length+'</small><i class="chev"></i></summary>'+hid.slice(0,10).map(function(x){return '<button class="pkh" data-choice="'+x.e.id+'"><span>'+esc(x.e.title)+'</span><em>'+esc(x.o.m)+'</em><i>'+esc(x.xs.join(" · "))+'</i></button>'}).join("")+'</details>';
     h+='<div class="cgrid pk">'+evs.map(cCard).join("")+'</div></div>'}
   else if(!U)h+='<div class="sec"><h3 class="K">이 팩의 선택지</h3><span class="shint">데이터를 불러오는 중…</span></div>';
+  else if(p.cat!=="익스트림")h+='<div class="sec"><h3 class="K">이 팩의 선택지<small>0</small></h3><span class="shint">전용 선택지가 없는 팩이에요. 한정 기프트는 이 팩 안의 전투 보상·상점에서 나와요.</span></div>';
+  /* 이 팩에서 나오는 적 */
+  try{if(window.X&&X.en){var ord={"보스":0,"환상체":1,"환상체(하드)":2,"일반":3},en=X.en.map(function(e){var w=e.where.filter(function(w){return w[0]==="테마팩"&&w[1]===p.name});return w.length?{e:e,k:Math.min.apply(null,w.map(function(w){return ord[w[2]]==null?9:ord[w[2]]})),lab:w.map(function(w){return w[2]}).filter(function(v,i,a){return v&&a.indexOf(v)===i})}:null}).filter(Boolean).sort(function(a,b){return a.k-b.k||(b.e.boss||0)-(a.e.boss||0)||a.e.nm.localeCompare(b.e.nm,"ko")});
+    if(en.length)h+='<div class="sec"><h3 class="K">이 팩에서 나오는 적<small>'+en.length+'</small></h3><span class="shint">보스 → 환상체 → 일반 순 · 눌러서 내성·스킬 보기</span><div class="pken">'+en.map(function(x){var e=x.e;return '<button class="pke2'+(x.k===0?" boss":"")+'" data-enemy="'+esc(e.nm)+'" style="--sc:'+(SINC[e.sin]||"#6F6556")+'">'+(window.enImg?enImg(e,"pkei"):'')+'<span class="pke2-t"><b>'+esc(e.nm)+'</b><small>'+esc(x.lab.join("·"))+(e.lv?' · Lv '+e.lv:'')+'</small></span></button>'}).join("")+'</div></div>'}}catch(e){}
   $("detailBody").innerHTML=h;$("detail").setAttribute("aria-label",p.name+" 테마팩 상세");updBack();show("detail");
   if(!U&&!uLoading)loadUnits()};
 
