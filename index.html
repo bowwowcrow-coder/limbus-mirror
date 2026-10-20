@@ -3214,6 +3214,18 @@ details>summary>b{font-family:"KOTRA","SCDream",sans-serif;font-weight:400}
 .cc-m{flex-wrap:wrap}
 @media (min-width:481px){.cc-im{width:76px;height:57px}.ccard.hasim{gap:9px}}
 .cimw{aspect-ratio:auto;max-height:300px}.cim{max-height:300px}
+/* 기프트 상세: 얻는 경로 */
+.evps{display:flex;flex-direction:column;gap:3px;margin-top:4px}
+.evp{display:flex;flex-wrap:wrap;align-items:center;gap:5px;font:500 11.5px/1.4 "SCDream",sans-serif;color:#D9CBAA}
+.evj{display:inline-flex;align-items:center;gap:2px;padding:0 5px 0 2px;border:1px solid #3A3328;border-radius:3px;background:#14110D}
+.evj .sini{width:15px;height:15px}.evj b{font:400 11px/1 "Excelsior",sans-serif;color:#FFE28A;margin-left:2px}
+.evj em{font-style:normal;margin-left:5px;font-size:10px;color:#9CC98A}
+.evr{font-style:normal;padding:0 5px;border-radius:2px;font-size:10.5px;font-weight:600}
+.evr.ok{background:#1F2A17;color:#A9D68E}.evr.ng{background:#2A1714;color:#E8907E}
+.evl>span{text-align:left;align-items:flex-start}.evps{align-items:flex-start;width:100%}.evp{justify-content:flex-start;text-align:left}
+.evl .evp{flex-direction:row!important;display:flex}.evl .evj{flex-direction:row!important;display:inline-flex;width:auto}.evl .evps{flex-direction:column!important}
+.evl .evp,.evl .evj{flex:none;gap:4px}.evl .evp{flex-wrap:wrap;width:100%}
+.evl .evj b{font:400 11px/1 "Excelsior",sans-serif;color:#FFE28A}.evl .evj em{font-style:normal}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -6360,11 +6372,20 @@ function evIx(){if(_evIx)return _evIx;if(typeof EVROOTS==="undefined"||!EVROOTS.
 function evHow(e,gift){var out=[];(e.tree||[e]).forEach(function(x){(x.o||[]).forEach(function(o){if((o.g||[]).indexOf(gift)>=0&&o.m)out.push(o.m)});
     if(((x.okr||{}).g||[]).indexOf(gift)>=0)out.push("판정 성공");if(((x.ngr||{}).g||[]).indexOf(gift)>=0)out.push("판정 실패");if((x.gift||[]).indexOf(gift)>=0&&x.nm&&x.nm!==e.title)out.push(x.nm)});
   return out.filter(function(v,i){return out.indexOf(v)===i}).slice(0,3)}
-function evRow(e,gift){var wh=(e.w||[]).map(function(w){return w[0]==="테마팩"?w[1]:w[0]}).filter(Boolean).slice(0,2).join(" · "),how=gift?evHow(e,gift):[];
-  return '<button class="evl" data-choice="'+e.id+'"><span><b>'+esc(e.title)+'</b><small>'+esc(wh)+(how.length?' · 「'+esc(how.join("」 「"))+'」':'')+'</small></span><i class="chev"></i></button>'}
+function evPaths(e,gift){var out=[],seen={};
+  function walk(x,tr,d){if(!x||seen[x.id]||d>6)return;seen[x.id]=1;
+    if(x.k==="ab"){var ok=(x.okr||{}),ng=(x.ngr||{});if((ok.g||[]).indexOf(gift)>=0)out.push({t:tr,j:x.j,r:"ok"});if((ng.g||[]).indexOf(gift)>=0)out.push({t:tr,j:x.j,r:"ng"});
+      (ok.n||[]).concat(ng.n||[]).forEach(function(n){walk(EVBY[n],tr,d+1)});return}
+    (x.o||[]).forEach(function(o){var t2=tr.concat([o.m]);if((o.g||[]).indexOf(gift)>=0)out.push({t:t2,j:null,r:""});(o.n||[]).forEach(function(n){walk(EVBY[n],t2,d+1)})})}
+  walk(e,[],0);return out.slice(0,4)}
+function evJmini(j){if(!j)return "";return '<span class="evj">'+j.sins.map(function(x){return sinIco(x,"sini")}).join("")+'<b>'+(j.lo!=null?j.lo:"")+(j.hi!=null?'/'+j.hi:'')+'</b>'+((j.add||[]).length?'<em>보정 '+esc(j.add.map(function(a){return a.c+" +"+a.v}).join(", "))+'</em>':'')+'</span>'}
+function evRow(e,gift){var wh=(e.w||[]).map(function(w){return w[0]==="테마팩"?w[1]:w[0]}).filter(Boolean).slice(0,2).join(" · ");
+  var ps=gift&&window.EVBY?evPaths(e,gift):[],how=gift&&!ps.length?evHow(e,gift):[];
+  var pl=ps.map(function(x){return '<span class="evp">'+(x.t.length?'「'+esc(x.t.join("」›「"))+'」':'')+evJmini(x.j)+(x.r?'<i class="evr '+x.r+'">'+(x.r==="ok"?"성공":"실패")+'</i>':'')+'</span>'}).join("");
+  return '<button class="evl" data-choice="'+e.id+'"><span><b>'+esc(e.title)+'</b><small>'+esc(wh)+(how.length?' · 「'+esc(how.join("」 「"))+'」':'')+'</small>'+(pl?'<span class="evps">'+pl+'</span>':'')+'</span><i class="chev"></i></button>'}
 function evSec(title,L,gift,more){return '<div class="sec evsec"><h3 class="K">'+title+'<small>'+L.length+'</small></h3>'+(more||"")+'<div class="evls">'+L.slice(0,30).map(function(e){return evRow(e,gift)}).join("")+'</div></div>'}
 (function(){
-  var _od=openDetail;openDetail=function(name){_od.apply(this,arguments);try{var ix=evIx(),b=$("detailBody");if(!ix||!b)return;var L=ix.g[name];if(L&&L.length)b.insertAdjacentHTML("beforeend",evSec("얻을 수 있는 선택지",L,name,'<span class="shint">「」 안의 선택지를 고르면 받아요</span>'))}catch(e){}};
+  var _od=openDetail;openDetail=function(name){_od.apply(this,arguments);try{var ix=evIx(),b=$("detailBody");if(!ix||!b)return;var L=ix.g[name];if(L&&L.length)b.insertAdjacentHTML("beforeend",evSec("얻을 수 있는 선택지",L,name,'<span class="shint">「」 선택지 → 판정 죄악 보통/높음 기준 → 성공·실패 시 획득</span>'))}catch(e){}};
   var _op=openPack;openPack=function(name){_op.apply(this,arguments);try{var ix=evIx(),b=$("detailBody");if(!ix||!b)return;var L=(ix.p[name]||[]).slice(),pk=packBy[name];
     function add(e){if(L.indexOf(e)<0)L.push(e)}
     if(pk)(pk.excl||[]).concat(pk.combo||[]).forEach(function(it){var g=it.g||it;(ix.g[g.name]||[]).forEach(add)});
