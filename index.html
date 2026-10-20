@@ -3002,6 +3002,39 @@ body{overscroll-behavior-x:none}
 .banner.s-오만>div{background:linear-gradient(#4A84CC,#244F93)}
 .banner.s-질투>div{background:linear-gradient(#9555C8,#5A2A88)}
 .warn.l3{filter:drop-shadow(0 0 2px rgba(201,58,44,.55)) drop-shadow(0 1px 1px #000)}
+/* ===== 필터 패널 통일 (기프트·팩·인격·에고·적·선택지) ===== */
+#filterBody .fgroup,.pfil .prow,.ufil .prow{display:grid;grid-template-columns:66px minmax(0,1fr)!important;column-gap:8px;align-items:start;padding:0!important;margin:0}
+#filterBody .fgroup>h3,.pfil .prow>h3,.ufil .prow>h3,#viewChoice .prow>h3{width:auto!important;min-width:0!important;min-height:28px;height:auto!important;margin:0!important;padding:2px 0 0 8px!important;display:flex;align-items:center;border-left:2px solid #9A7650;background:none;font:400 12.5px/1.15 "KOTRA",sans-serif!important;color:#D9B98A;white-space:normal!important;word-break:keep-all;letter-spacing:-.01em}
+#filterBody .fgroup .chips,.pfil .pchips,.ufil .pchips{gap:5px!important;min-width:0}
+#filterBody .fgroup .chip,.pfil .pchips .chip,.ufil .pchips .chip{height:28px;font:500 12px/1 "SCDream",sans-serif;letter-spacing:-.02em}
+.pfil .pchips .chip,.ufil .pchips .chip{padding:0 10px}
+#filterBody .fgroup .chip.N{font:400 14px/1 "Excelsior",sans-serif}
+#filterBody .fcol{gap:7px!important}
+.pfil.open{gap:7px}
+.ufil .ufg{row-gap:7px}
+.pfil .pchips .chip small,.ufil .pchips .chip small,.ufil .pchips .chip .n,.pfil .pchips .chip .n{font:400 9.5px/1 "Excelsior",sans-serif;opacity:.55;margin-left:4px}
+/* 정렬 줄: 라벨을 다른 줄 라벨과 같은 모양·폭으로 */
+.sortsw{display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.sortsw>span:first-child{flex:0 0 66px;box-sizing:border-box;min-height:28px;display:flex;align-items:center;padding:2px 0 0 8px;margin-right:3px;border-left:2px solid #9A7650;font:400 12.5px/1.15 "KOTRA",sans-serif;color:#D9B98A}
+.sortsw .chip{height:28px;font:500 12px/1 "SCDream",sans-serif}
+
+/* 기프트 필터 '키워드' 줄이 키워드 링크(.kw) 스타일을 물려받아 밑줄·금색이 되던 문제 */
+.fgroup.kw{color:inherit;text-decoration:none}
+.fgroup.kw h3,.fgroup.kw .chip,.fgroup.kw .chip span{text-decoration:none}
+.fgroup.kw .chip{color:#EDE3CF}.fgroup.kw .chip[aria-pressed="true"]{color:#FFE3B0}
+.fgroup.kw h3{color:#D9B98A}
+
+#viewUnit .ufil .prow.ego-only{display:none}#viewUnit.emode .ufil .prow.ego-only{display:grid}
+#viewUnit.emode .ufil .prow.unit-only,#viewUnit.emode .ufil .prow:has([data-uk="rank"]){display:none}
+/* ===== 밋밋하던 제목류: 본문체 → 제목체(KOTRA)로 위계 보강 ===== */
+.hh-t>b,.ufb-t>b,.uhero-t b.un,.eht .en{font-family:"KOTRA","SCDream",sans-serif;font-weight:400;letter-spacing:-.01em}
+.hh-t>b{font-size:21px}.ufb-t>b{font-size:21px}.uhero-t b.un{font-size:22px}.eht .en{font-size:23px}
+.ght>b{font-family:"KOTRA","SCDream",sans-serif;font-weight:400;font-size:16px;letter-spacing:-.01em}
+.gdi>b,h3.gdh,.shtx>b,.acct>b{font-family:"KOTRA","SCDream",sans-serif;font-weight:400;letter-spacing:-.01em}
+.gdi>b{font-size:17px}h3.gdh{font-size:17px}.shtx>b{font-size:16px}.acct>b{font-size:15px}
+.gdi span>b{font-family:"KOTRA","SCDream",sans-serif;font-weight:400;font-size:14.5px}
+details>summary>b{font-family:"KOTRA","SCDream",sans-serif;font-weight:400}
+.euseh .ecl{font:400 14px/1 "KOTRA",sans-serif;color:#FFF3DF;text-shadow:0 1px 0 #000}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
