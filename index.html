@@ -3226,6 +3226,22 @@ details>summary>b{font-family:"KOTRA","SCDream",sans-serif;font-weight:400}
 .evl .evp{flex-direction:row!important;display:flex}.evl .evj{flex-direction:row!important;display:inline-flex;width:auto}.evl .evps{flex-direction:column!important}
 .evl .evp,.evl .evj{flex:none;gap:4px}.evl .evp{flex-wrap:wrap;width:100%}
 .evl .evj b{font:400 11px/1 "Excelsior",sans-serif;color:#FFE28A}.evl .evj em{font-style:normal}
+.mwrap{display:flex;gap:4px;align-items:center}
+.hbtn svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.hbtn[hidden]{display:none!important}
+@media (min-width:1044px){.hbtn{display:none!important}}
+/* 사이드 메뉴 묶음 */
+.sgrp{display:flex;align-items:center;gap:8px;margin:12px 2px 4px;font:400 9.5px/1 "Excelsior",sans-serif;letter-spacing:.14em;color:#7A6A50;text-transform:uppercase}
+.sgrp::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,#4A3F30,transparent)}
+.snav .sn{height:40px}
+.snav .sn[data-view="home"]{height:44px;background:linear-gradient(#2B2318,#1A150F)}
+.snav .sn[data-view="home"] .sl b{font-size:15px}
+.snav .sn[data-view="guide"]{height:34px;opacity:.85}
+.snav .sn[data-view="guide"] .sl b{font-size:13px}
+.snav .sn[data-view="guide"] .sl em{display:none}
+.snav .sn[data-view="deck"] .sl b,.snav .sn[data-view="gift"] .sl b{color:#FFE9B8}
+.snav .sn.soon{opacity:.45}
+.side.closed .sgrp{display:none}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -6407,6 +6423,20 @@ function evSec(title,L,gift,more){return '<div class="sec evsec"><h3 class="K">'
     tb.style.left=x+"px";tb.style.top=y+"px";clearTimeout(tm);tm=setTimeout(hide,2600)},true);
   window.addEventListener("scroll",hide,{passive:true,capture:true});
 })();
+/* 폰 상단: 메뉴 버튼 옆에 홈 버튼 (홈 화면에선 숨김) */
+(function(){function mount(){document.querySelectorAll(".idbar .mwrap").forEach(function(w){if(w.querySelector(".hbtn"))return;var b=document.createElement("button");b.className="mbtn hbtn";b.type="button";b.setAttribute("aria-label","홈으로");b.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 11.5 12 4l8.5 7.5"/><path d="M6 10.5V20h12v-9.5"/><path d="M10 20v-5h4v5"/></svg>';b.addEventListener("click",function(){setView("home");try{scrollTo(0,0)}catch(e){}});w.appendChild(b)})}
+  function sync(){var home=curView==="home";document.querySelectorAll(".hbtn").forEach(function(b){b.hidden=home})}
+  var _sv=setView;setView=function(v){_sv.apply(this,arguments);mount();sync()};
+  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",function(){mount();sync()});else{mount();sync()}})();
+/* 사이드 메뉴 묶음: 도감 / 거울던전 / 나 */
+(function(){var G=[["홈",["home","guide"]],["도감",["gift","pack","unit","enemy","choice"]],["거울던전",["deck","share","tier","sim"]],["내 정보",["my"]]];
+  function group(){var nav=document.querySelector(".snav");if(!nav||nav.dataset.grouped==="1")return;var items={};nav.querySelectorAll(".sn").forEach(function(a){var k=a.dataset.view||("soon:"+(a.dataset.soon||""));items[k]=a});
+    if(!items.home||!items.deck||!items.my)return; /* 아직 다 안 붙었으면 다음 기회에 */
+    var frag=document.createDocumentFragment(),used={};
+    G.forEach(function(g){var hs=g[1].filter(function(k){return items[k]});if(!hs.length)return;if(g[0]!=="홈"){var h=document.createElement("div");h.className="sgrp N";h.textContent=g[0];frag.appendChild(h)}hs.forEach(function(k){frag.appendChild(items[k]);used[k]=1})});
+    Object.keys(items).forEach(function(k){if(!used[k])frag.appendChild(items[k])});
+    nav.innerHTML="";nav.appendChild(frag);nav.dataset.grouped="1";var st=document.querySelector(".stab");if(st)st.hidden=true}
+  var n=0,t=setInterval(function(){group();if(++n>40||document.querySelector(".snav[data-grouped='1']"))clearInterval(t)},150)})();
 
 /* ===== 뒤로가기 (브라우저·폰 뒤로가기 버튼) =====
    화면 바꾸기·상세 창·창 안의 이동·메뉴를 기록에 쌓아서, 뒤로가기를 누르면 한 단계씩 되돌아감.
@@ -6420,7 +6450,7 @@ function nvPush(st){if(!_nv.ready||_nv.pop)return;try{history.pushState(st,"")}c
     if(v!==prev||!(history.state&&history.state.nv===v))nvPush({nv:v})};
   var _show=show;
   show=function(id){var fresh=!openId;_show(id);if(fresh&&!_nv.pop&&_nv.ready){_nv.depth=1;nvPush({nv:curView,modal:id,d:1})}};
-  var _hide=hide;
+  var _hide=hide;window._nvRawHide=_hide;
   hide=function(){var was=!!openId;_hide();if(!was||_nv.pop)return;
     if(_nv.depth>0){var n=_nv.depth;_nv.depth=0;_nv.ignore++;try{history.go(-n)}catch(e){_nv.ignore--}}};
   var _navPush=navPush;
@@ -6445,7 +6475,8 @@ window.addEventListener("popstate",function(e){
     var d=$("drawer");if(d&&d.classList.contains("open")){toggleDrawer(false);return}
     if(openId){
       if(openId==="detail"&&_nv.depth>1&&navStack.length>=2){_nv.depth--;goBack();return}
-      _nv.depth=0;hide();return}
+      /* 뒤로가기로 닫을 땐 기록을 또 되감지 않게 원본 hide 사용. 깊이가 남아 있으면 그만큼 더 되감기 */
+      var n=_nv.depth;_nv.depth=0;_nvRawHide();if(n>1){_nv.ignore++;try{history.go(-(n-1))}catch(e){_nv.ignore--}}return}
     var v=st.nv||"home";if(v!==curView)setView(v);
   }finally{_nv.pop=false}
 });
