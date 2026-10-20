@@ -3167,6 +3167,53 @@ details>summary>b{font-family:"KOTRA","SCDream",sans-serif;font-weight:400}
 .pke2-t small{font:500 10.5px/1 "SCDream",sans-serif;color:#8C7F6A}
 .pke2.boss .pke2-t small{color:#D08A6A}
 .pke2-t b{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;word-break:keep-all;font-size:12.5px}
+/* ===== 선택지 카드: 그림 + 기프트 항상 오른쪽 ===== */
+.ccard.hasim{flex-direction:row;align-items:stretch;gap:10px;padding:8px 10px 8px 8px}
+.cc-im{flex:none;width:88px;height:66px;object-fit:cover;border-radius:3px;box-shadow:0 0 0 1px #000;align-self:center}
+.cc-b{display:flex;flex-direction:column;gap:5px;min-width:0;flex:1}
+.cc-m{flex-wrap:nowrap}
+.cc-m .cw{flex:none}
+.cc-s{margin-left:auto}
+.cc-s+.cc-g{margin-left:2px}
+.cc-m>.cc-g:not(.cc-s+.cc-g){margin-left:auto}
+@media (max-width:480px){.cc-im{width:72px;height:54px}.cc-m{flex-wrap:wrap}}
+/* ===== 선택지 상세 ===== */
+.cimw{margin:-2px -2px 10px;border-radius:4px;overflow:hidden;box-shadow:0 0 0 1px #2E2922;aspect-ratio:3/2;background:#0B0907}
+.cim{display:block;width:100%;height:100%;object-fit:cover}
+.csumw{margin-top:12px}
+.csumw>h3{margin:0 0 6px}
+.cq2{margin:0 0 6px;font:500 12px/1.45 "SCDream",sans-serif;color:#9A8C76}
+.csum{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:0;counter-reset:cs;border:1px solid #2E2922;border-radius:4px;background:#100D0A}
+.csum>li{counter-increment:cs;position:relative;padding:8px 10px 9px 34px;border-top:1px solid #241F1A}
+.csum>li:first-child{border-top:0}
+.csum>li::before{content:counter(cs);position:absolute;left:10px;top:8px;width:17px;height:17px;border-radius:50%;background:#3A2E1E;color:#F1DDB0;font:400 11px/17px "Excelsior",sans-serif;text-align:center}
+.csm{font:400 13.5px/1.35 "KOTRA",sans-serif;color:#FFF3DF}
+.csr{display:flex;flex-direction:column;gap:5px;margin-top:5px}
+.cres2{display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+.cx{display:inline-flex;align-items:center;padding:2px 6px 1px;border-radius:2px;background:#1C1814;color:#C9BBA0;font:500 11px/1.4 "SCDream",sans-serif}
+.cx.ng{color:#E8907E;background:#211412}.cx.ok{color:#9CC98A;background:#14190F}.cx.bt{color:#E7B07A;background:#22170E}.cx.dim{background:none;padding:0;color:#8C7F6A}
+.cab{display:flex;flex-direction:column;gap:4px;padding:6px 8px;border-left:2px solid #5E4E34;background:rgba(255,235,200,.02)}
+.cj2{display:flex;flex-wrap:wrap;align-items:center;gap:4px}
+.cjs{display:inline-flex;align-items:center;gap:3px;padding:1px 6px 1px 3px;border:1px solid color-mix(in srgb,var(--sc) 60%,#000);border-radius:3px;font:500 11.5px/1.4 "SCDream",sans-serif;color:#F3E8D2}
+.cjs .sini{width:16px;height:16px}
+.cjn{font:500 11px/1 "SCDream",sans-serif;color:#B8AA90}.cjn.hi{color:#FFE28A}
+.cadds{display:flex;flex-wrap:wrap;align-items:center;gap:3px;font:500 10.5px/1.3 "SCDream",sans-serif;color:#7A7266}
+.cadd{padding:1px 5px;border:1px dashed #4A4032;border-radius:2px;color:#B8AA90}.cadd b{color:#9CC98A;font-weight:600}
+.cabr{display:flex;align-items:flex-start;gap:6px}
+.lb2{flex:none;width:30px;padding:2px 0 1px;border-radius:2px;text-align:center;font:600 10.5px/1.3 "SCDream",sans-serif}
+.lb2.ok{background:#1F2A17;color:#A9D68E}.lb2.ng{background:#2A1714;color:#E8907E}
+.cnext{display:flex;flex-direction:column;gap:4px;padding-left:8px;border-left:2px solid #3A3328}
+.cnext>b{font:400 12.5px/1.2 "KOTRA",sans-serif;color:#D9C9A5}
+.csum.sub{border:0;background:none}.csum.sub>li{padding:5px 0 5px 24px;border-top:1px dashed #2A2520}.csum.sub>li::before{left:0;top:5px;width:15px;height:15px;line-height:15px;font-size:10px}
+.cstory{margin-top:10px;border:1px solid #2E2922;border-radius:4px;background:#0E0C0A}
+.cstory>summary{list-style:none;display:flex;align-items:center;justify-content:center;gap:6px;padding:8px;cursor:pointer;font:500 12px/1 "SCDream",sans-serif;color:#9A8C76}
+.cstory>summary::-webkit-details-marker{display:none}
+.cstory>summary .chev{width:6px;height:6px;border-right:1.5px solid #9A8C76;border-bottom:1.5px solid #9A8C76;transform:rotate(45deg);margin-top:-3px}
+.cstory[open]>summary .chev{transform:rotate(225deg);margin-top:2px}
+.cstory>.ctree{padding:0 8px 8px}
+.cc-m{flex-wrap:wrap}
+@media (min-width:481px){.cc-im{width:76px;height:57px}.ccard.hasim{gap:9px}}
+.cimw{aspect-ratio:auto;max-height:300px}.cim{max-height:300px}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -5118,13 +5165,15 @@ function buildChoiceFilters(){
     row("분류",ch("cat",CAT_ORDER.filter(function(c){return cnt[c]}).map(function(c){return [c,c]}),"",function(a){return esc(a[1])+'<small class="cn">'+cnt[a[0]]+'</small>'}),"wide")+
     row("판정 죄악",ch("sin",SINS7.map(function(s){return [s,sinKr(s)]}),"sinc ico",function(a){return sinIco(a[0],"sini")+'<em>'+esc(a[1])+'</em>'}),"wide")+
     (pk.length?row("테마팩",ch("pack",pk.map(function(p){return [p,p]}),"",function(a){return esc(a[1])+'<small class="cn">'+packs[a[0]]+'</small>'}),"wide"):'')+'</div>'}
-function cCard(e){var cats=e.w.slice(0,3);
-  return '<button class="ccard" data-choice="'+e.id+'">'+
+var EVIMG={"10501":1,"10502":1,"10503":1,"10504":1,"10505":1,"10701":1,"10702":1,"10703":1,"10704":1,"10801":1,"10802":1,"10803":1,"10804":1,"10805":1,"10806":1,"10807":1,"10808":1,"10809":1,"10810":1,"10811":1,"10812":1,"10813":1,"10814":1,"10815":1,"10816":1,"10817":1,"10901":1,"10903":1,"10905":1,"10906":1,"900011":1,"900021":1,"900031":1,"901001":1,"901002":1,"901003":1,"901004":1,"901005":1,"901006":1,"901007":1,"901008":1,"901009":1,"901010":1,"901011":1,"901012":1,"901013":1,"901014":1,"901015":1,"901016":1,"901017":1,"901018":1,"901019":1,"901020":1,"901021":1,"901022":1,"901023":1,"901024":1,"901025":1,"901026":1,"901027":1,"901028":1,"901030":1,"901031":1,"901032":1,"901033":1,"901034":1,"901035":1,"901036":1,"901037":1,"901038":1,"901039":1,"901040":1,"901041":1,"901042":1,"901043":1,"901047":1,"901049":1,"901051":1,"901054":1,"901056":1,"901057":1,"901058":1,"901059":1,"901061":1,"901062":1,"901063":1,"901066":1,"901067":1,"901068":1,"901069":1,"901073":1,"901074":1,"901076":1,"901077":1,"901078":1,"901079":1,"901080":1,"901084":1,"901085":1,"901091":1,"901095":1,"901099":1,"901100":1,"901101":1,"901102":1,"901103":1,"901104":1,"910303":1,"910701":1,"910702":1,"910901":1,"910902":1,"911501":1,"955101":1,"955601":1,"956701":1,"971001":1,"971003":1,"971012":1,"971013":1,"971014":1,"971016":1,"971017":1,"971021":1,"971022":1,"971023":1,"971024":1,"971025":1,"971027":1,"971028":1,"971029":1,"971030":1,"971031":1,"971032":1,"971033":1,"971034":1,"971035":1,"971036":1,"971037":1,"971038":1,"971039":1,"971040":1,"971041":1,"971042":1,"971043":1,"971044":1,"971045":1,"971046":1,"971047":1,"971048":1,"971049":1,"971050":1,"971051":1,"971052":1,"971053":1,"971054":1,"971055":1,"971056":1,"971057":1,"971058":1,"971059":1,"971060":1,"971061":1,"971062":1,"971063":1,"971067":1,"971068":1,"971069":1,"971070":1,"971073":1,"971080":1,"971081":1,"971083":1,"971084":1,"971085":1,"971086":1,"971087":1,"971088":1,"971089":1,"971090":1,"971091":1,"971092":1,"971093":1,"971096":1,"971097":1,"971100":1,"971101":1,"971102":1,"971103":1,"971104":1,"971105":1,"971106":1,"971108":1,"971109":1,"971110":1,"971111":1,"971112":1,"971115":1,"971116":1,"971117":1,"971118":1,"971119":1,"971120":1};
+function evImg(id,sm){return EVIMG[id]?'img/evimg/'+(sm?'s/':'')+id+'.webp':''}
+function cCard(e){var cats=e.w.slice(0,3),im=evImg(e.id,1);
+  return '<button class="ccard'+(im?' hasim':'')+'" data-choice="'+e.id+'">'+(im?'<img class="cc-im" src="'+im+'" alt="" loading="lazy" decoding="async">':'')+'<span class="cc-b">'+
     '<span class="cc-h"><b>'+esc(e.title)+'</b>'+(e.tree.length>1?'<i class="ccn">'+e.tree.length+'단계</i>':'')+'</span>'+
     '<span class="cc-d">'+esc(firstLine(e.d||e.q)||"")+'</span>'+
     '<span class="cc-m">'+cats.map(function(w){return '<i class="cw '+(w[0]==="거던 통상"?"c0":w[0]==="테마팩"?"c1":w[0]==="전투"?"c2":"c3")+'">'+esc(w[0]==="테마팩"||w[0]==="전투"||w[0]==="스토리"||w[0]==="굴절철도"?w[1]||w[0]:w[0])+'</i>'}).join("")+(e.w.length>3?'<i class="cw c3">+'+(e.w.length-3)+'</i>':'')+
     (e.sins.length?'<span class="cc-s">'+e.sins.map(function(s){return sinIco(s,"sinm")}).join("")+'</span>':'')+
-    (e.gifts.length?'<span class="cc-g">'+e.gifts.slice(0,3).map(function(g){var gg=window.byName&&byName[g];return gg?icon(gg,"mini"):'<i class="gtx">'+esc(g)+'</i>'}).join("")+'</span>':'')+'</span></button>'}
+    (e.gifts.length?'<span class="cc-g">'+e.gifts.slice(0,3).map(function(g){var gg=window.byName&&byName[g];return gg?icon(gg,"mini"):'<i class="gtx">'+esc(g)+'</i>'}).join("")+'</span>':'')+'</span></span></button>'}
 function renderChoice(){if(!U){$("cGrid").innerHTML='<div class="uload">데이터를 불러오는 중</div>';loadUnits();return}
   if(!X){$("cGrid").innerHTML='<div class="uempty">선택지 데이터가 없어요</div>';return}
   if(!$("cFil").innerHTML)buildChoiceFilters();
@@ -5150,12 +5199,31 @@ function evNode(e,depth,seen){if(!e||seen[e.id]||depth>8)return "";seen[e.id]=1;
   else{(e.o||[]).forEach(function(o,ix){h+='<div class="copt"><div class="coh"><i>'+(ix+1)+'</i><b>'+esc(o.m)+'</b>'+(o.e?'<span class="coe">'+esc(o.e)+'</span>':'')+'</div>'+resultHtml(o)+
       (o.r||[]).map(function(t){return '<p class="cdesc">'+cfmt(t)+'</p>'}).join("")+(o.n||[]).map(function(n){return evNode(EVBY[n],depth+1,seen)}).join("")+'</div>'})}
   return h+'</div>'}
+function cxClean(L){var o=[];(L||[]).forEach(function(t){if(/^[A-Z][A-Za-z ]+(_\d+)?$/.test(t)||/Illust|Hidden Route|Immediate/.test(t))return;if(t==="전투"&&o.indexOf("전투")<0){}if(o.indexOf(t)<0)o.push(t)});return o}
+function cRes(r,cls){if(!r)return "";var p=[];
+  if(r.g&&r.g.length){var gs=[];r.g.forEach(function(n){if(gs.indexOf(n)<0)gs.push(n)});p.push(gs.map(giftChip).join(""))}
+  if(r.b&&r.b.length)p.push('<span class="cx bt">전투 · '+esc(r.b.filter(function(v,i,a){return a.indexOf(v)===i}).join(", "))+'</span>');
+  var xs=cxClean(r.x).filter(function(t){return !(r.b&&r.b.length&&/^(전투|환상체 전투|전투 승리 시 기프트)$/.test(t))});
+  xs.forEach(function(t){p.push('<span class="cx'+(/감소|파괴|전투/.test(t)?" ng":/회복|획득/.test(t)?" ok":"")+'">'+esc(t)+'</span>')});
+  return p.length?'<span class="cres2'+(cls?" "+cls:"")+'">'+p.join("")+'</span>':''}
+function cAdd(a){var c=String(a.c||"").replace(/^(\w+):Not$/,function(m,n){return ({Yisang:"이상",Faust:"파우스트"}[n]||n)+" 제외"});return '<span class="cadd">'+esc(c)+' <b>+'+a.v+'</b></span>'}
+function cJudge(j){if(!j)return "";return '<span class="cj2">'+j.sins.map(function(x){return '<span class="cjs" style="--sc:'+(SINC[x]||"#777")+'">'+sinIco(x,"sini")+esc(sinKr2(x))+'</span>'}).join("")+
+  (j.lo!=null?'<span class="cjn">'+j.lo+'↑ 보통</span>':'')+(j.hi!=null?'<span class="cjn hi">'+j.hi+'↑ 높음</span>':'')+(j.n>1?'<span class="cjn">'+j.n+'명</span>':'')+'</span>'+((j.add||[]).length?'<span class="cadds">보정 '+j.add.map(cAdd).join("")+'</span>':'')}
+function cAbSum(e){var a=cRes(e.okr),b=cRes(e.ngr);if(!a&&!b)return '<div class="cab">'+cJudge(e.j)+'<span class="cx dim">성공·실패 효과는 전투 중 버프/디버프 · 본문 펼치기에서 확인</span></div>';return '<div class="cab">'+cJudge(e.j)+'<div class="cabr"><span class="lb2 ok">성공</span>'+(cRes(e.okr)||'<span class="cx dim">—</span>')+'</div><div class="cabr"><span class="lb2 ng">실패</span>'+(cRes(e.ngr)||'<span class="cx dim">—</span>')+'</div></div>'}
+function cSum(e,depth,seen){if(!e||seen[e.id]||depth>4)return "";seen[e.id]=1;
+  if(e.k==="ab")return cAbSum(e);
+  return '<ol class="csum'+(depth?" sub":"")+'">'+(e.o||[]).map(function(o){var kids=(o.n||[]).map(function(n){return EVBY[n]}).filter(Boolean);
+    var body=cRes(o);kids.forEach(function(k){body+=k.k==="ab"?cAbSum(k):('<div class="cnext">'+(k.nm?'<b>'+esc(k.nm)+'</b>':'')+cSum(k,depth+1,seen)+'</div>')});
+    if(!body&&o.e)body='<span class="cx dim">'+esc(o.e)+'</span>';
+    return '<li><div class="csm">'+esc(o.m)+'</div>'+(body?'<div class="csr">'+body+'</div>':'')+'</li>'}).join("")+'</ol>'}
 function openChoice(id){var e=EVBY[id];if(!e)return;e=EVBY[e.root]||e;navPush("c",e.id);curUnit=null;curEgo=null;curGift=null;ppClose();
-  var h='<div class="phead"><div class="banner K"><div>선택지</div></div></div><h2 class="ctitle">'+esc(e.title)+'</h2>'+
+  var im=evImg(e.id);
+  var h=(im?'<div class="cimw"><img class="cim" src="'+im+'" alt="" decoding="async"></div>':'<div class="phead"><div class="banner K"><div>선택지</div></div></div>')+'<h2 class="ctitle">'+esc(e.title)+'</h2>'+
     '<div class="umeta">'+e.w.map(function(w){var lab=w[0]==="테마팩"?packLink(w[1]):w[0]==="전투"?'<button class="plink" data-enemy="'+esc(w[1])+'">'+esc(w[1])+'</button>':esc(w.filter(Boolean).join(" · "));return '<span class="tag '+(w[0]==="거던 통상"?"c0":w[0]==="테마팩"?"c1":w[0]==="전투"?"c2":"c3")+'"><small>'+esc(w[0])+'</small>'+(w[1]?lab:'')+'</span>'}).join("")+'</div>';
   if(e.gifts.length)h+='<div class="cgifts"><span class="lb">얻을 수 있는 기프트</span><div class="gchs">'+e.gifts.map(giftChip).join("")+'</div></div>';
-  h+='<div class="ctree">'+evNode(e,0,{})+'</div>';
-  h+='<p class="ufoot">게임 데이터 기준 · 판정 수치는 선택한 수감자의 해당 죄악 수치 합 · 결과 그림은 생략</p>';
+  h+='<div class="csumw"><h3 class="K">선택지 · 결과</h3>'+(e.q?'<p class="cq2">'+esc(e.q)+'</p>':'')+cSum(e,0,{})+'</div>';
+  h+='<details class="cstory"><summary>본문 펼치기<i class="chev"></i></summary><div class="ctree">'+evNode(e,0,{})+'</div></details>';
+  h+='<p class="ufoot">게임 데이터 기준 · 판정 수치는 선택한 수감자의 해당 죄악 수치 합 · 보정은 해당 수감자·소속·인격이면 더해지는 값</p>';
   $("detailBody").innerHTML=h;$("detail").setAttribute("aria-label",e.title+" 선택지");updBack();show("detail")}
 
 /* ---------- 적 도감 ---------- */
