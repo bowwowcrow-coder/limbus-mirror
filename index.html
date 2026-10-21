@@ -3296,6 +3296,11 @@ details>summary>b{font-family:"KOTRA","SCDream",sans-serif;font-weight:400}
 .gm .grate .doll,.gm .grate img{height:14px;width:auto}
 #nFil .chip .cn{display:none}
 #nFil .prow{row-gap:6px}
+/* 동기화 변경: 바뀐 스킬 강조 띠 */
+.usk.chg{border-left:3px solid #E9C445}
+.usk.flash{animation:skflash 1.4s ease-out}
+#nFil .prow.sub{margin-top:-4px}#nFil .prow.sub>h3{color:#9A8C76;border-left-color:#5E513F}
+#nFil .prow.sub .chip{height:24px;font-size:11px}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -3938,7 +3943,7 @@ document.addEventListener("click",function(e){
   var chb=t.closest("[data-choice]");if(chb){openChoice(+chb.dataset.choice);return}
   var enb=t.closest("[data-enemy]");if(enb){openEnemy(enb.dataset.enemy);return}
   var ckb=t.closest("[data-ck]");if(ckb){var ca=cSel[ckb.dataset.ck],ci2=ca.indexOf(ckb.dataset.v);ci2<0?ca.push(ckb.dataset.v):ca.splice(ci2,1);ckb.setAttribute("aria-pressed",ci2<0);renderChoice();return}
-  var nkb=t.closest("[data-nk]");if(nkb){var na=nSel[nkb.dataset.nk],ni2=na.indexOf(nkb.dataset.v);ni2<0?na.push(nkb.dataset.v):na.splice(ni2,1);nkb.setAttribute("aria-pressed",ni2<0);renderEnemy();return}
+  var nkb=t.closest("[data-nk]");if(nkb){var na=nSel[nkb.dataset.nk],ni2=na.indexOf(nkb.dataset.v);ni2<0?na.push(nkb.dataset.v):na.splice(ni2,1);nkb.setAttribute("aria-pressed",ni2<0);if(nkb.dataset.nk==="where"){if(nkb.dataset.v==="스토리"&&ni2>=0)nSel.ch=[];$("nFil").innerHTML=""}renderEnemy();return}
   var nsb=t.closest("[data-nsort]");if(nsb){nSort=nsb.dataset.nsort;document.querySelectorAll("[data-nsort]").forEach(function(b){b.setAttribute("aria-pressed",b.dataset.nsort===nSort)});renderEnemy();return}
   if(t.closest("#cFilterBtn")){var cf2=$("cFil"),co=cf2.classList.toggle("open");$("cFilterBtn").setAttribute("aria-expanded",co);return}
   if(t.closest("#nFilterBtn")){var nf2=$("nFil"),no2=nf2.classList.toggle("open");$("nFilterBtn").setAttribute("aria-expanded",no2);return}
@@ -4001,7 +4006,8 @@ document.addEventListener("click",function(e){
   var gk=t.closest("[data-gkw]");if(gk){for(var k9 in sel)sel[k9]=[];sel.keyword=[gk.dataset.gkw];$("q").value="";setView("gift");render();return}
   var ub=t.closest("[data-unit]");if(ub){openUnit(+ub.dataset.unit);return}
   var eb=t.closest("[data-ego]");if(eb){openEgo(+eb.dataset.ego);return}
-  var uu=t.closest("[data-uup]");if(uu&&curUnit){uUp=+uu.dataset.uup;_uArtAuto=true;try{localStorage.setItem("egoUptie",uUp)}catch(e){}_uKeepScroll=true;_navReplay=true;try{openUnit(curUnit)}finally{_navReplay=false}return}
+  var uu=t.closest("[data-uup]");if(uu&&curUnit){var _pu=uUp;uUp=+uu.dataset.uup;_uArtAuto=true;try{localStorage.setItem("egoUptie",uUp)}catch(e){}_uKeepScroll=true;_navReplay=true;window._lvJust=(uUp!==_pu);try{openUnit(curUnit)}finally{_navReplay=false;window._lvJust=false}
+    if(uUp!==_pu){setTimeout(function(){var d=document.querySelector("#detailBody .ldf");document.querySelectorAll("#detailBody .usk.chg").forEach(function(el){el.classList.remove("flash");void el.offsetWidth;el.classList.add("flash")});if(d&&d.open){d.scrollIntoView({block:"nearest",behavior:"smooth"})}},50)}return}
   var ut=t.closest("[data-utab]");if(ut&&curUnit){uTab=ut.dataset.utab;try{localStorage.setItem("egoUtab",uTab)}catch(e){}_uKeepScroll=true;_navReplay=true;try{openUnit(curUnit)}finally{_navReplay=false}return}
   var eu=t.closest("[data-eup]");if(eu&&curEgo){uEgoUp=+eu.dataset.eup;_uKeepScroll=true;_navReplay=true;try{openEgo(curEgo)}finally{_navReplay=false}return}
   var uc=t.closest("[data-uk]");
@@ -4590,7 +4596,7 @@ function lvDiff(s,lv){var e=s.up.filter(function(x){return +x.lv===+lv})[0];if(!
 function lvDiffSec(i,lv){if(lv<2)return "";var L=[];i.sk.concat(i.dk||[]).forEach(function(s){var d=lvDiff(s,lv);if(d)L.push(d)});
   var ps=i.ps.filter(function(p){return +p.u===+lv});
   if(!L.length&&!ps.length)return "";
-  var h='<details class="ldf"><summary><span class="ldt">'+(uii("up_"+(lv-1),"upi",ROMAN5[lv-1])||ROMAN5[lv-1])+'<i>→</i>'+(uii("up_"+lv,"upi",ROMAN5[lv])||ROMAN5[lv])+'</span>달라지는 점 모아 보기<small>'+(L.length+ps.length)+'</small><i class="chev"></i></summary><div class="ldl">';
+  var h='<details class="ldf"'+(window._lvJust?' open':'')+'><summary><span class="ldt">'+(uii("up_"+(lv-1),"upi",ROMAN5[lv-1])||ROMAN5[lv-1])+'<i>→</i>'+(uii("up_"+lv,"upi",ROMAN5[lv])||ROMAN5[lv])+'</span>달라지는 점 모아 보기<small>'+(L.length+ps.length)+'</small><i class="chev"></i></summary><div class="ldl">';
   L.forEach(function(d){h+='<button class="ldr" data-skgo="'+d.s.id+'" style="--sc:'+(SINC[d.b.sin]||"#777")+'"><span class="ldn">'+(d.b.sin?sinIco(d.b.sin,"sinm"):'')+'<b>'+esc(d.b.name||"")+'</b></span><span class="ldi">'+d.items.join('<i class="dv"></i>')+'</span>'+(d.lines&&d.lines.length?'<span class="ldx">'+d.lines.join("")+'</span>':'')+'</button>'});
   ps.forEach(function(p){h+='<div class="ldr ps"><span class="ldn"><span class="ptype'+(p.k==="s"?" sup":"")+'">'+(p.k==="s"?"서포트":"패시브")+'</span><b>'+esc(p.nm)+'</b></span><span class="ldi"><span class="dnew">해금</span></span></div>'});
   return h+'</div></details>'}
@@ -5209,7 +5215,7 @@ function gdLack(g){var v=gdV(g,0),dep=gdDep(v,g.n||7),n=0;dep.forEach(function(s
 document.addEventListener("click",function(e){var b=e.target.closest&&e.target.closest("[data-gsort]");if(!b)return;gSort=b.dataset.gsort;try{localStorage.setItem("egoGSort",gSort)}catch(x){}renderDeck()});
 
 /* ===== 선택지 · 적 도감 · 채광/사영 · 덱 평가 · 리세 ===== */
-var X=null,EVBY={},EVROOTS=[],ENBY={},EN_EVENTS={},cSel={cat:[],sin:[],pack:[]},nSel={kind:[],where:[],sin:[],cls:[]},cSort="",nSort="";
+var X=null,EVBY={},EVROOTS=[],ENBY={},EN_EVENTS={},cSel={cat:[],sin:[],pack:[]},nSel={kind:[],where:[],sin:[],cls:[],ch:[]},cSort="",nSort="";
 var CAT_ORDER=["거던 통상","테마팩","전투","스토리","굴절철도","구 거울던전"];
 var CLS_KR={ZAYIN:"ZAYIN",TETH:"TETH",HE:"HE",WAW:"WAW",ALEPH:"ALEPH"};
 var DAY_KR={MON:"월",TUE:"화",WED:"수",THU:"목",FRI:"금",SAT:"토",SUN:"일"};
@@ -5423,7 +5429,8 @@ nMatch=function(e){var q=$("nq").value.trim().toLowerCase();if(q&&e.hay.indexOf(
   if(nSel.mp.length&&nSel.mp.indexOf(e.mp?"y":"n")<0)return false;
   if(nSel.where.length&&!nSel.where.some(function(w){return nWhereKinds(e).indexOf(w)>=0}))return false;
   if(nSel.sin.length&&nSel.sin.indexOf(e.sin)<0)return false;
-  if(nSel.cls.length&&nSel.cls.indexOf(e.cls||"")<0)return false;return true};
+  if(nSel.cls.length&&nSel.cls.indexOf(e.cls||"")<0)return false;
+  if(nSel.ch&&nSel.ch.length&&!e.where.some(function(w){return w[0]==="스토리"&&nSel.ch.indexOf(w[1])>=0}))return false;return true};
 buildEnemyFilters=function(){
   function ch(k,arr,cls,lab){return arr.map(function(a){return '<button class="chip'+(cls?" "+cls:"")+'" data-nk="'+k+'" data-v="'+esc(a[0])+'" aria-pressed="'+(nSel[k].indexOf(a[0])>=0)+'"><span>'+(lab?lab(a):esc(a[1]))+'</span></button>'}).join("")}
   function row(t,body,cls){return '<div class="prow'+(cls?" "+cls:"")+'"><h3>'+t+'</h3><div class="pchips">'+body+'</div></div>'}
@@ -5434,6 +5441,7 @@ buildEnemyFilters=function(){
     row("종류",ch("kind",[["ab","환상체"],["en","일반 적"],["boss","보스"],["add","보스전 동행"]],"",function(a){return esc(a[1])+'<small class="cn">'+(a[0]==="ab"?na:a[0]==="en"?X.en.length-na:a[0]==="boss"?nb:nd)+'</small>'}))+
     row("정신력",ch("mp",[["y","있음"],["n","없음"]],"",function(a){return esc(a[1])+'<small class="cn">'+(a[0]==="y"?nm:X.en.length-nm)+'</small>'}))+
     row("등장",ch("where",ws.map(function(w){return [w,w]}),"",function(a){return esc(a[1])+'<small class="cn">'+wc[a[0]]+'</small>'}),"wide")+
+    (nSel.where.indexOf("스토리")>=0?(function(){var cc={};X.en.forEach(function(e){e.where.forEach(function(w){if(w[0]==="스토리"&&w[1])cc[w[1]]=1})});var chs=Object.keys(cc).sort(function(a,b){return parseFloat(a)-parseFloat(b)});return row("장",ch("ch",chs.map(function(c){return [c,c]})),"wide sub")})():'')+
     row("등급",ch("cls",GRADES.map(function(g){return [g,g]}),"grd",function(a){return gradeTag(a[0])}),"wide one")+
     row("속성",ch("sin",SINS7.map(function(s){return [s,sinKr(s)]}),"sinc ico",function(a){return sinIco(a[0],"sini")+'<em>'+esc(a[1])+'</em>'}),"wide")+
     row("정렬",[["name","이름순"],["lv","레벨순"],["sin","죄악순"]].map(function(a){return '<button class="chip" data-nsort="'+a[0]+'" aria-pressed="'+(nSort===a[0])+'"><span>'+a[1]+'</span></button>'}).join("")+'<button class="chip rst" data-nreset="1"><span>초기화</span></button>',"wide")+'</div>'+
