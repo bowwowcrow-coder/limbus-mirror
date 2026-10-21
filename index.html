@@ -3242,6 +3242,60 @@ details>summary>b{font-family:"KOTRA","SCDream",sans-serif;font-weight:400}
 .snav .sn[data-view="deck"] .sl b,.snav .sn[data-view="gift"] .sl b{color:#FFE9B8}
 .snav .sn.soon{opacity:.45}
 .side.closed .sgrp{display:none}
+/* ===== 10/21 PC 점검 반영 ===== */
+/* 1) 동기화 ↔ 스킬 간격: 다른 섹션과 같은 16px */
+#detailBody .uup{margin-bottom:0}
+#detailBody .uup+.usec{margin-top:14px}
+/* 2) 길잡이: 메뉴 맨 아래 조용한 링크 */
+.snav .sn[data-view="guide"]{height:30px;opacity:.7;border-style:dashed;background:none;margin-top:2px}
+.snav .sn[data-view="guide"] .sl b{font-size:12.5px;color:#B8AA90}
+.snav .sn[data-view="guide"] .sf{opacity:.6;transform:scale(.85)}
+/* 3) 기프트 NEW: 모서리 띠로, 글로우 제거 */
+.tile.nw .gi{filter:none}
+.tile.nw .gi::after{inset:0;border:1.5px solid #E9BE5C;border-radius:3px;box-shadow:none}
+.nwb{top:0;left:0;transform:none;padding:2px 5px 1px;border-radius:3px 0 3px 0;font-size:8.5px;letter-spacing:.08em;background:#E9C445;color:#1A1408;box-shadow:0 1px 0 #000}
+/* 4) 수감자 필터 이름 잘림: 글자 줄이고 두 줄 허용 */
+.fbtn{padding:5px 1px 4px}
+.fbtn span{white-space:normal;line-height:1.1;font-size:10px;letter-spacing:-.04em;word-break:keep-all;text-align:center;overflow:visible;text-overflow:clip;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+@media (min-width:640px){.fbtn span{font-size:10.5px}}
+/* 5) 적 필터 지저분함: 개수 배지를 칩 밖 작은 회색 숫자로, 범례 줄 정리 */
+.ufil .chip .cn,.pchips .chip .cn,.chip small.cn{font:400 9px/1 "Excelsior",sans-serif;color:#7A7266;margin-left:4px;opacity:1;background:none;border:0;padding:0}
+#nFil .prow{align-items:center}
+.nleg,.ufil .nleg{display:flex;gap:12px;align-items:center;padding:4px 0 0;font:500 11px/1 "SCDream",sans-serif;color:#8C7F6A}
+/* 7) 선택지 카드: 제목 두 줄, 썸네일 위로 */
+.ccard.hasim{flex-direction:column;gap:0;padding:0;overflow:hidden}
+.cc-im{width:100%;height:auto;aspect-ratio:16/7;object-fit:cover;border-radius:0;box-shadow:none;align-self:stretch}
+.cc-b{padding:8px 10px 9px;gap:4px}
+.cc-h{align-items:flex-start}
+.cc-h b{white-space:normal;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;text-overflow:clip;word-break:keep-all;line-height:1.25}
+.cc-h .ccn{flex:none;margin-top:2px}
+.cc-d{white-space:normal;display:-webkit-box;-webkit-line-clamp:1;-webkit-box-orient:vertical;overflow:hidden}
+.cc-kw{display:flex;flex-wrap:wrap;gap:3px 7px;align-items:center;margin-top:1px}
+.cc-kw .kwc-i{width:13px;height:13px;margin-right:2px;vertical-align:-2px}
+.cc-kw em{font:500 11px/1 "SCDream",sans-serif;font-style:normal;color:#D9CBAA}
+.cgrid{grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:8px}
+@media (max-width:600px){.cgrid{grid-template-columns:1fr 1fr}.cc-im{aspect-ratio:16/8}}
+@media (max-width:400px){.cgrid{grid-template-columns:1fr}}
+/* 8) 버튼 그라디언트 정리: 평면 + 얇은 테두리 */
+.chip{background:#1C1915;box-shadow:inset 0 0 0 1px rgba(0,0,0,.35);border-color:#4A433A}
+@media (hover:hover){.chip:hover{background:#242019;border-color:#6E6355}}
+.chip[aria-pressed="true"]{background:#2A2114;border-color:#A8793A;box-shadow:inset 0 2px 3px rgba(0,0,0,.7),inset 0 0 0 1px rgba(0,0,0,.4)}
+.chip[aria-pressed="true"]::after{opacity:.75}
+.tbtn{background:#4A4640;text-shadow:0 1px 0 #000}
+.tbtn.K{background:#2A2622;border:1px solid #5A5147;clip-path:none;border-radius:3px}
+.tbtn.K.lit{background:#5A3F16;border-color:#A8793A;filter:none;color:#FFE9B8}
+.uup .seg button[aria-pressed="true"]{background:#3A2E14;box-shadow:inset 0 0 0 1px rgba(233,196,69,.35)}
+.umseg button[aria-selected="true"]{background:#3A2E14}
+.gset button[aria-selected="true"],.dgset button[aria-selected="true"]{background:#3A2E14!important}
+.fbtn{background:#15110E}
+.ucard,.ccard,.erow,.urow{background:#110E0B}
+/* 9) 덱 카드 아래 줄: 세로 가운데 */
+/* 9) 덱 카드 꼬리표 줄 높이 통일 */
+.gm{gap:4px;align-items:center}
+.gm>i,.gm>.grate,.gm .gvn,.gm .gown,.gm .greq{display:inline-flex;align-items:center;height:20px;margin:0;padding:0 6px;line-height:1;font-size:10.5px;font-style:normal;border-radius:2px;box-sizing:border-box}
+.gm .grate .doll,.gm .grate img{height:14px;width:auto}
+#nFil .chip .cn{display:none}
+#nFil .prow{row-gap:6px}
 /* ===== 유저 덱 공유 · 프로필 ===== */
 .shtop{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin:0 0 12px;padding:12px 14px;border:1px solid #3A332A;border-radius:6px;background:linear-gradient(100deg,#1C170E,#100D0A 70%)}
 .shtx{flex:1 1 220px;min-width:0;display:flex;flex-direction:column;gap:3px}
@@ -5198,7 +5252,7 @@ function evImg(id,sm){return EVIMG[id]?'img/evimg/'+(sm?'s/':'')+id+'.webp':''}
 function cCard(e){var cats=e.w.slice(0,3),im=evImg(e.id,1);
   return '<button class="ccard'+(im?' hasim':'')+'" data-choice="'+e.id+'">'+(im?'<img class="cc-im" src="'+im+'" alt="" loading="lazy" decoding="async">':'')+'<span class="cc-b">'+
     '<span class="cc-h"><b>'+esc(e.title)+'</b>'+(e.tree.length>1?'<i class="ccn">'+e.tree.length+'단계</i>':'')+'</span>'+
-    '<span class="cc-d">'+esc(firstLine(e.d||e.q)||"")+'</span>'+
+    (function(){var ks=[];e.gifts.forEach(function(g){var gg=window.byName&&byName[g];var k=gg&&gg.keyword;if(k&&/^(화상|출혈|진동|파열|침잠|호흡|충전)$/.test(k)&&ks.indexOf(k)<0)ks.push(k)});return ks.length?'<span class="cc-kw">'+ks.slice(0,4).map(function(k){var en=({"화상":"Combustion","출혈":"Laceration","진동":"Vibration","파열":"Burst","침잠":"Sinking","호흡":"Breath","충전":"Charge"})[k];return (en&&window.kwIco?kwIco(en,"kwc-i"):'')+'<em>'+esc(k)+'</em>'}).join("")+'</span>':''})()+
     '<span class="cc-m">'+cats.map(function(w){return '<i class="cw '+(w[0]==="거던 통상"?"c0":w[0]==="테마팩"?"c1":w[0]==="전투"?"c2":"c3")+'">'+esc(w[0]==="테마팩"||w[0]==="전투"||w[0]==="스토리"||w[0]==="굴절철도"?w[1]||w[0]:w[0])+'</i>'}).join("")+(e.w.length>3?'<i class="cw c3">+'+(e.w.length-3)+'</i>':'')+
     (e.sins.length?'<span class="cc-s">'+e.sins.map(function(s){return sinIco(s,"sinm")}).join("")+'</span>':'')+
     (e.gifts.length?'<span class="cc-g">'+e.gifts.slice(0,3).map(function(g){var gg=window.byName&&byName[g];return gg?icon(gg,"mini"):'<i class="gtx">'+esc(g)+'</i>'}).join("")+'</span>':'')+'</span></span></button>'}
@@ -6429,7 +6483,7 @@ function evSec(title,L,gift,more){return '<div class="sec evsec"><h3 class="K">'
   var _sv=setView;setView=function(v){_sv.apply(this,arguments);mount();sync()};
   if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",function(){mount();sync()});else{mount();sync()}})();
 /* 사이드 메뉴 묶음: 도감 / 거울던전 / 나 */
-(function(){var G=[["홈",["home","guide"]],["도감",["gift","pack","unit","enemy","choice"]],["거울던전",["deck","share","tier","sim"]],["내 정보",["my"]]];
+(function(){var G=[["홈",["home"]],["도감",["gift","pack","unit","enemy","choice"]],["거울던전",["deck","share","tier","sim"]],["내 정보",["my","guide"]]];
   function group(){var nav=document.querySelector(".snav");if(!nav||nav.dataset.grouped==="1")return;var items={};nav.querySelectorAll(".sn").forEach(function(a){var k=a.dataset.view||("soon:"+(a.dataset.soon||""));items[k]=a});
     if(!items.home||!items.deck||!items.my)return; /* 아직 다 안 붙었으면 다음 기회에 */
     var frag=document.createDocumentFragment(),used={};
