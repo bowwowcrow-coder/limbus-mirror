@@ -3559,6 +3559,15 @@ body:has(#side.mopen) .tn-mb{border-color:#FF9A1A;color:#FFE3B0}
 .hen-l button{height:24px;padding:0 9px;border:1px solid #3E362B;border-radius:3px;background:#15110E;color:#D9CBAA;font-size:11.5px;cursor:pointer;transition:border-color .12s,color .12s}
 .hen-l button:hover{border-color:#9C8A6C;color:#FFF3DF}
 @media (max-width:759.98px){.hen-m{padding:11px 12px 6px}.hen-t b{font-size:17px}.hen-s{padding-left:61px}.hen-l{margin-top:8px;padding:7px 12px 8px}}
+
+/* 기프트 NEW: 가운데 위, 등급·경고 기호와 같은 줄에, 작게 */
+.tile .nwb{top:0;left:50%;right:auto;transform:translateX(-50%);padding:1px 4px 0;border-radius:0 0 3px 3px;font-size:7.5px;line-height:1.3;letter-spacing:.04em}
+
+/* E.G.O 그림: 얼굴 기준 위치 */
+.egi img{object-position:var(--fx,50%) var(--fy,35%)!important}
+/* 큰 카드(세로 자름이 안 생기는 비율)는 그림을 키워서 얼굴을 위쪽 1/3에 */
+.ufb.efb .egi img{transform:translateY(clamp(-22%,calc(36% - var(--fy,35%)),10%)) scale(1.2);transform-origin:50% 50%}
+.ucard.ecard2:hover .egi img{transform:scale(1.04)}
 </style>
 </head>
 <body>
@@ -4714,7 +4723,10 @@ function eMatch(e){var q=$("uq").value.trim().toLowerCase();if(q&&eHay(e).indexO
 function eCmp(a,b){if(uSort==="rank")return GRADES.indexOf(b.g)-GRADES.indexOf(a.g)||b.id-a.id;if(uSort==="sinner")return a.s-b.s||GRADES.indexOf(a.g)-GRADES.indexOf(b.g);
   if(uSort==="name")return a.nm.localeCompare(b.nm,"ko");return (b.date||"").localeCompare(a.date||"")||b.id-a.id}
 /* E.G.O 목록 카드: 그림 띠(위) + 이름·속성·비용(아래) — 인격 카드처럼 그림이 주인공 */
-function egoArt(id,sub){return '<span class="uimg th egi"><img src="img/ecg/'+(sub||"s")+'/'+id+'.webp" alt="" loading="lazy" decoding="async"></span>'}
+var EGO_POS={"20101":[48,70],"20102":[42,45],"20103":[45,45],"20104":[30,42],"20105":[48,42],"20106":[42,35],"20107":[50,35],"20108":[50,38],"20109":[50,32],"20201":[35,30],"20202":[48,45],"20203":[38,20],"20204":[52,32],"20205":[48,40],"20206":[50,25],"20207":[60,38],"20208":[45,35],"20209":[48,38],"20210":[48,38],"20211":[52,45],"20301":[50,45],"20302":[62,22],"20303":[50,38],"20304":[68,45],"20305":[50,45],"20306":[42,45],"20307":[52,25],"20308":[52,30],"20309":[35,22],"20310":[50,65],"20401":[50,50],"20402":[52,32],"20403":[33,38],"20404":[62,55],"20405":[62,38],"20406":[62,40],"20407":[52,30],"20408":[45,40],"20409":[48,20],"20501":[50,75],"20502":[48,22],"20503":[50,28],"20504":[38,28],"20505":[50,30],"20506":[50,30],"20507":[50,15],"20508":[38,45],"20509":[60,30],"20510":[52,24],"20601":[50,50],"20602":[55,25],"20603":[50,35],"20604":[42,40],"20605":[48,30],"20606":[55,22],"20607":[48,35],"20608":[45,20],"20609":[62,45],"20610":[50,25],"20701":[40,50],"20702":[40,22],"20703":[45,18],"20704":[50,62],"20705":[48,35],"20706":[50,55],"20707":[50,50],"20708":[55,30],"20709":[52,42],"20801":[52,35],"20802":[50,25],"20803":[48,42],"20804":[52,35],"20805":[45,40],"20806":[48,30],"20807":[45,32],"20808":[52,25],"20809":[48,20],"20810":[45,25],"20901":[40,30],"20902":[50,40],"20903":[48,22],"20904":[48,38],"20905":[50,35],"20906":[50,25],"20907":[42,20],"20908":[50,25],"20909":[50,32],"20910":[50,42],"21001":[50,55],"21002":[50,35],"21003":[50,38],"21004":[50,35],"21005":[50,38],"21006":[50,28],"21007":[50,52],"21008":[45,22],"21009":[50,22],"21101":[50,15],"21102":[50,38],"21103":[50,35],"21104":[50,40],"21105":[65,45],"21106":[50,30],"21107":[38,45],"21108":[50,42],"21109":[45,32],"21201":[52,75],"21202":[48,28],"21203":[45,40],"21204":[50,22],"21205":[45,35],"21206":[60,45],"21207":[48,45],"21208":[40,22],"21209":[50,45],"21210":[62,35]};
+/* 얼굴 위치(w 기준 %). s(정사각)는 w와 위쪽이 맞고 더 길어서 y를 0.624배 */
+function egoPos(id,sub){var p=EGO_POS[id];if(!p)return '';var y=sub==="w"?p[1]:Math.round(p[1]*0.624);return ' style="--fx:'+p[0]+'%;--fy:'+y+'%"'}
+function egoArt(id,sub){return '<span class="uimg th egi"><img src="img/ecg/'+(sub||"s")+'/'+id+'.webp" alt=""'+egoPos(id,sub||"s")+' loading="lazy" decoding="async"></span>'}
 function egoCard(e){var sn=U.sinners[e.s-1]||{};
   return '<button class="ucard ecard2 g-'+esc(e.g)+'" style="--bc:'+(SINC[e.sin]||"#4A4237")+'" data-ego="'+e.id+'" aria-label="'+esc((sn.kr||"")+" "+e.nm)+'">'+egoArt(e.id)+'<span class="uc-l">'+sinLogo(e.s,"slg")+''+gradeTag(e.g)+'</span>'+
     (e.kws.length?'<span class="uc-k">'+e.kws.slice(0,3).map(function(k){return kwIco(k,"kwg")}).join("")+'</span>':'')+'<span class="unm"><small>'+esc(sn.kr||"")+'</small><b>'+esc(e.nm)+'</b></span></button>'}
