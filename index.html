@@ -6738,8 +6738,9 @@ setTimeout(function(){try{
       if(e.target.closest(".tn-mb")){var s=document.getElementById("side");openSide(!s.classList.contains("mopen"));return}
       if(e.target.closest(".tn-it,.tn-home,.tn-brand")){/* setView는 본문 위임 핸들러가 처리. 여기선 드롭다운만 닫음 */
         var g=el.querySelector(".tn-g");g.classList.add("lock");el.querySelectorAll(".tn-grp.open").forEach(function(x){x.classList.remove("open")});
-        setTimeout(function(){g.classList.remove("lock")},400)}});
+        }});
     el.querySelector(".tn-g").addEventListener("mouseleave",function(){this.classList.remove("lock")});
+    el.querySelectorAll(".tn-gb").forEach(function(b){b.addEventListener("mouseenter",function(){el.querySelector(".tn-g").classList.remove("lock")})});
     document.addEventListener("click",function(e){if(!e.target.closest("#topnav"))el.querySelectorAll(".tn-grp.open").forEach(function(x){x.classList.remove("open");x.querySelector(".tn-gb").setAttribute("aria-expanded","false")})});
     document.addEventListener("keydown",function(e){if(e.key==="Escape")el.querySelectorAll(".tn-grp.open").forEach(function(x){x.classList.remove("open")})});
     return true}
