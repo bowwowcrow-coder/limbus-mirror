@@ -6820,8 +6820,8 @@ setTimeout(function(){try{
     var anchor=el.querySelector(".hnew")||el.querySelector(".hhero");if(!anchor)return;
     var w=document.createElement("div");w.innerHTML=entHtml();anchor.insertAdjacentElement("afterend",w.firstChild);
     var tools=el.querySelector(".htools");if(tools){var sec=tools.closest(".hsec");if(sec)sec.remove()}
-    if(typeof shLoad==="function"&&typeof shOnline==="function"&&shOnline()){try{shLoad(function(){var s=document.getElementById("henSh");if(s&&SH.items)s.textContent=SH.items.length})}catch(e){}}
-    else{var s=document.getElementById("henSh");if(s)s.textContent="–"}}
+    if(typeof shLoad==="function"&&typeof shOnline==="function"&&shOnline()){try{shLoad(function(){var s=document.getElementById("henSh");if(!s||!SH.items)return;if(SH.items.length)s.textContent=SH.items.length;else s.parentNode.parentNode.hidden=true})}catch(e){}}
+    else{var s=document.getElementById("henSh");if(s)s.parentNode.parentNode.hidden=true}}
   if(typeof renderHome==="function"){var _rh=renderHome;renderHome=function(){_rh.apply(this,arguments);try{mount()}catch(e){}}}
   if(window.curView==="home")try{mount()}catch(e){}
 })();
