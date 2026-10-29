@@ -3577,6 +3577,19 @@ body:has(#side.mopen) .tn-mb{border-color:#FF9A1A;color:#FFE3B0}
 .nc2-t small .nc2-w{font-style:normal;color:#9A8C76}
 /* 선택지 카드: 폰에서 2열(스크롤 절반), 그림 비율 넓게 */
 @media (max-width:400px){.cgrid{grid-template-columns:1fr 1fr;gap:6px}.cc-im{aspect-ratio:16/9}.cc-b{padding:7px 8px 8px}.cc-h b{font-size:12.5px}.cc-m .cw{font-size:10px}}
+/* 티어표 만들기: 인격·E.G.O 고르기 상자를 화면에 고정 (폰: 아래, PC: 오른쪽) */
+.tvpool{position:sticky;bottom:calc(8px + env(safe-area-inset-bottom,0px));z-index:5;background:#120F0C;box-shadow:0 -6px 18px rgba(0,0,0,.55),0 0 0 1px #3A3328}
+.tvpool .tvis{max-height:30vh}
+#tierBody.picking .tvpool{bottom:calc(70px + env(safe-area-inset-bottom,0px))}
+.tvph{padding:8px 10px 4px}
+@media (min-width:900px){
+ .tvmk{display:grid;grid-template-columns:minmax(0,1fr) 300px;grid-template-areas:"info info" "board pool" "bar bar" "lv lv" "act act";gap:10px;align-items:start}
+ .tvmk .tvinfo{grid-area:info}.tvmk .tvb{grid-area:board}.tvmk .tvpool{grid-area:pool;position:sticky;top:calc(var(--tnh) + 10px);bottom:auto;box-shadow:0 0 0 1px #3A3328}
+ .tvmk .tvpool .tvis{max-height:calc(100vh - var(--tnh) - 150px)}
+ .tvmk .tvbar{grid-area:bar}.tvmk .tvlv{grid-area:lv}.tvmk .tva{grid-area:act}
+ .tvmk .tvpool .tvis{display:grid;grid-template-columns:repeat(auto-fill,minmax(52px,1fr));gap:2px}
+ .tvmk .tvpool .tvi{width:auto;height:auto;aspect-ratio:1}.tvmk .tvpool .tvn{font-size:9px}
+}
 </style>
 </head>
 <body>
